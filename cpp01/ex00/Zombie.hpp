@@ -10,6 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+	Include guards are stuff like ifndef, define and endif 
+	which we done already
+*/
 #ifndef ZOMBIE_HPP
 #define ZOMBIE_HPP
 

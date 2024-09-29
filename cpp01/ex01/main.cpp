@@ -15,7 +15,6 @@
 int	main(void) 
 {
 	Zombie		*newZombie1;
-	std::string	name = "";
 	int		total_zombies;
 
 	total_zombies = 5;

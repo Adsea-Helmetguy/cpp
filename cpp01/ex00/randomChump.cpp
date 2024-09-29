@@ -18,4 +18,5 @@ void	randomChump(std::string name)
 
 	newZombie_creating = new Zombie(name);
 	newZombie_creating->announce();
+	delete newZombie_creating;
 }

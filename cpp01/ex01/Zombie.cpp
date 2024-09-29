@@ -16,7 +16,8 @@
 
 Zombie::Zombie()
 {
-
+	this->name = "Zombie in birthpod";
+	std::cout << this->name << " awaiting creation" << std::endl;
 }
 
 Zombie::Zombie(std::string name)
@@ -28,15 +29,11 @@ Zombie::Zombie(std::string name)
 Zombie::~Zombie()
 {
 	std::cout << "Zombie (" << this->name << ") destroyed" << std::endl;
+//Zombies must be destroyed when you don’t need them anymore. The destructor must
+//print a message with the name of the zombie for debugging purposes.
 }
 
-void	Zombie::setter_name(std::string name)
+void	Zombie::announce(void)
 {
-	this->name = name;
+	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
-
-std::string	Zombie::getter_name(void)
-{
-	return name;
-}
-

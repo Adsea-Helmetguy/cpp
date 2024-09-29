@@ -20,6 +20,8 @@
 # include <sstream>
 # include <new>
 
+
+
 // ************************************************************************** //
 //                               Contact Class                                //
 // ************************************************************************** //
@@ -30,8 +32,8 @@ public:
 	Zombie();
 	Zombie(std::string name);//constructor--initializes object class allocating resources
 	~Zombie();//destructor--cleans resources allocated by object
-	void	setter_name(std::string name);
-	std::string	getter_name(void);
+	
+	void announce(void);
 
 private:
 	std::string	name;

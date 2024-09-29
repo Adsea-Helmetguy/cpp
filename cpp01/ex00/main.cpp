@@ -15,12 +15,12 @@
 int	main(void) 
 {
 	Zombie		*newZombie1;
-	std::string	name = "";
 
-	newZombie1 = newZombie("zombie1");
-	randomChump("Random Zombie");
+	newZombie1 = newZombie("Foo");
+	randomChump("randomChump_Zombie");
 	delete newZombie1;
 	return (0);
+
 }
 //https://cplusplus.com/reference/iomanip/
 //https://cplusplus.com/reference/string/string/
