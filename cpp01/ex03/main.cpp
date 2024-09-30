@@ -1,11 +1,20 @@
-#include <iostream>
-#include <string>//std::string
-#include <cctype>
-#include <iomanip> //for std::setw
-#include <sstream>
-#include <new>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlow <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/30 10:34:13 by mlow              #+#    #+#             */
+/*   Updated: 2024/09/30 10:34:18 by mlow             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int main()
+#include "Weapon.hpp"
+#include "HumanA.hpp"
+#include "HumanB.hpp"
+
+int	main(void)
 {
     {
         Weapon club = Weapon("crude spiked club");

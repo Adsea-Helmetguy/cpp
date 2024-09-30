@@ -1,5 +1,17 @@
-#ifndef ZOMBIE_HPP
-#define ZOMBIE_HPP
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Weapon.hpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlow <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/30 10:35:16 by mlow              #+#    #+#             */
+/*   Updated: 2024/09/30 10:35:18 by mlow             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef WEAPON_HPP
+#define WEAPON_HPP
 
 # include <iostream>
 # include <string>//std::string
@@ -17,9 +29,14 @@
 class Weapon
 {
 public:
-    const std::string &getType() const;//for access
-	void setType(std::string type);//for modify
+	Weapon(std::string name);
+	~Weapon();
+
+	const std::string &getType() const;//for access
+	void setType(const std::string &type);//for modify
 
 private:
-	std::string	type;
+	std::string	_type;//'_' added to mark it is a private member datatype
 };
+
+#endif
