@@ -15,50 +15,20 @@
 #include <algorithm>
 #include <cctype> // for std::toupper
 
-
-//1)using namespace <ns_name> and
-//friend keywords are forbidden. Otherwise, your grade will be -42.
-//
-//2)You are allowed to use the STL in the Module 08 and 09 only. That means:
-//no Containers (vector/list/map/and so forth) and no Algorithms (anything that
-//requires to include the <algorithm> header) until then.
-//
-//The following functions are forbidden
-//too: *printf(), *alloc() and free().
-//
-//
-char	**uppercase(char **argv)
+int	main(int argc, char **argv)
 {
 	int	array;
 	int	index;
 
-	array = 0;
-	while (argv[array])
-	{
-		index = -1;
-		while (argv[array][++index])
-			argv[array][index] = toupper(argv[array][index]);
-		argv[array][index] = '\0';
-		array++;
-	}
-	argv[array] = NULL;
-	return (argv);
-}
-
-int	main(int argc, char **argv)
-{
-//	std::string text = "shhhhh... I think the students are asleep...";
-	char	**print_out;
-	int	array;
-
 	if (argc != 1)
 	{
-		// Convert to uppercase
-		print_out = uppercase(argv);
-		// Output the converted string
 		array = 0;
 		while (argv[++array])
-			std::cout << print_out[array];
+		{
+			index = 0;
+			while (argv[array][index])
+				std::cout << static_cast<char>(toupper(argv[array][index++]));
+		}
 		std::cout << std::endl;
 	}
 	else

@@ -21,7 +21,7 @@ Zombie*	zombieHorde(int N, std::string name)
 	newZombie_creation = new Zombie[N];
 	for (int loop = 0; loop < N; loop++)
 	{
-		newZombie_creation[loop] = Zombie(name);
+		newZombie_creation[loop].name_init(name);
 		newZombie_creation[loop].announce();
 	}
 	return (newZombie_creation);

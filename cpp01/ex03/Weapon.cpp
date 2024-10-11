@@ -17,11 +17,12 @@
 Weapon::Weapon(std::string name)
 {
 	std::cout << "Weapon " << name << " created" << std::endl;
+	this->_type = name;
 }
 
 Weapon::~Weapon()
 {
-	std::cout << "Weapon " << " destroyed" << std::endl;
+	std::cout << "(Weapon destroyed)" << std::endl;
 }
 
 //returns CONST REFERENCE "const &"

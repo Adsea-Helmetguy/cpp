@@ -30,10 +30,10 @@ class Zombie
 {
 public:
 	Zombie();
-	Zombie(std::string name);//constructor--initializes object class allocating resources
 	~Zombie();//destructor--cleans resources allocated by object
 	
 	void announce(void);
+	void	name_init(std::string name);
 
 private:
 	std::string	name;

@@ -17,7 +17,7 @@
 
 # include <iostream>
 # include <string>//std::string
-# include <cctype>
+# include <cctype> //for std::isspace
 # include <iomanip> //for std::setw
 # include <sstream>
 
@@ -33,13 +33,11 @@ public:
 	void	welcome(void) const;//welcome message
 	void	addContact(void);//adds new contact
 	void	printContacts(void);
-	void	search(void);
-//	void	search(void) const;
 	
 private:
 	Contact	_contacts[8];//to limit up to 8 contacts
 	int		total_contacts;//== 0
-//	int		read_input(void) const;
+	void	search(void);
 };
 
 #endif // PHONEBOOK_HPP

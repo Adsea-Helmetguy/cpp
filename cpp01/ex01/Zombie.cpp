@@ -20,11 +20,13 @@ Zombie::Zombie()
 	std::cout << this->name << " awaiting creation" << std::endl;
 }
 
+/*
 Zombie::Zombie(std::string name)
 {
 	this->name = name;
 	std::cout << "Zombie (" << this->name << ") created" << std::endl;
 }
+*/
 
 Zombie::~Zombie()
 {
@@ -36,4 +38,11 @@ Zombie::~Zombie()
 void	Zombie::announce(void)
 {
 	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+}
+
+//function to init the name of zombie
+void	Zombie::name_init(std::string name)
+{
+	this->name = name;
+	std::cout << "Zombie (" << this->name << ") created" << std::endl;
 }

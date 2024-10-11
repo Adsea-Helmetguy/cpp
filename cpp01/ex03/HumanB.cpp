@@ -20,16 +20,16 @@ HumanB::HumanB(std::string name) : _name(name)//how to add Weapon?
 
 HumanB::~HumanB()
 {
-	std::cout << "HumanB " << this->_name << "destroyed....?" << std::endl;
+	std::cout << "HumanB " << this->_name << " destroyed....?" << std::endl;
 }
 
 void	HumanB::attack()
 {
-	std::cout << this->_name << "attacks with their " << \
-		this->_weapon.getType() << std::endl;
+	std::cout << this->_name << " attacks with their " << \
+		this->_weapon->getType() << std::endl;
 }
 
-void	HumanB::setWeapon(Weapon& weapon)
+void	HumanB::setWeapon(Weapon& weapon)//*weapon
 {
-	this->_weapon = weapon;
+	this->_weapon = &weapon;
 }

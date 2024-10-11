@@ -14,21 +14,19 @@
 
 int	main(void) 
 {
-	Phonebook	phonebook;//creating variable called book
-	std::string	input = "";//to give input an empty string
+	Phonebook	phonebook;
+	std::string	input = "";
 
-	phonebook.welcome();//Phonebook.cpp to intro ppl
-	while (input.compare("EXIT"))//from std::cin >> input
+	phonebook.welcome();
+	while (input.compare("EXIT"))
 	{
-		std::cout << "Enter Command: " << std::flush;//prompts user for INPUT
+		std::cout << "Enter Command: " << std::flush;
 		if (std::getline(std::cin, input))
 		{
-			if (input.compare("ADD") == 0)//from std::cin >> input
+			if (input.compare("ADD") == 0)
 				phonebook.addContact();
-			else if (input.compare("SEARCH") == 0)//from std::cin >> input
-			{
+			else if (input.compare("SEARCH") == 0)
 				phonebook.printContacts();
-			}
 		}
 		else if (!std::getline(std::cin, input))
 			break ;
@@ -37,5 +35,3 @@ int	main(void)
 	std::cout << "All data are erased! Type ./phonebook again to use me!" << std::endl;
 	return (0);
 }
-//https://cplusplus.com/reference/iomanip/
-//https://cplusplus.com/reference/string/string/

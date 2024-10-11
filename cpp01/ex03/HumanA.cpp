@@ -20,11 +20,11 @@ HumanA::HumanA(std::string name, Weapon& w) : _name(name), _weapon(w)//how to ad
 
 HumanA::~HumanA()
 {
-	std::cout << "HumanA " << this->_name << "destroyed....?" << std::endl;
+	std::cout << "HumanA " << this->_name << " destroyed....?" << std::endl;
 }
 
 void	HumanA::attack()
 {
-	std::cout << this->_name << "attacks with their " << \
+	std::cout << this->_name << " attacks with their " << \
 		this->_weapon.getType() << std::endl;
 }

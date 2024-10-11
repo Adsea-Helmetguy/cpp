@@ -30,7 +30,6 @@ public:
 	void	view(int index);
 	int	exist(void);
 	void	display(int index) const;
-//	void	setIndex(int i);
 
 private:
 	std::string	first_name;
@@ -38,7 +37,8 @@ private:
 	std::string	nickname;
 	std::string	phone_number;
 	std::string	darkest_secret;
-//
+
+	int		whitespaces(std::string *string);
 	std::string	get_contact_input(std::string string);
 	std::string	trunc_text(std::string text);
 };
