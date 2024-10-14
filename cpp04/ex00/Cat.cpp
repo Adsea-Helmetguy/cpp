@@ -18,7 +18,7 @@ ClapTrap::ClapTrap() : _Name("Default"), _Hit_points(10), _Energy_points(10), _A
 }
 
 ClapTrap::ClapTrap(const std::string& name)
-	: _Name(name), _Hit_points(10), _Energy_points(10), _Attack_damage(0)
+	: _Name(name), _Hit_points(100), _Energy_points(10), _Attack_damage(0)
 {
 	std::cout << RED << "ClapTrap with std::string& name constructor called" \
 	<< RESET << std::endl;
@@ -126,24 +126,9 @@ void	ClapTrap::beRepaired(unsigned int amount)
 //
 }
 
-unsigned int	ClapTrap::get_hit_points(void)
+unsigned int	ClapTrap::makeSound(void)
 {
 	return(this->_Hit_points);
-}
-
-unsigned int	ClapTrap::get_energy_points(void)
-{
-	return(this->_Energy_points);
-}
-
-unsigned int	ClapTrap::get_attack_damage(void)
-{
-	return(this->_Attack_damage);
-}
-
-std::string		ClapTrap::get_name(void)
-{
-	return(this->_Name);
 }
 
 

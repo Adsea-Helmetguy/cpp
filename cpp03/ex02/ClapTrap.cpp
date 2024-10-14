@@ -18,7 +18,7 @@ ClapTrap::ClapTrap() : _Name("Default"), _Hit_points(10), _Energy_points(10), _A
 }
 
 ClapTrap::ClapTrap(const std::string& name)
-	: _Name(name), _Hit_points(10), _Energy_points(10), _Attack_damage(0)
+	: _Name(name), _Hit_points(100), _Energy_points(10), _Attack_damage(0)
 {
 	std::cout << RED << "ClapTrap with std::string& name constructor called" \
 	<< RESET << std::endl;

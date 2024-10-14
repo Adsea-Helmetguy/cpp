@@ -1,44 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlow <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/14 12:42:49 by mlow              #+#    #+#             */
-/*   Updated: 2024/10/14 12:42:51 by mlow             ###   ########.fr       */
+/*   Created: 2024/09/30 10:35:16 by mlow              #+#    #+#             */
+/*   Updated: 2024/09/30 10:35:18 by mlow             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-#define SCAVTRAP_HPP
+#ifndef DOG_HPP
+#define DOG_HPP
 
-# include "ClapTrap.hpp"
 # include <iostream>
 # include <string>//std::string
-# include <cmath>
+
+# define RESET   "\033[0m"
+# define RED     "\033[31m"//Red
+# define YELLOW  "\033[33m"//Yellow
+# define BLUE    "\033[34m"//Blue
 
 // ************************************************************************** //
 //                               Contact Class                                //
 // ************************************************************************** //
 
-class ScavTrap : public ClapTrap
+class Dog
 {
-private:
+protected:
 
 public:
-	ScavTrap();//(init fixed point to 0) : _fixedpoint_value(0);
-	ScavTrap(const std::string& name);
-	ScavTrap(ScavTrap& copyname);//COPY CONSTRUCTOR
-	ScavTrap&	operator=(const ScavTrap& other);
-	~ScavTrap();
-//
-	void	attack(const std::string& target);
-//	std::string		get_name(void);
-//
-//
-//New function added!
-	void	guardGate(void);
+	Dog();//(init fixed point to 0) : _fixedpoint_value(0);
+	Dog(const std::string& name);
+	Dog(Dog& copyname);//COPY CONSTRUCTOR
+	Dog&	operator=(const Dog& other);
+	~Dog();
+	
+	void	makeSound();
 };
 
 #endif

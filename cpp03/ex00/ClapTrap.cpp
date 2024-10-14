@@ -24,8 +24,10 @@ ClapTrap::ClapTrap(const std::string& name)
 }
 
 //COPY CONSTRUCTOR
+//COPY CONSTRUCTOR
 ClapTrap::ClapTrap(ClapTrap& copyname)
-	: _Name(copyname._Name), _Hit_points(10), _Energy_points(10), _Attack_damage(0)
+	: _Name(copyname._Name), _Hit_points(copyname._Hit_points), \
+	_Energy_points(copyname._Energy_points), _Attack_damage(copyname._Attack_damage)
 {
 	std::cout << "ClapTrap COPY constructor called" << std::endl;
 }

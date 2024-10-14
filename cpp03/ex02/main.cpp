@@ -11,21 +11,21 @@
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main(void)
 {
-	std::cout << YELLOW << std::endl << "Tests for ScavTrap constructor" << RESET << std::endl;
-	ScavTrap default_tom;
-	ScavTrap tom("Tom");
+	std::cout << YELLOW << std::endl << "Tests for FragTrap constructor" << RESET << std::endl;
+	FragTrap default_tom;
+	FragTrap tom("Tom");
 //
 //
 //
 //
 //
 //
-    std::cout << YELLOW << std::endl << "Checking ScavTrap's values" << RESET << std::endl;
-    std::cout << "The current name for this Scavtrap is: " << BLUE << tom.get_name() << RESET << std::endl;
+    std::cout << YELLOW << std::endl << "Checking FragTrap's values" << RESET << std::endl;
+    std::cout << "The current name for this FragTrap is: " << BLUE << tom.get_name() << RESET << std::endl;
 	std::cout << "It's current _Hit_points: " << BLUE << tom.get_hit_points() << RESET << std::endl;
     std::cout << "It's current _Energy_points: " << BLUE <<tom.get_energy_points() << RESET << std::endl;
 	std::cout << "It's current _Attack_damage: " << BLUE << tom.get_attack_damage() << RESET << std::endl;
@@ -35,9 +35,9 @@ int main(void)
 //
 //
 //
-	std::cout << YELLOW << std::endl << "Tests for ScavTrap functions" << RESET << std::endl;
-	tom.guardGate();
-	tom.guardGate();
+	std::cout << YELLOW << std::endl << "Tests for FragTrap functions" << RESET << std::endl;
+	tom.highFivesGuys();
+	tom.highFivesGuys();
 	tom.attack("a car");
 	std::cout << tom.get_name() << " has " << tom.get_hit_points() << " hit points and " << tom.get_energy_points() << " energy points left" << std::endl;
 //
@@ -46,8 +46,8 @@ int main(void)
 //
 //
 //
-	std::cout << YELLOW << std::endl << "Tests for ScavTrap copy constructor" << RESET << std::endl;
-	ScavTrap copytom(tom);
+	std::cout << YELLOW << std::endl << "Tests for FragTrap copy constructor" << RESET << std::endl;
+	FragTrap copytom(tom);
 	std::cout << copytom.get_name() << " has " << copytom.get_hit_points() << " hit points and " << copytom.get_energy_points() << " energy points left" << std::endl;
 //
 //
@@ -56,10 +56,10 @@ int main(void)
 //
 //
 //
-	std::cout << YELLOW << std::endl << "Tests for ScavTrap copy assignment constructor" << RESET << std::endl;
+	std::cout << YELLOW << std::endl << "Tests for FragTrap copy assignment constructor" << RESET << std::endl;
 	tom.attack("a car");
 	std::cout << tom.get_name() << " has " << tom.get_hit_points() << " hit points and " << tom.get_energy_points() << " energy points left" << std::endl;
-	ScavTrap thirdtom("ThirdTom");
+	FragTrap thirdtom("ThirdTom");
 	std::cout << thirdtom.get_name() << " has " << thirdtom.get_hit_points() << " hit points and " << thirdtom.get_energy_points() << " energy points left" << std::endl;
 	//thirdtom = tom;
 	//std::cout << thirdtom.get_name() << " has " << thirdtom.get_hit_points() << " hit points and " << thirdtom.get_energy_points() << " energy points left" << std::endl;
@@ -69,7 +69,7 @@ int main(void)
 //
 //
 //
-	std::cout << YELLOW << std::endl << "Tests for more ScavTrap functions" << RESET << std::endl;
+	std::cout << YELLOW << std::endl << "Tests for more FragTrap functions" << RESET << std::endl;
 	tom.takeDamage(2);
 	std::cout << tom.get_name() << " has " << tom.get_hit_points() << " hit points and " << tom.get_energy_points() << " energy points left" << std::endl;
 	tom.beRepaired(2);
