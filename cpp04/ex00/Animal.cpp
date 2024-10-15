@@ -23,7 +23,6 @@ Animal::Animal(const std::string& name) : type(name)
 	<< RESET << std::endl;
 }
 
-/*
 Animal::Animal(const Animal &other) : type(other.type)
 {
 	std::cout << "Animal copy constructor called\n";
@@ -35,7 +34,7 @@ Animal &Animal::operator=(const Animal &other)
 	std::cout << "Animal copy assignment constructor called\n";
 	return (*this);
 }
-*/
+
 Animal::~Animal()
 {
 	std::cout << "Animal Deconstructor called for: " << this->type << std::endl;

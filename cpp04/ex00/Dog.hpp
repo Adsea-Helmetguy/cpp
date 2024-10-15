@@ -28,6 +28,8 @@ protected:
 public:
 	Dog();//(init fixed point to 0) : _fixedpoint_value(0);
 	Dog(const std::string& name);
+	Dog(const Dog &other);
+	Dog&	operator=(const Dog &other);
 	virtual ~Dog();
 
 	std::string	getType() const;

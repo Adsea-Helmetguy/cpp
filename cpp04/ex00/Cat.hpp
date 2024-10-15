@@ -28,6 +28,8 @@ protected:
 public:
 	Cat();//(init fixed point to 0) : _fixedpoint_value(0);
 	Cat(const std::string& name);
+	Cat(const Cat &other);
+	Cat&	operator=(const Cat &other);
 	virtual ~Cat();
 
 	std::string	getType() const;
