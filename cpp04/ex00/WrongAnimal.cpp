@@ -10,35 +10,69 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "WrongAnimal.hpp"
 
-Cat::Cat() : Animal()
+WrongAnimal::WrongAnimal() : type("Default_Animal")
 {
-	this->type = "Cat";
-	std::cout << RED << "Cat Default constructor called" << RESET << std::endl;
+	std::cout << RED << "Animal Default constructor called" << RESET << std::endl;
 }
 
-Cat::Cat(const std::string& name) : Animal(name)
+WrongAnimal::WrongAnimal(const std::string& name) : type(name)
 {
-	std::cout << RED << "Cat class with std::string& name constructor called" \
+	std::cout << RED << "Animal with std::string& name constructor called" \
 	<< RESET << std::endl;
-	std::cout << RED << "Cat class's type is called: " \
-	<< RESET << this->type << std::endl;
 }
 
-Cat::~Cat()
+WrongAnimal::WrongAnimal()
 {
-	std::cout << "Cat Deconstructor called for: " << this->type << std::endl;
+	std::cout << "Animal Deconstructor called for: " << this->type << std::endl;
 }
 
-//
-//
-//
-//New function added!
-std::string	Cat::getType(void) const
+std::string		WrongAnimal::getType(void) const
 {
 	return(this->type);
 }
+
+void	WrongAnimal::makeSound() const
+{
+	if (this->type == "Dog")
+	{
+		std::cout << YELLOW << "BORK BORK BORKKKK" << std::endl;
+		return ;
+	}
+	else if (this->type == "Cat")
+	{
+		std::cout << YELLOW << "Meow~" << std::endl;
+		return ;
+	}
+	std::cout << YELLOW << "Default Animal noises." << std::endl;
+}
+
+
+
+
+
+//a method virtual, c++ will perform runtime polymorphism
+// a method to call the base class on the actual object type not the pointer.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

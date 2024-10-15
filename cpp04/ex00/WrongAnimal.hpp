@@ -25,14 +25,14 @@
 //                               Contact Class                                //
 // ************************************************************************** //
 
-class Animal
+class WrongAnimal
 {
 protected:
 	std::string	type;
 public:
-	Animal();
-	Animal(const std::string& name);
-	virtual ~Animal();
+	WrongAnimal();//(init fixed point to 0) : _fixedpoint_value(0);
+	WrongAnimal(const std::string& name);
+	virtual ~WrongAnimal();
 	
 	std::string	getType() const;
 	virtual void		makeSound() const;

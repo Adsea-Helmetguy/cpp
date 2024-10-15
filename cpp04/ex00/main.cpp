@@ -11,9 +11,14 @@
 /* ************************************************************************** */
 
 #include "Animal.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
 
 int	main(void)
 {
+	//The compiler expects that only 
+	//const member functions will be called on these
+	//BECAUSE of "const" Animal, when you declare an object as const
 	const	Animal* meta = new Animal();
 	const	Animal* j = new Dog();
 	const	Animal* i = new Cat();

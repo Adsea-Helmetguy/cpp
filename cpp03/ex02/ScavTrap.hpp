@@ -16,7 +16,6 @@
 # include "ClapTrap.hpp"
 # include <iostream>
 # include <string>//std::string
-# include <cmath>
 
 // ************************************************************************** //
 //                               Contact Class                                //

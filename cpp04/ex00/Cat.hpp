@@ -13,30 +13,24 @@
 #ifndef CAT_HPP
 #define CAT_HPP
 
+# include "Animal.hpp"
 # include <iostream>
 # include <string>//std::string
-
-# define RESET   "\033[0m"
-# define RED     "\033[31m"//Red
-# define YELLOW  "\033[33m"//Yellow
-# define BLUE    "\033[34m"//Blue
 
 // ************************************************************************** //
 //                               Contact Class                                //
 // ************************************************************************** //
 
-class Cat
+class Cat : public Animal
 {
 protected:
 
 public:
 	Cat();//(init fixed point to 0) : _fixedpoint_value(0);
 	Cat(const std::string& name);
-	Cat(cat& copyname);//COPY CONSTRUCTOR
-	Cat&	operator=(const Cat& other);
-	~Cat();
-	
-	void	makeSound();
+	virtual ~Cat();
+
+	std::string	getType() const;
 };
 
 #endif
