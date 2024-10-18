@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-#define WRONGANIMAL_HPP
+#ifndef ANIMAL_HPP
+#define ANIMAL_HPP
 
 # include <iostream>
 # include <string>//std::string
@@ -25,19 +25,19 @@
 //                               Contact Class                                //
 // ************************************************************************** //
 
-class WrongAnimal
+class Animal
 {
 protected:
 	std::string	type;
 public:
-	WrongAnimal();
-	WrongAnimal(const std::string& name);
-	WrongAnimal(const WrongAnimal &other);
-	WrongAnimal&	operator=(const WrongAnimal &other);
-	~WrongAnimal();
+	Animal();
+	Animal(const std::string& name);
+	Animal(const Animal &other);
+	Animal&	operator=(const Animal &other);
+	virtual ~Animal();
 	
 	std::string	getType() const;
-	void		makeSound() const;
+	virtual void		makeSound() const = 0;
 };
 
 #endif

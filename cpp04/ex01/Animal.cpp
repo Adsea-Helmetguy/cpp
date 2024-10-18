@@ -30,7 +30,7 @@ Animal::Animal(const Animal &other) : type(other.type)
 
 Animal &Animal::operator=(const Animal &other)
 {
-	type = other.type;
+	this->type = other.type;
 	std::cout << RED << "Animal copy assignment constructor called" << RESET << std::endl;
 	return (*this);
 }
@@ -38,7 +38,7 @@ Animal &Animal::operator=(const Animal &other)
 Animal::~Animal()
 {
 	std::cout << "Animal Deconstructor " << RED << this->type << RESET << \
-	" called: " << std::endl;
+	" called" << std::endl;
 }
 
 std::string		Animal::getType(void) const

@@ -15,6 +15,7 @@
 #include "WrongCat.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include "Brain.hpp"
 
 int	main(void)
 {
@@ -61,11 +62,49 @@ int	main(void)
 		delete meta;
 		delete j;
 	}
+	//
+	/*
+	{
+		const Animal* jack = new Dog();
+		const Animal* ik = new Cat();
+		int	total_animals = 50;
+		int half_dogs = total_animals / 2;
+		int half_cats = total_animals - half_dogs;
+		const Animal** animal_array = new const Animal*[total_animals];// Array of pointers to Animal
+		int	index = 0;
+
+		std::cout << "total_animals: " << half_dogs << std::endl;
+		std::cout << "total_dogs: " << half_dogs << std::endl;
+		std::cout << "total_cats: " << half_cats << std::endl;
+		std::cout << YELLOW << "\n\nCreating Dogs and Cats!" << RESET << std::endl;
+		while(index < half_dogs)// 0 to 24
+		{
+			animal_array[index] = new Dog();
+			std::cout << "Filled space for Dog Animal:" << RED \
+			<< "[" << index  << "]" << RESET << std::endl;
+			index++; //by end of loop your index will 25
+		}
+		std::cout << "\n\n----------\n" << std::endl;
+		while(index < (half_dogs + half_cats)) //25 to 49
+		{
+			animal_array[index] = new Cat();
+			std::cout << "Filled space for Cat Animal:" << RED \
+			<< "[" << index  << "]" << RESET << std::endl;
+			index++; //by end of loop your index will 50
+		}
+		std::cout << "\n\n\n\n\n----------" << std::endl;
+		std::cout << YELLOW << "Deconstructor happening here, BYE BYE DOGS AND CATS" \
+		<< RESET << std::endl;
+		for (int i = 0; i < total_animals; i++)
+		{
+			delete animal_array[i]; // Properly deletes each animal (virtual destructor calls Cat/Dog then Animal)
+		}
+		delete[] animal_array;
+
+		delete jack;//should not create a leak
+		delete ik;
+	}
+	*/
 	return (0);
 }
-/*
-To ensure you understood how it works, implement a WrongCat class that inherits
-from a WrongAnimal class. If you replace the Animal and the Cat by the wrong ones
-in the code above, the WrongCat should output the WrongAnimal sound
-*/
 //ctrl+F first, then ALT+Enter if you want to replace stuff

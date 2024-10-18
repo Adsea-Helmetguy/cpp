@@ -30,9 +30,10 @@ public:
 	Dog(const std::string& name);
 	Dog(const Dog &other);
 	Dog&	operator=(const Dog &other);
-	virtual ~Dog();
+	~Dog();
 
 	std::string	getType() const;
+	void		makeSound() const;
 };
 
 #endif

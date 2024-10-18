@@ -20,6 +20,7 @@ Cat::Cat() : Animal()
 
 Cat::Cat(const std::string& name) : Animal(name)
 {
+	this->type = name;
 	std::cout << RED << "Cat class with std::string& name constructor called" \
 	<< RESET << std::endl;
 	std::cout << "Cat class's type is called: " \
@@ -29,20 +30,21 @@ Cat::Cat(const std::string& name) : Animal(name)
 //COPY CONSTRUCTOR
 Cat::Cat(const Cat &other) : Animal(other)
 {
-	//*this = other;
+	*this = other;
 	std::cout << RED << "Cat copy constructor called" << RESET << std::endl;
 }
 
 Cat &Cat::operator=(const Cat &other)
 {
-	type = other.type;
-	std::cout << "Cat copy assignment constructor called\n";
+	this->type = other.type;
+	std::cout << RED << "Cat copy assignment constructor called" << RESET << std::endl;
 	return (*this);
 }
 
 Cat::~Cat()
 {
-	std::cout << "Cat Deconstructor called for: " << this->type << std::endl;
+	std::cout << "Cat Deconstructor " << RED << this->type << RESET << \
+	" called: " << std::endl;
 }
 
 //
@@ -54,5 +56,8 @@ std::string	Cat::getType(void) const
 	return(this->type);
 }
 
-
+void	Cat::makeSound() const
+{
+	std::cout << BLUE << "Meow~" << RESET << std::endl;
+}
 

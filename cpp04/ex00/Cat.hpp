@@ -30,9 +30,10 @@ public:
 	Cat(const std::string& name);
 	Cat(const Cat &other);
 	Cat&	operator=(const Cat &other);
-	virtual ~Cat();
+	~Cat();
 
 	std::string	getType() const;
+	void		makeSound() const;
 };
 
 #endif

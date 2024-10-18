@@ -10,53 +10,60 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "Cat.hpp"
 
-Dog::Dog() : Animal()
+Cat::Cat() : Animal()
 {
-	this->type = "Dog";
-	std::cout << RED << "Dog Default constructor called" << RESET << std::endl;
+	this->type = "Cat";
+	//Upon construction, Dog and Cat will create their Brain using new Brain();
+	this->_Brain = new Brain();
+	std::cout << RED << "Cat Default constructor called" << RESET << std::endl;
 }
 
-Dog::Dog(const std::string& name) : Animal(name)
+Cat::Cat(const std::string& name) : Animal(name)
 {
 	this->type = name;
-	std::cout << RED << "Doggo class with std::string& name constructor called" \
+	this->_Brain = new Brain();
+	std::cout << RED << "Cat class with std::string& name constructor called" \
 	<< RESET << std::endl;
-	std::cout << "Doggo class's type is called: " \
+	std::cout << "Cat class's type is called: " \
 	<< RED << this->type << RESET << std::endl;
 }
 
 //COPY CONSTRUCTOR
-Dog::Dog(const Dog &other) : Animal(other)
+Cat::Cat(const Cat &other) : Animal(other)
 {
 	*this = other;
-	std::cout << RED << "Dog copy constructor called" << RESET << std::endl;
+	std::cout << RED << "Cat copy constructor called" << RESET << std::endl;
 }
 
-Dog &Dog::operator=(const Dog &other)
+Cat &Cat::operator=(const Cat &other)
 {
-	this->type = other.type;
-	std::cout << RED << "Dog copy assignment constructor called" << RESET << std::endl;
+	if (this != &other)
+	{
+		delete this->_Brain;
+		this->_Brain = new Brain(*other._Brain);
+		this->type = other.type;
+	}
+	std::cout << RED << "Cat copy assignment constructor called" << RESET << std::endl;
 	return (*this);
 }
 
-Dog::~Dog()
+Cat::~Cat()
 {
-	std::cout << "Dog Deconstructor " << RED << this->type << RESET << \
+	//Upon destruction, Dog and Cat will delete their Brain.
+	delete _Brain;
+	std::cout << "Cat Deconstructor " << RED << this->type << RESET << \
 	" called: " << std::endl;
 }
 
-//
-//
-//
-//New function added!
-std::string		Dog::getType(void) const
+std::string	Cat::getType(void) const
 {
 	return(this->type);
 }
 
-void	Dog::makeSound() const
+void	Cat::makeSound() const
 {
-	std::cout << BLUE << "BORK BORK BORKKKK" << RESET << std::endl;
+	std::cout << BLUE << "Meow~" << RESET << std::endl;
 }
+

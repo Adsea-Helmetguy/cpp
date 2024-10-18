@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.hpp                                         :+:      :+:    :+:   */
+/*   brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlow <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 10:35:16 by mlow              #+#    #+#             */
-/*   Updated: 2024/09/30 10:35:18 by mlow             ###   ########.fr       */
+/*   Created: 2024/10/16 13:58:07 by mlow              #+#    #+#             */
+/*   Updated: 2024/10/16 13:58:09 by mlow             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-#define WRONGANIMAL_HPP
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
 
 # include <iostream>
 # include <string>//std::string
@@ -25,19 +25,15 @@
 //                               Contact Class                                //
 // ************************************************************************** //
 
-class WrongAnimal
+class Brain
 {
-protected:
-	std::string	type;
+private:
+	std::string	ideas[100];
 public:
-	WrongAnimal();
-	WrongAnimal(const std::string& name);
-	WrongAnimal(const WrongAnimal &other);
-	WrongAnimal&	operator=(const WrongAnimal &other);
-	~WrongAnimal();
-	
-	std::string	getType() const;
-	void		makeSound() const;
+	Brain();
+	Brain(const Brain &other);
+	Brain&	operator=(const Brain &other);
+	~Brain();
 };
 
 #endif

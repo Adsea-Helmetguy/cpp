@@ -10,32 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-#define WRONGANIMAL_HPP
+#ifndef CAT_HPP
+#define CAT_HPP
 
+# include "Brain.hpp"
+# include "Animal.hpp"
 # include <iostream>
 # include <string>//std::string
-
-# define RESET   "\033[0m"
-# define RED     "\033[31m"//Red
-# define YELLOW  "\033[33m"//Yellow
-# define BLUE    "\033[34m"//Blue
 
 // ************************************************************************** //
 //                               Contact Class                                //
 // ************************************************************************** //
 
-class WrongAnimal
+class Cat : public Animal
 {
-protected:
-	std::string	type;
+private:
+	Brain*	_Brain;
 public:
-	WrongAnimal();
-	WrongAnimal(const std::string& name);
-	WrongAnimal(const WrongAnimal &other);
-	WrongAnimal&	operator=(const WrongAnimal &other);
-	~WrongAnimal();
-	
+	Cat();
+	Cat(const std::string& name);
+	Cat(const Cat &other);
+	Cat&	operator=(const Cat &other);
+	~Cat();
+
 	std::string	getType() const;
 	void		makeSound() const;
 };
