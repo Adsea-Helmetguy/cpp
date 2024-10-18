@@ -34,6 +34,9 @@ public:
 	Brain(const Brain &other);
 	Brain&	operator=(const Brain &other);
 	~Brain();
+	
+	void	idea_member(int idea_number, std::string input_ideas);
+	void	obtain_idea(int idea_number);
 };
 
 #endif

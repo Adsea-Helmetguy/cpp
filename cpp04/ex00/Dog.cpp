@@ -36,7 +36,10 @@ Dog::Dog(const Dog &other) : Animal(other)
 
 Dog &Dog::operator=(const Dog &other)
 {
-	this->type = other.type;
+	if (this != &other)
+	{
+		this->type = other.type;
+	}
 	std::cout << RED << "Dog copy assignment constructor called" << RESET << std::endl;
 	return (*this);
 }

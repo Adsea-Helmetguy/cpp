@@ -34,9 +34,13 @@ Cat::Cat(const Cat &other) : Animal(other)
 	std::cout << RED << "Cat copy constructor called" << RESET << std::endl;
 }
 
+//to call this, remove const from animal and try with *(object) = *(object);
 Cat &Cat::operator=(const Cat &other)
 {
-	this->type = other.type;
+	if (this != &other)
+	{
+		this->type = other.type;
+	}
 	std::cout << RED << "Cat copy assignment constructor called" << RESET << std::endl;
 	return (*this);
 }

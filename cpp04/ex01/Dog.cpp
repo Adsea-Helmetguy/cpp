@@ -74,3 +74,25 @@ void	Dog::makeSound() const
 {
 	std::cout << BLUE << "BORK BORK BORKKKK" << RESET << std::endl;
 }
+
+void	Dog::edit_brain(int idea_number, std::string input_ideas)
+{
+	std::cout << "inside Function edit_brain for dog!" << std::endl;
+	//assign new brain ideas for the dog.
+	if (idea_number > 100)
+	{
+		std::cout << "Don't input values more than 100!!" << std::endl;
+		std::cout << "RETURNING!" << std::endl;
+		return ;
+	}
+	this->_Brain->idea_member(idea_number, input_ideas);
+}
+
+void	Dog::get_brain(int idea_number)
+{
+	std::cout << "inside Dog's get_brain function!" << std::endl;
+	this->_Brain->obtain_idea(idea_number);
+
+}
+
+

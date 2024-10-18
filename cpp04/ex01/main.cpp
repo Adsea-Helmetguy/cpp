@@ -62,24 +62,34 @@ int	main(void)
 */
 	{
 		//Checking Deep copy
-		Animal* jack = new Dog("Happy Doggo");
-		Animal* jack2 = new Dog("Want to eat Takocat doggo");
+		Dog* jack = new Dog("Happy Doggo");
+		Dog* jack2 = new Dog("Want to eat Takocat doggo");
+		//Animal* jack2 = new Dog("Want to eat Takocat doggo");
 
-		std::cout << YELLOW <<"\n\nChecking jack's values" << RESET << std::endl;
+		std::cout << YELLOW <<"\n\nChecking jack's values before copy" << RESET << std::endl;
 		std::cout << jack->getType() << std::endl;
 		std::cout << jack2->getType() << std::endl;
 	//
+		std::cout << YELLOW <<"\n\nAdding ideas to Jack" << RESET << std::endl;
+		jack->edit_brain(0, "Jack, I have a dream!!");
+		jack2->edit_brain(0, "Jack number 2, I have a dream!!");
+		jack->get_brain(0);
+		jack->get_brain(1);//what happens to stack memory here?
+		jack->get_brain(2);//what happens to stack memory here?
+	//
 		std::cout << YELLOW <<"\n\nCOPY assignment constructor called here" << RESET << std::endl;
-		//delete jack2;
 		*jack2 = *jack;
+		std::cout << YELLOW <<"\n\nChecking ideas in jack(s)" << RESET << std::endl;
+		jack->get_brain(0);
+		jack2->get_brain(0);
 		/*
 		Explanation
-		"jack2 = jack" is pointer assignment,
+		jack2 = jack; is pointer assignment,
 			 meaning jack2 will now point to the same memory 
 			 location as jack, effectively discarding the original 
 			 jack2 object and causing a shallow copy.
 
-		"*jack2 = *jack" is object assignment, which will invoke 
+		*jack2 = *jack; is object assignment, which will invoke 
 			the copy assignment operator, and this is what you want 
 			to achieve deep copying.
 		*/

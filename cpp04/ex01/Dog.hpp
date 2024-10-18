@@ -35,6 +35,11 @@ public:
 
 	std::string	getType() const;
 	void		makeSound() const;
+//
+//
+//New functions!
+	void		edit_brain(int idea_number, std::string input_ideas);
+	void		get_brain(int idea_number);
 };
 
 #endif

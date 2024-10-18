@@ -50,4 +50,12 @@ Brain::~Brain()
 	std::cout << "Brain Deconstructor called" << std::endl;
 }
 
+void	Brain::idea_member(int idea_number, std::string input_ideas)
+{
+	this->ideas[idea_number] = input_ideas;
+}
 
+void	Brain::obtain_idea(int idea_number)
+{
+	std::cout << BLUE << this->ideas[idea_number] << RESET << std::endl;
+}
