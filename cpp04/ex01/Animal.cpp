@@ -37,7 +37,7 @@ Animal &Animal::operator=(const Animal &other)
 
 Animal::~Animal()
 {
-	std::cout << "Animal Deconstructor " << RED << this->type << RESET << \
+	std::cout << "Animal Deconstructor " << BLUE << this->type << RESET << \
 	" called" << std::endl;
 }
 

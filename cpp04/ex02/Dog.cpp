@@ -27,7 +27,7 @@ Dog::Dog(const std::string& name) : Animal(name)
 	std::cout << RED << "Doggo class with std::string& name constructor called" \
 	<< RESET << std::endl;
 	std::cout << "Doggo class's type is called: " \
-	<< RED << this->type << RESET << std::endl;
+	<< GREEN << this->type << RESET << std::endl;
 }
 
 //COPY CONSTRUCTOR
@@ -37,9 +37,22 @@ Dog::Dog(const Dog &other) : Animal(other)
 	std::cout << RED << "Dog copy constructor called" << RESET << std::endl;
 }
 
+//Shallow Copy in the Assignment Operator (operator=):
+//You are copying the Brain* from other without 
+// creating a new Brain object, 
+//  so both objects end up pointing to the same Brain.
+//
+//cause when you free jack2, you also freed the first jack due to
+// shallow copy, causing seg fault when you tried to free both jacks
+//  cause the other one is already freed >w<.
 Dog &Dog::operator=(const Dog &other)
 {
-	this->_Brain = other._Brain;
+	if (this != &other)
+	{
+		delete this->_Brain;
+		this->_Brain = new Brain(*other._Brain);
+		this->type = other.type;
+	}
 	std::cout << RED << "Dog copy assignment constructor called" << RESET << std::endl;
 	return (*this);
 }
@@ -48,7 +61,7 @@ Dog::~Dog()
 {
 	//Upon destruction, Dog and Cat will delete their Brain.
 	delete _Brain;
-	std::cout << "Dog Deconstructor " << RED << this->type << RESET << \
+	std::cout << "Dog Deconstructor " << BLUE << this->type << RESET << \
 	" called: " << std::endl;
 }
 
@@ -60,4 +73,24 @@ std::string		Dog::getType(void) const
 void	Dog::makeSound() const
 {
 	std::cout << BLUE << "BORK BORK BORKKKK" << RESET << std::endl;
+}
+
+void	Dog::edit_brain(int idea_number, std::string input_ideas)
+{
+	std::cout << "inside Function edit_brain for dog!" << std::endl;
+	//assign new brain ideas for the dog.
+	if (idea_number > 100)
+	{
+		std::cout << "Don't input values more than 100!!" << std::endl;
+		std::cout << "RETURNING!" << std::endl;
+		return ;
+	}
+	this->_Brain->idea_member(idea_number, input_ideas);
+}
+
+void	Dog::get_brain(int idea_number)
+{
+	std::cout << "inside Dog's: " << BLUE << this->type \
+	<< RESET << " get_brain function!" << std::endl;
+	this->_Brain->obtain_idea(idea_number);
 }

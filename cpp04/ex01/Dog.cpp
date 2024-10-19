@@ -27,7 +27,7 @@ Dog::Dog(const std::string& name) : Animal(name)
 	std::cout << RED << "Doggo class with std::string& name constructor called" \
 	<< RESET << std::endl;
 	std::cout << "Doggo class's type is called: " \
-	<< RED << this->type << RESET << std::endl;
+	<< GREEN << this->type << RESET << std::endl;
 }
 
 //COPY CONSTRUCTOR
@@ -44,7 +44,7 @@ Dog::Dog(const Dog &other) : Animal(other)
 //
 //cause when you free jack2, you also freed the first jack due to
 // shallow copy, causing seg fault when you tried to free both jacks
-// cause the other one is already freed >w<.
+//  cause the other one is already freed >w<.
 Dog &Dog::operator=(const Dog &other)
 {
 	if (this != &other)
@@ -61,7 +61,7 @@ Dog::~Dog()
 {
 	//Upon destruction, Dog and Cat will delete their Brain.
 	delete _Brain;
-	std::cout << "Dog Deconstructor " << RED << this->type << RESET << \
+	std::cout << "Dog Deconstructor " << BLUE << this->type << RESET << \
 	" called: " << std::endl;
 }
 
@@ -90,9 +90,7 @@ void	Dog::edit_brain(int idea_number, std::string input_ideas)
 
 void	Dog::get_brain(int idea_number)
 {
-	std::cout << "inside Dog's get_brain function!" << std::endl;
+	std::cout << "inside Dog's: " << BLUE << this->type \
+	<< RESET << " get_brain function!" << std::endl;
 	this->_Brain->obtain_idea(idea_number);
-
 }
-
-

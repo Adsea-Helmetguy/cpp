@@ -47,7 +47,7 @@ Brain &Brain::operator=(const Brain &other)
 
 Brain::~Brain()
 {
-	std::cout << "Brain Deconstructor called" << std::endl;
+	std::cout << RED << "Brain Deconstructor called" << RESET << std::endl;
 }
 
 void	Brain::idea_member(int idea_number, std::string input_ideas)
@@ -57,5 +57,5 @@ void	Brain::idea_member(int idea_number, std::string input_ideas)
 
 void	Brain::obtain_idea(int idea_number)
 {
-	std::cout << BLUE << this->ideas[idea_number] << RESET << std::endl;
+	std::cout << GREEN << this->ideas[idea_number] << RESET << std::endl;
 }

@@ -19,8 +19,8 @@
 
 int	main(void)
 {
-/*
 	{
+		std::cout << YELLOW << "Creating Constructor" << RESET << std::endl;
 		const	Animal* jack = new Dog();
 		const	Animal* ik = new Cat();
 		int	total_animals = 50;
@@ -30,7 +30,8 @@ int	main(void)
 		const Animal *animal_array[total_animals];// Array of pointers to Animal
 		int	index = 0;
 
-		std::cout << "total_animals: " << half_dogs << std::endl;
+		std::cout << YELLOW << "values of dogs & cats" << RESET << std::endl;
+		std::cout << "total_animals: " << total_animals << std::endl;
 		std::cout << "total_dogs: " << half_dogs << std::endl;
 		std::cout << "total_cats: " << half_cats << std::endl;
 		std::cout << YELLOW << "\n\nCreating Dogs and Cats!" << RESET << std::endl;
@@ -59,49 +60,75 @@ int	main(void)
 		delete jack;//should not create a leak
 		delete ik;
 	}
-*/
+
 	{
 		//Checking Deep copy
-		Dog* jack = new Dog("Happy Doggo");
-		Dog* jack2 = new Dog("Want to eat Takocat doggo");
+		std::cout << YELLOW << "\n\n\n\n\n\n\n\n\nTest 2nd, DEEP COPY " << \
+		"\n------------------------------------------" << RESET << std::endl;
+		std::cout << YELLOW << "Creating Constructor" << RESET << std::endl;
+		Cat* jacky = new Cat("Happy Doggo");
+		Cat* jack2 = new Cat("Want to eat Takocat Doggo");
 		//Animal* jack2 = new Dog("Want to eat Takocat doggo");
 
 		std::cout << YELLOW <<"\n\nChecking jack's values before copy" << RESET << std::endl;
-		std::cout << jack->getType() << std::endl;
-		std::cout << jack2->getType() << std::endl;
+		std::cout << GREEN << jacky->getType() << RESET << std::endl;
+		std::cout << GREEN << jack2->getType() << RESET << std::endl;
 	//
-		std::cout << YELLOW <<"\n\nAdding ideas to Jack" << RESET << std::endl;
-		jack->edit_brain(0, "Jack, I have a dream!!");
+		std::cout << YELLOW <<"\n\nAdding ideas to Jack(s)" << RESET << std::endl;
+		jacky->edit_brain(0, "Jack oh boy, I have a dream!!");
+		jacky->edit_brain(1, "Jack oh boy, I have a dream2!!");
+		jacky->edit_brain(2, "Jack oh boy, I have a dream3!!");
+		jacky->edit_brain(3, "Jack oh boy, I have a dream4!!");
 		jack2->edit_brain(0, "Jack number 2, I have a dream!!");
-		jack->get_brain(0);
-		jack->get_brain(1);//what happens to stack memory here?
-		jack->get_brain(2);//what happens to stack memory here?
+		jack2->edit_brain(1, "Jack number 2, I have a dream2!!");
+		jack2->edit_brain(2, "Jack number 2, I have a dream3!!");
+		jack2->edit_brain(3, "Jack number 2, I have a dream4!!");
+		std::cout << YELLOW <<"Checking ideas inside jack(s)" << RESET << std::endl;
+		jacky->get_brain(0);
+		jacky->get_brain(1);
+		jacky->get_brain(2);
+		jacky->get_brain(3);
+		jack2->get_brain(0);
+		jack2->get_brain(1);
+		jack2->get_brain(2);
+		jack2->get_brain(3);
+		//jack->get_brain(1);//what happens to stack memory here?
+		//jack->get_brain(2);//what happens to stack memory here?
 	//
 		std::cout << YELLOW <<"\n\nCOPY assignment constructor called here" << RESET << std::endl;
-		*jack2 = *jack;
+		*jack2 = *jacky;
+	//
 		std::cout << YELLOW <<"\n\nChecking ideas in jack(s)" << RESET << std::endl;
-		jack->get_brain(0);
+		jacky->get_brain(0);
+		jacky->get_brain(1);
+		jacky->get_brain(2);
+		jacky->get_brain(3);
 		jack2->get_brain(0);
+		jack2->get_brain(1);
+		jack2->get_brain(2);
+		jack2->get_brain(3);
 		/*
 		Explanation
 		jack2 = jack; is pointer assignment,
 			 meaning jack2 will now point to the same memory 
 			 location as jack, effectively discarding the original 
 			 jack2 object and causing a shallow copy.
+			 Basically you are copying the memory address of jack.
 
 		*jack2 = *jack; is object assignment, which will invoke 
 			the copy assignment operator, and this is what you want 
 			to achieve deep copying.
+			Basically, you are copying the items of the jack.
 		*/
 	//
 		std::cout << YELLOW <<"\n\nChecking jack's NEW values" << RESET << std::endl;
-		std::cout << jack->getType() << std::endl;
+		std::cout << jacky->getType() << std::endl;
 		std::cout << jack2->getType() << std::endl;
 	//
 	//
 		std::cout << YELLOW <<"\n\nDeconstructor called here" << RESET << std::endl;
 		delete jack2;
-		delete jack;//this should not seg fault!
+		delete jacky;//this should not seg fault!
 	}
 	return (0);
 }

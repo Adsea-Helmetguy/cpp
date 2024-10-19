@@ -27,7 +27,7 @@ class Dog : public Animal
 private:
 	Brain*	_Brain;
 public:
-	Dog();//(init fixed point to 0) : _fixedpoint_value(0);
+	Dog();
 	Dog(const std::string& name);
 	Dog(const Dog &other);
 	Dog&	operator=(const Dog &other);
@@ -35,6 +35,11 @@ public:
 
 	std::string	getType() const;
 	void		makeSound() const;
+//
+//
+//New functions!
+	void		edit_brain(int idea_number, std::string input_ideas);
+	void		get_brain(int idea_number);
 };
 
 #endif
