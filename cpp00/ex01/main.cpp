@@ -28,7 +28,7 @@ int	main(void)
 			else if (input.compare("SEARCH") == 0)
 				phonebook.printContacts();
 		}
-		else if (!std::getline(std::cin, input))
+		else
 			break ;
 	}
 	std::cout << "EXIT! Thank you for Using Phonebook!" << std::endl;

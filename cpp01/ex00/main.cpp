@@ -15,10 +15,18 @@
 int	main(void) 
 {
 	Zombie		*newZombie1;
+	Zombie		*newZombie2;
 
-	newZombie1 = newZombie("Foo");
+	std::cout << YELLOW << "\n\nCreation of Constructors" << RESET << std::endl;
+	std::cout << YELLOW << "assignment of Zombies and their names" \
+	<< RESET << std::endl;
+	newZombie1 = new Zombie();
+	newZombie1->announce();
+	newZombie2 = newZombie("Foo");
 	randomChump("randomChump_Zombie");
+	std::cout << YELLOW << "\n\nDeconstruction" << RESET << std::endl;
 	delete newZombie1;
+	delete newZombie2;
 	return (0);
 
 }

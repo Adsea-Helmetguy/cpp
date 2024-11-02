@@ -32,15 +32,19 @@ Brain &Brain::operator=(const Brain &other)
 {
 	const int	total_size = 100;
 	int		index = 0;
-	
+
+	if (this == &other)//need to add & because 'this' is a pointer
+	{
+		std::cout << "Don't Self-assign!!" << std::endl;
+		return *this; // handle self-assignment
+	}
 	//while loop to do deep copy
 	while (index < total_size)
 	{
 		this->ideas[index] = other.ideas[index];
 		index++;
 	}
-	std::cout << RED << "Brain equal operator called, but nothing happened" \
-	<< RESET << std::endl;
+	std::cout << RED << "Brain equal operator called." << RESET << std::endl;
 	return (*this);
 }
 

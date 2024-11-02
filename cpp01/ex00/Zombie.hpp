@@ -24,6 +24,12 @@
 # include <sstream>
 # include <new>
 
+# define RESET		"\033[0m"
+# define RED		"\033[31m"//Red
+# define GREEN		"\033[32m"//Green
+# define YELLOW		"\033[33m"//Yellow
+# define BLUE		"\033[34m"//Blue
+
 // ************************************************************************** //
 //                               Contact Class                                //
 // ************************************************************************** //
@@ -31,6 +37,7 @@
 class Zombie
 {
 public:
+	Zombie();
 	Zombie(std::string name);//constructor--initializes object class allocating resources
 	~Zombie();//destructor--cleans resources allocated by object
 	
@@ -46,20 +53,13 @@ Zombie *newZombie(std::string name);
 
 #endif //CONTACT_HPP
 /*
-Constructor (Phonebook()):
-Initialization: It initializes the object of the class.
-Memory Allocation: It allocates memory if necessary.
-Resource Acquisition: It acquires resources needed by the object.
-Usage: Constructors are typically used to set initial values for 
-	member variables or to perform any setup required by the object.
+-It creates a zombie, name it, 
+and return it so you can use it outside of the function scope-
 
+Basically it is saying that it should not be a class member function and should
+be a function OUTSIDE the class. Thus newZombie.cpp and randomChump.cpp were
+formed, without adding the Zombie:: thingy infront of the functions.
 
-
-Destructor (~Phonebook()):
-Cleanup: It cleans up resources held by the object.
-Memory Deallocation: It deallocates memory if necessary.
-Resource Release: It releases resources acquired by the object 
-	during its lifetime.
-Usage: Destructors are used to release resources like memory, 
-	file handles, network connections, etc., held by the object.
+They're global functions that interact with the Zombie class 
+BUT are not it's members.
 */

@@ -30,6 +30,11 @@ Animal::Animal(const Animal &other) : type(other.type)
 
 Animal &Animal::operator=(const Animal &other)
 {
+	if (this == &other)//need to add & because 'this' is a pointer
+	{
+		std::cout << "Don't Self-assign!!" << std::endl;
+		return *this; // handle self-assignment
+	}
 	this->type = other.type;
 	std::cout << RED << "Animal copy assignment constructor called" << RESET << std::endl;
 	return (*this);

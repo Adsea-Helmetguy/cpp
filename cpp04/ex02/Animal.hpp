@@ -39,7 +39,6 @@ public:
 	
 	std::string	getType() const;
 	virtual void		makeSound() const = 0;
-	//"= 0" means i am creating a pure virtual function.
 };
 
 #endif

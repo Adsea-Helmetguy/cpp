@@ -41,18 +41,17 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 	if (this == &other)//need to add & because 'this' is a pointer
 	{
 		std::cout << "Don't Self-assign!!" << std::endl;
-        return *this;// handle self-assignment
+		return *this;// handle self-assignment
 	}
 	std::cout << "ScavTrap Copy assignment constructor called" << std::endl;
 	this->_Name = other._Name;
 	this->_Hit_points = other._Hit_points;
 	this->_Energy_points = other._Energy_points;
 	this->_Attack_damage = other._Attack_damage;
+	std::cout << "ScavTrap" << GREEN << " EQUAL OPERATOR! " << RESET \
+	"called" << std::endl;
 	return (*this);
 }
-//
-//
-//
 
 ScavTrap::~ScavTrap()
 {
@@ -68,7 +67,8 @@ void	ScavTrap::attack(const std::string& target)
 		return;
 	}
 	std::cout << "ScavTrap " << this->_Name << " attacks " << target \
-	<< " causing " << this->_Attack_damage << " points of damage" << std::endl;
+	<< " causing " << this->_Attack_damage << " points of damage! " \
+	<< GREEN << "\"SCAVTRAP PUNCH!!!!!\"" << RESET << std::endl;
 
 	if (this->_Energy_points != 0)
 		this->_Energy_points--;
@@ -82,16 +82,15 @@ void	ScavTrap::attack(const std::string& target)
 //
 //
 //New functions added
-/*
-std::string		ScavTrap::get_name(void)
-{
-	return(this->_Name);
-}
-*/
-
 void	ScavTrap::guardGate()
 {
-	std::cout << BLUE << "ScavTrap " << this->_Name \
+	if (this->_Hit_points == 0 || this->_Energy_points == 0)
+	{
+		std::cout << "\nScavTrap " << GREEN << this->_Name << RED \
+		<< " can't guardGate cause no energy. Wow.\n" << RESET << std::endl;
+		return;
+	}
+	std::cout << "ScavTrap " << GREEN << this->_Name << BLUE \
 	<< " is now in Gatekeeper mode!" << RESET << std::endl;
 }
 //

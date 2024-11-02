@@ -37,7 +37,6 @@ int main(void)
 //
 	std::cout << YELLOW << std::endl << "Tests for FragTrap functions" << RESET << std::endl;
 	tom.highFivesGuys();
-	tom.highFivesGuys();
 	tom.attack("a car");
 	std::cout << tom.get_name() << " has " << tom.get_hit_points() << " hit points and " << tom.get_energy_points() << " energy points left" << std::endl;
 //
@@ -74,6 +73,8 @@ int main(void)
 	std::cout << tom.get_name() << " has " << tom.get_hit_points() << " hit points and " << tom.get_energy_points() << " energy points left" << std::endl;
 	tom.beRepaired(2);
 	std::cout << tom.get_name() << " has " << tom.get_hit_points() << " hit points and " << tom.get_energy_points() << " energy points left" << std::endl;
+	tom.takeDamage(100);
+	tom.highFivesGuys();
 //
 //
 //

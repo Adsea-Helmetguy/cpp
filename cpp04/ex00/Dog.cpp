@@ -36,10 +36,12 @@ Dog::Dog(const Dog &other) : Animal(other)
 
 Dog &Dog::operator=(const Dog &other)
 {
-	if (this != &other)
+	if (this == &other)//need to add & because 'this' is a pointer
 	{
-		this->type = other.type;
+		std::cout << "Don't Self-assign!!" << std::endl;
+		return *this; // handle self-assignment
 	}
+	this->type = other.type;
 	std::cout << RED << "Dog copy assignment constructor called" << RESET << std::endl;
 	return (*this);
 }

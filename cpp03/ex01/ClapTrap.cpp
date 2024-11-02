@@ -26,7 +26,7 @@ ClapTrap::ClapTrap(const std::string& name)
 
 //COPY CONSTRUCTOR
 ClapTrap::ClapTrap(ClapTrap& copyname)
-	: _Name(copyname._Name), _Hit_points(copyname._Hit_points), \
+	: _Name(copyname._Name + ".copy"), _Hit_points(copyname._Hit_points), \
 	_Energy_points(copyname._Energy_points), _Attack_damage(copyname._Attack_damage)
 {
 	std::cout << RED << "ClapTrap COPY constructor called" << RESET << std::endl;
@@ -40,13 +40,15 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 	if (this == &other)//need to add & because 'this' is a pointer
 	{
 		std::cout << "Don't Self-assign!!" << std::endl;
-        return *this; // handle self-assignment
+		return *this; // handle self-assignment
 	}
 	std::cout << "ClapTrap Copy assignment constructor called" << std::endl;
 	this->_Name = other._Name;
 	this->_Hit_points = other._Hit_points;
 	this->_Energy_points = other._Energy_points;
 	this->_Attack_damage = other._Attack_damage;
+	std::cout << "ClapTrap" << GREEN << " EQUAL OPERATOR! " << RESET \
+	"called" << std::endl;
 	return (*this);
 }
 //
@@ -67,7 +69,8 @@ void	ClapTrap::attack(const std::string& target)
 		return;
 	}
 	std::cout << "ClapTrap " << this->_Name << " attacks " << target \
-	<< " causing " << this->_Attack_damage << " points of damage" << std::endl;
+	<< " causing " << this->_Attack_damage << " points of damage! " \
+	<< GREEN << "\"PUNCH PUNCH PUNCHY CLAP!!!\"" << RESET << std::endl;
 //
 //
 	if (this->_Energy_points != 0)

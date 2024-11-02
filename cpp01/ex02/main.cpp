@@ -20,11 +20,11 @@
 int	main(void) 
 {
     std::string	string = "HI THIS IS BRAIN";
-    std::string *stringPTR = &string;
-    std::string &stringREF = string;
+    std::string *stringPTR = &string;//*stringPTR retrieves value AT the address
+    std::string &stringREF = string;//stringREF due to '&' references "string"
 
     std::cout << "String address: " << &string << std::endl;
-    std::cout << "StringPTR address: " << stringPTR << std::endl;
+    std::cout << "StringPTR address: " << stringPTR << std::endl;//stringPTR points to address
     std::cout << "StringRef address: " << &stringREF << std::endl;
     std::cout << std::endl;
     std::cout << "String value: " << string << std::endl;
@@ -33,3 +33,10 @@ int	main(void)
 
     return (0);
 }
+/*
+FOR:
+std::string *stringPTR = &string;
+
+Without *, stringPTR just gives the memory address.
+With *, *stringPTR gives the value stored at that address.
+*/

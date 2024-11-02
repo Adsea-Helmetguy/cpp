@@ -15,41 +15,22 @@
 int	main(void) 
 {
 	Zombie		*newZombie1;
-	int		total_zombies;
+	int		total_zombies = 5;
 
-	total_zombies = 5;
+	std::cout << "\n\n\ntotal_zombies: " << GREEN << total_zombies << RESET << std::endl;
+	std::cout << YELLOW << "Creation of Constructors" << RESET << std::endl;
+//
+//
 	newZombie1 = zombieHorde(total_zombies, "zombiehorde");
+//
+//
+	std::cout << YELLOW << "\n\nDeconstruction" << RESET << std::endl;
 	delete[] newZombie1;
 	return (0);
 }
-/*
-Zombie*	zombieHorde(int N, std::string name)
-{
-	Zombie		*newZombie_creation;
-
-	newZombie_creation = new Zombie[N];
-	for (int loop = 0; loop < N; loop++)
-	{
-		newZombie_creation[loop] = Zombie(name);
-	}
-	return (newZombie_creation);
-}
-
-int	main(void) 
-{
-	Zombie		*newZombie1;
-	std::string	name = "";
-	int		total_zombies;
-
-	total_zombies = 5;
-	newZombie1 = zombieHorde(total_zombies, "zombiehorde");
-	delete[] newZombie1;
-	return (0);
-}
-*/
 //https://cplusplus.com/reference/iomanip/
 //https://cplusplus.com/reference/string/string/
-//bascially new causes contact Constructor to activate,
+//bascially "new" causes contact Constructor to activate,
 //detele causes contact destructor to activate.
 /*
 If you dynamically allocate an object using new, 

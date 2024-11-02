@@ -47,6 +47,8 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 	this->_Hit_points = other._Hit_points;
 	this->_Energy_points = other._Energy_points;
 	this->_Attack_damage = other._Attack_damage;
+	std::cout << "ClapTrap" << GREEN << " EQUAL OPERATOR! " << RESET \
+	"called" << std::endl;
 	return (*this);
 }
 //

@@ -60,8 +60,6 @@ int	main(void)
 		delete jack;//should not create a leak
 		delete ik;
 	}
-//
-//
 
 	{
 		//Checking Deep copy
@@ -132,52 +130,6 @@ int	main(void)
 		delete jack2;
 		delete jacky;//this should not seg fault!
 	}
-//
-//
-
-	{
-		std::cout << YELLOW << "Calling Constructor functions here" << RESET << std::endl;
-		const	Animal* meta = new Animal();//Animal constructor called
-		const	Animal* j = new Dog();//Animal + Dog Constructor called
-		const	Animal* i = new Cat();//Animal + Cat Constructor called
-
-		std::cout << YELLOW << "\nUsing getType function" << RESET << std::endl;
-		std::cout << "j's getType value: " << j->getType() << " " << std::endl;
-		std::cout << "i's getType value: " << i->getType() << " " << std::endl;
-		std::cout << YELLOW << "\nUsing makesound() function here" << RESET << std::endl;
-		i->makeSound();//will output the cat sound!
-		j->makeSound();//will output the Dog sound!
-		meta->makeSound();
-
-		std::cout << YELLOW << "\nCalling delete here (cause \"New\" Allocation)" \
-		<< RESET << std::endl;
-		delete meta;
-		delete j;
-		delete i;
-	}
-//
-//
-
-	{
-		std::cout << YELLOW << "\n\n------------\n\n\n\nCalling Constructor functions here" \
-		<< RESET << std::endl;
-		std::cout << YELLOW << "From PDF but exchanged with WrongAnimal and WrongCat" \
-		<< RESET << std::endl;
-		const	WrongAnimal* meta = new WrongAnimal();
-		const	WrongAnimal* j = new WrongCat();
-
-		std::cout << YELLOW << "\nUsing getType function" << RESET << std::endl;
-		std::cout << "j's getType value: " << j->getType() << " " << std::endl;
-		std::cout << YELLOW << "\nUsing makesound() function here" << RESET << std::endl;
-		j->makeSound();//will output the Dog sound!
-		meta->makeSound();
-
-		std::cout << YELLOW << "\nCalling delete here (cause \"New\" Allocation)" \
-		<< RESET << std::endl;
-		delete meta;
-		delete j;
-	}
-
 	return (0);
 }
 //ctrl+F first, then ALT+Enter if you want to replace stuff

@@ -14,12 +14,14 @@
 
 Harl::Harl()
 {
-	std::cout << "Incoming Harl....?" << std::endl;
+	std::cout << GREEN << "Oh no.... Incoming " << RED << "\"Harl\"." \
+	<< RESET << std::endl;
 }
 
 Harl::~Harl()
 {
-	std::cout << "Harl destroyed....?" << std::endl;
+	std::cout << "FINALLY!! " << RED << "Harl LEFT THE STORE!!!" \
+	<< RESET << std::endl;
 }
 
 void	Harl::debug(void)
@@ -32,27 +34,42 @@ void	Harl::debug(void)
 void	Harl::info(void)
 {
 	std::cout << "I cannot believe adding extra bacon costs more money. " \
-	<< " You didn’t put enough bacon in my burger! " \
+	<< "You didn’t put enough bacon in my burger! " \
 	<< "If you did, I wouldn’t be asking for more!" << std::endl;
 }
 
 void	Harl::warning(void)
 {
 	std::cout << "I think I deserve to have some extra bacon for free. " \
-	<< "I’ve been coming for years whereas you started working " \
+	<<  "I’ve been coming for years whereas you started working " \
 	<< "here since last month." << std::endl;
 }
 
 void	Harl::error(void)
 {
-	std::cout << "This is unacceptable! I want to speak to the " \
-	<< "manager now." << std::endl;
+	std::cout << YELLOW << "This is unacceptable! " << RED << "I want " \
+	<< "to speak to the manager now!!!!!" << RESET << std::endl;
 }
 
+/*
+Harl::funcs can hold 4 pointers/addresses in funcs array
+
+Member function pointers in C++ must be declared using the * (pointer) 
+syntax with the correct scope of the class they belong to.
+
+----------------------------------------------------------------------------------
+funcs is just a local array inside the complain method. 
+This means it's created when complain is called and destroyed when complain exits. 
+
+It does not need to be part of the class itself because 
+it exists only temporarily during the function execution.
+----------------------------------------------------------------------------------
+*/
 void	Harl::complain(std::string level)
 {
-	std::string	levels[4];
-	void		(Harl::*funcs[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	std::string	levels[4];//holds levels 0-3, 4 possible strings
+	void		(Harl::*funcs[4])() = {&Harl::debug, &Harl::info, \
+				&Harl::warning, &Harl::error};
 
 	levels[0] = "DEBUG";
 	levels[1] = "INFO";

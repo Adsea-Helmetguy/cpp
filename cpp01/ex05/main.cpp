@@ -21,15 +21,21 @@ Always check if the file is successfully opened
 
 int	main(void)
 {
+	std::cout << YELLOW << "\n\nConstructor happens" << RESET << std::endl;
 	Harl harl;
 
-	std::cout << std::endl << "------ DEBUG Level ------" << std::endl;
+	std::cout << YELLOW << "\n*******************\n|Complains by Harl|\n*******************\n" \
+	<< RESET << std::endl;
+	std::cout << "------" << GREEN << "DEBUG Level" << RESET << "------" << std::endl;
 	harl.complain("DEBUG");
-	std::cout << std::endl << "------ INFO Level ------" << std::endl;;
+	std::cout << "\n------" << GREEN << "INFO Level" << RESET << "------" << std::endl;
 	harl.complain("INFO");
-	std::cout << std::endl << "------ WARNING Level ------" << std::endl;
+	std::cout << "\n------" << YELLOW << "WARNING Level" << RESET << "------" << std::endl;
 	harl.complain("WARNING");
-	std::cout << std::endl << "------ ERROR Level ------" << std::endl;
+	std::cout << "\n------" << RED << "ERROR Level" << RESET << "------" << std::endl;
 	harl.complain("ERROR");
-	std::cout << std::endl << "------ No valid Level ------" << std::endl;
+	std::cout << "\n------ No valid Level ------" << std::endl;
+	
+	std::cout << YELLOW << "\n\nDestructor happens, FINALLY HARL IS GG" \
+	<< RESET << std::endl;
 }

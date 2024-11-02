@@ -13,6 +13,14 @@
 #include "Zombie.hpp"
 
 //https://elearning.intra.42.fr/notions/piscine-c-d00-c-basics/subnotions
+
+
+Zombie::Zombie()
+{
+	this->name = "Default zombie name";
+	std::cout << "Zombie (" << this->name << ") created" << std::endl;
+}
+
 Zombie::Zombie(std::string name)
 {
 	this->name = name;

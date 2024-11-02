@@ -17,8 +17,15 @@
 # include <string>//std::string
 # include <cmath>
 
+# define RESET		"\033[0m"
+# define RED		"\033[31m"//Red
+# define GREEN		"\033[32m"//Green
+# define YELLOW		"\033[33m"//Yellow
+# define BLUE		"\033[34m"//Blue
+
+
 // ************************************************************************** //
-//                               Contact Class                                //
+//                                       Class                                //
 // ************************************************************************** //
 
 class Fixed
@@ -61,11 +68,19 @@ public:
 	Fixed	operator-(const Fixed& other) const;
 	Fixed	operator*(const Fixed& other) const;
 	Fixed	operator/(const Fixed& other) const;
+//or
+/*
+	float	operator+(const Fixed& other) const;
+	float	operator-(const Fixed& other) const;
+	float	operator*(const Fixed& other) const;
+	float	operator/(const Fixed& other) const;
+*/
+//
 //
 //(pre/post)Increment/(pre/post)decrement operators
-	Fixed	operator++(void);
+	Fixed&	operator++(void);
 	Fixed	operator++(int);
-	Fixed	operator--(void);
+	Fixed&	operator--(void);
 	Fixed	operator--(int);
 //
 };

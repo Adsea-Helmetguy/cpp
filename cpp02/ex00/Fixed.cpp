@@ -12,6 +12,7 @@
 
 #include "Fixed.hpp"
 
+//since it is static, it will be first to be displayed, init here first
 const int Fixed::_fractionalBits = 8;
 
 Fixed::Fixed() : _fixedpoint_value(0)
@@ -19,15 +20,24 @@ Fixed::Fixed() : _fixedpoint_value(0)
 	std::cout << "(Default constructor called)" << std::endl;
 }
 
+//comment out either "*this = other"
+//or
+//": _fixedpoint_value(other._fixedpoint_value)"
+//will still give the same good results.
 Fixed::Fixed(const Fixed& other) : _fixedpoint_value(other._fixedpoint_value)
 {
-	std::cout << "Copy constructor called" << std::endl;
-	*this = other;
+	std::cout << GREEN << "Copy constructor called" << RESET << std::endl;
+	//*this = other;
 }
 
 Fixed& Fixed::operator=(const Fixed& other)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	if (this == &other)//need to add & because 'this' is a pointer
+	{
+		std::cout << "Don't Self-assign!!" << std::endl;
+		return *this; // handle self-assignment
+	}
+	std::cout << GREEN << "Copy assignment operator called" << RESET << std::endl;
 	setRawBits(other.getRawBits());
 	return (*this);
 }
@@ -48,9 +58,16 @@ void	Fixed::setRawBits(int const raw)
 	this->_fixedpoint_value = raw;
 }
 
-
-
 /*
+//-this also works just without this-> thingy for some of them-
+//but damn it so "ugly"
+
+cause it is smart enough to know it's talking about it's own
+functions/variables without adding "this->" as long as it's 
+not the same name as it's own.
+but heck just add it in. less confusion and tempt fate.
+
+
 #include "Fixed.hpp"
 
 const int Fixed::_fractionalBits = 8;

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlow <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 10:34:38 by mlow              #+#    #+#             */
-/*   Updated: 2024/09/30 10:34:39 by mlow             ###   ########.fr       */
+/*   Created: 2024/10/21 12:06:41 by mlow              #+#    #+#             */
+/*   Updated: 2024/10/21 12:06:45 by mlow             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,27 @@
 # include <sstream>
 # include <new>
 
-
+# define RESET		"\033[0m"
+# define RED		"\033[31m"//Red
+# define GREEN		"\033[32m"//Green
+# define YELLOW		"\033[33m"//Yellow
+# define BLUE		"\033[34m"//Blue
 
 // ************************************************************************** //
-//                               Contact Class                                //
+//                                  Class                                     //
 // ************************************************************************** //
 
 class HumanA
 {
-public:
-	HumanA(std::string name, Weapon& w);
-	~HumanA();
-
-	void	attack();
-
 private:
 	std::string	_name;
 	Weapon&		_weapon;
-};
 
+public:
+	HumanA(std::string name, Weapon &w);
+	~HumanA();
+
+	void	attack();
+};
 #endif
+

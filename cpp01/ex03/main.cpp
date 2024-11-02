@@ -17,22 +17,25 @@
 int	main(void)
 {
     {
+    	std::cout << YELLOW << "\n\nConstructor starts over here! humanA" << RESET << std::endl;
         Weapon club = Weapon("crude spiked club");
-
-        HumanA bob("Bob", club);
-        bob.attack();
-        club.setType("some other type of club");
-        bob.attack();
+	HumanA bob("Bob", club);
+	bob.attack();
+	club.setType("some other type of club");
+	bob.attack();
+	std::cout << YELLOW << "\n\nDEConstructor Now removes EVERYTHING!" << RESET << std::endl;
     }
+    std::cout << YELLOW << "\n\n\n\n-------------------\n\n\n" << RESET << std::endl;
     {
-        Weapon club = Weapon("crude spiked club");
+	std::cout << YELLOW << "\n\nConstructor starts over here! humanB" << RESET << std::endl;
+	Weapon club = Weapon("crude spiked club");
 
-        HumanB jim("Jim");
-        jim.setWeapon(club);
-        jim.attack();
-        club.setType("some other type of club");
-        jim.attack();
+	HumanB jim("Jim");
+	jim.setWeapon(club);
+	jim.attack();
+	club.setType("some other type of club");
+	jim.attack();
+	std::cout << YELLOW << "\n\nDEConstructor Now removes EVERYTHING!" << RESET << std::endl;
     }
-
     return 0;
 }

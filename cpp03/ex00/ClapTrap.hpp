@@ -17,8 +17,14 @@
 # include <string>//std::string
 # include <cmath>
 
+# define RESET		"\033[0m"
+# define RED		"\033[31m"//Red
+# define GREEN		"\033[32m"//Green
+# define YELLOW		"\033[33m"//Yellow
+# define BLUE		"\033[34m"//Blue
+
 // ************************************************************************** //
-//                               Contact Class                                //
+//                                    Class                                   //
 // ************************************************************************** //
 
 class ClapTrap
@@ -30,9 +36,9 @@ private:
 	unsigned int		_Energy_points;
 	unsigned int		_Attack_damage;
 public:
-	ClapTrap();//(init fixed point to 0) : _fixedpoint_value(0);
+	ClapTrap();
 	ClapTrap(const std::string& name);
-	ClapTrap(ClapTrap& copyname);//COPY CONSTRUCTOR
+	ClapTrap(ClapTrap& copyname);
 	ClapTrap&	operator=(const ClapTrap& other);
 	~ClapTrap();
 //
@@ -43,8 +49,6 @@ public:
 //Other created member functions
 	unsigned int	get_hit_points(void);
 	unsigned int	get_energy_points(void);
-//
-//
 };
 
 #endif

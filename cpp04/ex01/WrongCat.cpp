@@ -22,7 +22,14 @@ WrongCat::WrongCat(const WrongCat &other) : WrongAnimal()
 
 WrongCat &WrongCat::operator=(const WrongCat &other)
 {
-	type = other.type;
+	if (this == &other)//need to add & because 'this' is a pointer
+	{
+		std::cout << "Don't Self-assign!!" << std::endl;
+		return *this; // handle self-assignment
+	}
+	delete this->_Brain;
+	this->_Brain = new Brain(*other._Brain);
+	this->type = other.type;
 	std::cout << RED << "WrongCat copy assignment constructor called" << RESET << std::endl;
 	return (*this);
 }

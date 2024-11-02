@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlow <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 10:35:16 by mlow              #+#    #+#             */
-/*   Updated: 2024/09/30 10:35:18 by mlow             ###   ########.fr       */
+/*   Created: 2024/10/21 11:49:33 by mlow              #+#    #+#             */
+/*   Updated: 2024/10/21 11:49:45 by mlow             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,29 @@
 # include <sstream>
 # include <new>
 
-
+# define RESET		"\033[0m"
+# define RED		"\033[31m"//Red
+# define GREEN		"\033[32m"//Green
+# define YELLOW		"\033[33m"//Yellow
+# define BLUE		"\033[34m"//Blue
 
 // ************************************************************************** //
-//                               Contact Class                                //
+//                                  Class                                     //
 // ************************************************************************** //
 
 class Weapon
 {
+private:
+	std::string	_type;//'_' added to mark it is a private member datatype
+
 public:
+	Weapon();
 	Weapon(std::string name);
 	~Weapon();
 
-	const std::string &getType() const;//for access
-	void setType(const std::string &type);//for modify
+	const std::string&	getType() const;//for access
+	void			setType(std::string type);//for modify
 
-private:
-	std::string	_type;//'_' added to mark it is a private member datatype
 };
-
 #endif
+

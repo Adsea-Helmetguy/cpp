@@ -48,6 +48,8 @@ FragTrap& FragTrap::operator=(const FragTrap& other)
 	this->_Hit_points = other._Hit_points;
 	this->_Energy_points = other._Energy_points;
 	this->_Attack_damage = other._Attack_damage;
+	std::cout << "FRAGTrap" << GREEN << " EQUAL OPERATOR! " << RESET \
+	"called" << std::endl;
 	return (*this);
 }
 //
@@ -84,7 +86,14 @@ void	FragTrap::attack(const std::string& target)
 //New functions added
 void	FragTrap::highFivesGuys(void)
 {
-	std::cout << YELLOW << "High fives🙌 FragTrap~" << RESET << std::endl;
+	if (this->_Hit_points == 0 || this->_Energy_points == 0)
+	{
+		std::cout << "FragTrap" << this->_Name << RED \
+		<< " can't High fives >w< cause no energy. Wow." << RESET << std::endl;
+		return;
+	}
+	std::cout << "FRAGTRAP: "<< YELLOW << "High fives🙌 FragTrap~" \
+	<< RESET << std::endl;
 }
 //
 //

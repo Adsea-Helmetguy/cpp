@@ -47,12 +47,14 @@ Cat::Cat(const Cat &other) : Animal(other)
 //  cause the other one is already freed >w<.
 Cat &Cat::operator=(const Cat &other)
 {
-	if (this != &other)
+	if (this == &other)//need to add & because 'this' is a pointer
 	{
-		delete this->_Brain;
-		this->_Brain = new Brain(*other._Brain);
-		this->type = other.type;
+		std::cout << "Don't Self-assign!!" << std::endl;
+		return *this; // handle self-assignment
 	}
+	delete this->_Brain;
+	this->_Brain = new Brain(*other._Brain);
+	this->type = other.type;
 	std::cout << RED << "Cat copy assignment constructor called" << RESET << std::endl;
 	return (*this);
 }

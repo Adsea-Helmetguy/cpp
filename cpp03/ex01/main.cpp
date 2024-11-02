@@ -37,7 +37,6 @@ int main(void)
 //
 	std::cout << YELLOW << std::endl << "Tests for ScavTrap functions" << RESET << std::endl;
 	tom.guardGate();
-	tom.guardGate();
 	tom.attack("a car");
 	std::cout << tom.get_name() << " has " << tom.get_hit_points() << " hit points and " << tom.get_energy_points() << " energy points left" << std::endl;
 //
@@ -70,10 +69,13 @@ int main(void)
 //
 //
 	std::cout << YELLOW << std::endl << "Tests for more ScavTrap functions" << RESET << std::endl;
+	tom.ClapTrap::attack("something");
 	tom.takeDamage(2);
 	std::cout << tom.get_name() << " has " << tom.get_hit_points() << " hit points and " << tom.get_energy_points() << " energy points left" << std::endl;
 	tom.beRepaired(2);
 	std::cout << tom.get_name() << " has " << tom.get_hit_points() << " hit points and " << tom.get_energy_points() << " energy points left" << std::endl;
+	tom.takeDamage(100);
+	tom.guardGate();
 //
 //
 //
