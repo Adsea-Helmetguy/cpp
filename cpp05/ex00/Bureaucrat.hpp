@@ -15,6 +15,7 @@
 
 # include <iostream>
 # include <string>//std::string
+# include <exception>//std::exception, https://en.cppreference.com/w/cpp/header/exception
 
 # define RESET   "\033[0m"
 # define RED     "\033[31m"//Red
@@ -27,8 +28,24 @@
 
 class Bureaucrat
 {
+	class GradeTooHighException : public std::exception
+	{
+	private:
+		std::string			_message;
+	public:
+		void	MyException(const std::string& message);
+	};
+
+	class GradeTooLowException : public std::exception
+	{
+	private:
+		std::string			_message;
+	public:
+		void	MyException(const std::string& message);
+	};
+
 private:
-	const std::string	_constant_name const;
+	const std::string	_constant_name;
 	unsigned int		_grade;
 public:
 	Bureaucrat();
@@ -39,12 +56,16 @@ public:
 
 //
 //NEW FUNCTIONS
-	std::string	GradeTooHighException();
-	std::string	GradeTooLowException();
-	std::string	getName() const;
-	std::string	getGrade() const;
-	void		incrementGrade();
-	void		decrementGrade();
+	std::string		getName() const;
+	unsigned int	getGrade() const;
+	void			incrementGrade();
+	void			decrementGrade();
 };
+/*
+To use an exception class, you 
+first need to define the class by deriving it from 
+the standard exception class 
+"std::exception"
+*/
 
 #endif

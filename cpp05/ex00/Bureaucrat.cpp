@@ -12,43 +12,45 @@
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : type("Default_Bureaucrat")
+Bureaucrat::Bureaucrat() : _constant_name("Default_Bureaucrat"), _grade(150)
 {
 	std::cout << RED << "Bureaucrat Default constructor called" << RESET << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const std::string& name) : type(name)
+Bureaucrat::Bureaucrat(const std::string& name) : _constant_name(name), _grade(150)
 {
-	std::cout << RED << "Bureaucrat with std::string& name constructor called" \
-	<< RESET << std::endl;
+	std::cout << RED << "Bureaucrat" << this->_constant_name \
+	<< " constructor called" << RESET << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other) : type(other.type)
+Bureaucrat::Bureaucrat(const Bureaucrat &other) 
+	: _constant_name(other._constant_name), _grade(other._grade)
 {
 	std::cout << RED << "Bureaucrat copy constructor called" << RESET << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
-	if (this == &other)//need to add & because 'this' is a pointer
+	if (this == &other)
 	{
 		std::cout << "Don't Self-assign!!" << std::endl;
-		return *this; // handle self-assignment
+		return *this;
 	}
-	type = other.type;
+	//since it's a constant name, it cannot be copied.
+	this->_grade = other._grade;
 	std::cout << RED << "Bureaucrat copy assignment constructor called" << RESET << std::endl;
 	return (*this);
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Bureaucrat Deconstructor " << RED << this->type << RESET << \
+	std::cout << "Bureaucrat Deconstructor " << RED << this->_constant_name << RESET << \
 	" called: " << std::endl;
 }
 
 std::string		Bureaucrat::getName(void) const
 {
-	return(this->type);
+	return(this->_constant_name);
 }
 
 /*
@@ -68,42 +70,50 @@ You will implement an overload of the insertion («) operator to print something
 
 	<name>, bureaucrat grade <grade>.
 */
-void			Bureaucrat::GradeTooHighException()
+
+GradeTooHighException::GradeTooHighException()
 {
-	std::cout << BLUE << "Default Bureaucrat noises." << RESET << std::endl;
-}
-void			Bureaucrat::GradeTooLowException()
-{
-	std::cout << BLUE << "Default Bureaucrat noises." << RESET << std::endl;
+	
 }
 
-std::string		getName() const
+std::string		Bureaucrat::getName() const
 {
 	return(this->_constant_name);
 }
 
-std::string		getGrade() const
+unsigned int	Bureaucrat::getGrade() const
 {
-	return(this->_constant_name);
+	return(this->_grade);
 }
 
-void		incrementGrade()
+void			Bureaucrat::incrementGrade()
 {
-	this->_grade++;
+    if (this->_grade <= 1)
+        throw MyException("Grade is too high!");
+    this->_grade--;
 }
 
-void		decrementGrade()
+void			Bureaucrat::decrementGrade()
 {
-	this->_grade--;
+    if (this->_grade >= 150)
+        throw MyException("Grade is too low!");
+    this->_grade++;
 }
 
-
-
-
-
-
-
-
+/*
+Exception Classes here!
+class Exception : public std::exception
+{
+private:
+	std::string			_message;
+public:
+	virtual std::string	what();
+};
+*/
+void			Bureaucrat::GradeTooHighException::MyException(const std::string& message)
+{
+	
+}
 
 
 

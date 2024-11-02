@@ -14,12 +14,50 @@
 
 int	main(void)
 {
-	
+	{
+		std::cout << "test\n" << std::endl;
+		try
+		{
+			foo();
+		}
+		catch (const Exception& e)
+		{
+			std::cerr << "MyException: " << e.what() << std::endl;
+		}
+		catch (const std::exception& e)
+		{
+			std::cerr << "std::exception: " << e.what() << std::endl;
+		}
+	}
+
+	{
+		try
+		{
+    	    Bureaucrat b("Alice");
+    	    b.incrementGrade();
+    	    b.decrementGrade();
+		}
+		catch (const Bureaucrat::Exception& e)
+		{
+     	   std::cerr << "Exception caught: " << e.what() << std::endl;
+		}
+	}
 	return (0);
 }
 /*
-To ensure you understood how it works, implement a WrongCat class that inherits
-from a WrongAnimal class. If you replace the Animal and the Cat by the wrong ones
-in the code above, the WrongCat should output the WrongAnimal sound
+The thrown exceptions must be catchable using try and catch blocks:
+
+	try
+	{
+		// do some stuff with bureaucrats
+	}
+	catch (std::exception & e)
+	{
+		// handle exception
+	}
+
+You will implement an overload of the insertion («) operator to print something like
+(without the angle brackets):
+
+	<name>, bureaucrat grade <grade>.
 */
-//ctrl+F first, then ALT+Enter if you want to replace stuff
