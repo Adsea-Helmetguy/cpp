@@ -130,6 +130,11 @@ int	main(void)
 		delete jack2;
 		delete jacky;//this should not seg fault!
 	}
+	std::cout << YELLOW <<"\n--------------\nTesting Animal" << RESET << std::endl;
+	const	Animal* ika = new Animal();
+	std::cout << GREEN << ika->getType() << RESET << std::endl;
+	delete ika;
+	std::cout << YELLOW <<"--------------\n" << RESET << std::endl;
 	return (0);
 }
 //ctrl+F first, then ALT+Enter if you want to replace stuff

@@ -1,6 +1,7 @@
 #ifndef WRONGCAT_HPP
 #define WRONGCAT_HPP
 
+# include "Brain.hpp"
 # include "WrongAnimal.hpp"
 # include <iostream>
 # include <string>//std::string
@@ -11,8 +12,8 @@
 
 class WrongCat : public WrongAnimal
 {
-protected:
-
+private:
+	Brain*	_Brain;
 public:
 	WrongCat();//(init fixed point to 0) : _fixedpoint_value(0);
 	WrongCat(const std::string& name);
