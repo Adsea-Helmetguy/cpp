@@ -33,7 +33,8 @@ class Bureaucrat
 	private:
 		std::string			_message;
 	public:
-		void	MyException(const std::string& message);
+		GradeTooHighException(const std::string& message);
+		virtual const char* what();
 	};
 
 	class GradeTooLowException : public std::exception
@@ -41,7 +42,9 @@ class Bureaucrat
 	private:
 		std::string			_message;
 	public:
-		void	MyException(const std::string& message);
+		GradeTooLowException(const std::string& message);
+		virtual const char* what();
+
 	};
 
 private:

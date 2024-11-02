@@ -71,10 +71,11 @@ You will implement an overload of the insertion («) operator to print something
 	<name>, bureaucrat grade <grade>.
 */
 
-GradeTooHighException::GradeTooHighException()
-{
-	
-}
+Bureaucrat::GradeTooHighException::GradeTooHighException(const std::string& message) : _message(message) {};
+
+const char* Bureaucrat::GradeTooHighException::what() {
+	return _message.c_str();
+};
 
 std::string		Bureaucrat::getName() const
 {
