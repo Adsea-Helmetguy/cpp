@@ -41,7 +41,7 @@ Brain &Brain::operator=(const Brain &other)
 	//while loop to do deep copy
 	while (index < total_size)
 	{
-		this->ideas[index] = other.ideas[index];
+		this->ideas[index] = std::string(other.ideas[index]);
 		index++;
 	}
 	std::cout << RED << "Brain equal operator called." << RESET << std::endl;

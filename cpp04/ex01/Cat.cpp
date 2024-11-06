@@ -31,7 +31,7 @@ Cat::Cat(const std::string& name) : Animal(name)
 }
 
 //COPY CONSTRUCTOR
-Cat::Cat(const Cat &other) : Animal(other)
+Cat::Cat(const Cat &other)  : Animal(other), _Brain(NULL)
 {
 	*this = other;
 	std::cout << RED << "Cat copy constructor called" << RESET << std::endl;
@@ -52,7 +52,8 @@ Cat &Cat::operator=(const Cat &other)
 		std::cout << "Don't Self-assign!!" << std::endl;
 		return *this; // handle self-assignment
 	}
-	delete this->_Brain;
+	if (this->_Brain)
+		delete this->_Brain;
 	this->_Brain = new Brain(*other._Brain);
 	this->type = other.type;
 	std::cout << RED << "Cat copy assignment constructor called" << RESET << std::endl;

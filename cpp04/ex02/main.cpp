@@ -19,6 +19,12 @@
 
 int	main(void)
 {
+	 Cat *a = new Cat();
+	 Cat *b(a);
+	 delete a;
+	 delete b;
+	 return 0;
+/*
 	{
 		std::cout << YELLOW << "Creating Constructor" << RESET << std::endl;
 		const	Animal* jack = new Dog();
@@ -73,7 +79,7 @@ int	main(void)
 		std::cout << YELLOW <<"\n\nChecking jack's values before copy" << RESET << std::endl;
 		std::cout << GREEN << jacky->getType() << RESET << std::endl;
 		std::cout << GREEN << jack2->getType() << RESET << std::endl;
-	//
+
 		std::cout << YELLOW <<"\n\nAdding ideas to Jack(s)" << RESET << std::endl;
 		jacky->edit_brain(0, "Jack oh boy, I have a dream!!");
 		jacky->edit_brain(1, "Jack oh boy, I have a dream2!!");
@@ -94,10 +100,10 @@ int	main(void)
 		jack2->get_brain(3);
 		//jack->get_brain(1);//what happens to stack memory here?
 		//jack->get_brain(2);//what happens to stack memory here?
-	//
+
 		std::cout << YELLOW <<"\n\nCOPY assignment constructor called here" << RESET << std::endl;
 		*jack2 = *jacky;
-	//
+
 		std::cout << YELLOW <<"\n\nChecking ideas in jack(s)" << RESET << std::endl;
 		jacky->get_brain(0);
 		jacky->get_brain(1);
@@ -107,37 +113,34 @@ int	main(void)
 		jack2->get_brain(1);
 		jack2->get_brain(2);
 		jack2->get_brain(3);
-		/*
-		Explanation
-		jack2 = jack; is pointer assignment,
-			 meaning jack2 will now point to the same memory 
-			 location as jack, effectively discarding the original 
-			 jack2 object and causing a shallow copy.
-			 Basically you are copying the memory address of jack.
+		//Explanation
+		//jack2 = jack; is pointer assignment,
+		//	 meaning jack2 will now point to the same memory 
+		//	 location as jack, effectively discarding the original 
+		//	 jack2 object and causing a shallow copy.
+		//	 Basically you are copying the memory address of jack.
 
-		*jack2 = *jack; is object assignment, which will invoke 
-			the copy assignment operator, and this is what you want 
-			to achieve deep copying.
-			Basically, you are copying the items of the jack.
-		*/
+		// *jack2 = *jack; is object assignment, which will invoke 
+		//	the copy assignment operator, and this is what you want 
+		//	to achieve deep copying.
+		//	Basically, you are copying the items of the jack.
+
+	//	std::cout << YELLOW <<"\n\nChecking jack's NEW values" << RESET << std::endl;
+	//	std::cout << jacky->getType() << std::endl;
+	//	std::cout << jack2->getType() << std::endl;
 	//
-		std::cout << YELLOW <<"\n\nChecking jack's NEW values" << RESET << std::endl;
-		std::cout << jacky->getType() << std::endl;
-		std::cout << jack2->getType() << std::endl;
 	//
-	//
-		std::cout << YELLOW <<"\n\nDeconstructor called here" << RESET << std::endl;
-		delete jack2;
-		delete jacky;//this should not seg fault!
+	//	std::cout << YELLOW <<"\n\nDestructor called here" << RESET << std::endl;
+	//	delete jack2;
+	//	delete jacky;//this should not seg fault!
 	}
-/*
-	//Uncomment this for the test
+*/
 	std::cout << YELLOW <<"\n--------------\nTesting Animal" << RESET << std::endl;
-	const	Animal* ika = new Animal();//delete everything here
+	const	Animal* ika = new Animal();
 	std::cout << GREEN << ika->getType() << RESET << std::endl;
+	ika->makeSound();
 	delete ika;
 	std::cout << YELLOW <<"--------------\n" << RESET << std::endl;
 	return (0);
-*/
 }
 //ctrl+F first, then ALT+Enter if you want to replace stuff

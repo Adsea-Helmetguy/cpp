@@ -31,9 +31,9 @@ Dog::Dog(const std::string& name) : Animal(name)
 }
 
 //COPY CONSTRUCTOR
-Dog::Dog(const Dog &other) : Animal(other)
+Dog::Dog(const Dog &other) : Animal(other), _Brain(new Brain(*other._Brain))
 {
-	*this = other;
+	this->type = other.type;
 	std::cout << RED << "Dog copy constructor called" << RESET << std::endl;
 }
 
@@ -52,7 +52,8 @@ Dog &Dog::operator=(const Dog &other)
 		std::cout << "Don't Self-assign!!" << std::endl;
 		return *this; // handle self-assignment
 	}
-	delete this->_Brain;
+	if (this->_Brain)
+		delete this->_Brain;
 	this->_Brain = new Brain(*other._Brain);
 	this->type = other.type;
 	std::cout << RED << "Dog copy assignment constructor called" << RESET << std::endl;
@@ -62,7 +63,8 @@ Dog &Dog::operator=(const Dog &other)
 Dog::~Dog()
 {
 	//Upon destruction, Dog and Cat will delete their Brain.
-	delete _Brain;
+	if (this->_Brain)
+		delete this->_Brain;
 	std::cout << "Dog Deconstructor " << BLUE << this->type << RESET << \
 	" called: " << std::endl;
 }

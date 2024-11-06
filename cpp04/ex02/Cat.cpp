@@ -31,9 +31,9 @@ Cat::Cat(const std::string& name) : Animal(name)
 }
 
 //COPY CONSTRUCTOR
-Cat::Cat(const Cat &other) : Animal(other)
+Cat::Cat(const Cat &other)  : Animal(other), _Brain(new Brain(*other._Brain))
 {
-	*this = other;
+	this->type = other.type;
 	std::cout << RED << "Cat copy constructor called" << RESET << std::endl;
 }
 

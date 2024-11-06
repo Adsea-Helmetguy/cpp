@@ -18,6 +18,12 @@
 
 int	main(void)
 {
+	 Dog *a = new Dog();
+	 Dog *b = new Dog(*a);
+	 delete a;
+	 delete b;
+	 return 0;
+/*
 	{
 		//The compiler expects that only 
 		//const member functions will be called on these
@@ -61,6 +67,7 @@ int	main(void)
 		delete meta;
 		delete j;
 	}
+*/
 	return (0);
 }
 /*

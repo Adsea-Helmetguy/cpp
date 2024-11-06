@@ -28,7 +28,6 @@ WrongAnimal::WrongAnimal(const std::string& name) : type(name)
 //COPY CONSTRUCTOR
 WrongAnimal::WrongAnimal(const WrongAnimal &other) : type(other.type)
 {
-	//*this = other;
 	std::cout << RED << "WrongAnimal copy constructor called" << RESET << std::endl;
 }
 
@@ -39,6 +38,7 @@ WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other)
 		std::cout << "Don't Self-assign!!" << std::endl;
 		return *this; // handle self-assignment
 	}
+	this->type = other.type;
 	std::cout << RED << "WrongAnimal copy assignment constructor called" << RESET << std::endl;
 	return (*this);
 }

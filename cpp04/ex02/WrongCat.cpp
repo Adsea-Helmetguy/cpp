@@ -14,9 +14,9 @@ WrongCat::WrongCat(const std::string& name) : WrongAnimal()
 }
 
 //COPY CONSTRUCTOR
-WrongCat::WrongCat(const WrongCat &other) : WrongAnimal()
+WrongCat::WrongCat(const WrongCat &other)  : WrongAnimal(other), _Brain(new Brain(*other._Brain))
 {
-	*this = other; 
+	this->type = other.type;
 	std::cout << RED << "WrongCat copy constructor called" << RESET << std::endl;
 }
 

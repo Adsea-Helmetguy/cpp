@@ -53,27 +53,9 @@ std::string		Animal::getType(void) const
 
 void	Animal::makeSound() const
 {
-	
-	if (this->type == "Dog")
-	{
-		std::cout << YELLOW << "BORK BORK BORKKKK" << RESET << std::endl;
-		return ;
-	}
-	else if (this->type == "Cat")
-	{
-		std::cout << YELLOW << "Meow~" << RESET << std::endl;
-		return ;
-	}
-	
 	std::cout << BLUE << "Default Animal noises." << RESET << std::endl;
 }
 
-
-
-
-
-//a method virtual, c++ will perform runtime polymorphism
-// a method to call the base class on the actual object type not the pointer.
 
 
 
