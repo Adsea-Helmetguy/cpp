@@ -36,6 +36,11 @@ int main(void)
 		ICharacter* mc = new Character("\"Curry man\"");
 		std::cout << "mc's name: " << mc->getName() << std::endl;
 		mc->equip(Cure1);
+		//mc->equip(Cure1->clone())
+
+		//mc->unequip(idx); int idx is the slot number
+		mc->unequip(0);
+		//mc->
 		//mc->use
 		
 		
@@ -45,6 +50,7 @@ int main(void)
 		
 		std::cout << " " << std::endl;
 		std::cout << BLUE <<"\n----- Destructor called here -----" << RESET << std::endl;
+		delete mc;
 		delete Ice1;
 		delete Cure1;
 		return (0);

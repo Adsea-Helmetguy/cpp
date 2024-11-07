@@ -12,19 +12,20 @@
 
 #include "Ice.hpp"
 
-Ice::Ice() : _type("ice")
+Ice::Ice() : AMateria()
 {
+	this->_type = "ice";
 	std::cout << "\"" << GREEN << this->getType() << RESET \
 	<< "\"  Ice Default constructor called" << std::endl;
 }
 
-Ice::Ice(const std::string& name) : _type(name)
+Ice::Ice(const std::string& name) : AMateria(name)
 {
 	std::cout << "\"" << GREEN << this->getType() << RESET << "\"" \
 	<< " Ice copy constructor called" << std::endl;
 }
 
-Ice::Ice(const Ice &other) : _type(other._type)
+Ice::Ice(const Ice &other) : AMateria(other)
 {
 	std::cout << RED << "Ice copy constructor called" << RESET << std::endl;
 }
@@ -46,7 +47,6 @@ Ice::~Ice()
 	std::cout << "Ice Deconstructor " << "\"" << RED \
 	<< this->getType() << RESET << "\"" << " called" << std::endl;
 }
-
 
 std::string	const &Ice::getType() const//Returns the materia type
 {

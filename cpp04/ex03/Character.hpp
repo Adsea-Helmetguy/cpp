@@ -34,6 +34,8 @@ class Character : public ICharacter
 	protected:
 		std::string	_name;
 		AMateria	*_Materia_slots[4];//slot 0 to slot 3
+		static int	_discarded_slot;//always 8.
+		AMateria	*discarded_Materia[50];
 	public:
 		Character();
 		Character(std::string const &name);
@@ -46,7 +48,7 @@ class Character : public ICharacter
 		//ICharacter functions overwrite!
 		std::string const & getName() const;
 		void equip(AMateria* m);
-		//void unequip(int idx);
+		void unequip(int idx);
 		//void use(int idx, ICharacter& target);
 };
 #endif

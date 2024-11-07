@@ -12,6 +12,8 @@
 
 #include "Character.hpp"
 
+int	Character::_discarded_slot = 0;
+
 /*
 The use(ICharacter&) member function will display:
 • Ice: "* shoots an ice bolt at <name> *"
@@ -19,14 +21,6 @@ The use(ICharacter&) member function will display:
 
 <name> is the name of the Character passed as parameter. Don’t print the angle
 brackets (< and >).
-*/
-//void	Cure::use(ICharacter& target)
-/*
-	public:
-		Character();
-		Character(std::string const &type);
-		Character(const AMateria &type);
-		~Character();//ICharacter virtual destructor
 */
 Character::Character() : _name("From ICharacter")
 {
@@ -100,29 +94,46 @@ void 			Character::equip(AMateria* m)
 			return ;
 		}
 	}
-	std::cout << "ALL the slots are full, unable to add: " \
-	<< m->getType() << " to any slot." << std::endl;
+	std::cout << this->_name << "'s slots are full, unable to add: " \
+	<< m->getType() << " to any slot. " \
+	<< "Materia falls to the ground." << std::endl;
+
+	//Replaces the OLDEST Materia with the latest one!
+	_discarded_slot %= 50;
+	this->discarded_Materia[_discarded_slot] = m;
+	_discarded_slot += 1;
+
+	std::cout << this->_name << "added to discard pile successfully" << std::endl;
+	//delete m; //but do we need this?
 }
-/*
+
 void 			Character::unequip(int idx)
 {
+	if (idx < 0 || idx > 3)
+	{
+		std::cout << RED << "Invalid inventory index!" << RESET << std::endl;
+		return ;
+	}
+	if (this->_Materia_slots[idx])
+	{
+		std::cout << this->getName() << " equipped with: \"" \
+		GREEN << this->_Materia_slots[idx]->getType() \
+		<< RESET << "\" @ slot(" << idx << ")" << std::endl;
+		_discarded_slot %= 50;
+		this->discarded_Materia[_discarded_slot] = this->_Materia_slots[idx];
+		_discarded_slot += 1;
+		this->_Materia_slots[idx] = NULL;
+		return ;
+	}
+	//no empty slots Materia falls to ground.
+	std::cout << "There's Nothing to unequip!" << std::endl;
 }
 
-
+/*
 void 			Character::use(int idx, ICharacter& target)
 {
 }
 */
-
-
-
-/*
-std::string const & getName() const;
-void equip(AMateria* m);
-void unequip(int idx);
-void use(int idx, ICharacter& target);
-*/
-
 
 
 
