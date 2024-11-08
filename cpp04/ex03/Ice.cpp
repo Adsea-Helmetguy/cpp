@@ -44,7 +44,7 @@ Ice &Ice::operator=(const Ice &other)
 
 Ice::~Ice()
 {
-	std::cout << "Ice Deconstructor " << "\"" << RED \
+	std::cout << "@Ice Destructor: " << "\"" << RED \
 	<< this->getType() << RESET << "\"" << " called" << std::endl;
 }
 

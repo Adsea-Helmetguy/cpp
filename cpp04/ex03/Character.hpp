@@ -16,7 +16,7 @@
 # include <iostream>
 # include <string>//std::string
 # include "ICharacter.hpp"
-//#include "MateriaSource.hpp"
+//# include "MateriaSource.hpp"
 
 
 # define RESET		"\033[0m"
@@ -33,23 +33,23 @@ class Character : public ICharacter
 {
 	protected:
 		std::string	_name;
-		AMateria	*_Materia_slots[4];//slot 0 to slot 3
+		AMateria	*_Materia_slot[4];//slot 0 to slot 3
 		static int	_discarded_slot;//always 8.
-		AMateria	*discarded_Materia[50];
+		AMateria	*_discarded_Materia[50];
 	public:
 		Character();
 		Character(std::string const &name);
 		Character(const Character &copy);
 		~Character();//ICharacter virtual destructor
 		
-		// Operators
-		//AMateria &operator=(const AMateria &other);
+		//Operators
+		Character	&operator=(const Character &copy);
 		
 		//ICharacter functions overwrite!
 		std::string const & getName() const;
 		void equip(AMateria* m);
 		void unequip(int idx);
-		//void use(int idx, ICharacter& target);
+		void use(int idx, ICharacter& target);
 };
 #endif
 

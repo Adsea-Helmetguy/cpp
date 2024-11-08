@@ -35,27 +35,40 @@ int main(void)
 		std::cout << YELLOW << "==Creating new Character==" << RESET << std::endl;
 		ICharacter* mc = new Character("\"Curry man\"");
 		std::cout << "mc's name: " << mc->getName() << std::endl;
-		mc->equip(Cure1);
-		//mc->equip(Cure1->clone())
+		std::cout << YELLOW << "\n==Equip or Unequip==" << RESET << std::endl;
+		mc->equip(Cure1);// or mc->equip(Cure1->clone())
+		mc->equip(Cure1->clone());
+		mc->equip(Cure1->clone());
+		mc->equip(Cure1->clone());
+		mc->equip(Cure1->clone());
+		mc->equip(Cure1->clone());
+		//DON'T FORGET TO TEST WITH ICE TOO
 
-		//mc->unequip(idx); int idx is the slot number
-		mc->unequip(0);
-		//mc->
-		//mc->use
+		
+		//to be able to use the function "use(int, ICharacter&)";
+		std::cout << YELLOW << "\n==Testing function \"use\"==" << RESET << std::endl;
+		ICharacter* bob = new Character("bob the Curry lover");
+		mc->use(0, *bob);
+		
+		//Now unequip
+		mc->unequip(0);//mc->unequip(idx); int idx is the slot number
 		
 		
 		
 		
 		
 		
-		std::cout << " " << std::endl;
-		std::cout << BLUE <<"\n----- Destructor called here -----" << RESET << std::endl;
+		std::cout << BLUE << "\n----- Destructor called here -----" << RESET << std::endl;
+		delete bob;
 		delete mc;
+		
+		
+		//delete this once u fix Cure and copied it over to Ice.
 		delete Ice1;
-		delete Cure1;
+		//delete Cure1;
 		return (0);
 	}
-
+//
 //	{
 //		std::cout << BLUE << "----- PDF Test: -----\n" << std::endl;
 //

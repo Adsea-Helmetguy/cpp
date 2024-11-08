@@ -47,7 +47,7 @@ std::string	Contact::get_contact_input(std::string string)
 			std::cout << "Input contains only whitespaces: " << std::flush;
 			continue;
 		}
-		if (input.empty() ||std::cin.bad())
+		if (input.empty() || std::cin.bad())
 		{
 			std::cin.clear();
 			std::cout << "Invalid input: " << std::flush;

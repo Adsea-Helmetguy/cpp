@@ -37,15 +37,16 @@ Cure &Cure::operator=(const Cure &other)
 		std::cout << "Don't SELF-ASSIGN!!!" << std::endl;
 		return (*this);
 	}
-	this->_type = other._type;
+	//this->_type = other._type;
+	//AMateria::operator=()
 	std::cout << GREEN << "Cure copy assignment constructor called" << RESET << std::endl;
 	return (*this);
 }
 
 Cure::~Cure()
 {
-	std::cout << "Cure Deconstructor " << "\"" << RED \
-	<< this->getType() << RESET << "\"" << " called" << std::endl;
+	std::cout << "@Cure Destructor: "<< "\"" << RED << this->getType() << RESET \
+	<< "\"" << " DESTROY DESTRUCTION!!!!!!" << std::endl;
 }
 
 
@@ -66,8 +67,9 @@ Cure	*Cure::clone() const
 void	Cure::use(ICharacter& target)
 {	
 	
-	std::cout << GREEN << "* heals " << YELLOW << target.getName() \
-	<< RESET <<"'s wounds *" << GREEN << std::endl;
+	std::cout << GREEN << "* heals " \
+	<< YELLOW << target.getName() << RESET \
+	<< "'s wounds *" << std::endl;
 }
 
 

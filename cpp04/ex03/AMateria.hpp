@@ -15,9 +15,11 @@
 
 # include <iostream>
 # include <string>//std::string
-//#include "MateriaSource.hpp"
+# include "ICharacter.hpp"
+//# include "MateriaSource.hpp"
 
 class ICharacter;
+//class IMateriaSource;
 
 # define RESET		"\033[0m"
 # define RED		"\033[31m"//Red
@@ -51,9 +53,8 @@ class AMateria
 		std::string const & getType() const; //Returns the materia type
 
 		virtual AMateria *clone() const = 0;// refer 1);
-		//virtual void use(ICharacter &target);
+		virtual void use(ICharacter& target);
 
-//		std::string const &getType() const;
 //		Character *getWielder() const;
 //		void setWielder(Character *new_wielder);
 //		MateriaSource *getMateriaSource() const;

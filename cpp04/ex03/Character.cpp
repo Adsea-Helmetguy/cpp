@@ -26,7 +26,11 @@ Character::Character() : _name("From ICharacter")
 {
 	for (int i = 0; i < 4; i++)
 	{
-		_Materia_slots[i] = NULL;
+		_Materia_slot[i] = NULL;
+	}
+	for (int i = 0; i < 50; i++)
+	{
+		_discarded_Materia[i] = NULL;
 	}
 	std::cout << "Character: " << this->_name \
 	<< " Created @ Default constructor" << std::endl;
@@ -36,7 +40,11 @@ Character::Character(const std::string &name) : _name(name)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		this->_Materia_slots[i] = NULL;
+		this->_Materia_slot[i] = NULL;
+	}
+	for (int i = 0; i < 50; i++)
+	{
+		_discarded_Materia[i] = NULL;
 	}
 	std::cout << "Character: " << this->_name << " Created" << std::endl;
 }
@@ -47,20 +55,55 @@ Character::Character(const Character &copy)
 	this->_name = copy.getName();
 	for (int i = 0; i < 4; i++)
 	{
-		this->_Materia_slots[i] = NULL;
+		this->_Materia_slot[i] = NULL;
+		if (copy._Materia_slot[i])
+			this->_Materia_slot[i] = copy._Materia_slot[i];
 	}
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 50; i++)
 	{
-		if (copy._Materia_slots[i])
-			this->_Materia_slots[i] = copy._Materia_slots[i];
+		this->_discarded_Materia[i] = NULL;
 	}
 	std::cout << "Character COPY CONSTRUCTOR " << this->_name << " Called!!" << std::endl;
 }
 
+Character	&Character::operator=(const Character &copy)
+{
+	if (this == &copy)//"this" is a pointer
+	{
+		std::cout << "Don't SELF-ASSIGN!!!" << std::endl;
+		return (*this);
+	}
+	this->_name = copy.getName();
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->_Materia_slot[i])
+			delete (this->_Materia_slot[i]);
+		this->_Materia_slot[i] = NULL;
+		if (copy._Materia_slot[i])
+			this->_Materia_slot[i] = copy._Materia_slot[i];
+	}
+	for (int i = 0; i < 50; i++)
+	{
+		this->_discarded_Materia[i] = copy._discarded_Materia[i];
+	}
+	std::cout << "Character operator= " << this->_name << " Called!!" << std::endl;
+	return (*this);
+}
+
 Character::~Character()
 {
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->_Materia_slot[i])
+			delete (this->_Materia_slot[i]);
+	}
+	for (int i = 0; i < 50; i++)
+	{
+		if (this->_discarded_Materia[i])
+			delete (this->_discarded_Materia[i]);
+	}
 	std::cout << "Character: " << this->_name \
-	<< " Destruction!!!!!" << std::endl;
+	<< "........... DESTRUCTION!!!!" << std::endl;
 }
 
 
@@ -86,9 +129,9 @@ void 			Character::equip(AMateria* m)
 	}
 	for (int i = 0; i < 4; i++)
 	{
-		if (!(this->_Materia_slots[i]))
+		if (!(this->_Materia_slot[i]))
 		{
-			this->_Materia_slots[i] = m;
+			this->_Materia_slot[i] = m;
 			std::cout << this->getName() << " equipped with: \"" \
 			GREEN << m->getType() << RESET << "\" @ slot(" << i << ")" << std::endl;
 			return ;
@@ -100,7 +143,7 @@ void 			Character::equip(AMateria* m)
 
 	//Replaces the OLDEST Materia with the latest one!
 	_discarded_slot %= 50;
-	this->discarded_Materia[_discarded_slot] = m;
+	this->_discarded_Materia[_discarded_slot] = m;
 	_discarded_slot += 1;
 
 	std::cout << this->_name << "added to discard pile successfully" << std::endl;
@@ -114,26 +157,39 @@ void 			Character::unequip(int idx)
 		std::cout << RED << "Invalid inventory index!" << RESET << std::endl;
 		return ;
 	}
-	if (this->_Materia_slots[idx])
+	if (this->_Materia_slot[idx])
 	{
-		std::cout << this->getName() << " equipped with: \"" \
-		GREEN << this->_Materia_slots[idx]->getType() \
-		<< RESET << "\" @ slot(" << idx << ")" << std::endl;
+		std::cout << this->getName() << RED << " discarded: \"" \
+		GREEN << this->_Materia_slot[idx]->getType() << RED << "\" " \
+		<< RESET << "@ slot(" << idx << ") into " << RED << "Discard pile." \
+		<< GREEN << " slot(0) can now be used." << RESET << std::endl;
+
+
 		_discarded_slot %= 50;
-		this->discarded_Materia[_discarded_slot] = this->_Materia_slots[idx];
+		this->_discarded_Materia[_discarded_slot] = this->_Materia_slot[idx];
 		_discarded_slot += 1;
-		this->_Materia_slots[idx] = NULL;
+		this->_Materia_slot[idx] = NULL;
 		return ;
 	}
 	//no empty slots Materia falls to ground.
 	std::cout << "There's Nothing to unequip!" << std::endl;
 }
 
-/*
+//mc->use(0, *bob);
 void 			Character::use(int idx, ICharacter& target)
 {
+	//no need to do (!target) as references are always valid once created.
+	if (!(this->_Materia_slot[idx]))
+	{
+		if (!(this->_Materia_slot[idx]))
+			std::cout << "There is nothing to use in this slot!" << std::endl;
+		else
+			std::cout << "something is very wrong.......check codes!" << std::endl;
+		return;
+	}
+	this->_Materia_slot[idx]->use(target);
 }
-*/
+
 
 
 

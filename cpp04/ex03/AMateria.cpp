@@ -51,8 +51,9 @@ AMateria	&AMateria::operator=(const AMateria &copy)
 
 AMateria::~AMateria()
 {
-	std::cout << "\"" << RED << this->getType() << RESET << "\"" \
-	<< " Destructor called" << std::endl;
+	std::cout << YELLOW << "\"AMateria: " << RED \
+	<< this->getType() << YELLOW << "\"" \
+	<< RESET << " Destructor called" << std::endl;
 }
 
 //
@@ -66,9 +67,11 @@ std::string	const &AMateria::getType() const//Returns the materia type
 }
 
 
-//void	AMateria::use(ICharacter& target)
-//{	
-//}
+void	AMateria::use(ICharacter& target)
+{
+	std::cout << GREEN << "* AMateria: " << YELLOW << target.getName() \
+	<< RESET <<" is used on Target wounds *" << GREEN << std::endl;
+}
 
 
 
