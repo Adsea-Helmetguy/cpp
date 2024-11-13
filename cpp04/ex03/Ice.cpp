@@ -48,7 +48,7 @@ Ice::~Ice()
 }
 
 
-std::string	const &Ice::getType() const//Returns the materia type
+std::string	const &Ice::getType() const//Returns the materia type for ice.
 {
 	return (this->_type);
 }

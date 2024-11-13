@@ -166,14 +166,6 @@ Character::~Character()
 	<< "........... DESTRUCTION!!!!" << std::endl;
 }
 
-
-
-
-//
-//
-//
-//
-//Functions to code!
 std::string const	&Character::getName() const
 {
 	return (this->_name);

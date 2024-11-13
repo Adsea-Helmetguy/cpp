@@ -51,9 +51,10 @@ int main(void)
 		AMateria* tmp;
 		//
 		tmp = src->createMateria("cure");
+		me->equip(tmp);
 		tmp = src->createMateria("ice");
 		//
-		//me->equip(tmp);
+		me->equip(tmp);
 		ICharacter* v1 = new Character("victim1");
 		me->use(0, *v1);
 		//me->use(1, *v1);
@@ -161,7 +162,7 @@ int main(void)
 
 	// {
 	// 	std::cout << YELLOW << "5)" << RESET << std::endl;
-	// 	std::cout << GREEN \
+	// 	std::cout << GREEN 
 	// 	<< "----- Overfilling Character with Materias: -----\n" << std::endl;
 	// 	IMateriaSource* materia_source = new MateriaSource();
 	// 	materia_source->learnMateria(new Cure());
@@ -173,7 +174,7 @@ int main(void)
 	// 	delete materia_source;
 	// 	delete alf;
 
-	// 	std::cout << YELLOW \
+	// 	std::cout << YELLOW 
 	// 	<< "\n----- Copy costructor and assignment operator shinenigans -----\n" << std::endl;
 
 	// 	IMateriaSource* ms = new MateriaSource();

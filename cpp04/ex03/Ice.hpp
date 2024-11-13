@@ -36,10 +36,6 @@ class Ice : public AMateria
 {
 protected:
 	//std::string	_type;
-	//Character *_wielder;
-	//MateriaSource *_materia_source;
-	//bool _is_on_floor;
-
 public:
 	// Constructors
 	Ice();
