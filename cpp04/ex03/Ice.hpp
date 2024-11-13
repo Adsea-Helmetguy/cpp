@@ -35,7 +35,7 @@
 class Ice : public AMateria
 {
 protected:
-	std::string	_type;
+	//std::string	_type;
 	//Character *_wielder;
 	//MateriaSource *_materia_source;
 	//bool _is_on_floor;
@@ -54,7 +54,7 @@ public:
 	std::string const & getType() const;//Returns the materia type
 
 	Ice *clone() const;
-	//void use(ICharacter &target);
+	void use(ICharacter& target);
 };
 
 #endif

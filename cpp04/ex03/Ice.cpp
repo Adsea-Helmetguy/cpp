@@ -27,7 +27,7 @@ Ice::Ice(const std::string& name) : AMateria(name)
 
 Ice::Ice(const Ice &other) : AMateria(other)
 {
-	std::cout << RED << "Ice copy constructor called" << RESET << std::endl;
+	std::cout << GREEN << "Ice copy constructor called" << RESET << std::endl;
 }
 
 Ice &Ice::operator=(const Ice &other)
@@ -37,29 +37,38 @@ Ice &Ice::operator=(const Ice &other)
 		std::cout << "Don't SELF-ASSIGN!!!" << std::endl;
 		return (*this);
 	}
-	this->_type = other._type;
 	std::cout << GREEN << "Ice copy assignment constructor called" << RESET << std::endl;
 	return (*this);
 }
 
 Ice::~Ice()
 {
-	std::cout << "@Ice Destructor: " << "\"" << RED \
-	<< this->getType() << RESET << "\"" << " called" << std::endl;
+	std::cout << "@Ice Destructor: "<< "\"" << RED << this->getType() << RESET \
+	<< "\"" << " DESTROY DESTRUCTION!!!!!!" << std::endl;
 }
+
 
 std::string	const &Ice::getType() const//Returns the materia type
 {
 	return (this->_type);
 }
 
+//https://isocpp.org/wiki/faq/virtual-functions#:~:text=A%20pure%20virtual%20function%20is,using%20the%20curious%20%3D0%20syntax.
+//also from topic:
+//if you clone an Ice Materia, you will get a "new" Ice Materia. hint hint, "new".
 Ice	*Ice::clone() const
 {
 	std::cout << GREEN << "Ice clone function called" << RESET << std::endl;
 	return (new Ice(*this));
 }
 
-
+void	Ice::use(ICharacter& target)
+{	
+	
+	std::cout << GREEN << "* shoots an ice bolt at " \
+	<< YELLOW << target.getName() << GREEN << " *" \
+	<< RESET << std::endl;
+}
 
 
 

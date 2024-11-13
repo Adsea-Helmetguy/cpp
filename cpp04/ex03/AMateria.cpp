@@ -32,7 +32,7 @@ AMateria::AMateria(const std::string &type) : _type(type)
 
 AMateria::AMateria(const AMateria &type) : _type(type._type)
 {
-	std::cout << RED << "AMateria copy constructor called" << RESET << std::endl;
+	std::cout << GREEN << "AMateria copy constructor called" << RESET << std::endl;
 }
 
 //Not finished

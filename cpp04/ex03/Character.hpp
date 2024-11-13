@@ -34,7 +34,7 @@ class Character : public ICharacter
 	protected:
 		std::string	_name;
 		AMateria	*_Materia_slot[4];//slot 0 to slot 3
-		static int	_discarded_slot;//always 8.
+		static int	_discarded_slot;
 		AMateria	*_discarded_Materia[50];
 	public:
 		Character();

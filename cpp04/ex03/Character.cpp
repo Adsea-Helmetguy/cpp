@@ -49,6 +49,16 @@ Character::Character(const std::string &name) : _name(name)
 	std::cout << "Character: " << this->_name << " Created" << std::endl;
 }
 
+
+
+
+
+
+
+
+
+
+
 //COPY CONSTRUCTOR
 Character::Character(const Character &copy)
 {
@@ -57,7 +67,7 @@ Character::Character(const Character &copy)
 	{
 		this->_Materia_slot[i] = NULL;
 		if (copy._Materia_slot[i])
-			this->_Materia_slot[i] = copy._Materia_slot[i];
+			this->_Materia_slot[i] = copy._Materia_slot[i]->clone();
 	}
 	for (int i = 0; i < 50; i++)
 	{
@@ -66,13 +76,16 @@ Character::Character(const Character &copy)
 	std::cout << "Character COPY CONSTRUCTOR " << this->_name << " Called!!" << std::endl;
 }
 
+
+
 Character	&Character::operator=(const Character &copy)
 {
 	if (this == &copy)//"this" is a pointer
 	{
-		std::cout << "Don't SELF-ASSIGN!!!" << std::endl;
+		std::cout << RED << "Don't SELF-ASSIGN!!!" << RESET << std::endl;
 		return (*this);
 	}
+	std::cout << RED << "Test that OPERATOR=() WORKS!!" << RESET << std::endl;
 	this->_name = copy.getName();
 	for (int i = 0; i < 4; i++)
 	{
@@ -80,27 +93,74 @@ Character	&Character::operator=(const Character &copy)
 			delete (this->_Materia_slot[i]);
 		this->_Materia_slot[i] = NULL;
 		if (copy._Materia_slot[i])
-			this->_Materia_slot[i] = copy._Materia_slot[i];
+			this->_Materia_slot[i] = copy._Materia_slot[i]->clone();
 	}
 	for (int i = 0; i < 50; i++)
 	{
-		this->_discarded_Materia[i] = copy._discarded_Materia[i];
+		if (this->_discarded_Materia[i])
+			delete (this->_discarded_Materia[i]);
+		this->_discarded_Materia[i] = NULL;
+		if (copy._discarded_Materia[i])
+			this->_discarded_Materia[i] = copy._discarded_Materia[i]->clone();
 	}
-	std::cout << "Character operator= " << this->_name << " Called!!" << std::endl;
+	std::cout << "Character operator=() " << this->_name << " Called!!" << std::endl;
 	return (*this);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Character::~Character()
 {
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->_Materia_slot[i])
+		{
 			delete (this->_Materia_slot[i]);
+			this->_Materia_slot[i] = NULL;
+		}		
 	}
 	for (int i = 0; i < 50; i++)
 	{
 		if (this->_discarded_Materia[i])
+		{
 			delete (this->_discarded_Materia[i]);
+			this->_discarded_Materia[i] = NULL;
+		}
 	}
 	std::cout << "Character: " << this->_name \
 	<< "........... DESTRUCTION!!!!" << std::endl;
@@ -137,16 +197,17 @@ void 			Character::equip(AMateria* m)
 			return ;
 		}
 	}
-	std::cout << this->_name << "'s slots are full, unable to add: " \
-	<< m->getType() << " to any slot. " \
+	std::cout << this->_name << "'s slots are full, unable to add:\"" << GREEN \
+	<< m->getType() << RESET << "\" to any slot. " \
 	<< "Materia falls to the ground." << std::endl;
 
 	//Replaces the OLDEST Materia with the latest one!
 	_discarded_slot %= 50;
 	this->_discarded_Materia[_discarded_slot] = m;
+	std::cout << this->_name << " added to discard pile(" \
+	<< RED << _discarded_slot << RESET << ") successfully" << std::endl;
 	_discarded_slot += 1;
 
-	std::cout << this->_name << "added to discard pile successfully" << std::endl;
 	//delete m; //but do we need this?
 }
 

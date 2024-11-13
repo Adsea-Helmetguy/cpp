@@ -26,8 +26,8 @@ SRC_FILE_NAMES = main.cpp \
 		AMateria.cpp \
 		Cure.cpp \
 		Ice.cpp \
-		Character.cpp
-		#IMaterialSource.cpp 
+		Character.cpp \
+		MateriaSource.cpp
 
 # ************************************************************************** */
 #	FILE_LOCATION                                                        */

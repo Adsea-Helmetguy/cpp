@@ -43,7 +43,7 @@ class AMateria
 		// Constructors
 		AMateria();
  		AMateria(std::string const & type);
-		AMateria(const AMateria &copy);
+		AMateria(const AMateria &copy);//copy constructor
 		virtual ~AMateria(); //Destructor
 
 		// Operators
