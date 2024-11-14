@@ -212,7 +212,7 @@ int main(void)
 		*/
 		//Now unequip
 		mc->unequip(0);//mc->unequip(idx); int idx is the slot number
-		mc->use(0, *bert);
+		mc->use(0, *bert);//discard pile = 0
 		std::cout << YELLOW << "\n----- Destructor called here -----" << RESET << std::endl;
 		delete dobby;
 		delete casper;
@@ -255,7 +255,7 @@ int main(void)
 		alf->use(-1, *alf);
 		alf->use(0, *alf);
 		alf->unequip(0);
-		alf->use(0, *alf);
+		//alf->use(0, *alf);
 		alf->use(2, *alf);
 		alf->use(4, *alf);
 		std::cout << YELLOW << "\n----- Destructor called here -----" << RESET << std::endl;

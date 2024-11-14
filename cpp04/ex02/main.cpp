@@ -19,11 +19,6 @@
 
 int	main(void)
 {
-	 Cat *a = new Cat();
-	 Cat *b(a);
-	 delete a;
-	 delete b;
-	 return 0;
 /*
 	{
 		std::cout << YELLOW << "Creating Constructor" << RESET << std::endl;
