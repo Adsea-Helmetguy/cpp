@@ -79,17 +79,18 @@ MateriaSource::~MateriaSource()
 void	MateriaSource::learnMateria(AMateria* copy)
 {
 	//learns at most 4 Materias
+	std::cout << GREEN << "learnMateria called" << RESET << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (!(this->_Materia_slot[i]))
 		{
 			this->_Materia_slot[i] = copy;
 			//we don't need to copy the type, just print out the learnt.
-			std::cout << YELLOW << "----------------------------------" \
+			std::cout << BLUE << "----------------------------------" \
 			<< RESET << std::endl;
-			std::cout << "Materia " << YELLOW << copy->getType() \
+			std::cout << "Materia " << BLUE << copy->getType() \
 			<< RESET << " learned\n";
-			std::cout << YELLOW << "----------------------------------" \
+			std::cout << BLUE << "----------------------------------" \
 			<< RESET << std::endl;
 			return ;
 		}
@@ -97,19 +98,11 @@ void	MateriaSource::learnMateria(AMateria* copy)
 	std::cout << "Can't learn more than 4 Materia" << std::endl;
 }
 
-//
-/*
-createMateria(std::string const &)
-Returns a new Materia. The latter is a copy of the Materia previously learned by
-the MateriaSource whose type equals the one passed as parameter. Returns 0 if
-the type is unknown.
-*/
-//
-//input.compare
 AMateria*	MateriaSource::createMateria(std::string const & type)
 {
 	AMateria	*replacement;
 
+	std::cout << GREEN << "createMateria called" << RESET << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->_Materia_slot[i])

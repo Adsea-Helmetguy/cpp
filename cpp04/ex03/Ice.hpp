@@ -34,23 +34,19 @@
 //you will get a new Ice Materia).
 class Ice : public AMateria
 {
-protected:
-	//std::string	_type;
-public:
-	// Constructors
-	Ice();
- 	Ice(std::string const & type);
-	Ice(const Ice &copy);
-	~Ice();// Destructor
+	public:
+		// Constructors
+		Ice();
+	 	Ice(std::string const & type);
+		Ice(const Ice &copy);
+		~Ice();// Destructor
 
-	// Operators
-	Ice &operator=(const Ice &other);
-	
-	// Getters & Setters
-	std::string const & getType() const;//Returns the materia type
+		// Operators
+		Ice &operator=(const Ice &other);
 
-	Ice *clone() const;
-	void use(ICharacter& target);
+		//functions
+		Ice *clone() const;
+		void use(ICharacter& target);
 };
 
 #endif

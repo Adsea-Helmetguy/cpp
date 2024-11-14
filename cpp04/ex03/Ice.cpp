@@ -47,12 +47,6 @@ Ice::~Ice()
 	<< "\"" << " DESTROY DESTRUCTION!!!!!!" << std::endl;
 }
 
-
-std::string	const &Ice::getType() const//Returns the materia type for ice.
-{
-	return (this->_type);
-}
-
 //https://isocpp.org/wiki/faq/virtual-functions#:~:text=A%20pure%20virtual%20function%20is,using%20the%20curious%20%3D0%20syntax.
 //also from topic:
 //if you clone an Ice Materia, you will get a "new" Ice Materia. hint hint, "new".

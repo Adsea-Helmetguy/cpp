@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ICharacter.cpp                                     :+:      :+:    :+:   */
+/*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlow <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,14 +14,6 @@
 
 int	Character::_discarded_slot = 0;
 
-/*
-The use(ICharacter&) member function will display:
-• Ice: "* shoots an ice bolt at <name> *"
-• Cure: "* heals <name>’s wounds *"
-
-<name> is the name of the Character passed as parameter. Don’t print the angle
-brackets (< and >).
-*/
 Character::Character() : _name("From ICharacter")
 {
 	for (int i = 0; i < 4; i++)
@@ -49,16 +41,6 @@ Character::Character(const std::string &name) : _name(name)
 	std::cout << "Character: " << this->_name << " Created" << std::endl;
 }
 
-
-
-
-
-
-
-
-
-
-
 //COPY CONSTRUCTOR
 Character::Character(const Character &copy)
 {
@@ -75,8 +57,6 @@ Character::Character(const Character &copy)
 	}
 	std::cout << "Character COPY CONSTRUCTOR " << this->_name << " Called!!" << std::endl;
 }
-
-
 
 Character	&Character::operator=(const Character &copy)
 {
@@ -107,43 +87,6 @@ Character	&Character::operator=(const Character &copy)
 	return (*this);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Character::~Character()
 {
 	for (int i = 0; i < 4; i++)
@@ -171,7 +114,6 @@ std::string const	&Character::getName() const
 	return (this->_name);
 }
 
-
 void 			Character::equip(AMateria* m)
 {
 	if (!m)//check if 'm' exists
@@ -195,11 +137,15 @@ void 			Character::equip(AMateria* m)
 
 	//Replaces the OLDEST Materia with the latest one!
 	_discarded_slot %= 50;
-	this->_discarded_Materia[_discarded_slot] = m;
+	if (this->_discarded_Materia[_discarded_slot])
+	{
+		delete (this->_discarded_Materia[_discarded_slot]);//delete the oldest one
+		this->_discarded_Materia[_discarded_slot] = NULL;//NUll it then
+	}
+	this->_discarded_Materia[_discarded_slot] = m;//add the latest one to that slot
 	std::cout << this->_name << " added to discard pile(" \
 	<< RED << _discarded_slot << RESET << ") successfully" << std::endl;
 	_discarded_slot += 1;
-
 	//delete m; //but do we need this?
 }
 
@@ -219,6 +165,11 @@ void 			Character::unequip(int idx)
 
 
 		_discarded_slot %= 50;
+		if (this->_discarded_Materia[_discarded_slot])
+		{
+			delete (this->_discarded_Materia[_discarded_slot]);//delete the oldest one
+			this->_discarded_Materia[_discarded_slot] = NULL;//NUll it then
+		}
 		this->_discarded_Materia[_discarded_slot] = this->_Materia_slot[idx];
 		_discarded_slot += 1;
 		this->_Materia_slot[idx] = NULL;
@@ -231,6 +182,12 @@ void 			Character::unequip(int idx)
 //mc->use(0, *bob);
 void 			Character::use(int idx, ICharacter& target)
 {
+	if (idx < 0 || idx > 3)
+	{
+		std::cout << RED << "Error idx, Use a proper number in range. Can?" \
+		<< RESET << std::endl;
+		return ;
+	}
 	//no need to do (!target) as references are always valid once created.
 	if (!(this->_Materia_slot[idx]))
 	{
@@ -242,6 +199,7 @@ void 			Character::use(int idx, ICharacter& target)
 	}
 	this->_Materia_slot[idx]->use(target);
 }
+
 
 
 

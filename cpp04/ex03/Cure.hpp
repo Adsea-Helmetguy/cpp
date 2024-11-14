@@ -32,23 +32,19 @@
 
 class Cure : public AMateria
 {
-protected:
-	//std::string	_type;
-public:
-	// Constructors
-	Cure();
- 	Cure(std::string const & type);
-	Cure(const Cure &copy);
-	~Cure();// Destructor
+	public:
+		// Constructors
+		Cure();
+	 	Cure(std::string const & type);
+		Cure(const Cure &copy);
+		~Cure();// Destructor
 
-	// Operators
-	Cure &operator=(const Cure &other);
-	
-	// Getters & Setters
-	std::string const & getType() const;//Returns the materia type
+		// Operators
+		Cure &operator=(const Cure &other);
 
-	Cure *clone() const;
-	void use(ICharacter &target);
+		//functions
+		Cure *clone() const;
+		void use(ICharacter &target);
 };
 
 #endif
