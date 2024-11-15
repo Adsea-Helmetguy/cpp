@@ -19,7 +19,7 @@
 
 int	main(void)
 {
-/*
+
 	{
 		std::cout << YELLOW << "Creating Constructor" << RESET << std::endl;
 		const	Animal* jack = new Dog();
@@ -125,11 +125,13 @@ int	main(void)
 	//	std::cout << jack2->getType() << std::endl;
 	//
 	//
-	//	std::cout << YELLOW <<"\n\nDestructor called here" << RESET << std::endl;
-	//	delete jack2;
-	//	delete jacky;//this should not seg fault!
+	std::cout << YELLOW <<"\n\nDestructor called here" << RESET << std::endl;
+	delete jack2;
+	delete jacky;//this should not seg fault!
 	}
-*/
+
+//
+/*
 	std::cout << YELLOW <<"\n--------------\nTesting Animal" << RESET << std::endl;
 	const	Animal* ika = new Animal();
 	std::cout << GREEN << ika->getType() << RESET << std::endl;
@@ -137,5 +139,6 @@ int	main(void)
 	delete ika;
 	std::cout << YELLOW <<"--------------\n" << RESET << std::endl;
 	return (0);
+*/
 }
 //ctrl+F first, then ALT+Enter if you want to replace stuff

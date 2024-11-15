@@ -51,11 +51,12 @@ std::string		Animal::getType(void) const
 	return(this->type);
 }
 
+/*
 void	Animal::makeSound() const
 {
 	std::cout << BLUE << "Default Animal noises." << RESET << std::endl;
 }
-
+*/
 
 
 

@@ -24,7 +24,16 @@ Brain::Brain()
 //COPY CONSTRUCTOR
 Brain::Brain(const Brain &other)
 {
+	const int	total_size = 100;
+	int		index = 0;
+
 	*this = other;
+	while (index < total_size)
+	{
+		this->ideas[index] = other.ideas[index];
+		index++;
+	}
+	std::cout << "Brain's address: " << this << std::endl;
 	std::cout << RED << "Brain copy constructor called" << RESET << std::endl;
 }
 
@@ -44,6 +53,7 @@ Brain &Brain::operator=(const Brain &other)
 		this->ideas[index] = other.ideas[index];
 		index++;
 	}
+	std::cout << "Brain's address: " << this << std::endl;
 	std::cout << RED << "Brain equal operator called." << RESET << std::endl;
 	return (*this);
 }
