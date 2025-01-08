@@ -33,13 +33,45 @@ int	main(void)
 	{
 		try
 		{
-    	    Bureaucrat b("Alice");
-    	    b.incrementGrade();
-    	    b.decrementGrade();
+			Bureaucrat b("Alice");
+			b.incrementGrade();
+			b.decrementGrade();
 		}
 		catch (const Bureaucrat::Exception& e)
 		{
-     	   std::cerr << "Exception caught: " << e.what() << std::endl;
+			std::cerr << "Exception caught: " << e.what() << std::endl;
+		}
+	}
+	
+	std::cout << "personal test!\n" << std:endl;
+	{
+		try
+		{
+			Bureaucrat bob("Bob", 151); // Invalid grade, too low
+		}
+		catch (const std::exception& e)
+		{
+			std::cerr << "Exception: " << e.what() << std::endl;
+		}
+		
+		try
+		{
+			Bureaucrat alice("Alice", 1);
+			alice.incrementGrade(); // Invalid grade, too high
+		}
+		catch (const std::exception& e)
+		{
+			std::cerr << "Exception: " << e.what() << std::endl;
+		}
+
+		try
+		{
+			Bureaucrat charlie("Charlie", 150);
+			charlie.decrementGrade(); // Invalid grade, too low
+		}
+		catch (const std::exception& e)
+		{
+			std::cerr << "Exception: " << e.what() << std::endl;
 		}
 	}
 	return (0);
