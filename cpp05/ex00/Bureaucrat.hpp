@@ -27,35 +27,17 @@
 // ************************************************************************** //
 
 class Bureaucrat
-{
-	class GradeTooHighException : public std::exception
-	{
+{	
 	private:
-		std::string			_message;
+		const std::string	_constant_name;
+		unsigned int		_grade;
 	public:
-		GradeTooHighException(const std::string& message);
-		virtual const char* what();
-	};
-
-	class GradeTooLowException : public std::exception
-	{
-	private:
-		std::string			_message;
-	public:
-		GradeTooLowException(const std::string& message);
-		virtual const char* what();
-
-	};
-
-private:
-	const std::string	_constant_name;
-	unsigned int		_grade;
-public:
-	Bureaucrat();
-	Bureaucrat(const std::string& name);
-	Bureaucrat(const Bureaucrat &other);
-	Bureaucrat&	operator=(const Bureaucrat &other);
-	virtual ~Bureaucrat();
+		Bureaucrat();
+		Bureaucrat(const std::string& name);
+		Bureaucrat(const Bureaucrat &other);
+		Bureaucrat&	operator=(const Bureaucrat &other);
+		virtual ~Bureaucrat();
+		virtual const char* what() const throw();
 
 //
 //NEW FUNCTIONS
@@ -63,6 +45,26 @@ public:
 	unsigned int	getGrade() const;
 	void			incrementGrade();
 	void			decrementGrade();
+
+//
+//Exceptions
+	class GradeTooHighException : public std::exception
+	{
+		private:
+			std::string	_message;
+		public:
+			GradeTooHighException(const std::string& message);
+			const char* what() const throw();
+	};
+
+	class GradeTooLowException : public std::exception
+	{
+		private:
+			std::string	_message;
+		public:
+			GradeTooLowException(const std::string& message);
+			const char* what() const throw();
+	};
 };
 /*
 To use an exception class, you 

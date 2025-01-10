@@ -48,34 +48,33 @@ Bureaucrat::~Bureaucrat()
 	" called: " << std::endl;
 }
 
+Bureaucrat::GradeTooHighException(const std::string& message) : _message(message)
+{
+};
+
+
+Bureaucrat::GradeTooLowException(const std::string& message) : _message(message)
+{
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 std::string		Bureaucrat::getName(void) const
 {
 	return(this->_constant_name);
 }
-
-/*
-The thrown exceptions must be catchable using try and catch blocks:
-
-	try
-	{
-		// do some stuff with bureaucrats
-	}
-	catch (std::exception & e)
-	{
-		// handle exception
-	}
-
-You will implement an overload of the insertion («) operator to print something like
-(without the angle brackets):
-
-	<name>, bureaucrat grade <grade>.
-*/
-
-Bureaucrat::GradeTooHighException::GradeTooHighException(const std::string& message) : _message(message) {};
-
-const char* Bureaucrat::GradeTooHighException::what() {
-	return _message.c_str();
-};
 
 std::string		Bureaucrat::getName() const
 {
@@ -87,19 +86,41 @@ unsigned int	Bureaucrat::getGrade() const
 	return(this->_grade);
 }
 
-void			Bureaucrat::incrementGrade()
+void		Bureaucrat::incrementGrade()
 {
     if (this->_grade <= 1)
-        throw MyException("Grade is too high!");
+        throw GradeTooHighException("Grade is too high! Cannot increment grade");
     this->_grade--;
 }
 
-void			Bureaucrat::decrementGrade()
+void		Bureaucrat::decrementGrade()
 {
     if (this->_grade >= 150)
-        throw MyException("Grade is too low!");
+        throw GradeTooLowException("Grade is too low! Cannot decrement grade");
     this->_grade++;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 Exception Classes here!
@@ -110,13 +131,32 @@ private:
 public:
 	virtual std::string	what();
 };
+
+
+
+const char*	Bureaucrat::GradeTooHighException::what() {
+	return _message.c_str();
+};
 */
-void			Bureaucrat::GradeTooHighException::MyException(const std::string& message)
+
+//The what() member function satisfies the constraints specified for std::exception::what().
+const char*	Bureaucrat::GradeTooHighException::what(void)
 {
-	
+	return (_message.c_str());
+};
+
+const char*	Bureaucrat::GradeTooLowException::what(void)
+{
+	return (_message.c_str());
+};
+
+//Left and right shift, insertion («) operator
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& other)
+{
+	out << other.getName() << ", bureaucrat grade " << other.getGrade();
+	return (out);
+
 }
-
-
 
 
 

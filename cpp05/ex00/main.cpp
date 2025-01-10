@@ -18,18 +18,18 @@ int	main(void)
 		std::cout << "test\n" << std::endl;
 		try
 		{
-			foo();
+			throw GradeTooHighException();
 		}
 		catch (const Exception& e)
 		{
-			std::cerr << "MyException: " << e.what() << std::endl;
+			std::cerr << "Exception: " << e.what() << std::endl;
 		}
 		catch (const std::exception& e)
 		{
 			std::cerr << "std::exception: " << e.what() << std::endl;
 		}
 	}
-
+/*
 	{
 		try
 		{
@@ -37,7 +37,7 @@ int	main(void)
 			b.incrementGrade();
 			b.decrementGrade();
 		}
-		catch (const Bureaucrat::Exception& e)
+		catch (const Exception& e)
 		{
 			std::cerr << "Exception caught: " << e.what() << std::endl;
 		}
@@ -49,7 +49,7 @@ int	main(void)
 		{
 			Bureaucrat bob("Bob", 151); // Invalid grade, too low
 		}
-		catch (const std::exception& e)
+		catch (const Exception& e)
 		{
 			std::cerr << "Exception: " << e.what() << std::endl;
 		}
@@ -59,7 +59,7 @@ int	main(void)
 			Bureaucrat alice("Alice", 1);
 			alice.incrementGrade(); // Invalid grade, too high
 		}
-		catch (const std::exception& e)
+		catch (const Exception& e)
 		{
 			std::cerr << "Exception: " << e.what() << std::endl;
 		}
@@ -69,11 +69,12 @@ int	main(void)
 			Bureaucrat charlie("Charlie", 150);
 			charlie.decrementGrade(); // Invalid grade, too low
 		}
-		catch (const std::exception& e)
+		catch (const Exception& e)
 		{
 			std::cerr << "Exception: " << e.what() << std::endl;
 		}
 	}
+*/
 	return (0);
 }
 /*
@@ -88,8 +89,4 @@ The thrown exceptions must be catchable using try and catch blocks:
 		// handle exception
 	}
 
-You will implement an overload of the insertion («) operator to print something like
-(without the angle brackets):
-
-	<name>, bureaucrat grade <grade>.
 */
