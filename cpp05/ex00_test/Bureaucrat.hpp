@@ -10,37 +10,53 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef BUREAUCRAT_HPP
+#define BUREAUCRAT_HPP
 
-# include "Brain.hpp"
-# include "Animal.hpp"
 # include <iostream>
 # include <string>//std::string
+# include <exception>//std::exception, https://en.cppreference.com/w/cpp/header/exception
+
+# define RESET   "\033[0m"
+# define RED     "\033[31m"//Red
+# define YELLOW  "\033[33m"//Yellow
+# define BLUE    "\033[34m"//Blue
 
 // ************************************************************************** //
 //                               Contact Class                                //
 // ************************************************************************** //
 
-class Cat : public Animal
+class Bureaucrat
 {
-private:
-	Brain*	_Brain;
-public:
-	Cat();
-	Cat(const std::string& name);
-	Cat(const Cat &other);
-	Cat&	operator=(const Cat &other);
-	~Cat();
-
-	std::string	getType() const;
-	void		makeSound() const;
-//
-//
-//New functions!
-	void		edit_brain(int idea_number, std::string input_ideas);
-	void		get_brain(int idea_number);
-	void		get_brain_address();
-};
+	private:
+		const std::string	_name;
+		unsigned int		_grade;
+	public:
+		Bureaucrat();					// default constructor
+		Bureaucrat(const std::string& name);		// default constructor with name
+		Bureaucrat(const Bureaucrat &other);		// copy constructor
+		Bureaucrat(int value);				// default constructor with name)
+		Bureaucrat(int value, const std::string& name);	// default constructor with name and value
+		Bureaucrat& operator=(const Bureaucrat&)	// copy assignment
+		~Bureaucrat();					// destructor
+	
+	//getters and setters:
+	std::string	getName();
+	unsigned int	getGrade();
+	unsigned int	setGrade(int value);
+	void			incrementGrade();
+	void			decrementGrade();
+	
+	//exception classes
+	class GradeTooHighException
+	{
+		
+	};
+	class GradeTooLowException
+	{
+		
+	};
+	
+}
 
 #endif

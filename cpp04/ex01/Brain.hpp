@@ -38,6 +38,7 @@ public:
 	
 	void	idea_member(int idea_number, std::string input_ideas);
 	void	obtain_idea(int idea_number);
+	void	get_address();
 };
 
 #endif

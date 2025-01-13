@@ -40,6 +40,7 @@ public:
 //New functions!
 	void		edit_brain(int idea_number, std::string input_ideas);
 	void		get_brain(int idea_number);
+	void		get_brain_address();
 };
 
 #endif

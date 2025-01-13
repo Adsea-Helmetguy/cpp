@@ -15,78 +15,190 @@
 int	main(void)
 {
 	{
-		std::cout << "test\n" << std::endl;
-		try
-		{
-			throw GradeTooHighException();
-		}
-		catch (const Exception& e)
-		{
-			std::cerr << "Exception: " << e.what() << std::endl;
-		}
-		catch (const std::exception& e)
-		{
-			std::cerr << "std::exception: " << e.what() << std::endl;
-		}
-	}
-/*
-	{
-		try
-		{
-			Bureaucrat b("Alice");
-			b.incrementGrade();
-			b.decrementGrade();
-		}
-		catch (const Exception& e)
-		{
-			std::cerr << "Exception caught: " << e.what() << std::endl;
-		}
-	}
-	
-	std::cout << "personal test!\n" << std:endl;
-	{
-		try
-		{
-			Bureaucrat bob("Bob", 151); // Invalid grade, too low
-		}
-		catch (const Exception& e)
-		{
-			std::cerr << "Exception: " << e.what() << std::endl;
-		}
-		
-		try
-		{
-			Bureaucrat alice("Alice", 1);
-			alice.incrementGrade(); // Invalid grade, too high
-		}
-		catch (const Exception& e)
-		{
-			std::cerr << "Exception: " << e.what() << std::endl;
-		}
+		std::cout << BLUE << "Constructing" << RESET << std::endl;
+		Bureaucrat *a = new Bureaucrat();
+		std::cout << std::endl;
+
+		std::cout << BLUE << "Testing" << RESET << std::endl;
+		std::cout << YELLOW << "checking address: " << RESET << a << std::endl;
 
 		try
 		{
-			Bureaucrat charlie("Charlie", 150);
-			charlie.decrementGrade(); // Invalid grade, too low
+			a->incrementGrade();
 		}
-		catch (const Exception& e)
+		catch(Bureaucrat::GradeTooHighException &e)
 		{
-			std::cerr << "Exception: " << e.what() << std::endl;
+			std::cerr << YELLOW << "Incrementing grade of " << a->getName() <<
+			" failed: " << e.what() << RESET << std::endl;
 		}
+		//--------------------------------------------------------
+		//std::cout << a;
+		//
+		try
+		{
+			a->decrementGrade();
+		}
+		catch(Bureaucrat::GradeTooLowException &e)
+		{
+			std::cerr << YELLOW << "Decrementing grade of " << a->getName() <<
+			" failed: " << e.what() << RESET << std::endl;
+		}
+		//--------------------------------------------------------
+		std::cout << YELLOW << "checking address: " << RESET << a << std::endl;
+		//
+		try
+		{
+			a->decrementGrade();
+		}
+		catch(Bureaucrat::GradeTooLowException &e)
+		{
+			std::cerr << YELLOW << "Decrementing grade of " << a->getName() <<
+			" failed: " << e.what() << RESET << std::endl;
+		}
+		//--------------------------------------------------------
+		std::cout << YELLOW << "checking address: " << RESET << a << std::endl;
+		//
+		std::cout << std::endl;
+
+		std::cout << RED << "Deconstructing " << RESET << std::endl;
+		delete a;
+		std::cout << std::endl;
 	}
-*/
+/*
+	std::cout << "-------------------------------------------------------" << std::endl;
+	{
+		std::cout << std::endl;
+		std::cout << "\033[34mConstructing\033[0m" << std::endl;
+		Bureaucrat *a = new Bureaucrat(1);
+		std::cout << std::endl;
+		std::cout << "\033[34mTesting\033[0m" << std::endl;
+		std::cout << a;
+
+		try
+		{
+		a->decrementGrade();
+		}
+		catch(Bureaucrat::GradeTooLowException &e)
+		{
+			std::cerr << "\033[33mDecrementing grade of " << a->getName() <<
+			" failed: " << e.what() << "\033[0m" << std::endl;
+		}
+
+		std::cout << a;
+
+		try
+		{
+		a->incrementGrade();
+		}
+		catch(Bureaucrat::GradeTooHighException &e)
+		{
+			std::cerr << "\033[33mIncrementing grade of " << a->getName() <<
+			" failed: " << e.what() << "\033[0m" << std::endl;
+		}
+
+		std::cout << a;
+
+		try
+		{
+		a->incrementGrade();
+		}
+		catch(Bureaucrat::GradeTooHighException &e)
+		{
+			std::cerr << "\033[33mIncrementing grade of " << a->getName() <<
+			" failed: " << e.what() << "\033[0m" << std::endl;
+		}
+
+		std::cout << a;
+		std::cout << std::endl;
+
+		std::cout << "\033[34mDeconstructing\033[0m" << std::endl;
+		delete a;
+		std::cout << std::endl;
+	}
+	std::cout << "-------------------------------------------------------" << std::endl;
+	{
+		std::cout << std::endl;
+		std::cout << "\033[34mConstructing\033[0m" << std::endl;
+		Bureaucrat *a = NULL;
+
+		try
+		{
+			a = new Bureaucrat(0);
+		}
+		catch(Bureaucrat::GradeTooHighException &e)
+		{
+			std::cerr << "\033[33mConstructing default failed: " <<
+			e.what() << "\033[0m" << std::endl;
+		}
+
+		if (a != NULL)
+		{
+			std::cout << std::endl;
+
+			std::cout << "\033[34mDeconstructing b\033[0m" << std::endl;
+			delete a;
+		}
+
+		std::cout << std::endl;
+	}
+	std::cout << "-------------------------------------------------------" << std::endl;
+	{
+		std::cout << std::endl;
+		std::cout << "\033[34mConstructing\033[0m" << std::endl;
+		Bureaucrat *a = NULL;
+
+		try
+		{
+			a = new Bureaucrat(160);
+		}
+		catch(Bureaucrat::GradeTooLowException &e)
+		{
+			std::cerr << "\033[33mConstructing default failed: " <<
+			e.what() << "\033[0m" << std::endl;
+		}
+
+		if (a != NULL)
+		{
+			std::cout << std::endl;
+			std::cout << "\033[34mDeconstructing b\033[0m" << std::endl;
+			delete a;
+		}
+		std::cout << std::endl;
+	}
+	std::cout << "-------------------------------------------------------" << std::endl;
+	{
+		std::cout << std::endl;
+		std::cout << "\033[34mConstructing\033[0m" << std::endl;
+		Bureaucrat *a = new Bureaucrat("Peter", 120);
+		std::cout << std::endl;
+
+		std::cout << "\033[34mTesting a\033[0m" << std::endl;
+		std::cout << a;
+
+		a->decrementGrade();
+
+		std::cout << a;
+		std::cout << std::endl;
+
+		std::cout << "\033[34mConstructing b\033[0m" << std::endl;
+		Bureaucrat *b = new Bureaucrat(*a);
+		std::cout << std::endl;
+
+		std::cout << "\033[34mDeconstructing a\033[0m" << std::endl;
+		delete a;
+		std::cout << std::endl;
+
+		std::cout << "\033[34mTesting b\033[0m" << std::endl;
+		std::cout << b;
+		b->decrementGrade();
+		std::cout << b;
+		std::cout << std::endl;
+
+		std::cout << "\033[34mDeconstructing b\033[0m" << std::endl;
+		delete b;
+
+		std::cout << std::endl;
+	}
+	*/
 	return (0);
 }
-/*
-The thrown exceptions must be catchable using try and catch blocks:
-
-	try
-	{
-		// do some stuff with bureaucrats
-	}
-	catch (std::exception & e)
-	{
-		// handle exception
-	}
-
-*/

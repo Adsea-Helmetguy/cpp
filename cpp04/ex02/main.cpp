@@ -19,7 +19,6 @@
 
 int	main(void)
 {
-
 	{
 		std::cout << YELLOW << "Creating Constructor" << RESET << std::endl;
 		const	Animal* jack = new Dog();
@@ -57,24 +56,42 @@ int	main(void)
 		// Properly deletes each animal (virtual destructor calls Cat/Dog then Animal)
 		for (int i = 0; i < total_animals; i++)
 			delete animal_array[i];
-		//delete[] animal_array;
 		delete jack;//should not create a leak
 		delete ik;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	{
 		//Checking Deep copy
 		std::cout << YELLOW << "\n\n\n\n\n\n\n\n\nTest 2nd, DEEP COPY " << \
 		"\n------------------------------------------" << RESET << std::endl;
 		std::cout << YELLOW << "Creating Constructor" << RESET << std::endl;
-		Cat* jacky = new Cat("Happy Doggo");
-		Cat* jack2 = new Cat("Want to eat Takocat Doggo");
-		//Animal* jack2 = new Dog("Want to eat Takocat doggo");
+		Dog* jacky = new Dog("jacky");
+		Dog* jack2 = new Dog("jack2");
 
 		std::cout << YELLOW <<"\n\nChecking jack's values before copy" << RESET << std::endl;
 		std::cout << GREEN << jacky->getType() << RESET << std::endl;
 		std::cout << GREEN << jack2->getType() << RESET << std::endl;
-
+	//
 		std::cout << YELLOW <<"\n\nAdding ideas to Jack(s)" << RESET << std::endl;
 		jacky->edit_brain(0, "Jack oh boy, I have a dream!!");
 		jacky->edit_brain(1, "Jack oh boy, I have a dream2!!");
@@ -93,52 +110,69 @@ int	main(void)
 		jack2->get_brain(1);
 		jack2->get_brain(2);
 		jack2->get_brain(3);
-		//jack->get_brain(1);//what happens to stack memory here?
-		//jack->get_brain(2);//what happens to stack memory here?
-
+		jacky->get_brain_address();
+		jack2->get_brain_address();
+		std::cout << YELLOW <<"\n\nChecking jack's OLD values" << RESET << std::endl;
+		std::cout << jacky->getType() << std::endl;
+		std::cout << jack2->getType() << std::endl;
+//
 		std::cout << YELLOW <<"\n\nCOPY assignment constructor called here" << RESET << std::endl;
 		*jack2 = *jacky;
-
+		Dog *jack3 = new Dog(*jacky);
+		//Cat* jack3(jack2);//again this is wrong cause it's copying
+		// the address of it, so doing this make it a confirmed shallow copy.
+		
+//
 		std::cout << YELLOW <<"\n\nChecking ideas in jack(s)" << RESET << std::endl;
 		jacky->get_brain(0);
 		jacky->get_brain(1);
 		jacky->get_brain(2);
 		jacky->get_brain(3);
+		
 		jack2->get_brain(0);
 		jack2->get_brain(1);
 		jack2->get_brain(2);
 		jack2->get_brain(3);
+		
+		jack3->get_brain(0);
+		jack3->get_brain(1);
+		jack3->get_brain(2);
+		jack3->get_brain(3);
+		std::cout << YELLOW <<"\n\nChecking jack's addresses!" << RESET << std::endl;
+		jacky->get_brain_address();
+		jack2->get_brain_address();
+		jack3->get_brain_address();
 		//Explanation
 		//jack2 = jack; is pointer assignment,
 		//	 meaning jack2 will now point to the same memory 
 		//	 location as jack, effectively discarding the original 
 		//	 jack2 object and causing a shallow copy.
 		//	 Basically you are copying the memory address of jack.
-
+		//
 		// *jack2 = *jack; is object assignment, which will invoke 
 		//	the copy assignment operator, and this is what you want 
 		//	to achieve deep copying.
 		//	Basically, you are copying the items of the jack.
-
-	//	std::cout << YELLOW <<"\n\nChecking jack's NEW values" << RESET << std::endl;
-	//	std::cout << jacky->getType() << std::endl;
-	//	std::cout << jack2->getType() << std::endl;
+		std::cout << YELLOW <<"\n\nChecking jack's NEW values" << RESET << std::endl;
+		std::cout << jacky->getType() << std::endl;
+		std::cout << jack2->getType() << std::endl;
+		std::cout << jack3->getType() << std::endl;
 	//
 	//
-	std::cout << YELLOW <<"\n\nDestructor called here" << RESET << std::endl;
-	delete jack2;
-	delete jacky;//this should not seg fault!
+		std::cout << YELLOW <<"\n\nDeconstructor called here" << RESET << std::endl;
+		delete jack3;
+		delete jack2;
+		delete jacky;//this should not seg fault!
 	}
-
-//
 /*
-	std::cout << YELLOW <<"\n--------------\nTesting Animal" << RESET << std::endl;
+	std::cout << YELLOW <<"\n\n\nFor ex02 showcase:" << RESET << std::endl;
+	std::cout << YELLOW <<"--------------\nTesting Animal" << RESET << std::endl;
 	const	Animal* ika = new Animal();
 	std::cout << GREEN << ika->getType() << RESET << std::endl;
 	ika->makeSound();
 	delete ika;
 	std::cout << YELLOW <<"--------------\n" << RESET << std::endl;
-	return (0);
 */
+	return (0);
 }
 //ctrl+F first, then ALT+Enter if you want to replace stuff

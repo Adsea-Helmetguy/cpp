@@ -24,7 +24,16 @@ Brain::Brain()
 //COPY CONSTRUCTOR
 Brain::Brain(const Brain &other)
 {
+	const int	total_size = 100;
+	int		index = 0;
+
 	*this = other;
+	while (index < total_size)
+	{
+		this->ideas[index] = other.ideas[index];
+		index++;
+	}
+	std::cout << "Brain's address: " << this << std::endl;
 	std::cout << RED << "Brain copy constructor called" << RESET << std::endl;
 }
 
@@ -41,13 +50,13 @@ Brain &Brain::operator=(const Brain &other)
 	//while loop to do deep copy
 	while (index < total_size)
 	{
-		this->ideas[index] = std::string(other.ideas[index]);
+		this->ideas[index] = other.ideas[index];
 		index++;
 	}
+	std::cout << "Brain's address: " << this << std::endl;
 	std::cout << RED << "Brain equal operator called." << RESET << std::endl;
 	return (*this);
 }
-
 
 Brain::~Brain()
 {
@@ -62,4 +71,11 @@ void	Brain::idea_member(int idea_number, std::string input_ideas)
 void	Brain::obtain_idea(int idea_number)
 {
 	std::cout << GREEN << this->ideas[idea_number] << RESET << std::endl;
+	std::cout << YELLOW << &this->ideas[idea_number] << RESET << std::endl;
+}
+
+void	Brain::get_address()
+{
+	std::cout << GREEN << "Address of this one is: " \
+	<< this << std::endl;
 }

@@ -15,7 +15,7 @@
 Dog::Dog() : Animal()
 {
 	this->type = "Dog";
-	//Upon construction, Dog and Cat will create their Brain using new Brain();
+	//Upon construction, Dog and Dog will create their Brain using new Brain();
 	this->_Brain = new Brain();
 	std::cout << RED << "Dog Default constructor called" << RESET << std::endl;
 }
@@ -31,8 +31,10 @@ Dog::Dog(const std::string& name) : Animal(name)
 }
 
 //COPY CONSTRUCTOR
-Dog::Dog(const Dog &other) : Animal(other), _Brain(new Brain(*other._Brain))
+Dog::Dog(const Dog &other)  : Animal(other), _Brain(NULL)
 {
+	//*this = other;
+	this->_Brain = new Brain(*other._Brain);
 	this->type = other.type;
 	std::cout << RED << "Dog copy constructor called" << RESET << std::endl;
 }
@@ -62,27 +64,27 @@ Dog &Dog::operator=(const Dog &other)
 
 Dog::~Dog()
 {
-	//Upon destruction, Dog and Cat will delete their Brain.
+	//Upon destruction, Dog and Dog will delete their Brain.
 	if (this->_Brain)
 		delete this->_Brain;
 	std::cout << "Dog Deconstructor " << BLUE << this->type << RESET << \
 	" called: " << std::endl;
 }
 
-std::string		Dog::getType(void) const
+std::string	Dog::getType(void) const
 {
 	return(this->type);
 }
 
 void	Dog::makeSound() const
 {
-	std::cout << BLUE << "BORK BORK BORKKKK" << RESET << std::endl;
+	std::cout << BLUE << "Meow~" << RESET << std::endl;
 }
 
 void	Dog::edit_brain(int idea_number, std::string input_ideas)
 {
-	std::cout << "inside Function edit_brain for dog!" << std::endl;
-	//assign new brain ideas for the dog.
+	std::cout << "inside Function edit_brain for Dog!" << std::endl;
+	//assign new brain ideas for the Dog.
 	if (idea_number > 100)
 	{
 		std::cout << "Don't input values more than 100!!" << std::endl;
@@ -97,4 +99,12 @@ void	Dog::get_brain(int idea_number)
 	std::cout << "inside Dog's: " << BLUE << this->type \
 	<< RESET << " get_brain function!" << std::endl;
 	this->_Brain->obtain_idea(idea_number);
+}
+
+void	Dog::get_brain_address()
+{
+	std::cout << GREEN << "THIS ADDRESS: " << BLUE << this \
+	<< RESET << std::endl;
+	std::cout << GREEN << "Brain's address: " << BLUE << this->_Brain \
+	<< RESET << std::endl;
 }

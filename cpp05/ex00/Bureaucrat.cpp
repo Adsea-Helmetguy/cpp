@@ -23,6 +23,20 @@ Bureaucrat::Bureaucrat(const std::string& name) : _constant_name(name), _grade(1
 	<< " constructor called" << RESET << std::endl;
 }
 
+Bureaucrat::Bureaucrat(int grade) : _constant_name("Default_Bureaucrat"), _grade(grade)
+{
+	std::cout << "Bureaucrat Constructor called for " << this->getName() <<
+	" with grade of " << grade << std::endl;
+	this->setGrade(grade);
+}
+
+Bureaucrat::Bureaucrat(const std::string& name, int grade) : _constant_name(name), _grade(grade)
+{
+	std::cout << "Bureaucrat Constructor called for " << this->getName() <<
+	" with grade of " << grade << std::endl;
+	this->setGrade(grade);
+}
+
 Bureaucrat::Bureaucrat(const Bureaucrat &other) 
 	: _constant_name(other._constant_name), _grade(other._grade)
 {
@@ -48,34 +62,76 @@ Bureaucrat::~Bureaucrat()
 	" called: " << std::endl;
 }
 
-Bureaucrat::GradeTooHighException(const std::string& message) : _message(message)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Grade Texts
+//---------------------------------------------------------------------------------
+Bureaucrat::GradeTooHighException::GradeTooHighException(const std::string& message) : _message(message)
+{
+};
+
+Bureaucrat::GradeTooLowException::GradeTooLowException(const std::string& message) : _message(message)
 {
 };
 
 
-Bureaucrat::GradeTooLowException(const std::string& message) : _message(message)
+// Virtual Destructor for GradeTooHighException
+Bureaucrat::GradeTooHighException::~GradeTooHighException() throw()
 {
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-std::string		Bureaucrat::getName(void) const
+// Virtual Destructor for GradeTooLowException
+Bureaucrat::GradeTooLowException::~GradeTooLowException() throw()
 {
-	return(this->_constant_name);
-}
+};
+//---------------------------------------------------------------------------------
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//getters and setters
+//---------------------------------------------------------------------------------
 std::string		Bureaucrat::getName() const
 {
 	return(this->_constant_name);
@@ -86,6 +142,13 @@ unsigned int	Bureaucrat::getGrade() const
 	return(this->_grade);
 }
 
+unsigned int	Bureaucrat::setGrade(int value)
+{
+	this->_grade = value;
+	return(this->_grade);
+}
+//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
 void		Bureaucrat::incrementGrade()
 {
     if (this->_grade <= 1)
@@ -99,6 +162,7 @@ void		Bureaucrat::decrementGrade()
         throw GradeTooLowException("Grade is too low! Cannot decrement grade");
     this->_grade++;
 }
+//---------------------------------------------------------------------------------
 
 
 
@@ -121,31 +185,14 @@ void		Bureaucrat::decrementGrade()
 
 
 
-
-/*
-Exception Classes here!
-class Exception : public std::exception
-{
-private:
-	std::string			_message;
-public:
-	virtual std::string	what();
-};
-
-
-
-const char*	Bureaucrat::GradeTooHighException::what() {
-	return _message.c_str();
-};
-*/
-
+//Exception Classes here!
 //The what() member function satisfies the constraints specified for std::exception::what().
-const char*	Bureaucrat::GradeTooHighException::what(void)
+const char*	Bureaucrat::GradeTooHighException::what(void) const throw()
 {
 	return (_message.c_str());
 };
 
-const char*	Bureaucrat::GradeTooLowException::what(void)
+const char*	Bureaucrat::GradeTooLowException::what(void) const throw()
 {
 	return (_message.c_str());
 };
