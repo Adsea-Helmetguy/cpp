@@ -6,11 +6,11 @@
 #    By: mlow <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 18:14:15 by mlow              #+#    #+#              #
-#    Updated: 2024/04/17 18:43:20 by mlow             ###   ########.fr        #
+#    Updated: 2025/01/15 18:17:44 by mlow             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = animal
+NAME = bureaucrat
 
 CXX = c++
 CXXFLAGS = -g -Wall -Werror -Wextra -std=c++98
