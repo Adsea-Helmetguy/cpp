@@ -75,11 +75,11 @@ int	main(void)
 			std::cerr << YELLOW << "Incrementing grade of " << a->getName() <<
 			" failed: " << e.what() << RESET << std::endl;
 		}
-		catch(...)
-		{
-			std::cerr << "general issue found " << YELLOW \
-			<< e.what() << RESET << std::endl;
-		}
+		// catch(...)
+		// {
+		// 	std::cerr << "general issue found " << YELLOW
+		// 	<< e.what() << RESET << std::endl;
+		// }
 	}
 	std::cout << "-------------------------------\n\n" << std::endl;
 	std::cout << "\n\n" << std::endl;

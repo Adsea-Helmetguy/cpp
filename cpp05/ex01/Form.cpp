@@ -37,7 +37,7 @@ Form&	Form::operator=(const Form& copy)
 	if (this != &copy)
 	{
 		//const _name cannot be copied over
-		this->_getBool;
+		this->_isTheFormSigned = copy.getBool();
 		std::cout << YELLOW << "Copy assignment(operator=) called" << RESET << std::endl;
 	}
 	return (*this);
