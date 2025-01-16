@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.hpp                                         :+:      :+:    :+:   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlow <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -69,6 +69,9 @@ class Bureaucrat
 			virtual const char* what() const throw();
 			virtual ~GradeTooLowException() throw();
 	};
+	
+	std::ostream& operator<<(std::ostream& out, const Bureaucrat& other);
+	
 };
 /*
 To use an exception class, you 

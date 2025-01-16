@@ -10,133 +10,73 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 //-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-
-Bureaucrat::Bureaucrat() : _name("Default Bureaucrat"), _grade(150)
+Form::Form()
+	: _name("Default Form Name"), _isTheFormSigned(false), _gradeToSign(70), _gradeToExecute(40)
 {
-	std::cout << "default constructor, Created: " << GREEN \
-		<< this->_name << YELLOW \
-		<< " with = " << GREEN << this->_grade \
-		<< YELLOW << " grade." << RESET << std::endl;
+	
 };
 
-Bureaucrat::Bureaucrat(const std::string& name) : _name(name), _grade(150)
+Form::Form(const std::string& name)
+	: _name(name), _isTheFormSigned(false), _gradeToSign(70), _gradeToExecute(40)
 {
-	std::cout << "default constructor with name, Created: " \
-		<< GREEN << this->_name << YELLOW \
-		<< " with = " << GREEN << this->_grade \
-		<< YELLOW << " grade." << RESET << std::endl;
+	
 };
 
-Bureaucrat::Bureaucrat(const Bureaucrat &copy) 
-	: _name(copy._name), _grade(copy._grade)
+Form::Form(const Form& copy)
+	: _name(copy._name), _isTheFormSigned(copy._isTheFormSigned), 
+	_gradeToSign(copy._gradeToSign), _gradeToExecute(copy._gradeToExecute)
 {
-	std::cout << "copy constructor, Created: " \
-		<< GREEN << this->_name << YELLOW \
-		<< " with = " << GREEN << this->_grade \
-		<< YELLOW << " grade." << RESET << std::endl;
+	
 };
 
-Bureaucrat::Bureaucrat(int value) : _name("Default Bureaucrat"), _grade(value)
+Form&	Form::operator=(const Form& copy)
 {
-	std::cout << "default constructor with int, Created: " \
-		<< GREEN << this->_name << YELLOW \
-		<< " with = " << GREEN << this->_grade \
-		<< YELLOW << " grade." << RESET << std::endl;
-};
-
-Bureaucrat::Bureaucrat(int value, const std::string& name) : _name(name), _grade(value)
-{
-	std::cout << "constructor with int && name, Created: " \
-		<< GREEN << this->_name << YELLOW \
-		<< " with = " << GREEN << this->_grade \
-		<< YELLOW << " grade." << RESET << std::endl;
-};
-
-Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& copy)
-{
-	if (this == &copy) //checks the address of copy
+	if (this != &copy)
 	{
-		std::cout << RED << "Don't SELF-ASSIGN!!!" << RESET << std::endl;
-		return (*this); // dereference pointer to give back actual object(Bureacucrat&)
+		//const _name cannot be copied over
+		this->_getBool;
+		std::cout << YELLOW << "Copy assignment(operator=) called" << RESET << std::endl;
 	}
-	//since it's a constant name, it cannot be copied.
-	//this->_name = other.getName();
-	this->_grade = copy.getGrade();
-	std::cout << YELLOW << "Copy assignment(operator=) called" << RESET << std::endl;
 	return (*this);
 };
 
-Bureaucrat::~Bureaucrat()
+Form::~Form()
 {
 	std::cout << RED << "Destructor(time) Begins" << RESET << std::endl;
 };
 //-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
 
 
 //-----------------------------------------------------------------------
-//getters and setters
-//-----------------------------------------------------------------------
-
-std::string	Bureaucrat::getName() const
+//Getters and setters----------------------------------------------------
+const std::string	Form::getName()
 {
 	return (this->_name);
 };
 
-unsigned int	Bureaucrat::getGrade() const
+
+//     -------------others-------------
+const std::string	Form::getBool()
 {
-	return (this->_grade);
+	return (this->_isTheFormSigned);
 };
 
-void	Bureaucrat::setGrade(int value)
+const std::string	Form::getGradeToSign()
 {
-	this->_grade = value;
+	return (this->_gradeToSign);
 };
 
-
-//increment && decrement
-//-----------------------------------------------------------------------
-void		Bureaucrat::incrementGrade()
+const std::string	Form::getGradeToExecute()
 {
-	if (this->_grade <= 1)
-		throw Bureaucrat::GradeTooHighException("GRADE HIGH ENOUGH ALREADY!");
-	this->_grade--;
+	return (this->_gradeToExecute);
 };
+//     -------------others-------------
 
-void		Bureaucrat::decrementGrade()
-{
-	if (this->_grade >= 150)
-		throw Bureaucrat::GradeTooLowException("STOP~ HE SO Lowww ALREADY.");
-	this->_grade++;
-};
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-
-
-
-
-
-
-
 
 
 
@@ -149,80 +89,65 @@ void		Bureaucrat::decrementGrade()
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-Bureaucrat::GradeTooHighException::GradeTooHighException(const std::string& message) : _msg(message)
+Form::GradeTooHighException::GradeTooHighException(const std::string& message) : _msg(message)
 {
 };
 
-Bureaucrat::GradeTooLowException::GradeTooLowException(const std::string& message) : _msg(message)
+Form::GradeTooLowException::GradeTooLowException(const std::string& message) : _msg(message)
 {
 };
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
 //what() implementation
-const char*	Bureaucrat::GradeTooHighException::what() const throw()
+const char*	Form::GradeTooHighException::what() const throw()
 {
 	return (this->_msg.c_str());
 };
 
-const char*	Bureaucrat::GradeTooLowException::what() const throw()
+const char*	Form::GradeTooLowException::what() const throw()
 {
 	return (this->_msg.c_str());
 };
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 
-//Destructors happening here
-Bureaucrat::GradeTooHighException::~GradeTooHighException() throw()
+
+
+
+
+
+
+//-----------------------------------------------------------------------
+//signFroms--------------------------------------------------------------
+
+void	Form::besigned(const Bureaucrat& user)
 {
-	std::cout << RED << "Destructor for (GradeTooHigh)" << RESET << std::endl;
+	std::cout << YELLOW << "Checking if this form can be signed." \
+		<< RESET << std::endl
+	if (user->_grade > this->_gradeToSign)
+	{
+		throw GradeTooLowException("Grade too low to sign, \"FAIL\".");
+		return ;
+	}
+	std::cout << GREEN << "Congratz! You passed!" << RESET << std::endl;
+	this->_isTheFormSigned(true);
+	return (*this);
 };
 
-Bureaucrat::GradeTooLowException::~GradeTooLowException() throw()
+void	Form::signForm(const Bureaucrat& user)
 {
-	std::cout << RED << "Destructor for (GradeTooLow)" << RESET << std::endl;
+	if (this->_isTheFormSigned == false)
+	{
+		std::cout << YELLOW << user->_name << " couldn’t sign " \
+			<< this->_name << " because " << RED \
+			<< user._msg << RESET << std::endl;
+		return ;
+	}
+	std::cout << user->_name << " signed " \
+			<< this->_name << RESET << std::endl;
 };
+
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
 
 
 
@@ -233,48 +158,21 @@ Bureaucrat::GradeTooLowException::~GradeTooLowException() throw()
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& other)
+std::ostream&	operator<<(std::ostream& os, const Form& form)
 {
-	std::cout << other.getName() << ", bureaucrat grade " \
-	<< other.getGrade() << "." << std::endl;
-	// write obj to stream
+	std::cout << "printing all form's information: " << std::endl;
+	std::cout << "----------------------------------" << std::endl;
+	std::cout << "Form's _name: " << GREEN << form.getName() << RESET \
+	<< std::endl;
+	std::cout << "Form's _isTheFormSigned: " << GREEN << form.getBool() \
+	<< RESET << std::endl;
+	std::cout << "Form's _gradeToSign: " << GREEN << form.getGradeToSign() \
+	<< RESET << std::endl;
+	std::cout << "Form's _gradeToExecute: " << GREEN << form.getGradeToExecute() \
+		<< RESET << std::endl;
+	std::cout << "----------------------------------" << std::endl;
 	return (os);
 };
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

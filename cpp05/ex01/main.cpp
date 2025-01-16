@@ -10,4 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-include #
+#include "Form.hpp"
+
+int	main()
+{
+	{
+		std::cout << BLUE << "First test commence!" << std::endl;
+		std::cout << "----------------------------" << std::endl;
+		try
+		{
+			throw Bureaucrat::GradeTooHighException("testing for high value");
+		}
+		catch(const Form::GradeTooHighException& e)
+		{
+			std::cerr << "Custom Exception obtained: " << YELLOW \
+				<< e.what() << RESET << std::endl;
+		}
+		std::cout << "----------------------------" << std::endl;
+	}
+	return (0);
+}
+

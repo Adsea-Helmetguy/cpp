@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlow <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,12 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRAT_HPP
-#define BUREAUCRAT_HPP
+#ifndef Form_HPP
+#define Form_HPP
 
 # include <iostream>
 # include <string>//std::string
 # include <exception>//std::exception, https://en.cppreference.com/w/cpp/header/exception
+
+# include "Bureaucrat/Bureaucrat.hpp"
 
 # define RESET   "\033[0m"
 # define RED     "\033[31m"
@@ -27,7 +29,7 @@
 //                               Contact Class                                //
 // ************************************************************************** //
 
-class Form
+class Form : public Bureaucrat
 {
 	private:
 		const std::string	_name;
@@ -36,21 +38,47 @@ class Form
 		const unsigned int	_gradeToExecute;
 
 	public:
-		Form();
-		Form(const std::string& name);
-		Form(const Form& copy);
-		Form& operator=(const Form& copy);
-		~Form();
+		Form();										// default constructor
+		Form(const std::string& name);				// default constructor with name
+		Form(const Form& copy);						// copy constructor
+		Form& operator=(const Form& copy);			// copy assignment
+		~Form();									// destructor
 	
-	//setters and getters
-	
-};
-#endif
-/*
---links to learn structure of Exception classes:--
-https://rollbar.com/blog/cpp-custom-exceptions
-https://diginode.in/cpp/custom-exception-classes/
-https://peterforgacs.github.io/2017/06/25/Custom-C-Exceptions-For-Beginners
+	//  -------------getters and setters-------------
+	const std::string	getName();
+	bool				getBool();
+	unsigned int	getGradeToSign() const;
+	unsigned int	getGradeToExecute() const;
+	//  -------------getters and setters-------------
 
---links to learn--
-*/
+	//signFroms
+	void	besigned();
+	void	signForm();
+
+
+
+	class GradeTooHighException
+	{
+		private:
+			std::string	_msg;
+
+		public:
+			GradeTooHighException(const std::string& message);
+			virtual const char* what() const throw();
+			virtual ~GradeTooHighException() throw();
+	};
+	
+	class GradeTooLowException
+	{
+		private:
+			std::string	_msg;
+
+		public:
+			GradeTooLowException(const std::string& message);
+			virtual const char* what() const throw();
+			virtual ~GradeTooLowException() throw();
+	};
+};
+
+std::ostream& operator<<(std::ostream& os, const Form& other);
+#endif

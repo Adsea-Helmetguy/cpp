@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = maggots
+NAME = bureaucrat
 
 CXX = c++
 CXXFLAGS = -g -Wall -Werror -Wextra -std=c++98
@@ -23,8 +23,7 @@ INC_DIR = ./
 # ************************************************************************** */
 #List of SOURCE(SRC) files
 SRC_FILE_NAMES = main.cpp \
-			Bureaucrat/Bureaucrat.cpp \
-			Form.cpp
+			Bureaucrat.cpp \
 
 
 # ************************************************************************** */
