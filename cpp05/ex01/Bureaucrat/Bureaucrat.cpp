@@ -206,13 +206,32 @@ const char*	Bureaucrat::GradeTooLowException::what() const throw()
 //Destructors happening here
 Bureaucrat::GradeTooHighException::~GradeTooHighException() throw()
 {
-	std::cout << RED << "Destructor for (GradeTooHigh)" << RESET << std::endl;
+	std::cout << RED << "Destructor Bureau (GradeTooHigh)" << RESET << std::endl;
 };
 
 Bureaucrat::GradeTooLowException::~GradeTooLowException() throw()
 {
-	std::cout << RED << "Destructor for (GradeTooLow)" << RESET << std::endl;
+	std::cout << RED << "Destructor Bureau (GradeTooLow)" << RESET << std::endl;
 };
+
+
+
+void	Form::signForm(const Form& form_number)
+{
+	if (this->_isTheFormSigned == false)
+	{
+		std::cout << YELLOW << user.getName() << " couldn’t sign " \
+			<< this->_name << " because " << RED \
+			<< GradeTooLowException("Score too low").what() \
+			<< RESET << std::endl;
+		return ;
+	}
+	std::cout << GREEN << user.getName() << " signed " \
+		<< this->_name << RESET << std::endl;
+};
+
+
+
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------

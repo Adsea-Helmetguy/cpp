@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = maggots
+NAME = form
 
 CXX = c++
 CXXFLAGS = -g -Wall -Werror -Wextra -std=c++98

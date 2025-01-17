@@ -36,7 +36,7 @@ Form&	Form::operator=(const Form& copy)
 {
 	if (this != &copy)
 	{
-		//const _name cannot be copied over
+		//const _name, cannot be copied over
 		this->_isTheFormSigned = copy.getBool();
 		std::cout << YELLOW << "Copy assignment(operator=) called" << RESET << std::endl;
 	}
@@ -52,24 +52,23 @@ Form::~Form()
 
 //-----------------------------------------------------------------------
 //Getters and setters----------------------------------------------------
-const std::string	Form::getName()
+const std::string	Form::getName() const
 {
 	return (this->_name);
 };
 
-
 //     -------------others-------------
-const std::string	Form::getBool()
+bool			Form::getBool() const
 {
 	return (this->_isTheFormSigned);
 };
 
-const std::string	Form::getGradeToSign()
+unsigned int	Form::getGradeToSign() const
 {
 	return (this->_gradeToSign);
 };
 
-const std::string	Form::getGradeToExecute()
+unsigned int	Form::getGradeToExecute() const
 {
 	return (this->_gradeToExecute);
 };
@@ -107,6 +106,16 @@ const char*	Form::GradeTooLowException::what() const throw()
 {
 	return (this->_msg.c_str());
 };
+
+Form::GradeTooHighException::~GradeTooHighException() throw()
+{
+	std::cout << RED << "Destructor form (GradeTooHigh)" << RESET << std::endl;
+};
+
+Form::GradeTooLowException::~GradeTooLowException() throw()
+{
+	std::cout << RED << "Destructor form (GradeTooLow)" << RESET << std::endl;
+};
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 
@@ -122,28 +131,14 @@ const char*	Form::GradeTooLowException::what() const throw()
 void	Form::besigned(const Bureaucrat& user)
 {
 	std::cout << YELLOW << "Checking if this form can be signed." \
-		<< RESET << std::endl
-	if (user->_grade > this->_gradeToSign)
+		<< RESET << std::endl;
+	if (user.getGrade() > this->_gradeToSign)
 	{
 		throw GradeTooLowException("Grade too low to sign, \"FAIL\".");
 		return ;
 	}
 	std::cout << GREEN << "Congratz! You passed!" << RESET << std::endl;
-	this->_isTheFormSigned(true);
-	return (*this);
-};
-
-void	Form::signForm(const Bureaucrat& user)
-{
-	if (this->_isTheFormSigned == false)
-	{
-		std::cout << YELLOW << user->_name << " couldn’t sign " \
-			<< this->_name << " because " << RED \
-			<< user._msg << RESET << std::endl;
-		return ;
-	}
-	std::cout << user->_name << " signed " \
-			<< this->_name << RESET << std::endl;
+		this->_isTheFormSigned = true;
 };
 
 //-----------------------------------------------------------------------

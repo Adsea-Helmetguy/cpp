@@ -21,17 +21,17 @@
 
 class Bureaucrat;
 
-# define RESET   "\033[0m"
-# define RED     "\033[31m"
-# define YELLOW  "\033[33m"
-# define BLUE    "\033[34m"
-# define GREEN   "\033[32m"
-
+# define RESET	"\033[0m"
+# define RED	"\033[31m"
+# define YELLOW	"\033[33m"
+# define BLUE	"\033[34m"
+# define GREEN	"\033[32m"
+# define MAG	"\e[0;35m"
 // ************************************************************************** //
 //                               Contact Class                                //
 // ************************************************************************** //
 
-class Form : public Bureaucrat
+class Form
 {
 	private:
 		const std::string	_name;
@@ -47,15 +47,15 @@ class Form : public Bureaucrat
 		~Form();									// destructor
 	
 	//  -------------getters and setters-------------
-	const std::string	getName();
-	bool				getBool();
-	unsigned int	getGradeToSign() const;
-	unsigned int	getGradeToExecute() const;
+	const std::string	getName() const;
+	bool				getBool() const;
+	unsigned int		getGradeToSign() const;
+	unsigned int		getGradeToExecute() const;
 	//  -------------getters and setters-------------
 
 	//signFroms
-	void	besigned();
-	void	signForm();
+	void	besigned(const Bureaucrat& user);
+	void	signForm(const Bureaucrat& user);
 
 
 
