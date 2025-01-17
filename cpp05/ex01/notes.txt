@@ -1,0 +1,7 @@
+Your error is about the freaking signForm u put in wrong class,
+
+and u don't need to check if it's false/true that the form is signed for signForm().
+
+You can just throw error with gradetoolowexception with that error msg.
+
+SIGNFORM CALLS BESIGNED OKAYYYY!?
