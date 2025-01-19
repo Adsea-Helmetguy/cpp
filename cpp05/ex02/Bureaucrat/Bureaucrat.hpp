@@ -23,9 +23,9 @@
 # define BLUE    "\033[34m"
 # define GREEN   "\033[32m"
 
-# include "Form.hpp"
+# include "AForm_bureaucrat/AForm.hpp"
 
-class Form;
+class AForm;
 
 // ************************************************************************** //
 //                               Contact Class                                //
@@ -36,6 +36,8 @@ class Bureaucrat
 	private:
 		const std::string	_name;
 		unsigned int		_grade;
+		bool				_formsigned;
+
 	public:
 		Bureaucrat();					// default constructor
 		Bureaucrat(const std::string& name);		// default constructor with name
@@ -48,13 +50,14 @@ class Bureaucrat
 	//getters and setters:
 	std::string		getName() const;//const means not allow to change private value
 	unsigned int	getGrade() const;//const means not allow to change private value
+	bool			getFormsigned() const;
 //note: You will get a compilation error if u don't put const, because the compiler 
 // cannot guarantee that the function won't modify the object, 
 // and calling non-const functions on const objects is disallowed.
 	void			setGrade(int value);
 	void			incrementGrade();
 	void			decrementGrade();
-	void			signForm(Form& form_tosign);
+	void			signForm(AForm& form_tosign);
 
 	//exception classes
 	class GradeTooHighException : public std::exception

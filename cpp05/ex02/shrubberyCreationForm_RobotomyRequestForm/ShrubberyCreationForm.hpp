@@ -10,16 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef SHRUBBERYCREATIONFORM_HPP
+#define SHRUBBERYCREATIONFORM_HPP
+
 
 # include <iostream>
+# include <fstream>//*new ex02* std::basic_ofstream
 # include <string>//std::string
 # include <exception>//std::exception, https://en.cppreference.com/w/cpp/header/exception
 
 # include "Bureaucrat/Bureaucrat.hpp"
 
-class Bureaucrat;
 
 # define RESET	"\033[0m"
 # define RED	"\033[31m"
@@ -31,55 +32,28 @@ class Bureaucrat;
 //                               Contact Class                                //
 // ************************************************************************** //
 
-class Form
+class ShrubberyCreationForm
 {
 	private:
-		const std::string	_name;
-		bool				_isTheFormSigned;
-		const unsigned int	_gradeToSign;
-		const unsigned int	_gradeToExecute;
-
+		std::string		_name;
+		unsigned int	_requiredGrades;
+		unsigned int	_execGrades;
+	
 	public:
-		Form();										// default constructor
-		Form(const std::string& name);				// default constructor with name
-		Form(const Form& copy);						// copy constructor
-		Form& operator=(const Form& copy);			// copy assignment
-		~Form();									// destructor
-	
-	//  -------------getters and setters-------------
-	const std::string	getName() const;
-	bool				getBool() const;
-	unsigned int		getGradeToSign() const;
-	unsigned int		getGradeToExecute() const;
-	//  -------------getters and setters-------------
+		ShrubberyCreationForm();												// default constructor
+		ShrubberyCreationForm(const std::string& name);							// default constructor with name
+		ShrubberyCreationForm(const ShrubberyCreationForm& copy);				// copy constructor
+		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& form);	// copy assignment
+		~ShrubberyCreationForm();												// destructor
 
-	//signFroms
-	void	besigned(const Bureaucrat& user);
+		//getters
+		std::string		getName();
+		unsigned int	getrequiredGrades();
+		unsigned int	getexecGrades();
 
-
-
-	class GradeTooHighException
-	{
-		private:
-			std::string	_msg;
-
-		public:
-			GradeTooHighException(const std::string& message);
-			virtual const char* what() const throw();
-			virtual ~GradeTooHighException() throw();
-	};
-	
-	class GradeTooLowException
-	{
-		private:
-			std::string	_msg;
-
-		public:
-			GradeTooLowException(const std::string& message);
-			virtual const char* what() const throw();
-			virtual ~GradeTooLowException() throw();
-	};
+		//create a file
+		ShrubberyCreationForm& execute(Bureaucrat const & executor);
 };
 
-std::ostream& operator<<(std::ostream& os, const Form& other);
+std::ostream& operator<<(std::ostream& os, const ShrubberyCreationForm& other);
 #endif

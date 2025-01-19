@@ -10,29 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
 //-----------------------------------------------------------------------
-Form::Form()
+AForm::AForm()
 	: _name("Default Form Name"), _isTheFormSigned(false), _gradeToSign(70), _gradeToExecute(40)
 {
 	
 };
 
-Form::Form(const std::string& name)
+AForm::AForm(const std::string& name)
 	: _name(name), _isTheFormSigned(false), _gradeToSign(70), _gradeToExecute(40)
 {
 	
 };
 
-Form::Form(const Form& copy)
+AForm::AForm(const AForm& copy)
 	: _name(copy._name), _isTheFormSigned(copy._isTheFormSigned), 
 	_gradeToSign(copy._gradeToSign), _gradeToExecute(copy._gradeToExecute)
 {
 	
 };
 
-Form&	Form::operator=(const Form& copy)
+AForm&	AForm::operator=(const AForm& copy)
 {
 	if (this != &copy)
 	{
@@ -43,7 +43,7 @@ Form&	Form::operator=(const Form& copy)
 	return (*this);
 };
 
-Form::~Form()
+AForm::~AForm()
 {
 	std::cout << RED << "Destructor(form) Begins" << RESET << std::endl;
 };
@@ -52,23 +52,23 @@ Form::~Form()
 
 //-----------------------------------------------------------------------
 //Getters and setters----------------------------------------------------
-const std::string	Form::getName() const
+const std::string	AForm::getName() const
 {
 	return (this->_name);
 };
 
 //     -------------others-------------
-bool			Form::getBool() const
+bool			AForm::getBool() const
 {
 	return (this->_isTheFormSigned);
 };
 
-unsigned int	Form::getGradeToSign() const
+unsigned int	AForm::getGradeToSign() const
 {
 	return (this->_gradeToSign);
 };
 
-unsigned int	Form::getGradeToExecute() const
+unsigned int	AForm::getGradeToExecute() const
 {
 	return (this->_gradeToExecute);
 };
@@ -88,31 +88,31 @@ unsigned int	Form::getGradeToExecute() const
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-Form::GradeTooHighException::GradeTooHighException(const std::string& message) : _msg(message)
+AForm::GradeTooHighException::GradeTooHighException(const std::string& message) : _msg(message)
 {
 };
 
-Form::GradeTooLowException::GradeTooLowException(const std::string& message) : _msg(message)
+AForm::GradeTooLowException::GradeTooLowException(const std::string& message) : _msg(message)
 {
 };
 
 //what() implementation
-const char*	Form::GradeTooHighException::what() const throw()
+const char*	AForm::GradeTooHighException::what() const throw()
 {
 	return (this->_msg.c_str());
 };
 
-const char*	Form::GradeTooLowException::what() const throw()
+const char*	AForm::GradeTooLowException::what() const throw()
 {
 	return (this->_msg.c_str());
 };
 
-Form::GradeTooHighException::~GradeTooHighException() throw()
+AForm::GradeTooHighException::~GradeTooHighException() throw()
 {
 	std::cout << RED << "Destructor form (GradeTooHigh)" << RESET << std::endl;
 };
 
-Form::GradeTooLowException::~GradeTooLowException() throw()
+AForm::GradeTooLowException::~GradeTooLowException() throw()
 {
 	std::cout << RED << "Destructor form (GradeTooLow)" << RESET << std::endl;
 };
@@ -128,7 +128,7 @@ Form::GradeTooLowException::~GradeTooLowException() throw()
 //-----------------------------------------------------------------------
 //signFroms--------------------------------------------------------------
 
-void	Form::besigned(const Bureaucrat& user)
+void	AForm::besigned(const Bureaucrat& user)
 {
 	std::cout << YELLOW << "Checking if this form can be signed." \
 		<< RESET << std::endl;
@@ -163,7 +163,7 @@ void	Form::besigned(const Bureaucrat& user)
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-std::ostream&	operator<<(std::ostream& os, const Form& form)
+std::ostream&	operator<<(std::ostream& os, const AForm& form)
 {
 	std::cout << "printing all form's information: " << std::endl;
 	std::cout << "----------------------------------" << std::endl;

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 
 # include <iostream>
 # include <string>//std::string
@@ -31,7 +31,7 @@ class Bureaucrat;
 //                               Contact Class                                //
 // ************************************************************************** //
 
-class Form
+class AForm
 {
 	private:
 		const std::string	_name;
@@ -40,11 +40,11 @@ class Form
 		const unsigned int	_gradeToExecute;
 
 	public:
-		Form();										// default constructor
-		Form(const std::string& name);				// default constructor with name
-		Form(const Form& copy);						// copy constructor
-		Form& operator=(const Form& copy);			// copy assignment
-		~Form();									// destructor
+		AForm();										// default constructor
+		AForm(const std::string& name);				// default constructor with name
+		AForm(const AForm& copy);						// copy constructor
+		AForm& operator=(const AForm& copy);			// copy assignment
+		~AForm();									// destructor
 	
 	//  -------------getters and setters-------------
 	const std::string	getName() const;
@@ -81,5 +81,5 @@ class Form
 	};
 };
 
-std::ostream& operator<<(std::ostream& os, const Form& other);
+std::ostream& operator<<(std::ostream& os, const AForm& other);
 #endif

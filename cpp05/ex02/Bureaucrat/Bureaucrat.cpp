@@ -116,7 +116,10 @@ void	Bureaucrat::setGrade(int value)
 	this->_grade = value;
 };
 
-
+bool	Bureaucrat::getFormsigned() const
+{
+	return (this->_formsigned);
+};
 //increment && decrement
 //-----------------------------------------------------------------------
 void		Bureaucrat::incrementGrade()
@@ -213,16 +216,38 @@ Bureaucrat::GradeTooLowException::~GradeTooLowException() throw()
 {
 	std::cout << RED << "Destructor Bureau (GradeTooLow)" << RESET << std::endl;
 };
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //-----------------------------------------------------------------------
 //signFroms--------------------------------------------------------------
 
-void	Bureaucrat::signForm(Form& form_tosign)
+void	Bureaucrat::signForm(AForm& form_tosign)
 {
 	form_tosign.besigned(*this);
 	std::cout << GREEN << this->_name << " signed \"" \
 		<< form_tosign.getName() << "\"" << RESET << std::endl;
+	this->_formsigned = true;
 };
 
 //-----------------------------------------------------------------------
