@@ -50,11 +50,6 @@ class AMateria
 
 		virtual AMateria *clone() const = 0;// refer 1);
 		virtual void use(ICharacter& target);
-
-//		Character *getWielder() const;
-//		void setWielder(Character *new_wielder);
-//		MateriaSource *getMateriaSource() const;
-//		void setMateriaSource(MateriaSource *new_materia_source);
 };
 #endif
 /*

@@ -13,21 +13,21 @@
 #include "AForm.hpp"
 
 //-----------------------------------------------------------------------
-AForm::AForm()
-	: _name("Default Form Name"), _isTheFormSigned(false), _gradeToSign(70), _gradeToExecute(40)
+AForm::AForm(unsigned int required, unsigned int exec))
+	: _name("Default Form Name"), _isTheFormSigned(false), _requiredGrades(70), _execGrades(40)
 {
 	
 };
 
-AForm::AForm(const std::string& name)
-	: _name(name), _isTheFormSigned(false), _gradeToSign(70), _gradeToExecute(40)
+AForm::AForm(const std::string& name, unsigned int required, unsigned int exec)
+	: _name(name), _isTheFormSigned(false), _requiredGrades(required), _execGrades(exec)
 {
 	
 };
 
 AForm::AForm(const AForm& copy)
 	: _name(copy._name), _isTheFormSigned(copy._isTheFormSigned), 
-	_gradeToSign(copy._gradeToSign), _gradeToExecute(copy._gradeToExecute)
+	_requiredGrades(copy._requiredGrades), _execGrades(copy._execGrades)
 {
 	
 };
@@ -65,12 +65,12 @@ bool			AForm::getBool() const
 
 unsigned int	AForm::getGradeToSign() const
 {
-	return (this->_gradeToSign);
+	return (this->_requiredGrades);
 };
 
 unsigned int	AForm::getGradeToExecute() const
 {
-	return (this->_gradeToExecute);
+	return (this->_execGrades);
 };
 //     -------------others-------------
 
@@ -132,7 +132,7 @@ void	AForm::besigned(const Bureaucrat& user)
 {
 	std::cout << YELLOW << "Checking if this form can be signed." \
 		<< RESET << std::endl;
-	if (user.getGrade() > this->_gradeToSign)
+	if (user.getGrade() > this->_requiredGrades)
 	{
 		throw GradeTooLowException("Grade too low to sign, \"FAIL\".");
 		return ;
@@ -171,9 +171,9 @@ std::ostream&	operator<<(std::ostream& os, const AForm& form)
 	<< std::endl;
 	std::cout << "Form's _isTheFormSigned: " << GREEN << form.getBool() \
 	<< RESET << std::endl;
-	std::cout << "Form's _gradeToSign: " << GREEN << form.getGradeToSign() \
+	std::cout << "Form's _requiredGrades: " << GREEN << form.getGradeToSign() \
 	<< RESET << std::endl;
-	std::cout << "Form's _gradeToExecute: " << GREEN << form.getGradeToExecute() \
+	std::cout << "Form's _execGrades: " << GREEN << form.getGradeToExecute() \
 		<< RESET << std::endl;
 	std::cout << "----------------------------------" << std::endl;
 	return (os);

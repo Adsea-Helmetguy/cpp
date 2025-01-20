@@ -12,22 +12,23 @@
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm()
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm(145, 137)
+{
+	//Required grades:_requiredGrades(145), _execGrades(137)
+	
+};
+
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string& name) : AForm(name, 145, 137)
 {
 
 };
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string& name)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy) : AForm(copy)
 {
 
 };
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy)
-{
-
-};
-
-ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationForm& form)
+ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationForm& form) : AForm(copy)
 {
 
 };
@@ -41,12 +42,12 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 //-----------------------------------------------------------------------
 
 //https://stackoverflow.com/questions/478075/creating-files-in-c
-ShrubberyCreationForm& ShrubberyCreationForm::execute(Bureaucrat const & executor)
+void	ShrubberyCreationForm::execute(Bureaucrat const & executor)
 {
 	if (executor.getFormsigned() == false || executor.getGrade() > 137)
 	{
-    std::cout << RED << "Unfortunate but you didnt sign nor get enough grades" \
-      << RESET << std::endl;
+		std::cout << RED << "Unfortunate but you didnt sign nor get enough grades" \
+			<< RESET << std::endl;
 	};
 	std::ofstream outfile("<target>_shrubbery.txt");
 	outfile << "\
@@ -56,7 +57,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::execute(Bureaucrat const & executo
                      **O**                       \
                     *******                      \
                    *********                     \
-                  ***********                   \
+                  ***********                    \
                    ******o**                     \
                   ***********                    \
                  ****o********                   \

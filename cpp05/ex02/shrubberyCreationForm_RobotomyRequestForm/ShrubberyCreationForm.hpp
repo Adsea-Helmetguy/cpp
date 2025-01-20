@@ -32,12 +32,12 @@
 //                               Contact Class                                //
 // ************************************************************************** //
 
-class ShrubberyCreationForm
+class ShrubberyCreationForm : public AForm
 {
-	private:
-		std::string		_name;
-		unsigned int	_requiredGrades;
-		unsigned int	_execGrades;
+	//private:
+	//	std::string		_name;
+	//	const unsigned int	_requiredGrades;
+	//	const unsigned int	_execGrades;
 	
 	public:
 		ShrubberyCreationForm();												// default constructor

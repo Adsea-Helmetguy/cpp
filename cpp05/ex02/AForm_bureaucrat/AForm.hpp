@@ -36,15 +36,15 @@ class AForm
 	private:
 		const std::string	_name;
 		bool				_isTheFormSigned;
-		const unsigned int	_gradeToSign;
-		const unsigned int	_gradeToExecute;
+		const unsigned int	_requiredGrades;
+		const unsigned int	_execGrades;
 
 	public:
-		AForm();										// default constructor
+		AForm();									// default constructor
 		AForm(const std::string& name);				// default constructor with name
-		AForm(const AForm& copy);						// copy constructor
-		AForm& operator=(const AForm& copy);			// copy assignment
-		~AForm();									// destructor
+		AForm(const AForm& copy);					// copy constructor
+		AForm& operator=(const AForm& copy);		// copy assignment
+		virtual ~AForm();							// destructor
 	
 	//  -------------getters and setters-------------
 	const std::string	getName() const;
@@ -79,6 +79,12 @@ class AForm
 			virtual const char* what() const throw();
 			virtual ~GradeTooLowException() throw();
 	};
+	
+	//create a file
+	//  ----------------------------------------------
+	virtual void	execute(Bureaucrat const & executor) = 0;
+	//virtual void	executForm(AForm const & form) = 0;
+	//  ----------------------------------------------
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& other);
