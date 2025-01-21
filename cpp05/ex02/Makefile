@@ -25,9 +25,10 @@ INC_DIR = ./
 SRC_FILE_NAMES = main.cpp \
 			Bureaucrat/Bureaucrat.cpp \
 			AForm_bureaucrat/AForm.cpp \
-			shrubberyCreationForm_RobotomyRequestForm/ShrubberycreationForm.cpp \
-			shrubberyCreationForm_RobotomyRequestForm/RobotomyRequestForm.cpp \
-			presidentalPardonForm/presidentalPardonForm.cpp 
+			shrubberyCreationForm_RobotomyRequestForm/ShrubberycreationForm.cpp
+			#
+			#shrubberyCreationForm_RobotomyRequestForm/RobotomyRequestForm.cpp
+			#presidentalPardonForm/presidentalPardonForm.cpp 
 
 
 # ************************************************************************** */

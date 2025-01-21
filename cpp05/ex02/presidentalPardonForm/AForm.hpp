@@ -49,8 +49,8 @@ class Form
 	//  -------------getters and setters-------------
 	const std::string	getName() const;
 	bool				getBool() const;
-	unsigned int		getGradeToSign() const;
-	unsigned int		getGradeToExecute() const;
+	unsigned int		getrequiredGrades() const;
+	unsigned int		getexecGrades() const;
 	//  -------------getters and setters-------------
 
 	//signFroms

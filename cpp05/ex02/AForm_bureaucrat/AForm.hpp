@@ -40,17 +40,18 @@ class AForm
 		const unsigned int	_execGrades;
 
 	public:
-		AForm();									// default constructor
-		AForm(const std::string& name);				// default constructor with name
-		AForm(const AForm& copy);					// copy constructor
-		AForm& operator=(const AForm& copy);		// copy assignment
-		virtual ~AForm();							// destructor
+		AForm(unsigned int required, unsigned int exec);							// default constructor
+		AForm(const std::string& name, unsigned int required, unsigned int exec);	// default constructor with name
+		AForm(const AForm& copy);													// copy constructor
+		AForm& operator=(const AForm& copy);										// copy assignment
+		virtual ~AForm();															// destructor
 	
 	//  -------------getters and setters-------------
 	const std::string	getName() const;
 	bool				getBool() const;
-	unsigned int		getGradeToSign() const;
-	unsigned int		getGradeToExecute() const;
+	void				setBool(bool value);
+	unsigned int		getrequiredGrades() const;
+	unsigned int		getexecGrades() const;
 	//  -------------getters and setters-------------
 
 	//signFroms

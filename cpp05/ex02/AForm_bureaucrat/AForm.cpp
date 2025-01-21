@@ -13,8 +13,8 @@
 #include "AForm.hpp"
 
 //-----------------------------------------------------------------------
-AForm::AForm(unsigned int required, unsigned int exec))
-	: _name("Default Form Name"), _isTheFormSigned(false), _requiredGrades(70), _execGrades(40)
+AForm::AForm(unsigned int required, unsigned int exec)
+	: _name("Default Form Name"), _isTheFormSigned(false), _requiredGrades(required), _execGrades(exec)
 {
 	
 };
@@ -40,6 +40,8 @@ AForm&	AForm::operator=(const AForm& copy)
 		this->_isTheFormSigned = copy.getBool();
 		std::cout << YELLOW << "Copy assignment(operator=) called" << RESET << std::endl;
 	}
+	else
+		std::cout << "DON'T DO ZAT! Don't self-assign!!!" << std::endl;
 	return (*this);
 };
 
@@ -63,12 +65,17 @@ bool			AForm::getBool() const
 	return (this->_isTheFormSigned);
 };
 
-unsigned int	AForm::getGradeToSign() const
+void			AForm::setBool(bool value)
+{
+	this->_isTheFormSigned = value;
+};
+
+unsigned int	AForm::getrequiredGrades() const
 {
 	return (this->_requiredGrades);
 };
 
-unsigned int	AForm::getGradeToExecute() const
+unsigned int	AForm::getexecGrades() const
 {
 	return (this->_execGrades);
 };
@@ -169,11 +176,15 @@ std::ostream&	operator<<(std::ostream& os, const AForm& form)
 	std::cout << "----------------------------------" << std::endl;
 	std::cout << "Form's _name: " << GREEN << form.getName() << RESET \
 	<< std::endl;
-	std::cout << "Form's _isTheFormSigned: " << GREEN << form.getBool() \
+	if (form.getBool() == 0)
+		std::cout << "Form's _isTheFormSigned: " << RED << "\"Not Signed\"" \
+	    	<< RESET << std::endl;
+	else
+		std::cout << "Form's _isTheFormSigned: " << GREEN << "\"Signed\"" \
+			<< RESET << std::endl;
+	std::cout << "Form's _requiredGrades: " << GREEN << form.getrequiredGrades() \
 	<< RESET << std::endl;
-	std::cout << "Form's _requiredGrades: " << GREEN << form.getGradeToSign() \
-	<< RESET << std::endl;
-	std::cout << "Form's _execGrades: " << GREEN << form.getGradeToExecute() \
+	std::cout << "Form's _execGrades: " << GREEN << form.getexecGrades() \
 		<< RESET << std::endl;
 	std::cout << "----------------------------------" << std::endl;
 	return (os);

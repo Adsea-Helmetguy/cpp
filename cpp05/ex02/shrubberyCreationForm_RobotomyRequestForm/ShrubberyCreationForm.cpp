@@ -28,9 +28,17 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy) 
 
 };
 
-ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationForm& form) : AForm(copy)
+ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationForm& form)
 {
-
+	if (this != &form)
+	{
+		//const _name, cannot be copied over
+		this->setBool(form.getBool());
+		std::cout << YELLOW << "Copy assignment(operator=) called" << RESET << std::endl;
+	}
+  else
+		std::cout << "DON'T DO ZAT! Don't self-assign!!!" << std::endl;
+	return (*this);
 };
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
@@ -99,3 +107,29 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor)
 
 	outfile.close();
 };
+
+
+
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+std::ostream&	operator<<(std::ostream& os, const ShrubberyCreationForm& form)
+{
+    std::cout << "printing all form's information: " << std::endl;
+    std::cout << "----------------------------------" << std::endl;
+    std::cout << "Form's _name: " << GREEN << form.getName() << RESET \
+        << std::endl;
+    if (form.getBool() == 0)
+        std::cout << "Form's _isTheFormSigned: " << RED << "\"Not Signed\"" \
+            << RESET << std::endl;
+    else
+        std::cout << "Form's _isTheFormSigned: " << GREEN << "\"Signed\"" \
+            << RESET << std::endl;
+    std::cout << "Form's _requiredGrades: " << GREEN << form.getrequiredGrades() \
+        << RESET << std::endl;
+	std::cout << "Form's _execGrades: " << GREEN << form.getexecGrades() \
+        << RESET << std::endl;
+	std::cout << "----------------------------------" << std::endl;
+	return (os);
+};
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------

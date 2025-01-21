@@ -63,12 +63,12 @@ bool			Form::getBool() const
 	return (this->_isTheFormSigned);
 };
 
-unsigned int	Form::getGradeToSign() const
+unsigned int	Form::getrequiredGrades() const
 {
 	return (this->_gradeToSign);
 };
 
-unsigned int	Form::getGradeToExecute() const
+unsigned int	Form::getexecGrades() const
 {
 	return (this->_gradeToExecute);
 };
@@ -171,9 +171,9 @@ std::ostream&	operator<<(std::ostream& os, const Form& form)
 	<< std::endl;
 	std::cout << "Form's _isTheFormSigned: " << GREEN << form.getBool() \
 	<< RESET << std::endl;
-	std::cout << "Form's _gradeToSign: " << GREEN << form.getGradeToSign() \
+	std::cout << "Form's _gradeToSign: " << GREEN << form.getrequiredGrades() \
 	<< RESET << std::endl;
-	std::cout << "Form's _gradeToExecute: " << GREEN << form.getGradeToExecute() \
+	std::cout << "Form's _gradeToExecute: " << GREEN << form.getexecGrades() \
 		<< RESET << std::endl;
 	std::cout << "----------------------------------" << std::endl;
 	return (os);

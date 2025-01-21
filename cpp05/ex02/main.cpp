@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AForm.hpp"
+#include "AForm_bureaucrat/AForm.hpp"
+#include "shrubberyCreationForm_RobotomyRequestForm/ShrubberyCreationForm.hpp"
 
 int	main()
 {
@@ -18,7 +19,9 @@ int	main()
 	{
 		std::cout << YELLOW << "----------------------------" \
 			<< RESET << std::endl;
-		
+		Bureaucrat a1;
+		ShrubberyCreationForm f1;
+		std::cout << f1 << std::endl;
 		std::cout << YELLOW << "----------------------------" \
 			<< RESET << std::endl;
 	}

@@ -46,13 +46,8 @@ class ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& form);	// copy assignment
 		~ShrubberyCreationForm();												// destructor
 
-		//getters
-		std::string		getName();
-		unsigned int	getrequiredGrades();
-		unsigned int	getexecGrades();
-
 		//create a file
-		ShrubberyCreationForm& execute(Bureaucrat const & executor);
+		void execute(Bureaucrat const & executor);
 };
 
 std::ostream& operator<<(std::ostream& os, const ShrubberyCreationForm& other);
