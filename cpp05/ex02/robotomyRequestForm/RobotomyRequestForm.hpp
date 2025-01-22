@@ -10,14 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-#define SHRUBBERYCREATIONFORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+#define ROBOTOMYREQUESTFORM_HPP
 
 
 # include <iostream>
 # include <fstream>//*new ex02* std::basic_ofstream
 # include <string>//std::string
 # include <exception>//std::exception, https://en.cppreference.com/w/cpp/header/exception
+# include <cstdlib>//for rand()
 
 # include "Bureaucrat/Bureaucrat.hpp"
 
@@ -32,23 +33,18 @@
 //                               Contact Class                                //
 // ************************************************************************** //
 
-class ShrubberyCreationForm : public AForm
+class RobotomyRequestForm : public AForm
 {
-	//private:
-	//	std::string		_name;
-	//	const unsigned int	_requiredGrades;
-	//	const unsigned int	_execGrades;
-	
 	public:
-		ShrubberyCreationForm();												// default constructor
-		ShrubberyCreationForm(const std::string& name);							// default constructor with name
-		ShrubberyCreationForm(const ShrubberyCreationForm& copy);				// copy constructor
-		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& form);	// copy assignment
-		~ShrubberyCreationForm();												// destructor
+		RobotomyRequestForm();												// default constructor
+		RobotomyRequestForm(const std::string& name);						// default constructor with name
+		RobotomyRequestForm(const RobotomyRequestForm& copy);				// copy constructor
+		RobotomyRequestForm& operator=(const RobotomyRequestForm& form);	// copy assignment
+		~RobotomyRequestForm();												// destructor
 
 		//create a file
-		void execute(Bureaucrat const & executor);
+		void	execute(Bureaucrat const & executor);
 };
 
-std::ostream& operator<<(std::ostream& os, const ShrubberyCreationForm& other);
+std::ostream& operator<<(std::ostream& os, const RobotomyRequestForm& other);
 #endif

@@ -36,7 +36,7 @@ class Bureaucrat
 	private:
 		const std::string	_name;
 		unsigned int		_grade;
-		bool				_formsigned;
+		//std::string			_race;
 
 	public:
 		Bureaucrat();					// default constructor
@@ -50,7 +50,6 @@ class Bureaucrat
 	//getters and setters:
 	std::string		getName() const;//const means not allow to change private value
 	unsigned int	getGrade() const;//const means not allow to change private value
-	bool			getFormsigned() const;
 //note: You will get a compilation error if u don't put const, because the compiler 
 // cannot guarantee that the function won't modify the object, 
 // and calling non-const functions on const objects is disallowed.

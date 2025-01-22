@@ -116,10 +116,6 @@ void	Bureaucrat::setGrade(int value)
 	this->_grade = value;
 };
 
-bool	Bureaucrat::getFormsigned() const
-{
-	return (this->_formsigned);
-};
 //increment && decrement
 //-----------------------------------------------------------------------
 void		Bureaucrat::incrementGrade()
@@ -247,7 +243,6 @@ void	Bureaucrat::signForm(AForm& form_tosign)
 	form_tosign.besigned(*this);
 	std::cout << GREEN << this->_name << " signed \"" \
 		<< form_tosign.getName() << "\"" << RESET << std::endl;
-	this->_formsigned = true;
 };
 
 //-----------------------------------------------------------------------
@@ -283,9 +278,12 @@ void	Bureaucrat::signForm(AForm& form_tosign)
 //-----------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& other)
 {
+	std::cout << "\n" << std::endl;
+	std::cout << "----------------------------------" << std::endl;
 	std::cout << other.getName() << ", bureaucrat grade " \
-	<< other.getGrade() << "." << std::endl;
+	<< YELLOW << other.getGrade() << RESET << "." << std::endl;
 	// write obj to stream
+	std::cout << "----------------------------------" << std::endl;
 	return (os);
 };
 //-----------------------------------------------------------------------

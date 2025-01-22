@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AFORM_HPP
-#define AFORM_HPP
+#ifndef PRESIDENTALPARDONFORM_HPP
+#define PRESIDENTALPARDONFORM_HPP
 
 # include <iostream>
 # include <string>//std::string
@@ -31,55 +31,18 @@ class Bureaucrat;
 //                               Contact Class                                //
 // ************************************************************************** //
 
-class Form
+class PresidentalPardonForm : public AForm
 {
-	private:
-		const std::string	_name;
-		bool				_isTheFormSigned;
-		const unsigned int	_gradeToSign;
-		const unsigned int	_gradeToExecute;
-
 	public:
-		Form();										// default constructor
-		Form(const std::string& name);				// default constructor with name
-		Form(const Form& copy);						// copy constructor
-		Form& operator=(const Form& copy);			// copy assignment
-		~Form();									// destructor
-	
-	//  -------------getters and setters-------------
-	const std::string	getName() const;
-	bool				getBool() const;
-	unsigned int		getrequiredGrades() const;
-	unsigned int		getexecGrades() const;
-	//  -------------getters and setters-------------
+		PresidentalPardonForm();
+		PresidentalPardonForm(const std::string& name);
+		PresidentalPardonForm(const PresidentalPardonForm& copy);
+		PresidentalPardonForm& operator=(const PresidentalPardonForm& form);
+		~PresidentalPardonForm();
 
-	//signFroms
-	void	besigned(const Bureaucrat& user);
-
-
-
-	class GradeTooHighException
-	{
-		private:
-			std::string	_msg;
-
-		public:
-			GradeTooHighException(const std::string& message);
-			virtual const char* what() const throw();
-			virtual ~GradeTooHighException() throw();
-	};
-	
-	class GradeTooLowException
-	{
-		private:
-			std::string	_msg;
-
-		public:
-			GradeTooLowException(const std::string& message);
-			virtual const char* what() const throw();
-			virtual ~GradeTooLowException() throw();
-	};
+		//create a file
+		void	execute(Bureaucrat const & executor);
 };
 
-std::ostream& operator<<(std::ostream& os, const Form& other);
+std::ostream& operator<<(std::ostream& os, const PresidentalPardonForm& other);
 #endif

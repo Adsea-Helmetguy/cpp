@@ -16,7 +16,7 @@
 AForm::AForm(unsigned int required, unsigned int exec)
 	: _name("Default Form Name"), _isTheFormSigned(false), _requiredGrades(required), _execGrades(exec)
 {
-	
+	std::cout << "AForm Created: " << GREEN << this->_name << RESET << std::endl;
 };
 
 AForm::AForm(const std::string& name, unsigned int required, unsigned int exec)
