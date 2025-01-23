@@ -18,7 +18,6 @@
 # include <exception>//std::exception, https://en.cppreference.com/w/cpp/header/exception
 
 # include "Bureaucrat/Bureaucrat.hpp"
-//# include "../robotomyRequestForm/RobotomyRequestForm.hpp"
 
 class Bureaucrat;
 
@@ -85,7 +84,6 @@ class AForm
 	//create a file
 	//  ----------------------------------------------
 	virtual void	execute(Bureaucrat const & executor) = 0;
-	//virtual void	executForm(AForm const & form) = 0;
 	//  ----------------------------------------------
 };
 

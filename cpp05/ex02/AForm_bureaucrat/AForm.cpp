@@ -79,8 +79,6 @@ unsigned int	AForm::getexecGrades() const
 {
 	return (this->_execGrades);
 };
-//     -------------others-------------
-
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 
@@ -139,6 +137,8 @@ void	AForm::besigned(const Bureaucrat& user)
 {
 	std::cout << YELLOW << "Checking if this form can be signed." \
 		<< RESET << std::endl;
+	std::cout << "User grade: " << user.getGrade() << std::endl;
+	std::cout << "RequiredGrades to sign: " << this->_requiredGrades << std::endl;
 	if (user.getGrade() > this->_requiredGrades)
 	{
 		throw GradeTooLowException("Grade too low to sign, \"FAIL\".");
@@ -146,16 +146,6 @@ void	AForm::besigned(const Bureaucrat& user)
 	}
 	std::cout << GREEN << "Congratz! You passed!" << RESET << std::endl;
 		this->_isTheFormSigned = true;
-/*
-	if (this->_isTheFormSigned == false)
-	{
-		std::cout << YELLOW << user.getName() << " couldn’t sign " \
-			<< this->_name << " because " << RED \
-			<< GradeTooLowException("Score too low").what() \
-			<< RESET << std::endl;
-		return ;
-	}
-*/
 };
 
 //-----------------------------------------------------------------------

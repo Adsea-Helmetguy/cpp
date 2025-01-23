@@ -23,43 +23,68 @@ int	main()
 		std::cout << YELLOW << "----------------------------" \
 			<< RESET << std::endl;
 
-		//Check if form is signed and correct exec value to do function.
+		//--Check if form is signed and correct exec value to do function.--
 		//1) Shrubbery
 		// -------------------------------------------------------
-		Bureaucrat a1(137);
+		Bureaucrat a1(146);
 		ShrubberyCreationForm f1("Shrub1");
 		std::cout << a1 << std::endl;
-		std::cout << f1 << std::endl;
-
-		a1.signForm(f1);
+		try
+		{
+			a1.signForm(f1);
+		}
+		catch(const AForm::GradeTooLowException& e)
+		{
+			std::cerr << "Custom Exception obtained: " << YELLOW \
+				<< e.what() << RESET << std::endl;
+		}
 		f1.execute(a1);
 		std::cout << YELLOW << "----------------------------\n\n" \
 			<< RESET << std::endl;
-		std::cout << "\n\n\n" << std::endl;
+		std::cout << f1 << std::endl;
+		std::cout << "\n\n\n\n\n\n\n\n\n" << std::endl;
 		// -------------------------------------------------------
 
 
 		//2) Robotomy
 		// -------------------------------------------------------
-		Bureaucrat a2(44);
+		Bureaucrat a2(88);
 		RobotomyRequestForm f2("Robotomy1");
 		std::cout << a2 << std::endl;
-		std::cout << f2 << std::endl;
-		a2.signForm(f2);
+		try
+		{
+			a2.signForm(f2);
+		}
+		catch(const AForm::GradeTooLowException& e)
+		{
+			std::cerr << "Custom Exception obtained: " << YELLOW \
+				<< e.what() << RESET << std::endl;
+		}
 		f2.execute(a2);
+		std::cout << f2 << std::endl;
+		std::cout << "\n\n\n\n\n\n\n\n\n" << std::endl;
 		// -------------------------------------------------------
 
 
 		//3) Presidental
 		// -------------------------------------------------------
-		Bureaucrat a3(44);
+		Bureaucrat a3(25);
 		PresidentalPardonForm f3("PresidentalPardon1");
 		std::cout << a3 << std::endl;
 		std::cout << f3 << std::endl;
-		a3.signForm(f3);
+		try
+		{
+			a3.signForm(f3);
+		}
+		catch(const AForm::GradeTooLowException& e)
+		{
+			std::cerr << "Custom Exception obtained: " << YELLOW \
+				<< e.what() << RESET << std::endl;
+		}
 		f3.execute(a3);
+		std::cout << f3 << std::endl;
+		std::cout << "\n\n\n\n\n\n\n\n\n" << std::endl;
 		// -------------------------------------------------------
-
 
 
 

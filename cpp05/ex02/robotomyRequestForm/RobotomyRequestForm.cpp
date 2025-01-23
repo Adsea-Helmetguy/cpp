@@ -53,9 +53,11 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor)
 {
     if (executor.getGrade() > 45 || this->getBool() != true)
     {
-        std::cout << "Sad but i won't let you execute order 66 for Robotomy dumbass" \
-            << std::endl;
-        return ;
+		std::cout << "Sad but i won't let you execute order 66 for Robotomy dumbass" \
+			<< std::endl;
+	   	std::cout << RED << executor.getName() << " failed to executeform: " \
+			<< this->getName() << RESET << std::endl;
+		return ;
     }
     std::cout << MAG << "*DRILL CLANK CLANK DRILL*" << RESET << std::endl;
     //to do 50% chance of robot:
@@ -67,7 +69,8 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor)
 
     //srand(time(0));
     random_number = rand();//you will need
-    std::cout << random_number << std::endl;
+    std::cout << YELLOW << "value of random_number: " << random_number % 2 \
+    	<< RESET << std::endl;
     if ((random_number % 2) == 0)
     {
         std::cout << YELLOW << "Unforunate, the robotomy failed, Race is set to \"Human\"." \

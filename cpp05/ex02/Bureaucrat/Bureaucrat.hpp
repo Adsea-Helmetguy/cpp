@@ -49,7 +49,7 @@ class Bureaucrat
 	
 	//getters and setters:
 	std::string		getName() const;//const means not allow to change private value
-	unsigned int	getGrade() const;//const means not allow to change private value
+	unsigned int	getGrade() const;
 //note: You will get a compilation error if u don't put const, because the compiler 
 // cannot guarantee that the function won't modify the object, 
 // and calling non-const functions on const objects is disallowed.
@@ -57,6 +57,8 @@ class Bureaucrat
 	void			incrementGrade();
 	void			decrementGrade();
 	void			signForm(AForm& form_tosign);
+	//new function added in ex02:
+	void	executeForm(AForm const & form);
 
 	//exception classes
 	class GradeTooHighException : public std::exception

@@ -47,12 +47,16 @@ PresidentalPardonForm::~PresidentalPardonForm()
 	std::cout << RED << "Destructor(form) Begins" << RESET << std::endl;
 };
 //-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 
 
 
 void	PresidentalPardonForm::execute(Bureaucrat const & executor)
 {
-
+	//Informs that <target> has been pardoned by Zaphod Beeblebrox
+	std::cout << YELLOW << "The target: \"" << GREEN << executor.getName() \
+		<< YELLOW << "has been pardoned by Zaphod Beeblebrox." \
+		<< RESET << std::endl;
 };
 
 
@@ -62,17 +66,21 @@ void	PresidentalPardonForm::execute(Bureaucrat const & executor)
 //-----------------------------------------------------------------------
 std::ostream&	operator<<(std::ostream& os, const PresidentalPardonForm& form)
 {
-	std::cout << "printing all form's information: " << std::endl;
-	std::cout << "----------------------------------" << std::endl;
-	std::cout << "Form's _name: " << GREEN << form.getName() << RESET \
-	<< std::endl;
-	std::cout << "Form's _isTheFormSigned: " << GREEN << form.getBool() \
-	<< RESET << std::endl;
-	std::cout << "Form's _gradeToSign: " << GREEN << form.getrequiredGrades() \
-	<< RESET << std::endl;
-	std::cout << "Form's _gradeToExecute: " << GREEN << form.getexecGrades() \
-		<< RESET << std::endl;
-	std::cout << "----------------------------------" << std::endl;
+    std::cout << "printing all form's information: " << std::endl;
+    std::cout << "----------------------------------" << std::endl;
+    std::cout << "Form's _name: " << GREEN << form.getName() << RESET \
+        << std::endl;
+    if (form.getBool() == 0)
+        std::cout << "Form's _isTheFormSigned: " << RED << "\"Not Signed\"" \
+            << RESET << std::endl;
+    else
+        std::cout << "Form's _isTheFormSigned: " << GREEN << "\"Signed\"" \
+            << RESET << std::endl;
+    std::cout << "Form's _requiredGrades: " << GREEN << form.getrequiredGrades() \
+        << RESET << std::endl;
+    std::cout << "Form's _execGrades: " << GREEN << form.getexecGrades() \
+        << RESET << std::endl;
+    std::cout << "----------------------------------" << std::endl;
 	return (os);
 };
 //-----------------------------------------------------------------------
