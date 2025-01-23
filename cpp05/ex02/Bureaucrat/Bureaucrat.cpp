@@ -251,6 +251,11 @@ void	Bureaucrat::signForm(AForm& form_tosign)
 void	Bureaucrat::executeForm(AForm const & form)
 {
 	//It must attempt to execute the form
+	if (this->getGrade() > form.getexecGrades())
+	{
+		throw GradeTooLowException("Grade too low to execute, \"FAIL\".");
+		return ;
+	}
 	std::cout << GREEN << this->getName() << " executed " \
 		<< form.getName() << RESET << std::endl;
 };

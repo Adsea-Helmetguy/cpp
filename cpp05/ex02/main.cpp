@@ -26,14 +26,15 @@ int	main()
 		//--Check if form is signed and correct exec value to do function.--
 		//1) Shrubbery
 		// -------------------------------------------------------
-		Bureaucrat a1(146);
+		Bureaucrat a1(137);
 		ShrubberyCreationForm f1("Shrub1");
 		std::cout << a1 << std::endl;
 		try
 		{
 			a1.signForm(f1);
+			a1.executeForm(f1);
 		}
-		catch(const AForm::GradeTooLowException& e)
+		catch(const std::exception & e)//yes u can make more than 1 catch
 		{
 			std::cerr << "Custom Exception obtained: " << YELLOW \
 				<< e.what() << RESET << std::endl;
@@ -48,14 +49,15 @@ int	main()
 
 		//2) Robotomy
 		// -------------------------------------------------------
-		Bureaucrat a2(88);
+		Bureaucrat a2(33);
 		RobotomyRequestForm f2("Robotomy1");
 		std::cout << a2 << std::endl;
 		try
 		{
 			a2.signForm(f2);
+			a2.executeForm(f2);
 		}
-		catch(const AForm::GradeTooLowException& e)
+		catch(const std::exception & e)
 		{
 			std::cerr << "Custom Exception obtained: " << YELLOW \
 				<< e.what() << RESET << std::endl;
@@ -71,12 +73,12 @@ int	main()
 		Bureaucrat a3(25);
 		PresidentalPardonForm f3("PresidentalPardon1");
 		std::cout << a3 << std::endl;
-		std::cout << f3 << std::endl;
 		try
 		{
 			a3.signForm(f3);
+			a3.executeForm(f3);
 		}
-		catch(const AForm::GradeTooLowException& e)
+		catch(const std::exception & e)
 		{
 			std::cerr << "Custom Exception obtained: " << YELLOW \
 				<< e.what() << RESET << std::endl;
@@ -85,9 +87,6 @@ int	main()
 		std::cout << f3 << std::endl;
 		std::cout << "\n\n\n\n\n\n\n\n\n" << std::endl;
 		// -------------------------------------------------------
-
-
-
 		std::cout << YELLOW << "----------------------------\n\n" \
 			<< RESET << std::endl;
 	}

@@ -12,7 +12,7 @@
 
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm(145, 137)
+RobotomyRequestForm::RobotomyRequestForm() : AForm(72, 45)
 {
 
 };
