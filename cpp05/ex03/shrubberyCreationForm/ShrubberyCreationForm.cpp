@@ -14,12 +14,14 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm(145, 137)
 {
-
+	std::cout << GREEN << "I AM NOW CREATING A Shrubbery." \
+		<< RESET << std::endl;
 };
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& name) : AForm(name, 145, 137)
 {
-
+	std::cout << GREEN << "I AM NOW CREATING A Shrubbery. " \
+		<< "WITH A NAME CALLED: " << RESET << name << std::endl;
 };
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy) : AForm(copy)
@@ -33,9 +35,8 @@ ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	{
 		//const _name, cannot be copied over
 		this->setBool(form.getBool());
-		std::cout << YELLOW \
-			<< "ShrubberyCreationForm Copy assignment(operator=) called" \
-			<< RESET << std::endl;
+		std::cout << YELLOW << "ShrubberyCreationForm Copy assignment(operator=) called" \
+            << RESET << std::endl;
 	}
     else
 		std::cout << "DON'T DO ZAT! Don't self-assign!!!" << std::endl;
@@ -44,8 +45,7 @@ ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-	std::cout << RED << "Destructor called for ShrubberyCreationForm" \
-		<< RESET << std::endl;
+	std::cout << RED << "Destructor called for ShrubberyCreationForm" << RESET << std::endl;
 };
 
 

@@ -1,4 +1,0 @@
-Managed to get signedform to be true inside bureaucrat when the function "signForm" 
-is true which gives bureaucrat the true value in private.
-
-tmr work on making the execute function work for the new classes!
