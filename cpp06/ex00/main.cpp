@@ -10,30 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Scalarfile/ScalarConverter.hpp"
+#include "scalarfile/ScalarConverter.hpp"
 
-//For each exercise,
-// the type conversion must be solved using one specific type of casting.
-int	main(int argc, char **argv)
+int	main()
 {
-	(void)argv;
-	if (argc != 2)
+	//Ensure ScalarConverter::convert
+	// is a static before contiuning.
+	std::cout << "Test Case 1 -char-" << std::endl;
 	{
-		std::cout << "\n\n----------------------------------------" \
-			<< std::endl;
-		std::cout << MAG \
-			<< "Please enter a char/ int/ float/ double value" \
-			<< " only. Like with \"./convert \'123.97\'\"." \
-			<< RESET << std::endl;
-		std::cout << "----------------------------------------\n\n" \
-			<< std::endl;
-		return (0);
+		ScalarConverter::convert("a");
 	}
-	std::cout << "\n\n----------------------------------------" \
-		<< std::endl;
-	std::cout << RED << "Testing test" << RESET << std::endl;
-	//ScalarConverter::convert(argv[1]);//
-	std::cout << "----------------------------------------\n\n" \
-		<< std::endl;
 	return (0);
 }
+
+//links used:
+/*
+https://faculty.cs.niu.edu/~winans/CS501/Notes/strings.html#:~:text=You%20can%20obtain%20the%20length,valid%20characters%20in%20the%20string.
+*/

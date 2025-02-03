@@ -16,76 +16,75 @@
 //-----------------------------------------------------------------------
 ScalarConverter::ScalarConverter()
 {
-
+    std::cout << "This doesn't do anything." << std::endl;
 };
 
 ScalarConverter::ScalarConverter(const ScalarConverter& copy)
 {
-	*this = copy;
+    *this = copy;
+    std::cout << "Why are you copying? It's empty~" << std::endl;
 };
 
 ScalarConverter&	ScalarConverter::operator=(const ScalarConverter& copy)
 {
-	if (*this == copy)
-	{
-		std::cout << "don't self assign.....but again nothing to copy...." \
-			<< std:endl;	
-	}
-	else
-		std::cout << "Tbh this is useless. Nothing was copied anyways." \
-			<< std:endl;
-	return (*this);
+    (void)copy;
+    std::cout << "Why copy assignment? Nothing here!~" << std::endl;
+    return (*this);
 };
 
 ScalarConverter::~ScalarConverter()
 {
-
+    std::cout << "This doesn't do anything." << std::endl;
 };
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 
-//if argv is valid literal, convert and print all them into 4 types.
-//For each exercise,
-// the type conversion must be solved using one specific type of casting.
-void	ScalarConverter::convert(const std::string& str)
+
+//const cause the value never changes here
+void    ScalarConverter::convert(const std::string& value)
 {
-	//what type is it?
-	//ScalarType(str);
+    std::cout << "----------------------" << std::endl;
+    std::cout << BLUE << "-ScalarConverter Start!!-" << RESET << std::endl;
+    
+    size_t  strlen = value.length();
+    //--Detect the type of value the string it passes
+    Scalar_value(value, strlen);
 
-//----------------------------------------------------------------------
-//----------------------------------------------------------------------
-	//=====char=====
-	size_t	length = str.size;// Get the string length
-	
-	if (length == 1)
-	{
-		if (str >= 32 && str <= 126)
-		{
-			std::cout << str << std::endl;
-		}
-		else
-		{
-			std::cout << "Non-displayable character (ASCII: " \
-				<< static_cast<int>(str) << ")" << std::endl;
-		}
-	}
+    //--Conver it from string to actual type!
+    //--Once you have the value of Scalar, convert it 3 more times!
+    //Scalar_type();
 
-	//=====int=====
-	int	input = 0;
-
-	input = atoi(str.c_str());
-	std::cout << "Converted to int: " << input << std::endl;
+    // --Then print all four values out in std::cout!
+    //Scalar_print();
+    std::cout << "----------------------" << std::endl;
 };
-//----------------------------------------------------------------------
-//----------------------------------------------------------------------
-
-
-//------- INDEX -------
-	size_t	index = 0;
-//---------------------
 
 
 
+std::ostream& operator<<(std::ostream& os, const ScalarConverter& other)
+{
+	std::cout << "printing all form's information: " << std::endl;
+	std::cout << "----------------------------------" << std::endl;
+    (void)other;
+/*
+	std::cout << "Form's _name: " << GREEN << form.getName() << RESET \
+	<< std::endl;
+	if (form.getBool() == 0)
+		std::cout << "Form's _isTheFormSigned: " << RED << "\"Not Signed\"" \
+	    	<< RESET << std::endl;
+	else
+		std::cout << "Form's _isTheFormSigned: " << GREEN << "\"Signed\"" \
+			<< RESET << std::endl;
+	std::cout << "Form's _requiredGrades: " << GREEN << form.getrequiredGrades() \
+	<< RESET << std::endl;
+	std::cout << "Form's _execGrades: " << GREEN << form.getexecGrades() \
+		<< RESET << std::endl;
+*/
+	std::cout << "----------------------------------" << std::endl;
+	return (os);
+};
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 
 
 

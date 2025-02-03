@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = convert
+NAME = scalar
 
 CXX = c++
 CXXFLAGS = -g -Wall -Werror -Wextra -std=c++98
@@ -22,8 +22,9 @@ INC_DIR = ./
 #	SOURCE                                                               */
 # ************************************************************************** */
 #List of SOURCE(SRC) files
-SRC_FILE_NAMES = main.cpp #\
-			#scalarfile/ScalarConverter.cpp 
+SRC_FILE_NAMES = main.cpp \
+			scalarfile/ScalarConverter.cpp \
+			scalarfile/Scalar_valuetype.cpp
 
 
 # ************************************************************************** */

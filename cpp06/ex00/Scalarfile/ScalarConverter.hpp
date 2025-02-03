@@ -14,10 +14,9 @@
 #define SCALARCONVERTER_HPP
 
 # include <iostream>
-# include <string>//std::string
+# include <string>//std::string && "<class>.size() /length();""
 # include <exception>//std::exception, https://en.cppreference.com/w/cpp/header/exception
 # include <cstdlib>//atoi() function to convert std::string to int
-
 
 # define RESET	"\033[0m"
 # define RED	"\033[31m"
@@ -32,16 +31,16 @@
 class ScalarConverter
 {
 	public:
-		ScalarConverter();												// default constructor
-		ScalarConverter(const ScalarConverter& copy);					// copy constructor
-		ScalarConverter& operator=(const ScalarConverter& copy);		// Copy assignment
-		~ScalarConverter();												// destructor
+		ScalarConverter();											// default constructor
+		ScalarConverter(const ScalarConverter& copy);				// copy constructor
+		ScalarConverter& operator=(const ScalarConverter& copy);	// Copy assignment
+		~ScalarConverter();											// destructor
 
-	//ex00 requirment. One static method.
-	//static, meaning a member function without instantiating the class.
-	static void	convert(const std::string& str);
-	
+	static void	convert(const std::string& value);
 };
+
+void	Scalar_value(const std::string& value, const size_t strlen);
+void	Scalar_type(const std::string& value);
 
 std::ostream& operator<<(std::ostream& os, const ScalarConverter& other);
 #endif
