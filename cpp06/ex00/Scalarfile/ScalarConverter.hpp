@@ -39,7 +39,7 @@ class ScalarConverter
 	static void	convert(const std::string& value);
 };
 
-void	Scalar_value(const std::string& value, const size_t strlen);
+std::string	Scalar_value(const std::string& value, const size_t strlen);
 void	Scalar_type(const std::string& value);
 
 std::ostream& operator<<(std::ostream& os, const ScalarConverter& other);

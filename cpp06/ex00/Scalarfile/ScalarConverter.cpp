@@ -16,25 +16,25 @@
 //-----------------------------------------------------------------------
 ScalarConverter::ScalarConverter()
 {
-    std::cout << "This doesn't do anything." << std::endl;
+	std::cout << "This doesn't do anything." << std::endl;
 };
 
 ScalarConverter::ScalarConverter(const ScalarConverter& copy)
 {
-    *this = copy;
-    std::cout << "Why are you copying? It's empty~" << std::endl;
+	*this = copy;
+	std::cout << "Why are you copying? It's empty~" << std::endl;
 };
 
 ScalarConverter&	ScalarConverter::operator=(const ScalarConverter& copy)
 {
-    (void)copy;
-    std::cout << "Why copy assignment? Nothing here!~" << std::endl;
-    return (*this);
+	(void)copy;
+	std::cout << "Why copy assignment? Nothing here!~" << std::endl;
+	return (*this);
 };
 
 ScalarConverter::~ScalarConverter()
 {
-    std::cout << "This doesn't do anything." << std::endl;
+	std::cout << "This doesn't do anything." << std::endl;
 };
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
@@ -43,20 +43,22 @@ ScalarConverter::~ScalarConverter()
 //const cause the value never changes here
 void    ScalarConverter::convert(const std::string& value)
 {
-    std::cout << "----------------------" << std::endl;
-    std::cout << BLUE << "-ScalarConverter Start!!-" << RESET << std::endl;
-    
-    size_t  strlen = value.length();
-    //--Detect the type of value the string it passes
-    Scalar_value(value, strlen);
+	size_t  strlen = value.length();
+	std::string	value_type = "What's my type?";
 
-    //--Conver it from string to actual type!
-    //--Once you have the value of Scalar, convert it 3 more times!
-    //Scalar_type();
+	std::cout << "----------------------" << std::endl;
+	std::cout << BLUE << "-ScalarConverter Start!!-" << RESET << std::endl;
+	value_type = Scalar_value(value, strlen);//--Detect the type of value the string it passes
 
-    // --Then print all four values out in std::cout!
-    //Scalar_print();
-    std::cout << "----------------------" << std::endl;
+	std::cout << "value_type: " << MAG << value_type << RESET << std::endl;
+	std::cout << BLUE << "**********************" << RESET << std::endl;
+	//--Convert it from string to actual type!
+	//--Once you have the value of Scalar, convert it 3 more times!
+	//Scalar_type();
+
+	// --Then print all four values out in std::cout!
+	//Scalar_print();
+	std::cout << "----------------------" << std::endl;
 };
 
 
@@ -65,7 +67,7 @@ std::ostream& operator<<(std::ostream& os, const ScalarConverter& other)
 {
 	std::cout << "printing all form's information: " << std::endl;
 	std::cout << "----------------------------------" << std::endl;
-    (void)other;
+	(void)other;
 /*
 	std::cout << "Form's _name: " << GREEN << form.getName() << RESET \
 	<< std::endl;

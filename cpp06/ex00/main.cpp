@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scalarfile/ScalarConverter.hpp"
+#include "Scalarfile/ScalarConverter.hpp"
 
 int	main()
 {
