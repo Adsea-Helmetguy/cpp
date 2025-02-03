@@ -10,68 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AForm_bureaucrat/AForm.hpp"
-#include "shrubberyCreationForm/ShrubberyCreationForm.hpp"
-#include "robotomyRequestForm/RobotomyRequestForm.hpp"
-#include "presidentalPardonForm/PresidentalPardonForm.hpp"
-#include "intern/Intern.hpp"
+#include "Scalarfile/ScalarConverter.hpp"
 
-int	main()
+//For each exercise,
+// the type conversion must be solved using one specific type of casting.
+int	main(int argc, char **argv)
 {
-	std::cout << MAG << "\n\n\nTEST 1" << RESET << std::endl;
+	(void)argv;
+	if (argc != 2)
 	{
-		Intern	someRandomIntern;
-		AForm*	rrf;
-
-		rrf = someRandomIntern.makeForm("robotomy request", "Bob");
-		std::cout << *rrf << std::endl;
-		delete rrf;
-		std::cout << "---------------------------------" << std::endl;
+		std::cout << "\n\n----------------------------------------" \
+			<< std::endl;
+		std::cout << MAG \
+			<< "Please enter a char/ int/ float/ double value" \
+			<< " only. Like with \"./convert \'123.97\'\"." \
+			<< RESET << std::endl;
+		std::cout << "----------------------------------------\n\n" \
+			<< std::endl;
+		return (0);
 	}
-
-	std::cout << MAG << "\n\n\nTEST 2" << RESET << std::endl;
-	{
-		Intern	someRandomIntern;
-		AForm*	rrf;
-
-		rrf = someRandomIntern.makeForm("shrubbery request", "Dwayn");
-		std::cout << *rrf << std::endl;
-		delete rrf;
-		std::cout << "---------------------------------" << std::endl;
-	}
-	
-	std::cout << MAG << "\n\n\nTEST 3" << RESET << std::endl;
-	{
-		Intern	someRandomIntern;
-		AForm*	rrf;
-
-		rrf = someRandomIntern.makeForm("presidental request", "Damn");
-		std::cout << *rrf << std::endl;
-		delete rrf;
-		std::cout << "---------------------------------" << std::endl;
-	}
-/*
-	std::cout << MAG << "\n\n\nTEST 4" << RESET << std::endl;
-	{
-		Intern	someRandomIntern;
-		AForm*	rrf;
-
-		rrf = someRandomIntern.makeForm("presidental request", "Damn");
-		try
-		{
-			rrf.signForm(f2);
-			rrf.executeForm(f2);
-		}
-		catch(const std::exception & e)
-		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		std::cout << *rrf << std::endl;
-		delete rrf;
-		std::cout << "---------------------------------" << std::endl;
-	}
-*/
+	std::cout << "\n\n----------------------------------------" \
+		<< std::endl;
+	std::cout << RED << "Testing test" << RESET << std::endl;
+	//ScalarConverter::convert(argv[1]);//
+	std::cout << "----------------------------------------\n\n" \
+		<< std::endl;
 	return (0);
 }
-

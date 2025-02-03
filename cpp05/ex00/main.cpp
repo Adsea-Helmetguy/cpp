@@ -16,6 +16,49 @@ int	main(void)
 {
 	std::cout << "\n\n" << std::endl;
 	std::cout << "-------------------------------" << std::endl;
+	std::cout << GREEN << "--PERSONAL TEST CASE--" << RESET << std::endl;
+	{
+		try
+		{
+			Bureaucrat b(160, "failing dude");
+		}
+		catch (const std::exception & e)
+		{
+			std::cerr << "Custom Exception obtained: " << YELLOW \
+				<< e.what() << RESET << std::endl;
+		}
+	}
+//---------------    ------------------   ------------------   ------------------
+//---------------    ------------------   ------------------   ------------------
+
+	std::cout << "-------------------------------" << std::endl;
+	std::cout << "\n\n\n" << std::endl;
+	std::cout << "-------------------------------" << std::endl;
+	std::cout << GREEN << "--PERSONAL TEST CASE 2--" << RESET << std::endl;
+	{
+		Bureaucrat *b = NULL;
+		try
+		{
+			b = new Bureaucrat(160, "failing dude");
+		}
+		catch (const std::exception & e)
+		{
+			std::cerr << "Custom Exception obtained: " << YELLOW \
+				<< e.what() << RESET << std::endl;
+		}
+		delete b;
+	}
+	std::cout << "-------------------------------" << std::endl;
+	std::cout << "\n\n\n" << std::endl;
+
+//---------------    ------------------   ------------------   ------------------
+//---------------    ------------------   ------------------   ------------------
+//
+//
+//
+
+	std::cout << "\n\n" << std::endl;
+	std::cout << "-------------------------------" << std::endl;
 	std::cout << GREEN << "--TEST CASE 1--" << RESET << std::endl;
 	{
 		try
@@ -25,7 +68,7 @@ int	main(void)
 		catch (const Bureaucrat::GradeTooHighException& e)
 		{
 			std::cerr << "Custom Exception obtained: " << YELLOW \
-			<< e.what() << RESET << std::endl;
+				<< e.what() << RESET << std::endl;
 		}
 	}
 	
@@ -49,10 +92,6 @@ int	main(void)
 
 
 
-	std::cout << BLUE << "Constructing" << RESET << std::endl;
-	Bureaucrat *a = new Bureaucrat();
-	std::cout << std::endl;
-
 
 
 
@@ -63,6 +102,10 @@ int	main(void)
 	std::cout << "-------------------------------" << std::endl;
 	std::cout << GREEN << "--TEST CASE 2--" << std::endl;
 	{
+		std::cout << BLUE << "Constructing" << RESET << std::endl;
+		Bureaucrat *a = new Bureaucrat();
+		std::cout << std::endl;
+		
 		std::cout << BLUE << "Testing" << RESET << std::endl;
 		std::cout << YELLOW << "checking address: " << RESET << a << std::endl;
 
@@ -75,11 +118,12 @@ int	main(void)
 			std::cerr << YELLOW << "Incrementing grade of " << a->getName() <<
 			" failed: " << e.what() << RESET << std::endl;
 		}
-		// catch(...)
-		// {
-		// 	std::cerr << "general issue found " << YELLOW
-		// 	<< e.what() << RESET << std::endl;
-		// }
+		catch (const std::exception & e)
+		{
+		 	std::cerr << "general issue found " << YELLOW
+		 	<< e.what() << RESET << std::endl;
+		}
+		delete a;
 	}
 	std::cout << "-------------------------------\n\n" << std::endl;
 	std::cout << "\n\n" << std::endl;
@@ -189,6 +233,12 @@ int	main(void)
 	std::cout << "-------------------------------\n\n" << std::endl;
 	std::cout << "\n\n" << std::endl;
 	std::cout << "-------------------------------------------------------" << std::endl;
+//
+//
+//
+//
+//
+//
 /*
 	std::cout << GREEN << "--TEST CASE 6--" << RESET << std::endl;
 	{

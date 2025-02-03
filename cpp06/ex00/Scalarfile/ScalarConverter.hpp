@@ -10,13 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALAR_HPP
-#define SCALAR_HPP
+#ifndef SCALARCONVERTER_HPP
+#define SCALARCONVERTER_HPP
 
 # include <iostream>
 # include <string>//std::string
 # include <exception>//std::exception, https://en.cppreference.com/w/cpp/header/exception
 # include <cstdlib>//atoi() function to convert std::string to int
+
 
 # define RESET	"\033[0m"
 # define RED	"\033[31m"
@@ -28,23 +29,20 @@
 //                               Contact Class                                //
 // ************************************************************************** //
 
-class Scalar
+class ScalarConverter
 {
-	private:
-		const std::string	_name;
-
 	public:
-		Scalar();								// default constructor
-		Scalar(const Scalar& copy);				// copy constructor
-		Scalar& operator=(const Scalar& copy);	// Copy assignment
-		~Scalar();								// destructor
+		ScalarConverter();												// default constructor
+		ScalarConverter(const ScalarConverter& copy);					// copy constructor
+		ScalarConverter& operator=(const ScalarConverter& copy);		// Copy assignment
+		~ScalarConverter();												// destructor
 
-	char	convert(std::string words);
-	int		convert(std::string integer);
-	float	convert(std::string float_num);
-	double	convert(std::string double_num);
+	//ex00 requirment. One static method.
+	//static, meaning a member function without instantiating the class.
+	static void	convert(const std::string& str);
+	
 };
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& other);
+std::ostream& operator<<(std::ostream& os, const ScalarConverter& other);
 #endif
 

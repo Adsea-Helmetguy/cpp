@@ -41,6 +41,12 @@ Bureaucrat::Bureaucrat(const Bureaucrat &copy)
 		<< GREEN << this->_name << YELLOW \
 		<< " with = " << GREEN << this->_grade \
 		<< YELLOW << " grade." << RESET << std::endl;
+	std::cout << YELLOW << "Checking grade if it's between 1-150" \
+		<< RESET << std::endl;
+	if (this->_grade < 1)
+		throw Bureaucrat::GradeTooHighException("_grade Cannot be HIGHER than 1.");
+	if (this->_grade > 150)
+		throw Bureaucrat::GradeTooLowException("_grade Cannot be lower than 150.");
 };
 
 Bureaucrat::Bureaucrat(int value) : _name("Default Bureaucrat"), _grade(value)
@@ -49,6 +55,12 @@ Bureaucrat::Bureaucrat(int value) : _name("Default Bureaucrat"), _grade(value)
 		<< GREEN << this->_name << YELLOW \
 		<< " with = " << GREEN << this->_grade \
 		<< YELLOW << " grade." << RESET << std::endl;
+	std::cout << YELLOW << "Checking grade if it's between 1-150" \
+		<< RESET << std::endl;
+	if (this->_grade < 1)
+		throw Bureaucrat::GradeTooHighException("_grade Cannot be HIGHER than 1.");
+	if (this->_grade > 150)
+		throw Bureaucrat::GradeTooLowException("_grade Cannot be lower than 150.");
 };
 
 Bureaucrat::Bureaucrat(int value, const std::string& name) : _name(name), _grade(value)
@@ -57,6 +69,12 @@ Bureaucrat::Bureaucrat(int value, const std::string& name) : _name(name), _grade
 		<< GREEN << this->_name << YELLOW \
 		<< " with = " << GREEN << this->_grade \
 		<< YELLOW << " grade." << RESET << std::endl;
+	std::cout << YELLOW << "Checking grade if it's between 1-150" \
+		<< RESET << std::endl;
+	if (this->_grade < 1)
+		throw Bureaucrat::GradeTooHighException("_grade Cannot be HIGHER than 1.");
+	if (this->_grade > 150)
+		throw Bureaucrat::GradeTooLowException("_grade Cannot be lower than 150.");
 };
 
 Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& copy)

@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = internship
+NAME = convert
 
 CXX = c++
 CXXFLAGS = -g -Wall -Werror -Wextra -std=c++98
@@ -22,8 +22,8 @@ INC_DIR = ./
 #	SOURCE                                                               */
 # ************************************************************************** */
 #List of SOURCE(SRC) files
-SRC_FILE_NAMES = main.cpp \
-			scalarfile/Scalar.cpp 
+SRC_FILE_NAMES = main.cpp #\
+			#scalarfile/ScalarConverter.cpp 
 
 
 # ************************************************************************** */
