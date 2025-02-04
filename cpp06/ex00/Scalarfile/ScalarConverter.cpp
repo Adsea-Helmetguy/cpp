@@ -47,17 +47,25 @@ void    ScalarConverter::convert(const std::string& value)
 	std::string	value_type = "What's my type?";
 
 	std::cout << "----------------------" << std::endl;
-	std::cout << BLUE << "-ScalarConverter Start!!-" << RESET << std::endl;
+	std::cout << YELLOW << "**********************" << RESET << std::endl;
+	std::cout << "-ScalarConverter Start!!-\n" << std::endl;
 	value_type = Scalar_value(value, strlen);//--Detect the type of value the string it passes
 
+	std::cout << "\nvalue: " << MAG << value << RESET << std::endl;
 	std::cout << "value_type: " << MAG << value_type << RESET << std::endl;
-	std::cout << BLUE << "**********************" << RESET << std::endl;
-	//--Convert it from string to actual type!
-	//--Once you have the value of Scalar, convert it 3 more times!
-	//Scalar_type();
+	std::cout << YELLOW << "**********************\n\n\n" << RESET << std::endl;
 
-	// --Then print all four values out in std::cout!
-	//Scalar_print();
+
+
+
+
+
+
+	std::cout << YELLOW << "**********************" << RESET << std::endl;
+	std::cout << "Coverting it to the type!\n" << std::endl;
+	//--Convert it from string to actual type & PRINT!--
+	Scalar_type(value, value_type);
+	std::cout << YELLOW << "**********************" << RESET << std::endl;
 	std::cout << "----------------------" << std::endl;
 };
 

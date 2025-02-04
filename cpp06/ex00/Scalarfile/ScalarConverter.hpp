@@ -40,7 +40,7 @@ class ScalarConverter
 };
 
 std::string	Scalar_value(const std::string& value, const size_t strlen);
-void	Scalar_type(const std::string& value);
+void	Scalar_type(const std::string& value, std::string value_type);
 
 std::ostream& operator<<(std::ostream& os, const ScalarConverter& other);
 #endif

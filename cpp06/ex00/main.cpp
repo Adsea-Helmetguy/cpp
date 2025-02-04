@@ -18,7 +18,7 @@ int	main()
 	// is a static before contiuning.
 	std::cout << "Test Case 1 -char-" << std::endl;
 	{
-		ScalarConverter::convert("a");
+		ScalarConverter::convert("-inff");
 	}
 	return (0);
 }
