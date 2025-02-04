@@ -12,13 +12,32 @@
 
 #include "ScalarConverter.hpp"
 
+//good link:
+//https://stackoverflow.com/questions/43810190/string-to-long-double-conversion-in-c98
 void    Scalar_typeFloat(const std::string& value)
 {
+	std::string	converted_value = value;
+	size_t	index = 0;
+
 	std::cout << GREEN << "testing if it comes here first" \
 		<< RESET << std::endl;
-	//change it to float value!!
-	
-};
+	if (!value.empty() && value[value.length() - 1] == 'f')
+	{
+		while (index < (value.length() - 1))
+		{
+			converted_value[index] = value[index];
+			std::cout << "value of converted_value[index]: " \
+				<< YELLOW << converted_value[index] \
+				<< RESET << std::endl;
+			index++;
+		}
+	}
+	std::stringstream ss(converted_value);//change it to float value!!
+	std::cout << MAG << ss << RESET << std::endl;
+	float floatValue;
+	ss >> floatValue;
+	std::cout << MAG << floatValue << "f" << RESET << std::endl;
+}
 
 void    Scalar_type(const std::string& value, std::string value_type)
 {
