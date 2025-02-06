@@ -41,7 +41,7 @@ static bool    Scalar_checkFloat(const std::string& value, const size_t strlen)
 				index_dot++;
 			index++;
 		}
-		if (index_dot == 1)
+		if (index_dot == 0 || index_dot == 1)
 		{
 			index = 0;
 			std::cout << "value of value[0]: " << GREEN << value[0] << RESET << std::endl;
@@ -59,7 +59,7 @@ static bool    Scalar_checkFloat(const std::string& value, const size_t strlen)
 				std::cout << "value of value[index]: " << GREEN << value[index] \
 					<< RESET << std::endl;
 			}
-			if (value[index] == 'f')
+			if (value[index] == 'f' && index == (strlen - 1))
 				return (true);
 		}
 	}
@@ -111,7 +111,7 @@ static bool    Scalar_checkInt(const std::string& value, const size_t strlen)
 	size_t	index = 0;
 
 	std::cout << "value of value[0]: " << GREEN << value[0] << RESET << std::endl;
-	if (value[0] == '-')
+	if ((value[0] == '-' || value[0] == '+') && strlen != 1)
 		index = 1;
 	while ((index < strlen) && (value[index] >= 48 && value[index] <= 57))
 		index++;
@@ -126,7 +126,7 @@ static bool    Scalar_checkChar(const std::string& value, const size_t strlen)
 
 	while (index < strlen)
 	{
-		if (value[index] < 127 || value[index] > 31)//Checking if ASCII char
+		if (value[index] > 31 && value[index] < 127)//Checking if ASCII char
 		{
 			std::cout << GREEN << "Value: " << RESET << value[index] \
 				<< GREEN " is part of ASCII printable" \

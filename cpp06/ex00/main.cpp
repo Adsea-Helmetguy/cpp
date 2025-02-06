@@ -12,13 +12,18 @@
 
 #include "Scalarfile/ScalarConverter.hpp"
 
-int	main()
+int	main(int argc, char **argv)
 {
 	//Ensure ScalarConverter::convert
 	// is a static before contiuning.
-	std::cout << "Test Case 1 -char-" << std::endl;
+	if (argc == 2)
 	{
-		ScalarConverter::convert("a");
+		std::cout << "Test Case 1 -char-" << std::endl;
+		{
+			std::cout << RED "ARGV[1]: \"" << argv[1] << "\"" << RESET << std::endl;
+			//if its empty please leave it DAMN IT
+			ScalarConverter::convert(argv[1]);
+		}
 	}
 	return (0);
 }

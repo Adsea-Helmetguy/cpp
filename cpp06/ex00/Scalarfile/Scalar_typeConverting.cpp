@@ -18,6 +18,7 @@ static void    Scalar_typeFloat(const std::string& value)
 {
 	std::string	converted_value = value;
 	float		floatValue;
+	std::string	charImpossible = "impossible";
 
 	if (!value.empty() && value[value.length() - 1] == 'f')
 		converted_value = value.substr(0, value.length() - 1);
@@ -27,13 +28,14 @@ static void    Scalar_typeFloat(const std::string& value)
 	std::cout << "FloatValue(" << YELLOW << &floatValue << RESET \
 		<< ") = " << MAG << floatValue << "f" << RESET << std::endl;
 
-
-
-
-
 	//--Once you have the value of Scalar, convert it 3 more times!--
 	//--Then print all four values out in std::cout!
-	//Scalar_print();
+	//create a function called: contains_pseudo_literals()
+	//if (charValue == "-inf" || charValue == "+inf" || charValue == "nanf")
+	/*
+	stuff happens
+	*/
+	printValue_float(floatValue, charImpossible);
 };
 
 static void    Scalar_typeDouble(const std::string& value)
@@ -42,20 +44,16 @@ static void    Scalar_typeDouble(const std::string& value)
 	double		doubleValue;
 
 	if (!value.empty() && value[value.length() - 1] == 'f')
-		converted_value = value.substr(0, value.length() - 1);
+		converted_value = value.substr(0, value.length());
 	std::stringstream ss(converted_value);//change it to float value!!
 	std::cout << "ss(" << YELLOW << ss << RESET << ")" << std::endl;
 	ss >> doubleValue;
 	std::cout << "doubleValue(" << YELLOW << &doubleValue << RESET \
 		<< ") = " << MAG << doubleValue << RESET << std::endl;
 
-
-
-
-
 	//--Once you have the value of Scalar, convert it 3 more times!--
 	//--Then print all four values out in std::cout!
-	//Scalar_print();
+	//printValue_double(doubleValue, charImpossible);
 };
 
 //don't forget about intMAX and intMIN
@@ -63,10 +61,13 @@ static void    Scalar_typeInt(const std::string& value)
 {
 	std::string	converted_value = value;
 	size_t		index = 0;
-	int		intValue;
+	long		intValue;
+	std::string	charImpossible = "impossible";
 
 	if (!value.empty() && value[value.length() - 1] == 'f')
 	{
+		if (value[index] == '-' || value[index] == '+')
+			index++;
 		while (index < value.length() && (value[index] >= 48 && value[index] <= 57))
 			index++;
 		if (index == value.length())
@@ -78,13 +79,9 @@ static void    Scalar_typeInt(const std::string& value)
 	std::cout << "intValue(" << YELLOW << &intValue << RESET \
 		<< ") = " << MAG << intValue << RESET << std::endl;
 
-
-
-
-
 	//--Once you have the value of Scalar, convert it 3 more times!--
 	//--Then print all four values out in std::cout!
-	//Scalar_print();
+	printValue_int(intValue, charImpossible);
 };
 
 //https://www.geeksforgeeks.org/convert-string-char-array-cpp/
@@ -99,6 +96,7 @@ static void    Scalar_typeChar(const std::string& value)
 	strcpy(charValue, value.c_str());
 	std::cout << "strcpy charValue: " << MAG << charValue \
 		<< RESET << std::endl;
+	
 	//--Once you have the value of Scalar, convert it 3 more times!--
 	//--Then print all four values out in std::cout!
 	printValue_char(index, charValue, charImpossible);
@@ -136,3 +134,8 @@ void    Scalar_type(const std::string& value, std::string value_type)
 	//Scalar_print();
 };
 
+//links to defend:
+/*
+--human reads 1.f--
+https://stackoverflow.com/questions/26100753/what-does-1-f-mean
+*/
