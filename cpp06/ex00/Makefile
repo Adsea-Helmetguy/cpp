@@ -25,7 +25,8 @@ INC_DIR = ./
 SRC_FILE_NAMES = main.cpp \
 			Scalarfile/ScalarConverter.cpp \
 			Scalarfile/Scalar_valuetype.cpp \
-			Scalarfile/Scalar_typeConverting.cpp
+			Scalarfile/Scalar_typeConverting.cpp \
+			Scalarfile/Scalar_printvalue.cpp
 
 
 # ************************************************************************** */

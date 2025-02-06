@@ -31,7 +31,7 @@ static bool    Scalar_checkFloat(const std::string& value, const size_t strlen)
 	size_t	index = 0;
 	size_t	index_dot = 0;
 
-	if (value == "-inff" || value == "inff" || value == "nanf")
+	if (value == "-inff" || value == "+inff" || value == "nanf")
 		return (true);
 	if (value[strlen - 1] == 'f')
 	{
@@ -45,18 +45,20 @@ static bool    Scalar_checkFloat(const std::string& value, const size_t strlen)
 		{
 			index = 0;
 			std::cout << "value of value[0]: " << GREEN << value[0] << RESET << std::endl;
-			if (value[0] == '-')
+			if (value[0] == '-' || value[0] == '+')
 				index = 1;
 			while ((index < strlen) && (value[index] >= 48 && value[index] <= 57))
 			{
 				index++;
 				if (value[index] == '.')
+				{
+					std::cout << "value of value[index]: " << GREEN \
+						<< value[index] << RESET << std::endl;
 					index++;
+				}
 				std::cout << "value of value[index]: " << GREEN << value[index] \
 					<< RESET << std::endl;
 			}
-			std::cout << "value of value[index]: " << GREEN << value[index] \
-					<< RESET << std::endl;
 			if (value[index] == 'f')
 				return (true);
 		}
@@ -69,7 +71,7 @@ static bool    Scalar_checkDouble(const std::string& value, const size_t strlen)
 	size_t	index = 0;
 	size_t	index_dot = 0;
 
-	if (value == "-inf" || value == "inf" || value == "nan")
+	if (value == "-inf" || value == "+inf" || value == "nan")
 		return (true);
 	if (value[strlen - 1] != 'f')
 	{
@@ -83,18 +85,20 @@ static bool    Scalar_checkDouble(const std::string& value, const size_t strlen)
 		{
 			index = 0;
 			std::cout << "value of value[0]: " << GREEN << value[0] << RESET << std::endl;
-			if (value[0] == '-')
+			if (value[0] == '-' || value[0] == '+')
 				index = 1;
 			while ((index < strlen) && (value[index] >= 48 && value[index] <= 57))
 			{
 				index++;
 				if (value[index] == '.')
+				{
+					std::cout << "value of value[index]: " << GREEN \
+						<< value[index] << RESET << std::endl;
 					index++;
+				}
 				std::cout << "value of value[index]: " << GREEN << value[index] \
 					<< RESET << std::endl;
 			}
-			std::cout << "value of value[index]: " << GREEN << value[index] \
-					<< RESET << std::endl;
 			if (index == strlen)
 				return (true);
 		}
@@ -110,9 +114,7 @@ static bool    Scalar_checkInt(const std::string& value, const size_t strlen)
 	if (value[0] == '-')
 		index = 1;
 	while ((index < strlen) && (value[index] >= 48 && value[index] <= 57))
-	{
 		index++;
-	}
 	if (index == strlen)
 		return (true);
 	return (false);
