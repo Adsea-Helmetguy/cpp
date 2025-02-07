@@ -16,12 +16,18 @@ int	main(int argc, char **argv)
 {
 	//Ensure ScalarConverter::convert
 	// is a static before contiuning.
+	std::cout << "Program start! Checking if ./scalar has arguements" << std::endl;
 	if (argc == 2)
 	{
 		std::cout << "Test Case 1 -char-" << std::endl;
 		{
-			std::cout << RED "ARGV[1]: \"" << argv[1] << "\"" << RESET << std::endl;
+			std::cout << "ARGV[1]: \"" << argv[1] << "\"" << std::endl;
 			//if its empty please leave it DAMN IT
+			if (!argv[1][0])
+			{
+				std::cout << RED << "String empty, trying to test me?" << RESET << std::endl;
+				return (0);
+			}
 			ScalarConverter::convert(argv[1]);
 		}
 	}

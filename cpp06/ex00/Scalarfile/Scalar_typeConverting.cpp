@@ -12,6 +12,27 @@
 
 #include "ScalarConverter.hpp"
 
+static bool	float_pseudo_literals(const std::string& value)
+{
+	std::cout << "Changing value float literals to value" << std::endl;
+	if (value == "-inff" || value == "+inff" || value == "inff" || value == "nanf")
+	{
+		return (true);
+	}
+	return (false);
+};
+
+/*
+static bool	double_pseudo_literals(const std::string& value)
+{
+	std::cout << "Changing value double literals to value" << std::endl;
+	if (value == "-inf" || value == "+inf" || value == "nan")
+	{
+		return (true);
+	}
+	return (false);
+};
+*/
 //good link:
 //https://stackoverflow.com/questions/43810190/string-to-long-double-conversion-in-c98
 static void    Scalar_typeFloat(const std::string& value)
@@ -20,14 +41,25 @@ static void    Scalar_typeFloat(const std::string& value)
 	float		floatValue;
 	std::string	charImpossible = "impossible";
 
-	if (!value.empty() && value[value.length() - 1] == 'f')
-		converted_value = value.substr(0, value.length() - 1);
-	std::stringstream ss(converted_value);//change it to float value!!
-	std::cout << "ss(" << YELLOW << ss << RESET << ")" << std::endl;
-	ss >> floatValue;
-	std::cout << "FloatValue(" << YELLOW << &floatValue << RESET \
-		<< ") = " << MAG << floatValue << "f" << RESET << std::endl;
-
+	if (float_pseudo_literals(value) == false)
+	{
+		if (!value.empty() && value[value.length() - 1] == 'f')
+			converted_value = value.substr(0, value.length() - 1);
+		std::stringstream ss(converted_value);//change it to float value!!
+		std::cout << "ss(" << YELLOW << ss << RESET << ")" << std::endl;
+		ss >> floatValue;
+		std::cout << "FloatValue(" << YELLOW << &floatValue << RESET \
+			<< ") = " << MAG << floatValue << "f" << RESET << std::endl;
+	}
+	else
+	{
+		if (value == "+inff" || value == "inff")
+			floatValue = std::numeric_limits<float>::infinity();
+		else if (value == "-inff")
+			floatValue = -std::numeric_limits<float>::infinity();
+		else
+			floatValue = std::numeric_limits<float>::quiet_NaN();
+	}
 	//--Once you have the value of Scalar, convert it 3 more times!--
 	//--Then print all four values out in std::cout!
 	//create a function called: contains_pseudo_literals()
@@ -38,6 +70,10 @@ static void    Scalar_typeFloat(const std::string& value)
 	printValue_float(floatValue, charImpossible);
 };
 
+// std::cout << "Max float: " << std::numeric_limits<float>::max() << std::endl;
+// std::cout << "Min positive float: " << std::numeric_limits<float>::min() << std::endl;
+// std::cout << "Float infinity: " << std::numeric_limits<float>::infinity() << std::endl;
+// std::cout << "double NaNF: " << std::numeric_limits<double>::quiet_NaN() << std::endl;
 static void    Scalar_typeDouble(const std::string& value)
 {
 	std::string	converted_value = value;

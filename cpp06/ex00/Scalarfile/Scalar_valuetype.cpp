@@ -31,7 +31,7 @@ static bool    Scalar_checkFloat(const std::string& value, const size_t strlen)
 	size_t	index = 0;
 	size_t	index_dot = 0;
 
-	if (value == "-inff" || value == "+inff" || value == "nanf")
+	if (value == "-inff" || value == "+inff" || value == "inff" || value == "nanf")
 		return (true);
 	if (value[strlen - 1] == 'f')
 	{
@@ -71,7 +71,7 @@ static bool    Scalar_checkDouble(const std::string& value, const size_t strlen)
 	size_t	index = 0;
 	size_t	index_dot = 0;
 
-	if (value == "-inf" || value == "+inf" || value == "nan")
+	if (value == "-inf" || value == "+inf" || value == "inf" || value == "nan")
 		return (true);
 	if (value[strlen - 1] != 'f')
 	{

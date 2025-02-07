@@ -21,8 +21,8 @@
 //static bool	contains_pseudo_literals()
 //{
 /*
-(charValue == "-inff" || charValue == "+inff" || charValue == "nan"\
-|| charValue == "-inf" || charValue == "+inf" || charValue == "nanf" )
+(charValue == "-inff" || charValue == "+inff" || charValue == "nanf"\
+|| charValue == "-inf" || charValue == "+inf" || charValue == "nan" )
 	if (std::strcmp(charValue, "-inff") == 0 || std::strcmp(charValue, "+inff") == 0 \
 		|| std::strcmp(charValue, "nanf") == 0)
 	{
@@ -47,15 +47,17 @@
 void	printValue_float(float floatValue, std::string& charImpossible)
 {
 	//char		charValue = static_cast<char>(floatValue);
-	//int		floatValue = static_cast<int>(floatValue);
-	//double	doubleValue = static_cast<double>(floatValue);
+	//int			intValue = static_cast<int>(floatValue);
+	//double		doubleValue = static_cast<double>(floatValue);
 
-	//if (floatValue std::numeric_limits<float>::infinity()
-	std::cout << "Max float: " << std::numeric_limits<float>::max() << std::endl;
-	std::cout << "Min positive float: " << std::numeric_limits<float>::min() << std::endl;
-	std::cout << "Float infinity: " << std::numeric_limits<float>::infinity() << std::endl;
-	std::cout << "double NaNF: " << std::numeric_limits<double>::quiet_NaN() << std::endl;
-	
+	//You need to use the std::isnan() function from <cmath> to check if a floating-point value is NaN:
+	std::cout << "Float value: " << GREEN << floatValue << RESET << std::endl;
+	if (floatValue == std::numeric_limits<float>::infinity() 
+		|| floatValue == -std::numeric_limits<float>::infinity()
+		|| floatValue == std::numeric_limits<float>::quiet_NaN())
+	{
+		std::cout << RED << "--floatValue (+/-)inff or nanf--" << RESET << std::endl;
+	}
 	
 	(void)floatValue;
 	(void)charImpossible;
@@ -126,7 +128,7 @@ void	printValue_char(size_t index, char *charValue, std::string& charImpossible)
 		std::cout << "int: " << GREEN << intValue \
 			<< RESET << std::endl;
 		//-----------------------------------------------
-		std::cout << std::fixed << std::setprecision(10);
+		std::cout << std::fixed << std::setprecision(1);
 		//-----------------------------------------------
 		std::cout << "float: " << GREEN << floatValue \
 			<< "f" << RESET << std::endl;
