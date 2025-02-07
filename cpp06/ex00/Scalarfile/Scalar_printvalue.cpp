@@ -87,8 +87,69 @@ void	printValue_float(float floatValue, std::string& charImpossible)
 				<< RESET << std::endl;
 		}
 
-//https://stackoverflow.com/questions/23420783/convert-int-max-to-float-and-then-back-to-integer
-//issue about converting float to int
+		if (intValue > INT_MAX || intValue < INT_MIN)
+		{
+			std::cout << "int: " << RED << charImpossible \
+				<< RESET << std::endl;
+		}
+		else
+		{
+			std::cout << "int: " << GREEN << intValue \
+				<< RESET << std::endl;
+		}
+		//-----------------------------------------------
+		std::cout << std::fixed << std::setprecision(1);
+		//-----------------------------------------------
+		std::cout << "float: " << GREEN << floatValue \
+			<< "f" << RESET << std::endl;
+		std::cout << "double: " << GREEN << doubleValue \
+			<< RESET << std::endl;
+	}
+};
+
+void	printValue_double(double doubleValue, std::string& charImpossible)
+{
+	char		charValue = static_cast<char>(doubleValue);
+	long		intValue = static_cast<long>(doubleValue);
+	float		floatValue = static_cast<float>(doubleValue);
+
+	//You need to use the std::isnan() function from <cmath> to check if floatValue is NaN:
+	if (doubleValue == std::numeric_limits<double>::infinity() 
+		|| doubleValue == -std::numeric_limits<double>::infinity()
+		|| std::isnan(doubleValue))
+	{
+		std::cout << RED << "--doubleValue (+/-)inf or nan--" \
+			<< RESET << std::endl;
+		std::cout << "char: " << RED << charImpossible \
+			<< RESET << std::endl;
+		std::cout << "int: " << RED << charImpossible \
+			<< RESET << std::endl;
+		//-----------------------------------------------
+		std::cout << std::fixed << std::setprecision(1);
+		//-----------------------------------------------
+		std::cout << "float: " << RED << floatValue \
+			<< "f" << RESET << std::endl;
+		std::cout << "double: " << RED << doubleValue \
+			<< RESET << std::endl;
+	}
+	else
+	{
+		if (doubleValue >= 32.0 && doubleValue <= 126.0)
+		{
+			std::cout << "char: " << GREEN << charValue \
+				<< RESET << std::endl;
+		}
+		else if (doubleValue >= 0.0 && doubleValue <= 127.0)
+		{
+			std::cout << "char: " << GREEN << "Non displayable" \
+				<< RESET << std::endl;
+		}
+		else
+		{
+			std::cout << "char: " << RED << charImpossible \
+				<< RESET << std::endl;
+		}
+
 		if (intValue > INT_MAX || intValue < INT_MIN)
 		{
 			std::cout << "int: " << RED << charImpossible \

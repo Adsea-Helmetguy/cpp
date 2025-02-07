@@ -22,7 +22,6 @@ static bool	float_pseudo_literals(const std::string& value)
 	return (false);
 };
 
-/*
 static bool	double_pseudo_literals(const std::string& value)
 {
 	std::cout << "Changing value double literals to value" << std::endl;
@@ -32,7 +31,7 @@ static bool	double_pseudo_literals(const std::string& value)
 	}
 	return (false);
 };
-*/
+
 //good link:
 //https://stackoverflow.com/questions/43810190/string-to-long-double-conversion-in-c98
 static void    Scalar_typeFloat(const std::string& value)
@@ -76,9 +75,10 @@ static void    Scalar_typeDouble(const std::string& value)
 {
 	std::string	converted_value = value;
 	double		doubleValue;
+	std::string	charImpossible = "impossible";
 
-//	if (double_pseudo_literals(value) == false)
-//	{
+	if (double_pseudo_literals(value) == false)
+	{
 		if (!value.empty() && value[value.length() - 1] == 'f')
 			converted_value = value.substr(0, value.length());
 		std::stringstream ss(converted_value);//change it to float value!!
@@ -86,8 +86,7 @@ static void    Scalar_typeDouble(const std::string& value)
 		ss >> doubleValue;
 		std::cout << "doubleValue(" << YELLOW << &doubleValue << RESET \
 			<< ") = " << MAG << doubleValue << RESET << std::endl;
-//	}
-/*
+	}
 	else
 	{
 		if (value == "+inf" || value == "inf")
@@ -100,7 +99,6 @@ static void    Scalar_typeDouble(const std::string& value)
 	//--Once you have the value of Scalar, convert it 3 more times!--
 	//--Then print all four values out in std::cout!
 	printValue_double(doubleValue, charImpossible);
-*/
 };
 
 //don't forget about intMAX and intMIN
