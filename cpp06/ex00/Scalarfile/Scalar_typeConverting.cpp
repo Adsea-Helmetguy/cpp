@@ -26,7 +26,7 @@ static bool	float_pseudo_literals(const std::string& value)
 static bool	double_pseudo_literals(const std::string& value)
 {
 	std::cout << "Changing value double literals to value" << std::endl;
-	if (value == "-inf" || value == "+inf" || value == "nan")
+	if (value == "-inf" || value == "+inf" || value == "inf" || value == "nan")
 	{
 		return (true);
 	}
@@ -43,8 +43,6 @@ static void    Scalar_typeFloat(const std::string& value)
 
 	if (float_pseudo_literals(value) == false)
 	{
-		if (!value.empty() && value[value.length() - 1] == 'f')
-			converted_value = value.substr(0, value.length() - 1);
 		std::stringstream ss(converted_value);//change it to float value!!
 		std::cout << "ss(" << YELLOW << ss << RESET << ")" << std::endl;
 		ss >> floatValue;
@@ -79,17 +77,30 @@ static void    Scalar_typeDouble(const std::string& value)
 	std::string	converted_value = value;
 	double		doubleValue;
 
-	if (!value.empty() && value[value.length() - 1] == 'f')
-		converted_value = value.substr(0, value.length());
-	std::stringstream ss(converted_value);//change it to float value!!
-	std::cout << "ss(" << YELLOW << ss << RESET << ")" << std::endl;
-	ss >> doubleValue;
-	std::cout << "doubleValue(" << YELLOW << &doubleValue << RESET \
-		<< ") = " << MAG << doubleValue << RESET << std::endl;
-
+//	if (double_pseudo_literals(value) == false)
+//	{
+		if (!value.empty() && value[value.length() - 1] == 'f')
+			converted_value = value.substr(0, value.length());
+		std::stringstream ss(converted_value);//change it to float value!!
+		std::cout << "ss(" << YELLOW << ss << RESET << ")" << std::endl;
+		ss >> doubleValue;
+		std::cout << "doubleValue(" << YELLOW << &doubleValue << RESET \
+			<< ") = " << MAG << doubleValue << RESET << std::endl;
+//	}
+/*
+	else
+	{
+		if (value == "+inf" || value == "inf")
+			doubleValue = std::numeric_limits<double>::infinity();
+		else if (value == "-inf")
+			doubleValue = -std::numeric_limits<double>::infinity();
+		else
+			doubleValue = std::numeric_limits<double>::quiet_NaN();
+	}
 	//--Once you have the value of Scalar, convert it 3 more times!--
 	//--Then print all four values out in std::cout!
-	//printValue_double(doubleValue, charImpossible);
+	printValue_double(doubleValue, charImpossible);
+*/
 };
 
 //don't forget about intMAX and intMIN

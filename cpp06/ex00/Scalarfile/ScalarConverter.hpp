@@ -22,6 +22,7 @@
 # include <limits.h>//INT_MIN/MAX
 # include <limits>
 # include <cfloat>//for floats min/max, infinityf and nanf
+# include <cmath>// for std::isnan() to check for float value "nan"
 
 # define RESET	"\033[0m"
 # define RED	"\033[31m"
