@@ -57,14 +57,7 @@ static void    Scalar_typeFloat(const std::string& value)
 		else
 			floatValue = std::numeric_limits<float>::quiet_NaN();
 	}
-	//--Once you have the value of Scalar, convert it 3 more times!--
-	//--Then print all four values out in std::cout!
-	//create a function called: contains_pseudo_literals()
-	//if (charValue == "-inf" || charValue == "+inf" || charValue == "nanf")
-	/*
-	stuff happens
-	*/
-	printValue_float(floatValue, charImpossible);
+	printValue_float(floatValue, charImpossible, value);
 };
 
 // std::cout << "Max float: " << std::numeric_limits<float>::max() << std::endl;
@@ -98,7 +91,7 @@ static void    Scalar_typeDouble(const std::string& value)
 	}
 	//--Once you have the value of Scalar, convert it 3 more times!--
 	//--Then print all four values out in std::cout!
-	printValue_double(doubleValue, charImpossible);
+	printValue_double(doubleValue, charImpossible, value);
 };
 
 //don't forget about intMAX and intMIN

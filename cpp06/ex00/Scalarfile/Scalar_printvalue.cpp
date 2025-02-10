@@ -12,106 +12,61 @@
 
 #include "ScalarConverter.hpp"
 
-//These are for printing
-	//Scalar_typeChar(value, strlen);
-	//Scalar_typeInt(value, strlen);
-	//Scalar_typeFloat(value, strlen);
-	//Scalar_typeDouble(value, strlen);
-
-//static bool	contains_pseudo_literals()
-//{
-/*
-(charValue == "-inff" || charValue == "+inff" || charValue == "nanf"\
-|| charValue == "-inf" || charValue == "+inf" || charValue == "nan" )
-	if (std::strcmp(charValue, "-inff") == 0 || std::strcmp(charValue, "+inff") == 0 \
-		|| std::strcmp(charValue, "nanf") == 0)
-	{
-		std::cout << "char: " << RED << charImpossible << RESET << std::endl;
-		std::cout << "int: " << RED << charImpossible << RESET << std::endl;
-		std::cout << "float: " << RED << charValue << "f" << RESET << std::endl;
-		std::cout << "double: " << RED << charValue << RESET << std::endl;
-	}
-	else if (std::strcmp(charValue, "-inf") == 0 || std::strcmp(charValue, "+inf") == 0 \
-		|| std::strcmp(charValue, "nan") == 0)
-	{
-		std::cout << "char: " << RED << charImpossible << RESET << std::endl;
-		std::cout << "int: " << RED << charImpossible << RESET << std::endl;
-		std::cout << "float: " << RED << charValue << "f" << RESET << std::endl;
-		std::cout << "double: " << RED << charValue << RESET << std::endl;
-	}
-	else 
-*/
-//};
-//std::cout << "Double NaN: " << std::numeric_limits<double>::quiet_NaN() << std::endl;
-
-void	printValue_float(float floatValue, std::string& charImpossible)
+void	printValue_float(float floatValue, std::string& charImpossible, const std::string& value)
 {
 	char		charValue = static_cast<char>(floatValue);
 	long		intValue = static_cast<long>(floatValue);
 	double		doubleValue = static_cast<double>(floatValue);
+	size_t		index_dot = 0;
+	size_t		strlen = value.length();
 
-	//You need to use the std::isnan() function from <cmath> to check if floatValue is NaN:
+	//You need to use the std::isnan() function from <cmath> to check if floatValue is NaN:oo
 	if (floatValue == std::numeric_limits<float>::infinity() 
 		|| floatValue == -std::numeric_limits<float>::infinity()
 		|| std::isnan(floatValue))
 	{
-		std::cout << RED << "--floatValue (+/-)inff or nanf--" \
-			<< RESET << std::endl;
-		std::cout << "char: " << RED << charImpossible \
-			<< RESET << std::endl;
-		std::cout << "int: " << RED << charImpossible \
-			<< RESET << std::endl;
+		std::cout << RED << "--floatValue (+/-)inff or nanf--" << RESET << std::endl;
+		std::cout << "char: " << RED << charImpossible << RESET << std::endl;
+		std::cout << "int: " << RED << charImpossible << RESET << std::endl;
 		//-----------------------------------------------
 		std::cout << std::fixed << std::setprecision(1);
 		//-----------------------------------------------
-		std::cout << "float: " << RED << floatValue \
-			<< "f" << RESET << std::endl;
-		std::cout << "double: " << RED << doubleValue \
-			<< RESET << std::endl;
+		std::cout << "float: " << RED << floatValue << "f" << RESET << std::endl;
+		std::cout << "double: " << RED << doubleValue << RESET << std::endl;
 	}
 	else
 	{
 		if (floatValue >= 32.0f && floatValue <= 126.0f)
-		{
-			std::cout << "char: " << GREEN << charValue \
-				<< RESET << std::endl;
-		}
+			std::cout << "char: " << GREEN << charValue << RESET << std::endl;
 		else if (floatValue >= 0.0f && floatValue <= 127.0f)
-		{
-			std::cout << "char: " << GREEN << "Non displayable" \
-				<< RESET << std::endl;
-		}
+			std::cout << "char: " << GREEN << "Non displayable" << RESET << std::endl;
 		else
-		{
-			std::cout << "char: " << RED << charImpossible \
-				<< RESET << std::endl;
-		}
-
+			std::cout << "char: " << RED << charImpossible << RESET << std::endl;
 		if (intValue > INT_MAX || intValue < INT_MIN)
-		{
-			std::cout << "int: " << RED << charImpossible \
-				<< RESET << std::endl;
-		}
+			std::cout << "int: " << RED << charImpossible << RESET << std::endl;
 		else
-		{
-			std::cout << "int: " << GREEN << intValue \
-				<< RESET << std::endl;
-		}
-		//-----------------------------------------------
-		std::cout << std::fixed << std::setprecision(1);
-		//-----------------------------------------------
-		std::cout << "float: " << GREEN << floatValue \
-			<< "f" << RESET << std::endl;
-		std::cout << "double: " << GREEN << doubleValue \
-			<< RESET << std::endl;
+			std::cout << "int: " << GREEN << intValue << RESET << std::endl;
+		//-----------------------------------------------------------------------
+		//-----------------------------------------------------------------------
+		while (value[index_dot] != '.')
+				index_dot++;
+		if (value[index_dot + 1] && value[index_dot + 1] != 'f')
+			index_dot++;
+		std::cout << std::fixed << std::setprecision((strlen - 1) - index_dot);
+		//-----------------------------------------------------------------------
+		//-----------------------------------------------------------------------
+		std::cout << "float: " << GREEN << floatValue << "f" << RESET << std::endl;
+		std::cout << "double: " << GREEN << doubleValue << RESET << std::endl;
 	}
 };
 
-void	printValue_double(double doubleValue, std::string& charImpossible)
+void	printValue_double(double doubleValue, std::string& charImpossible, const std::string& value)
 {
 	char		charValue = static_cast<char>(doubleValue);
 	long		intValue = static_cast<long>(doubleValue);
 	float		floatValue = static_cast<float>(doubleValue);
+	size_t		index_dot = 0;
+	size_t		strlen = value.length();
 
 	//You need to use the std::isnan() function from <cmath> to check if floatValue is NaN:
 	if (doubleValue == std::numeric_limits<double>::infinity() 
@@ -124,6 +79,7 @@ void	printValue_double(double doubleValue, std::string& charImpossible)
 			<< RESET << std::endl;
 		std::cout << "int: " << RED << charImpossible \
 			<< RESET << std::endl;
+		
 		//-----------------------------------------------
 		std::cout << std::fixed << std::setprecision(1);
 		//-----------------------------------------------
@@ -160,9 +116,13 @@ void	printValue_double(double doubleValue, std::string& charImpossible)
 			std::cout << "int: " << GREEN << intValue \
 				<< RESET << std::endl;
 		}
-		//-----------------------------------------------
-		std::cout << std::fixed << std::setprecision(1);
-		//-----------------------------------------------
+		//-----------------------------------------------------------------------
+		//-----------------------------------------------------------------------
+		while (value[index_dot] != '.')
+				index_dot++;
+		std::cout << std::fixed << std::setprecision((strlen) - index_dot);
+		//-----------------------------------------------------------------------
+		//-----------------------------------------------------------------------
 		std::cout << "float: " << GREEN << floatValue \
 			<< "f" << RESET << std::endl;
 		std::cout << "double: " << GREEN << doubleValue \
