@@ -15,7 +15,17 @@
 int	main(void)
 {
     {
+	srand(time(0));
 
+	//------------------------------------
+	Base *ptr = generate();
+	//Base &ref = *ptr;
+	identify(ptr);//this should print either 'A', 'B' Or 'C'
+	identify(*ptr);//prints it's address....i think. if not use below:
+	//identify(ref);
+	//------------------------------------
+	
+	delete ptr; // Avoid memory leak
     }
     return (0);
 }

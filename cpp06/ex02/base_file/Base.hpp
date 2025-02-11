@@ -15,6 +15,8 @@
 
 # include <iostream>
 # include <string>//std::string && "<class>.size() /length();""
+# include <cstdlib>//For rand() && srand()
+# include <ctime>//For time()
 
 # define RT	"\033[0m"
 # define RED	"\033[31m"
@@ -29,11 +31,20 @@
 class Base
 {
 	public:
-		Base();										// default constructor
-		Base(const Base& copy);					// copy constructor
-		Base& operator=(const Base& copy);		// Copy assignment
-		virtual ~Base();							// destructor
+		Base();					// default constructor
+		Base(const Base& copy);			// copy constructor
+		Base& operator=(const Base& copy);	// Copy assignment
+		virtual ~Base();			// destructor
 };
+
+class A : public Base{};
+class B : public Base{};
+class C : public Base{};
+
+//Random Generator A/B/C return (Base pointer);
+Base *generate(void);
+void identify(Base* p);
+void identify(Base& p);
 
 //std::ostream& operator<<(std::ostream& os, const Base& other);
 #endif
