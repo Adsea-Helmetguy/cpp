@@ -17,6 +17,7 @@
 # include <string>//std::string && "<class>.size() /length();""
 # include <cstdlib>//For rand() && srand()
 # include <ctime>//For time()
+# include <exception>//std::exception
 
 # define RT	"\033[0m"
 # define RED	"\033[31m"
