@@ -15,6 +15,7 @@
 int	main(void)
 {
 	std::cout << "\n\n" << std::endl;
+	std::cout << "Ex00" << std::endl;
 	std::cout << "-------------------------------" << std::endl;
 	std::cout << GREEN << "--PERSONAL TEST CASE--" << RESET << std::endl;
 	{
@@ -25,11 +26,23 @@ int	main(void)
 		catch (const std::exception & e)
 		{
 			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
+				<< RED << e.what() << RESET << std::endl;
 		}
 	}
-//---------------    ------------------   ------------------   ------------------
-//---------------    ------------------   ------------------   ------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	std::cout << "-------------------------------" << std::endl;
 	std::cout << "\n\n\n" << std::endl;
@@ -44,20 +57,30 @@ int	main(void)
 		catch (const std::exception & e)
 		{
 			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
+				<< RED << e.what() << RESET << std::endl;
 		}
-		delete b;
+		if (b)
+		{
+			delete b;
+		}
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	std::cout << "-------------------------------" << std::endl;
-	std::cout << "\n\n\n" << std::endl;
-
-//---------------    ------------------   ------------------   ------------------
-//---------------    ------------------   ------------------   ------------------
-//
-//
-//
-
-	std::cout << "\n\n" << std::endl;
+	std::cout << "\n\n\n\n\n" << std::endl;
 	std::cout << "-------------------------------" << std::endl;
 	std::cout << GREEN << "--TEST CASE 1--" << RESET << std::endl;
 	{
@@ -68,7 +91,7 @@ int	main(void)
 		catch (const Bureaucrat::GradeTooHighException& e)
 		{
 			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
+				<< RED << e.what() << RESET << std::endl;
 		}
 	}
 	
@@ -80,10 +103,10 @@ int	main(void)
 		catch (const Bureaucrat::GradeTooLowException& e)
 		{
 			std::cerr << "Custom Exception obtained: " << YELLOW \
-			<< e.what() << RESET << std::endl;
+				<< RED << e.what() << RESET << std::endl;
 		}
 	}
-	std::cout << "-------------------------------\n\n" << std::endl;
+	
 
 
 
@@ -98,7 +121,8 @@ int	main(void)
 
 
 
-
+	std::cout << "-------------------------------" << std::endl;
+	std::cout << "\n\n\n\n\n" << std::endl;
 	std::cout << "-------------------------------" << std::endl;
 	std::cout << GREEN << "--TEST CASE 2--" << std::endl;
 	{
@@ -116,27 +140,24 @@ int	main(void)
 		catch(Bureaucrat::GradeTooHighException &e)
 		{
 			std::cerr << YELLOW << "Incrementing grade of " << a->getName() <<
-			" failed: " << e.what() << RESET << std::endl;
+			" failed: " << RED << e.what() << RESET << std::endl;
 		}
 		catch (const std::exception & e)
 		{
 		 	std::cerr << "general issue found " << YELLOW
-		 	<< e.what() << RESET << std::endl;
+		 	<< RED << e.what() << RESET << std::endl;
 		}
 		delete a;
 	}
-	std::cout << "-------------------------------\n\n" << std::endl;
-	std::cout << "\n\n" << std::endl;
 	
-	std::cout << "-------------------------------------------------------" << std::endl;
-	std::cout << GREEN << "--TEST CASE 3--" << RESET << std::endl;
+	std::cout << GREEN << "\n\n--TEST CASE 2.5(part1)--" << std::endl;
 	{
-		std::cout << std::endl;
 		std::cout << BLUE << "Constructing" << RESET << std::endl;
-		Bureaucrat *a = new Bureaucrat(1);
+		Bureaucrat *a = new Bureaucrat(150);
 		std::cout << std::endl;
-		std::cout << BLUE << "Testing\033[0m" << RESET << std::endl;
-		std::cout << a << std::endl;
+		
+		std::cout << BLUE << "Testing" << RESET << std::endl;
+		std::cout << YELLOW << "checking address: " << RESET << a << std::endl;
 
 		try
 		{
@@ -145,10 +166,24 @@ int	main(void)
 		catch(Bureaucrat::GradeTooLowException &e)
 		{
 			std::cerr << YELLOW << "Decrementing grade of " << a->getName() <<
-			" failed: " << e.what() << RESET << std::endl;
+			" failed: " << RED << e.what() << RESET << std::endl;
 		}
-
-		std::cout << a << std::endl;
+		catch (const std::exception & e)
+		{
+		 	std::cerr << "general issue found " << YELLOW
+		 	<< RED << e.what() << RESET << std::endl;
+		}
+		delete a;
+	}
+	
+	std::cout << GREEN << "\n\n--TEST CASE 2.5(part2)--" << std::endl;
+	{
+		std::cout << BLUE << "Constructing" << RESET << std::endl;
+		Bureaucrat *a = new Bureaucrat(1);
+		std::cout << std::endl;
+		
+		std::cout << BLUE << "Testing" << RESET << std::endl;
+		std::cout << YELLOW << "checking address: " << RESET << a << std::endl;
 
 		try
 		{
@@ -157,10 +192,60 @@ int	main(void)
 		catch(Bureaucrat::GradeTooHighException &e)
 		{
 			std::cerr << YELLOW << "Incrementing grade of " << a->getName() <<
-			" failed: " << e.what() << RESET << std::endl;
+			" failed: " << RED << e.what() << RESET << std::endl;
+		}
+		catch (const std::exception & e)
+		{
+		 	std::cerr << "general issue found " << YELLOW
+		 	<< RED << e.what() << RESET << std::endl;
+		}
+		delete a;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	std::cout << "-------------------------------" << std::endl;
+	std::cout << "\n\n\n\n\n" << std::endl;
+	std::cout << "-------------------------------" << std::endl;
+	std::cout << GREEN << "--TEST CASE 3--" << RESET << std::endl;
+	{
+		std::cout << std::endl;
+		std::cout << BLUE << "Constructing" << RESET << std::endl;
+		Bureaucrat *a = new Bureaucrat(1);
+		std::cout << std::endl;
+		std::cout << BLUE << "Testing start" << RESET << std::endl;
+		std::cout << "Address: " << BLUE << a << RESET \
+			<< "\n\tValue = " << BLUE << *a << RESET << std::endl;
+
+		try
+		{
+			a->decrementGrade();
+		}
+		catch(Bureaucrat::GradeTooLowException &e)
+		{
+			std::cerr << YELLOW << "Decrementing grade of " << a->getName() <<
+			" failed: " << RED << e.what() << RESET << std::endl;
+		}
+		catch (const std::exception & e)
+		{
+		 	std::cerr << "general issue found " << YELLOW
+		 	<< RED << e.what() << RESET << std::endl;
 		}
 
-		std::cout << a << std::endl;
+		std::cout << YELLOW << "Results after decrement->" << RESET << std::endl;
+		std::cout << "Address: " << BLUE << a << RESET \
+			<< "\n\tValue = " << BLUE << *a << RESET << std::endl;
 
 		try
 		{
@@ -169,16 +254,55 @@ int	main(void)
 		catch(Bureaucrat::GradeTooHighException &e)
 		{
 			std::cerr << YELLOW << "Incrementing grade of " << a->getName() <<
-			" failed: " << e.what() << RESET << std::endl;
+			" failed: " << RED << e.what() << RESET << std::endl;
+		}
+		catch (const std::exception & e)
+		{
+		 	std::cerr << "general issue found " << YELLOW
+		 	<< RED << e.what() << RESET << std::endl;
+		}
+
+		std::cout << YELLOW << "Results after increment->" << RESET << std::endl;
+		std::cout << "Address: " << BLUE << a << RESET \
+			<< "\n\tValue = " << BLUE << *a << RESET << std::endl;
+
+		try
+		{
+			a->incrementGrade();
+		}
+		catch(Bureaucrat::GradeTooHighException &e)
+		{
+			std::cerr << YELLOW << "Incrementing grade of " << a->getName() <<
+			" failed: " << RED << e.what() << RESET << std::endl;
+		}
+		catch (const std::exception & e)
+		{
+		 	std::cerr << "general issue found " << YELLOW
+		 	<< RED << e.what() << RESET << std::endl;
 		}
 
 		std::cout << a << std::endl;
 		std::cout << BLUE << "Deconstructing" << RESET << std::endl;
 		delete a;
 	}
-	std::cout << "-------------------------------\n\n" << std::endl;
-	std::cout << "\n\n" << std::endl;
-	std::cout << "-------------------------------------------------------" << std::endl;
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	std::cout << "-------------------------------" << std::endl;
+	std::cout << "\n\n\n\n\n" << std::endl;
+	std::cout << "-------------------------------" << std::endl;
 	std::cout << GREEN << "--TEST CASE 4--" << RESET << std::endl;
 	{
 		std::cout << std::endl;
@@ -191,8 +315,13 @@ int	main(void)
 		}
 		catch(Bureaucrat::GradeTooHighException &e)
 		{
-			std::cerr  << YELLOW << "Constructing default failed: " <<
-			e.what() << RESET << std::endl;
+			std::cerr  << YELLOW << "Constructing default failed: " \
+			<< RED << e.what() << RESET << std::endl;
+		}
+		catch (const std::exception & e)
+		{
+		 	std::cerr << "general issue found " << YELLOW
+		 	<< RED << e.what() << RESET << std::endl;
 		}
 
 		if (a != NULL)
@@ -204,13 +333,28 @@ int	main(void)
 		}
 
 	}
-	std::cout << "-------------------------------\n\n" << std::endl;
-	std::cout << "\n\n" << std::endl;
-	std::cout << "-------------------------------------------------------" << std::endl;
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	std::cout << "-------------------------------" << std::endl;
+	std::cout << "\n\n\n\n\n" << std::endl;
+	std::cout << "-------------------------------" << std::endl;
 	std::cout << GREEN << "--TEST CASE 5--" << RESET << std::endl;
 	{
 		std::cout << std::endl;
-		std::cout << "\033[34mConstructing\033[0m" << std::endl;
+		std::cout << BLUE << "Constructing" << RESET << std::endl;
 		Bureaucrat *a = NULL;
 
 		try
@@ -219,8 +363,13 @@ int	main(void)
 		}
 		catch(Bureaucrat::GradeTooLowException &e)
 		{
-			std::cerr  << YELLOW << "Constructing default failed: " <<
-			e.what() << RESET << std::endl;
+			std::cerr  << YELLOW << "Constructing default failed: " \
+			<< RED << e.what() << RESET << std::endl;
+		}
+		catch (const std::exception & e)
+		{
+		 	std::cerr << "general issue found " << YELLOW
+		 	<< RED << e.what() << RESET << std::endl;
 		}
 
 		if (a != NULL)
@@ -230,48 +379,23 @@ int	main(void)
 			delete a;
 		}
 	}
-	std::cout << "-------------------------------\n\n" << std::endl;
-	std::cout << "\n\n" << std::endl;
-	std::cout << "-------------------------------------------------------" << std::endl;
-//
-//
-//
-//
-//
-//
-/*
-	std::cout << GREEN << "--TEST CASE 6--" << RESET << std::endl;
-	{
-		std::cout << std::endl;
-		std::cout << "\033[34mConstructing\033[0m" << std::endl;
-		Bureaucrat *a = new Bureaucrat("Peter", 120);
-		std::cout << std::endl;
+	
 
-		std::cout << "\033[34mTesting a\033[0m" << std::endl;
-		std::cout << a;
 
-		a->decrementGrade();
 
-		std::cout << a;
-		std::cout << std::endl;
 
-		std::cout << "\033[34mConstructing b\033[0m" << std::endl;
-		Bureaucrat *b = new Bureaucrat(*a);
-		std::cout << std::endl;
 
-		std::cout << "\033[34mDeconstructing a\033[0m" << std::endl;
-		delete a;
-		std::cout << std::endl;
 
-		std::cout << "\033[34mTesting b\033[0m" << std::endl;
-		std::cout << b;
-		b->decrementGrade();
-		std::cout << b;
-		std::cout << std::endl;
 
-		std::cout << "\033[34mDeconstructing b\033[0m" << std::endl;
-		delete b;
-	}
-*/
+
+
+
+
+
+
+
+	std::cout << "-------------------------------" << std::endl;
+	std::cout << "\n\n\n\n\n" << std::endl;
+	std::cout << "-------------------------------" << std::endl;
 	return (0);
 }

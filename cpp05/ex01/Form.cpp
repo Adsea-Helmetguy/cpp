@@ -45,7 +45,8 @@ Form&	Form::operator=(const Form& copy)
 
 Form::~Form()
 {
-	std::cout << RED << "Destructor(form) Begins" << RESET << std::endl;
+	std::cout << RED << "Form_Destructor: \"" << YELLOW \
+		<< this->_name << RED << "\" done" << RESET << std::endl;
 };
 //-----------------------------------------------------------------------
 
@@ -109,12 +110,14 @@ const char*	Form::GradeTooLowException::what() const throw()
 
 Form::GradeTooHighException::~GradeTooHighException() throw()
 {
-	std::cout << RED << "Destructor form (GradeTooHigh)" << RESET << std::endl;
+	std::cout << RED << "Destructor for (" << YELLOW << "Form::" << RESET \
+		<< RED << "GradeTooHighException)" << RESET << std::endl;
 };
 
 Form::GradeTooLowException::~GradeTooLowException() throw()
 {
-	std::cout << RED << "Destructor form (GradeTooLow)" << RESET << std::endl;
+	std::cout << RED << "Destructor for (" << YELLOW << "Form::" << RESET \
+		<< RED << "GradeTooLowException)" << RESET << std::endl;
 };
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------

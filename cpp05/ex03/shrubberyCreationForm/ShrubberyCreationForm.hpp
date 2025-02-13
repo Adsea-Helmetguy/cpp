@@ -19,7 +19,7 @@
 # include <string>//std::string
 # include <exception>//std::exception, https://en.cppreference.com/w/cpp/header/exception
 
-# include "Bureaucrat/Bureaucrat.hpp"
+# include "../Bureaucrat/Bureaucrat.hpp"
 
 
 # define RESET	"\033[0m"

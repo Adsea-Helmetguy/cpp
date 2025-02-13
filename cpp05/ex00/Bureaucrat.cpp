@@ -61,6 +61,7 @@ Bureaucrat::Bureaucrat(int value) : _name("Default Bureaucrat"), _grade(value)
 		throw Bureaucrat::GradeTooHighException("_grade Cannot be HIGHER than 1.");
 	if (this->_grade > 150)
 		throw Bureaucrat::GradeTooLowException("_grade Cannot be lower than 150.");
+	std::cout << GREEN << "YEY it's within 1-150 value!" << RESET << std::endl;
 };
 
 Bureaucrat::Bureaucrat(int value, const std::string& name) : _name(name), _grade(value)
@@ -75,6 +76,7 @@ Bureaucrat::Bureaucrat(int value, const std::string& name) : _name(name), _grade
 		throw Bureaucrat::GradeTooHighException("_grade Cannot be HIGHER than 1.");
 	if (this->_grade > 150)
 		throw Bureaucrat::GradeTooLowException("_grade Cannot be lower than 150.");
+	std::cout << GREEN << "YEY it's within 1-150 value!" << RESET << std::endl;
 };
 
 Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& copy)
@@ -92,7 +94,8 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& copy)
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << RED << "Destructor(time) Begins" << RESET << std::endl;
+	std::cout << RED << "Destructor: \"" << YELLOW \
+		<< this->_name << RED << "\" done" << RESET << std::endl;
 };
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
@@ -171,9 +174,6 @@ void		Bureaucrat::decrementGrade()
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
 Bureaucrat::GradeTooHighException::GradeTooHighException(const std::string& message) : _msg(message)
 {
 };
@@ -181,9 +181,6 @@ Bureaucrat::GradeTooHighException::GradeTooHighException(const std::string& mess
 Bureaucrat::GradeTooLowException::GradeTooLowException(const std::string& message) : _msg(message)
 {
 };
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 
@@ -222,14 +219,15 @@ const char*	Bureaucrat::GradeTooLowException::what() const throw()
 };
 
 //Destructors happening here
+//The throw() specifier indicates that these destructors do not throw exceptions
 Bureaucrat::GradeTooHighException::~GradeTooHighException() throw()
 {
-	std::cout << RED << "Destructor for (GradeTooHigh)" << RESET << std::endl;
+	std::cout << RED << "Destructor for (GradeTooHighException)" << RESET << std::endl;
 };
 
 Bureaucrat::GradeTooLowException::~GradeTooLowException() throw()
 {
-	std::cout << RED << "Destructor for (GradeTooLow)" << RESET << std::endl;
+	std::cout << RED << "Destructor for (GradeTooLowException)" << RESET << std::endl;
 };
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------

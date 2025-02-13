@@ -59,10 +59,7 @@ class Bureaucrat
 		public:
 			GradeTooHighException(const std::string& message);
 			virtual const char* what() const throw();
-			//virtual | const char* | what() | const | throw;//throw here means 
-			//u can't make what() throw an exception.
-			//note, the const here ("const" throw) means u 
-			//are not allowed to change the class of what();
+			//refer to notion for const throw() meaning;
 			virtual ~GradeTooHighException() throw();
 			 
 	};

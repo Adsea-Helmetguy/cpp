@@ -31,8 +31,8 @@ int	main()
 		std::cout << a1 << std::endl;
 		try
 		{
-			a1.signForm(f1);
-			a1.executeForm(f1);
+			a1.signAForm(f1);
+			a1.executeAForm(f1);
 		}
 		catch(const std::exception & e)//yes u can make more than 1 catch
 		{
@@ -54,8 +54,8 @@ int	main()
 		std::cout << a2 << std::endl;
 		try
 		{
-			a2.signForm(f2);
-			a2.executeForm(f2);
+			a2.signAForm(f2);
+			a2.executeAForm(f2);
 		}
 		catch(const std::exception & e)
 		{
@@ -75,8 +75,8 @@ int	main()
 		std::cout << a3 << std::endl;
 		try
 		{
-			a3.signForm(f3);
-			a3.executeForm(f3);
+			a3.signAForm(f3);
+			a3.executeAForm(f3);
 		}
 		catch(const std::exception & e)
 		{

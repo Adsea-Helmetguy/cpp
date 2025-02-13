@@ -23,7 +23,7 @@
 # define BLUE    "\033[34m"
 # define GREEN   "\033[32m"
 
-# include "AForm_bureaucrat/AForm.hpp"
+# include "../AForm_bureaucrat/AForm.hpp"
 
 class AForm;
 
