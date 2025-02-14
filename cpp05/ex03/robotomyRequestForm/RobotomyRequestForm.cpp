@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlow <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,14 +14,12 @@
 
 RobotomyRequestForm::RobotomyRequestForm() : AForm(72, 45)
 {
-	std::cout << GREEN << "I AM NOW CREATING A ROBO." \
-		<< RESET << std::endl;
+
 };
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& name) : AForm(name, 72, 45)
 {
-	std::cout << GREEN << "I AM NOW CREATING A ROBO. " \
-		<< "WITH A NAME CALLED: " << RESET << name << std::endl;
+
 };
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy) : AForm(copy)
@@ -45,7 +43,7 @@ RobotomyRequestForm&    RobotomyRequestForm::operator=(const RobotomyRequestForm
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
-	std::cout << RED << "Destructor called for RobotomyRequestForm" << RESET << std::endl;
+	std::cout << RED << "Destructor(RobotomyRequestForm) Begins" << RESET << std::endl;
 };
 
 

@@ -44,7 +44,7 @@ PresidentalPardonForm&	PresidentalPardonForm::operator=(const PresidentalPardonF
 
 PresidentalPardonForm::~PresidentalPardonForm()
 {
-	std::cout << RED << "Destructor(form) Begins" << RESET << std::endl;
+	std::cout << RED << "Destructor(PresidentalPardonForm) Begins" << RESET << std::endl;
 };
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
@@ -55,7 +55,7 @@ void	PresidentalPardonForm::execute(Bureaucrat const & executor)
 {
 	//Informs that <target> has been pardoned by Zaphod Beeblebrox
 	std::cout << YELLOW << "The target: \"" << GREEN << executor.getName() \
-		<< YELLOW << "has been pardoned by Zaphod Beeblebrox." \
+		<< YELLOW << "\" has been pardoned by Zaphod Beeblebrox." \
 		<< RESET << std::endl;
 };
 

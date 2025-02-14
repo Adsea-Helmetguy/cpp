@@ -138,14 +138,52 @@ int	main()
 		std::cout << YELLOW << "----------------------------" \
 			<< RESET << std::endl;
 		std::cout << GREEN << "Constructing new Bureaucrat" << RESET << std::endl;
-		Bureaucrat a1(69, "Billy");
-		Bureaucrat a2(88, "Keith");
-		Bureaucrat a3(99, "Jim boy");
+		Bureaucrat a1(149, "Billy");
+		Bureaucrat a2(149, "Keith");
+		Bureaucrat a3(149, "Jim boy");
 		Form f2;
 		try
 		{
 			a1.signForm(f2);
+		}
+		catch(const Form::GradeTooHighException& e)
+		{
+			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
+				<< e.what() << RESET << std::endl;
+		}
+		catch(const Form::GradeTooLowException& e)
+		{
+			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
+				<< e.what() << RESET << std::endl;
+		}
+		catch (const std::exception & e)
+		{
+		 	std::cerr << "3rd test found: " << YELLOW
+		 	<< RED << e.what() << RESET << std::endl;
+		}
+		
+		try
+		{
 			a2.signForm(f2);
+		}
+		catch(const Form::GradeTooHighException& e)
+		{
+			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
+				<< e.what() << RESET << std::endl;
+		}
+		catch(const Form::GradeTooLowException& e)
+		{
+			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
+				<< e.what() << RESET << std::endl;
+		}
+		catch (const std::exception & e)
+		{
+		 	std::cerr << "3rd test found: " << YELLOW
+		 	<< RED << e.what() << RESET << std::endl;
+		}
+		
+		try
+		{
 			a3.signForm(f2);
 		}
 		catch(const Form::GradeTooHighException& e)

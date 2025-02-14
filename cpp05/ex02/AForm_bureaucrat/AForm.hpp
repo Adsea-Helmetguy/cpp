@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlow <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -59,26 +59,18 @@ class AForm
 
 
 
-	class GradeTooHighException
+	class GradeTooHighException : public std::exception
 	{
-		private:
-			std::string	_msg;
-
 		public:
-			GradeTooHighException(const std::string& message);
-			virtual const char* what() const throw();
-			virtual ~GradeTooHighException() throw();
+			const char* what() const throw();
+			//~GradeTooHighException() throw();
 	};
 	
-	class GradeTooLowException
+	class GradeTooLowException : public std::exception
 	{
-		private:
-			std::string	_msg;
-
 		public:
-			GradeTooLowException(const std::string& message);
-			virtual const char* what() const throw();
-			virtual ~GradeTooLowException() throw();
+			const char* what() const throw();
+			//~GradeTooLowException() throw();
 	};
 	
 	//create a file

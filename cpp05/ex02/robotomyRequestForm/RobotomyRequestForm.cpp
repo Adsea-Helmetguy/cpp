@@ -43,7 +43,7 @@ RobotomyRequestForm&    RobotomyRequestForm::operator=(const RobotomyRequestForm
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
-
+	std::cout << RED << "Destructor(RobotomyRequestForm) Begins" << RESET << std::endl;
 };
 
 

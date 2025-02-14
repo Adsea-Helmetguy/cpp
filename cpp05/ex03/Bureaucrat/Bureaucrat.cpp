@@ -92,7 +92,8 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& copy)
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << RED << "Destructor(time) Begins" << RESET << std::endl;
+	std::cout << RED << "Bureaucrat_Destructor: \"" << YELLOW \
+		<< this->_name << RED << "\" done" << RESET << std::endl;
 };
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
@@ -223,12 +224,14 @@ const char*	Bureaucrat::GradeTooLowException::what() const throw()
 //Destructors happening here
 Bureaucrat::GradeTooHighException::~GradeTooHighException() throw()
 {
-	std::cout << RED << "Destructor Bureau (GradeTooHigh)" << RESET << std::endl;
+	std::cout << RED << "Destructor for (" << YELLOW << "Bureaucrat::" << RESET \
+		<< RED << "GradeTooHighException)" << RESET << std::endl;
 };
 
 Bureaucrat::GradeTooLowException::~GradeTooLowException() throw()
 {
-	std::cout << RED << "Destructor Bureau (GradeTooLow)" << RESET << std::endl;
+	std::cout << RED << "Destructor for (" << YELLOW << "Bureaucrat::" << RESET \
+		<< RED << "GradeTooLowException)" << RESET << std::endl;
 };
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------

@@ -47,7 +47,8 @@ AForm&	AForm::operator=(const AForm& copy)
 
 AForm::~AForm()
 {
-	std::cout << RED << "Destructor(form) Begins" << RESET << std::endl;
+	std::cout << RED << "AForm_Destructor: \"" << YELLOW \
+		<< this->_name << RED << "\" done" << RESET << std::endl;
 };
 //-----------------------------------------------------------------------
 
@@ -114,12 +115,14 @@ const char*	AForm::GradeTooLowException::what() const throw()
 
 AForm::GradeTooHighException::~GradeTooHighException() throw()
 {
-	std::cout << RED << "Destructor form (GradeTooHigh)" << RESET << std::endl;
+	std::cout << RED << "Destructor for (" << YELLOW << "AForm::" << RESET \
+		<< RED << "GradeTooHighException)" << RESET << std::endl;
 };
 
 AForm::GradeTooLowException::~GradeTooLowException() throw()
 {
-	std::cout << RED << "Destructor form (GradeTooLow)" << RESET << std::endl;
+	std::cout << RED << "Destructor for (" << YELLOW << "AForm::" << RESET \
+		<< RED << "GradeTooLowException)" << RESET << std::endl;
 };
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------

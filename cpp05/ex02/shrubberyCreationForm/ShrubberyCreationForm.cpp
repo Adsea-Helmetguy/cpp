@@ -44,7 +44,7 @@ ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-	std::cout << RED << "Destructor called for ShrubberyCreationForm" \
+	std::cout << RED << "Destructor(ShrubberyCreationForm) Begins" \
 		<< RESET << std::endl;
 };
 

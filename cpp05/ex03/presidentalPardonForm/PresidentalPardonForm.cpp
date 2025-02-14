@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentalPardonForm.cpp                          :+:      :+:    :+:   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlow <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,14 +15,12 @@
 //-----------------------------------------------------------------------
 PresidentalPardonForm::PresidentalPardonForm() : AForm(25, 5)
 {
-	std::cout << GREEN << "I AM NOW CREATING A PARDON." \
-		<< RESET << std::endl;
+	
 };
 
 PresidentalPardonForm::PresidentalPardonForm(const std::string& name) : AForm(name, 25, 5)
 {
-	std::cout << GREEN << "I AM NOW CREATING A PARDON. " \
-		<< "WITH A NAME CALLED: " << RESET << name << std::endl;
+	
 };
 
 PresidentalPardonForm::PresidentalPardonForm(const PresidentalPardonForm& copy) : AForm(copy)
@@ -46,7 +44,7 @@ PresidentalPardonForm&	PresidentalPardonForm::operator=(const PresidentalPardonF
 
 PresidentalPardonForm::~PresidentalPardonForm()
 {
-	std::cout << RED << "Destructor called for PresidentalPardonForm" << RESET << std::endl;
+	std::cout << RED << "Destructor(PresidentalPardonForm) Begins" << RESET << std::endl;
 };
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
@@ -57,7 +55,7 @@ void	PresidentalPardonForm::execute(Bureaucrat const & executor)
 {
 	//Informs that <target> has been pardoned by Zaphod Beeblebrox
 	std::cout << YELLOW << "The target: \"" << GREEN << executor.getName() \
-		<< YELLOW << "has been pardoned by Zaphod Beeblebrox." \
+		<< YELLOW << "\" has been pardoned by Zaphod Beeblebrox." \
 		<< RESET << std::endl;
 };
 
