@@ -13,7 +13,7 @@
 #pragma once
 
 # include <iostream>
-# include <string>//std::string && "<class>.size() /length();""
+# include <string>//std::string && "<class>.size() /length();"
 
 
 # define RT	"\033[0m"
@@ -25,3 +25,10 @@
 # define MAG	"\e[0;35m"
 
 //create a function template iter
+template <typename T>
+
+void	iter(char *array, size_t length, T &function)
+{
+	
+};
+

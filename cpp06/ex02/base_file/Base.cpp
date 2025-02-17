@@ -85,21 +85,24 @@ void	identify(Base* p)
 		std::cout << "downcast for \"C\" successful!!\n" << std::endl;
 	else
 		std::cout << "Failed to Downcast. nullptr." << std::endl;
+//
 /*
+	//-this isnt right cause it's upcast not downcast-
+	//we aren't creating a new object just pointing to Base* p;
 	//add in function: "dynamic_cast"
 	Base	*replaceA = dynamic_cast<A*>(p);
 	Base	*replaceB = dynamic_cast<B*>(p);
 	Base	*replaceC = dynamic_cast<C*>(p);
 
-	if (replaceA == p)
+	if (replaceA)
 	{
 		std::cout << "downcast for \"A\" successful!!\n" << std::endl;
 	}
-	else if (replaceB == p)
+	else if (replaceB)
 	{
 		std::cout << "downcast for \"B\" successful!!\n" << std::endl;
 	}
-	else if (replaceC == p)
+	else if (replaceC)
 	{
 		std::cout << "downcast for \"C\" successful!!\n" << std::endl;
 	}
@@ -107,10 +110,6 @@ void	identify(Base* p)
 	{
 		std::cout << "Failed to Downcast." << std::endl;
 	}
-
-	delete replaceA;
-	delete replaceB;
-	delete replaceC;
 */
 };
 
