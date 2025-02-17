@@ -94,14 +94,6 @@ unsigned int	AForm::getexecGrades() const
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-AForm::GradeTooHighException::GradeTooHighException(const std::string& message)
-{
-};
-
-AForm::GradeTooLowException::GradeTooLowException(const std::string& message)
-{
-};
-
 //what() implementation
 const char*	AForm::GradeTooHighException::what() const throw()
 {
@@ -112,19 +104,6 @@ const char*	AForm::GradeTooLowException::what() const throw()
 {
 	return ("Grade too low, FAIL.");
 };
-
-AForm::GradeTooHighException::~GradeTooHighException() throw()
-{
-	std::cout << RED << "Destructor for (" << YELLOW << "AForm::" << RESET \
-		<< RED << "GradeTooHighException)" << RESET << std::endl;
-};
-
-AForm::GradeTooLowException::~GradeTooLowException() throw()
-{
-	std::cout << RED << "Destructor for (" << YELLOW << "AForm::" << RESET \
-		<< RED << "GradeTooLowException)" << RESET << std::endl;
-};
-
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 

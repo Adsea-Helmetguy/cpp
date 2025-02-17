@@ -54,29 +54,25 @@ class AForm
 	unsigned int		getexecGrades() const;
 	//  -------------getters and setters-------------
 
-	//signFroms
-	void	besigned(const Bureaucrat& user);
-
-
-
 	class GradeTooHighException : public std::exception
 	{
 		public:
 			const char* what() const throw();
-			//~GradeTooHighException() throw();
 	};
 	
 	class GradeTooLowException : public std::exception
 	{
 		public:
 			const char* what() const throw();
-			//~GradeTooLowException() throw();
 	};
+
+//  ------------------------------------------------------------
+	//signFroms
+	void	besigned(const Bureaucrat& user);
 	
 	//create a file
-	//  ----------------------------------------------
 	virtual void	execute(Bureaucrat const & executor) = 0;
-	//  ----------------------------------------------
+//  ------------------------------------------------------------
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& other);

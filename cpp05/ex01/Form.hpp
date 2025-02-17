@@ -53,32 +53,22 @@ class Form
 	unsigned int		getGradeToExecute() const;
 	//  -------------getters and setters-------------
 
-	//signFroms
-	void	besigned(const Bureaucrat& user);
-
-
-
-	class GradeTooHighException
+	class GradeTooHighException : public std::exception
 	{
-		private:
-			std::string	_msg;
-
 		public:
-			GradeTooHighException(const std::string& message);
-			virtual const char* what() const throw();
-			virtual ~GradeTooHighException() throw();
+			const char* what() const throw();
 	};
 	
-	class GradeTooLowException
+	class GradeTooLowException : public std::exception
 	{
-		private:
-			std::string	_msg;
-
 		public:
-			GradeTooLowException(const std::string& message);
-			virtual const char* what() const throw();
-			virtual ~GradeTooLowException() throw();
+			const char* what() const throw();
 	};
+	
+//	---------------------------------------------
+	//signFroms
+	void	besigned(const Bureaucrat& user);
+//	---------------------------------------------
 };
 
 std::ostream& operator<<(std::ostream& os, const Form& other);

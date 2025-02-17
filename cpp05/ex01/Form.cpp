@@ -89,35 +89,15 @@ unsigned int	Form::getGradeToExecute() const
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-Form::GradeTooHighException::GradeTooHighException(const std::string& message) : _msg(message)
-{
-};
-
-Form::GradeTooLowException::GradeTooLowException(const std::string& message) : _msg(message)
-{
-};
-
 //what() implementation
 const char*	Form::GradeTooHighException::what() const throw()
 {
-	return (this->_msg.c_str());
+	return ("Grade too High, FAIL.");
 };
 
 const char*	Form::GradeTooLowException::what() const throw()
 {
-	return (this->_msg.c_str());
-};
-
-Form::GradeTooHighException::~GradeTooHighException() throw()
-{
-	std::cout << RED << "Destructor for (" << YELLOW << "Form::" << RESET \
-		<< RED << "GradeTooHighException)" << RESET << std::endl;
-};
-
-Form::GradeTooLowException::~GradeTooLowException() throw()
-{
-	std::cout << RED << "Destructor for (" << YELLOW << "Form::" << RESET \
-		<< RED << "GradeTooLowException)" << RESET << std::endl;
+	return ("Grade too Low, FAIL.");
 };
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
@@ -135,25 +115,13 @@ void	Form::besigned(const Bureaucrat& user)
 {
 	std::cout << YELLOW << "Checking if this form can be signed." \
 		<< RESET << std::endl;
+	std::cout << "User grade: " << user.getGrade() << std::endl;
+	std::cout << "RequiredGrades to sign: " << this->_gradeToSign << std::endl;
 	if (user.getGrade() > this->_gradeToSign)
-	{
-		throw GradeTooLowException("Grade too low to sign, \"FAIL\".");
-		return ;
-	}
+		throw GradeTooLowException();
 	std::cout << GREEN << "Congratz! You passed!" << RESET << std::endl;
 		this->_isTheFormSigned = true;
-/*
-	if (this->_isTheFormSigned == false)
-	{
-		std::cout << YELLOW << user.getName() << " couldn’t sign " \
-			<< this->_name << " because " << RED \
-			<< GradeTooLowException("Score too low").what() \
-			<< RESET << std::endl;
-		return ;
-	}
-*/
 };
-
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 

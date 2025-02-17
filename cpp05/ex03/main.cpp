@@ -50,28 +50,6 @@ int	main()
 		delete rrf;
 		std::cout << "---------------------------------" << std::endl;
 	}
-/*
-	std::cout << MAG << "\n\n\nTEST 4" << RESET << std::endl;
-	{
-		Intern	someRandomIntern;
-		AForm*	rrf;
-
-		rrf = someRandomIntern.makeForm("presidental request", "Damn");
-		try
-		{
-			rrf.signForm(f2);
-			rrf.executeForm(f2);
-		}
-		catch(const std::exception & e)
-		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		std::cout << *rrf << std::endl;
-		delete rrf;
-		std::cout << "---------------------------------" << std::endl;
-	}
-*/
 	return (0);
 }
 
