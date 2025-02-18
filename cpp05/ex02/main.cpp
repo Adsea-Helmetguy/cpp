@@ -13,7 +13,7 @@
 #include "AForm_bureaucrat/AForm.hpp"
 #include "shrubberyCreationForm/ShrubberyCreationForm.hpp"
 #include "robotomyRequestForm/RobotomyRequestForm.hpp"
-#include "presidentalPardonForm/PresidentalPardonForm.hpp"
+#include "presidentialPardonForm/PresidentialPardonForm.hpp"
 
 int	main()
 {
@@ -32,16 +32,7 @@ int	main()
 			a1 = Bureaucrat(150, "Bureaucrat_shawnShrubbery");
 			a1.incrementGrade();
 		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "GradeTooHighException: " << a1.getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << YELLOW << "GradeTooLowException: " << a1.getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
+
 		catch (const std::exception & e)
 		{
 		 	std::cerr << "general issue found " << YELLOW
@@ -53,12 +44,23 @@ int	main()
 		try
 		{
 			a1.signAForm(f1);
-			a1.executeAForm(f1);
 		}
-		catch(const std::exception & e)//yes u can make more than 1 catch
+		catch (const std::exception & e)
 		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
+		 	std::cerr << RED << a1.getName() << MAG << " couldn’t sign " \
+		 		<< YELLOW << f1.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
+		}
+		try
+		{
+
+			a1.executeForm(f1);
+		}
+		catch (const std::exception & e)
+		{
+		 	std::cerr << RED << a1.getName() << MAG << " couldn’t execute " \
+		 		<< YELLOW << f1.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
 		}
 		f1.execute(a1);
 		std::cout << YELLOW << "----------------------------\n\n" \
@@ -77,16 +79,6 @@ int	main()
 			a2 = Bureaucrat(150, "Bureaucrat_shawnRobot");
 			a2.incrementGrade();
 		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "GradeTooHighException: " << a2.getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << YELLOW << "GradeTooLowException: " << a2.getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
 		catch (const std::exception & e)
 		{
 		 	std::cerr << "general issue found " << YELLOW
@@ -98,19 +90,30 @@ int	main()
 		try
 		{
 			a2.signAForm(f2);
-			a2.executeAForm(f2);
 		}
-		catch(const std::exception & e)//yes u can make more than 1 catch
+		catch (const std::exception & e)
 		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
+		 	std::cerr << RED << a2.getName() << MAG << " couldn’t sign " \
+		 		<< YELLOW << f2.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
+		}
+		try
+		{
+
+			a2.executeForm(f2);
+		}
+		catch (const std::exception & e)
+		{
+		 	std::cerr << RED << a2.getName() << MAG << " couldn’t execute " \
+		 		<< YELLOW << f2.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
 		}
 		f2.execute(a2);
 		std::cout << YELLOW << "----------------------------\n\n" \
 			<< RESET << std::endl;
 		std::cout << f2 << std::endl;
 		
-		//3) Presidental
+		//3) Presidential
 		//------------------------------------------------------
 		std::cout << YELLOW << "----------------------------" \
 			<< RESET << std::endl;
@@ -121,33 +124,34 @@ int	main()
 			a3 = Bureaucrat(150, "Bureaucrat_shawnPresident");
 			a3.incrementGrade();
 		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "GradeTooHighException: " << a3.getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << YELLOW << "GradeTooLowException: " << a3.getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
 		catch (const std::exception & e)
 		{
 		 	std::cerr << "general issue found " << YELLOW
 		 	<< RED << e.what() << RESET << std::endl;
 		}
 
-		PresidentalPardonForm f3("PresidentalPardon1");
+		PresidentialPardonForm f3("PresidentialPardon1");
 		std::cout << a3 << std::endl;
 		try
 		{
 			a3.signAForm(f3);
-			a3.executeAForm(f3);
 		}
-		catch(const std::exception & e)//yes u can make more than 1 catch
+		catch (const std::exception & e)
 		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
+		 	std::cerr << RED << a3.getName() << MAG << " couldn’t sign " \
+		 		<< YELLOW << f2.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
+		}
+		try
+		{
+
+			a3.executeForm(f3);
+		}
+		catch (const std::exception & e)
+		{
+		 	std::cerr << RED << a3.getName() << MAG << " couldn’t execute " \
+		 		<< YELLOW << f2.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
 		}
 		f3.execute(a3);
 		std::cout << YELLOW << "----------------------------\n\n" \
@@ -207,16 +211,6 @@ int	main()
 			a1 = Bureaucrat(140, "Bureaucrat_shawnShrubbery");
 			a1.incrementGrade();
 		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "GradeTooHighException: " << a1.getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << YELLOW << "GradeTooLowException: " << a1.getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
 		catch (const std::exception & e)
 		{
 		 	std::cerr << "general issue found " << YELLOW
@@ -228,12 +222,23 @@ int	main()
 		try
 		{
 			a1.signAForm(f1);
-			a1.executeAForm(f1);
 		}
-		catch(const std::exception & e)//yes u can make more than 1 catch
+		catch (const std::exception & e)
 		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
+		 	std::cerr << RED << a1.getName() << MAG << " couldn’t sign " \
+		 		<< YELLOW << f1.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
+		}
+		try
+		{
+
+			a1.executeForm(f1);
+		}
+		catch (const std::exception & e)
+		{
+		 	std::cerr << RED << a1.getName() << MAG << " couldn’t execute " \
+		 		<< YELLOW << f1.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
 		}
 		f1.execute(a1);
 		std::cout << YELLOW << "----------------------------\n\n" \
@@ -252,16 +257,6 @@ int	main()
 			a2 = Bureaucrat(66, "Bureaucrat_shawnRobot");
 			a2.incrementGrade();
 		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "GradeTooHighException: " << a2.getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << YELLOW << "GradeTooLowException: " << a2.getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
 		catch (const std::exception & e)
 		{
 		 	std::cerr << "general issue found " << YELLOW
@@ -273,12 +268,23 @@ int	main()
 		try
 		{
 			a2.signAForm(f2);
-			a2.executeAForm(f2);
 		}
-		catch(const std::exception & e)//yes u can make more than 1 catch
+		catch (const std::exception & e)
 		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
+		 	std::cerr << RED << a2.getName() << MAG << " couldn’t sign " \
+		 		<< YELLOW << f2.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
+		}
+		try
+		{
+
+			a2.executeForm(f2);
+		}
+		catch (const std::exception & e)
+		{
+		 	std::cerr << RED << a2.getName() << MAG << " couldn’t execute " \
+		 		<< YELLOW << f2.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
 		}
 		f2.execute(a2);
 		std::cout << YELLOW << "----------------------------\n\n" \
@@ -286,7 +292,7 @@ int	main()
 		std::cout << f2 << std::endl;
 		
 
-		//3) Presidental
+		//3) Presidential
 		// -------------------------------------------------------
 		std::cout << YELLOW << "----------------------------" \
 			<< RESET << std::endl;
@@ -297,33 +303,34 @@ int	main()
 			a3 = Bureaucrat(20, "Bureaucrat_shawnPresident");
 			a3.incrementGrade();
 		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "GradeTooHighException: " << a3.getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << YELLOW << "GradeTooLowException: " << a3.getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
 		catch (const std::exception & e)
 		{
 		 	std::cerr << "general issue found " << YELLOW
 		 	<< RED << e.what() << RESET << std::endl;
 		}
 
-		PresidentalPardonForm f3("PresidentalPardon1");
+		PresidentialPardonForm f3("PresidentialPardon1");
 		std::cout << a3 << std::endl;
 		try
 		{
 			a3.signAForm(f3);
-			a3.executeAForm(f3);
 		}
-		catch(const std::exception & e)//yes u can make more than 1 catch
+		catch (const std::exception & e)
 		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
+		 	std::cerr << RED << a3.getName() << MAG << " couldn’t sign " \
+		 		<< YELLOW << f3.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
+		}
+		try
+		{
+
+			a3.executeForm(f3);
+		}
+		catch (const std::exception & e)
+		{
+		 	std::cerr << RED << a3.getName() << MAG << " couldn’t execute " \
+		 		<< YELLOW << f3.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
 		}
 		f3.execute(a3);
 		std::cout << YELLOW << "----------------------------\n\n" \
@@ -346,7 +353,7 @@ int	main()
 	
 	
 	
-	
+
 	
 	
 	
@@ -361,65 +368,55 @@ int	main()
 		// -------------------------------------------------------
 		std::cout << YELLOW << "----------------------------" \
 			<< RESET << std::endl;
-		Bureaucrat a1;
-		std::cout << a1 << std::endl;
+		Bureaucrat *a1 = NULL;
 		try
 		{
-			a1 = Bureaucrat(5, "Bureaucrat_shawnShrubbery");
-		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "GradeTooHighException: " << a1.getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << YELLOW << "GradeTooLowException: " << a1.getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
+			a1 = new Bureaucrat(5, "Bureaucrat_shawnShrubbery");
 		}
 		catch (const std::exception & e)
 		{
 		 	std::cerr << "general issue found " << YELLOW
-		 	<< RED << e.what() << RESET << std::endl;
+		 		<< RED << e.what() << RESET << std::endl;
 		}
 
 		ShrubberyCreationForm f1("Shrub1");
-		std::cout << a1 << std::endl;
+		std::cout << *a1 << std::endl;
 		try
 		{
-			a1.signAForm(f1);
-			a1.executeAForm(f1);
+			a1->signAForm(f1);
 		}
-		catch(const std::exception & e)//yes u can make more than 1 catch
+		catch (const std::exception & e)
 		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
+		 	std::cerr << RED << a1->getName() << MAG << " couldn’t sign " \
+		 		<< YELLOW << f1.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
 		}
-		f1.execute(a1);
+		try
+		{
+
+			a1->executeForm(f1);
+		}
+		catch (const std::exception & e)
+		{
+		 	std::cerr << RED << a1->getName() << MAG << " couldn’t execute " \
+		 		<< YELLOW << f1.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
+		}
+		f1.execute(*a1);
 		std::cout << YELLOW << "----------------------------\n\n" \
 			<< RESET << std::endl;
 		std::cout << f1 << std::endl;
+		delete a1;
 
 
 		//2) Robotomy
 		// -------------------------------------------------------
 		std::cout << YELLOW << "----------------------------" \
 			<< RESET << std::endl;
-		Bureaucrat a2;
-		std::cout << a2 << std::endl;
+		Bureaucrat *a2 = NULL;
 		try
 		{
-			a2 = Bureaucrat(5, "Bureaucrat_shawnRobot");
-		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "GradeTooHighException: " << a2.getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << YELLOW << "GradeTooLowException: " << a2.getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
+			a2 = new Bureaucrat(5, "Bureaucrat_shawnRobot");
 		}
 		catch (const std::exception & e)
 		{
@@ -428,42 +425,42 @@ int	main()
 		}
 
 		RobotomyRequestForm f2("Robotomy1");
-		std::cout << a2 << std::endl;
 		try
 		{
-			a2.signAForm(f2);
-			a2.executeAForm(f2);
+			a2->signAForm(f2);
 		}
-		catch(const std::exception & e)//yes u can make more than 1 catch
+		catch (const std::exception & e)
 		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
+		 	std::cerr << RED << a2->getName() << MAG << " couldn’t sign " \
+		 		<< YELLOW << f2.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
 		}
-		f2.execute(a2);
+		try
+		{
+
+			a2->executeForm(f2);
+		}
+		catch (const std::exception & e)
+		{
+		 	std::cerr << RED << a2->getName() << MAG << " couldn’t execute " \
+		 		<< YELLOW << f2.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
+		}
+		f2.execute(*a2);
 		std::cout << YELLOW << "----------------------------\n\n" \
 			<< RESET << std::endl;
 		std::cout << f2 << std::endl;
+		delete a2;
 		
 
-		//3) Presidental
+		//3) Presidential
 		// -------------------------------------------------------
 		std::cout << YELLOW << "----------------------------" \
 			<< RESET << std::endl;
-		Bureaucrat a3;
-		std::cout << a3 << std::endl;
+		Bureaucrat *a3 = NULL;
 		try
 		{
-			a3 = Bureaucrat(5, "Bureaucrat_shawnPresident");
-		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "GradeTooHighException: " << a3.getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << YELLOW << "GradeTooLowException: " << a3.getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
+			a3 = new Bureaucrat(5, "Bureaucrat_shawnPresident");
 		}
 		catch (const std::exception & e)
 		{
@@ -471,375 +468,37 @@ int	main()
 		 	<< RED << e.what() << RESET << std::endl;
 		}
 
-		PresidentalPardonForm f3("PresidentalPardon1");
+		PresidentialPardonForm f3("PresidentialPardon1");
 		std::cout << a3 << std::endl;
 		try
 		{
-			a3.signAForm(f3);
-			a3.executeAForm(f3);
+			a3->signAForm(f3);
 		}
-		catch(const std::exception & e)//yes u can make more than 1 catch
+		catch (const std::exception & e)
 		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
+		 	std::cerr << RED << a3->getName() << MAG << " couldn’t sign " \
+		 		<< YELLOW << f3.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
 		}
-		f3.execute(a3);
+		try
+		{
+
+			a3->executeForm(f3);
+		}
+		catch (const std::exception & e)
+		{
+		 	std::cerr << RED << a3->getName() << MAG << " couldn’t execute " \
+		 		<< YELLOW << f3.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
+		}
+		f3.execute(*a3);
 		std::cout << YELLOW << "----------------------------\n\n" \
 			<< RESET << std::endl;
 		std::cout << f3 << std::endl;
+		delete a3;
 	}
 	
 	
 	std::cout << "\n\n\n\n\n\n\n\n\n" << std::endl;
 	return (0);
-}
-/*
-try
-		{
-			a2 = new Bureaucrat(152, "Bureaucrat_shawn2");
-		}
-		catch (const std::exception & e)
-		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< RED << e.what() << RESET << std::endl;
-		}
-*/
-//
-//
-/*
-	std::cout << MAG << "\n\nFirst test commence!" << RESET << std::endl;
-	{
-		std::cout << YELLOW << "----------------------------" \
-			<< RESET << std::endl;
-
-		//--Check if form is signed and correct exec value to do function.--
-		//1) Shrubbery
-		// -------------------------------------------------------
-		Bureaucrat a1(25);
-		ShrubberyCreationForm f1("Shrub1");
-		std::cout << a1 << std::endl;
-		try
-		{
-			a1.signAForm(f1);
-			a1.executeAForm(f1);
-		}
-		catch(const AForm::GradeTooHighException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const AForm::GradeTooLowException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const std::exception & e)//yes u can make more than 1 catch
-		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		f1.execute(a1);
-		std::cout << YELLOW << "----------------------------\n\n" \
-			<< RESET << std::endl;
-		std::cout << f1 << std::endl;
-		std::cout << "\n\n\n\n\n\n\n\n\n" << std::endl;
-		// -------------------------------------------------------
-
-
-		//2) Robotomy
-		// -------------------------------------------------------
-		Bureaucrat a2(149);
-		RobotomyRequestForm f2("Robotomy1");
-		std::cout << a2 << std::endl;
-		try
-		{
-			a2.signAForm(f2);
-			a2.executeAForm(f2);
-		}
-		catch(const AForm::GradeTooHighException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const AForm::GradeTooLowException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const std::exception & e)//hang on, the std::exception doesnt catch all?
-		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		f2.execute(a2);
-		std::cout << f2 << std::endl;
-		std::cout << "\n\n\n\n\n\n\n\n\n" << std::endl;
-		// -------------------------------------------------------
-
-
-		//3) Presidental
-		// -------------------------------------------------------
-		Bureaucrat a3(25);
-		PresidentalPardonForm f3("PresidentalPardon1");
-		std::cout << a3 << std::endl;
-		try
-		{
-			a3.signAForm(f3);
-			a3.executeAForm(f3);
-		}
-		catch(const AForm::GradeTooHighException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const AForm::GradeTooLowException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const std::exception & e)
-		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		f3.execute(a3);
-		std::cout << f3 << std::endl;
-		std::cout << "\n\n" << std::endl;
-		// -------------------------------------------------------
-		std::cout << YELLOW << "----------------------------" \
-			<< RESET << std::endl;
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	std::cout << MAG << "\n\n\n\n\n\n\n\n\n\n\n\n\n\nSecond test commence!" \
-		<< RESET << std::endl;
-	{
-		std::cout << YELLOW << "----------------------------" \
-			<< RESET << std::endl;
-
-		//1) Shrubbery
-		// -------------------------------------------------------
-		Bureaucrat a1(137, "Bureaucrat_shawn");
-		ShrubberyCreationForm f1("Shrub2");
-		std::cout << a1 << std::endl;
-		try
-		{
-			a1.signAForm(f1);
-			a1.executeAForm(f1);
-		}
-		catch(const AForm::GradeTooHighException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const AForm::GradeTooLowException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const std::exception & e)//yes u can make more than 1 catch
-		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		f1.execute(a1);
-		std::cout << YELLOW << "----------------------------\n\n" \
-			<< RESET << std::endl;
-		std::cout << f1 << std::endl;
-		std::cout << "\n\n\n\n\n\n\n\n\n" << std::endl;
-		// -------------------------------------------------------
-
-
-		//2) Robotomy
-		// -------------------------------------------------------
-		Bureaucrat a2(33, "Bureaucrat_shawn2");
-		RobotomyRequestForm f2("Robotomy2");
-		std::cout << a2 << std::endl;
-		try
-		{
-			a2.signAForm(f2);
-			a2.executeAForm(f2);
-		}
-		catch(const AForm::GradeTooHighException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const AForm::GradeTooLowException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const std::exception & e)
-		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		f2.execute(a2);
-		std::cout << f2 << std::endl;
-		std::cout << "\n\n\n\n\n\n\n\n\n" << std::endl;
-		// -------------------------------------------------------
-
-
-		//3) Presidental
-		// -------------------------------------------------------
-		Bureaucrat a3(3, "Bureaucrat_shawn3");
-		PresidentalPardonForm f3("PresidentalPardon2");
-		std::cout << a3 << std::endl;
-		try
-		{
-			a3.signAForm(f3);
-			a3.executeAForm(f3);
-		}
-		catch(const AForm::GradeTooHighException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const AForm::GradeTooLowException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const std::exception & e)
-		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		f3.execute(a3);
-		std::cout << f3 << std::endl;
-		std::cout << "\n\n" << std::endl;
-		// -------------------------------------------------------
-		std::cout << YELLOW << "----------------------------" \
-			<< RESET << std::endl;
-	}
-	
-	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n" << std::endl;
-	std::cout << MAG << "Third all fail test commence!" \
-		<< RESET << std::endl;
-	{
-		std::cout << YELLOW << "----------------------------" \
-			<< RESET << std::endl;
-
-		//1) Shrubbery
-		// -------------------------------------------------------
-		Bureaucrat a1(150, "Bureaucrat_shawn");
-		ShrubberyCreationForm f1("Shrub2");
-		std::cout << a1 << std::endl;
-		try
-		{
-			a1.signAForm(f1);
-			a1.executeAForm(f1);
-		}
-		catch(const AForm::GradeTooHighException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const AForm::GradeTooLowException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const std::exception & e)//yes u can make more than 1 catch
-		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		f1.execute(a1);
-		std::cout << YELLOW << "----------------------------\n\n" \
-			<< RESET << std::endl;
-		std::cout << f1 << std::endl;
-		std::cout << "\n\n\n\n\n\n\n\n\n" << std::endl;
-		// -------------------------------------------------------
-
-
-		//2) Robotomy
-		// -------------------------------------------------------
-
-		Bureaucrat a2(149, "Bureaucrat_shawn2");
-		RobotomyRequestForm f2("Robotomy2");
-		std::cout << a2 << std::endl;
-		try
-		{
-			a2.signAForm(f2);
-			a2.executeAForm(f2);
-		}
-		catch(const AForm::GradeTooHighException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const AForm::GradeTooLowException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const std::exception & e)
-		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		f2.execute(a2);
-		std::cout << f2 << std::endl;
-		std::cout << "\n\n\n\n\n\n\n\n\n" << std::endl;
-		// -------------------------------------------------------
-
-
-		//3) Presidental
-		// -------------------------------------------------------
-		Bureaucrat a3(150, "Bureaucrat_shawn3");
-		PresidentalPardonForm f3("PresidentalPardon2");
-		std::cout << a3 << std::endl;
-		try
-		{
-			a3.signAForm(f3);
-			a3.executeAForm(f3);
-		}
-		catch(const Bureaucrat::GradeTooHighException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const Bureaucrat::GradeTooLowException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const AForm::GradeTooHighException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const AForm::GradeTooLowException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const std::exception & e)
-		{
-			std::cerr << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		f3.execute(a3);
-		std::cout << f3 << std::endl;
-		std::cout << "\n\n" << std::endl;
-		// -------------------------------------------------------
-		std::cout << YELLOW << "----------------------------" \
-			<< RESET << std::endl;
-	}
-*/
-
+};

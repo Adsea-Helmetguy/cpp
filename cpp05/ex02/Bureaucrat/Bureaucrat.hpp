@@ -55,7 +55,7 @@ class Bureaucrat
 	void			incrementGrade();
 	void			decrementGrade();
 	void			signAForm(AForm& AForm_tosign);
-	void			executeAForm(AForm const & form);//new function added in ex02:
+	void			executeForm(AForm const & form);//new function added in ex02:
 	
 	//exception classes
 	class GradeTooHighException : public std::exception

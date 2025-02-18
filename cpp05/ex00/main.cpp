@@ -151,11 +151,6 @@ int	main(void)
 		{
 			b->incrementGrade();
 		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "Incrementing grade of " << b->getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
 		catch (const std::exception & e)
 		{
 		 	std::cerr << "general issue found " << YELLOW
@@ -178,11 +173,6 @@ int	main(void)
 		{
 			a->decrementGrade();
 		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << YELLOW << "Decrementing grade of " << a->getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
 		catch (const std::exception & e)
 		{
 		 	std::cerr << "general issue found " << YELLOW
@@ -203,11 +193,6 @@ int	main(void)
 		try
 		{
 			a->incrementGrade();
-		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "Incrementing grade of " << a->getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
 		}
 		catch (const std::exception & e)
 		{
@@ -247,11 +232,6 @@ int	main(void)
 		{
 			a->decrementGrade();
 		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << YELLOW << "Decrementing grade of " << a->getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
 		catch (const std::exception & e)
 		{
 		 	std::cerr << "general issue found " << YELLOW
@@ -265,11 +245,6 @@ int	main(void)
 		try
 		{
 			a->incrementGrade();
-		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "Incrementing grade of " << a->getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
 		}
 		catch (const std::exception & e)
 		{
@@ -285,16 +260,15 @@ int	main(void)
 		{
 			a->incrementGrade();
 		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "Incrementing grade of " << a->getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
 		catch (const std::exception & e)
 		{
 		 	std::cerr << "general issue found " << YELLOW
 		 	<< RED << e.what() << RESET << std::endl;
 		}
+
+		std::cout << YELLOW << "Results after increment->" << RESET << std::endl;
+		std::cout << "Address: " << BLUE << a << RESET \
+			<< "\n\tValue = " << BLUE << *a << RESET << std::endl;
 
 		std::cout << a << std::endl;
 		std::cout << BLUE << "Deconstructing" << RESET << std::endl;
@@ -318,7 +292,7 @@ int	main(void)
 	std::cout << "-------------------------------" << std::endl;
 	std::cout << "\n\n\n\n\n" << std::endl;
 	std::cout << "-------------------------------" << std::endl;
-	std::cout << GREEN << "--TEST CASE 4--" << RESET << std::endl;
+	std::cout << GREEN << "--TEST CASE 4--(start with \"0\")" << RESET << std::endl;
 	{
 		std::cout << std::endl;
 		std::cout << BLUE << "Constructing" << RESET << std::endl;
@@ -327,11 +301,6 @@ int	main(void)
 		try
 		{
 			a = new Bureaucrat(0);
-		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr  << YELLOW << "Constructing default failed: " \
-			<< RED << e.what() << RESET << std::endl;
 		}
 		catch (const std::exception & e)
 		{
@@ -366,7 +335,7 @@ int	main(void)
 	std::cout << "-------------------------------" << std::endl;
 	std::cout << "\n\n\n\n\n" << std::endl;
 	std::cout << "-------------------------------" << std::endl;
-	std::cout << GREEN << "--TEST CASE 5--" << RESET << std::endl;
+	std::cout << GREEN << "--TEST CASE 5--(start with \"160\")" << RESET << std::endl;
 	{
 		std::cout << std::endl;
 		std::cout << BLUE << "Constructing" << RESET << std::endl;
@@ -375,11 +344,6 @@ int	main(void)
 		try
 		{
 			a = new Bureaucrat(160);
-		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr  << YELLOW << "Constructing default failed: " \
-			<< RED << e.what() << RESET << std::endl;
 		}
 		catch (const std::exception & e)
 		{

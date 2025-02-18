@@ -13,7 +13,7 @@
 #include "AForm_bureaucrat/AForm.hpp"
 #include "shrubberyCreationForm/ShrubberyCreationForm.hpp"
 #include "robotomyRequestForm/RobotomyRequestForm.hpp"
-#include "presidentalPardonForm/PresidentalPardonForm.hpp"
+#include "presidentialPardonForm/PresidentialPardonForm.hpp"
 #include "intern/Intern.hpp"
 
 int	main()
@@ -21,33 +21,56 @@ int	main()
 	std::cout << MAG << "\n\n\nTEST 1" << RESET << std::endl;
 	{
 		Intern	someRandomIntern;
-		AForm*	rrf;
+		AForm*	rrf = NULL;
 
-		rrf = someRandomIntern.makeForm("robotomy request", "Bob");
-		std::cout << *rrf << std::endl;
-		delete rrf;
+		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+		if (rrf)
+		{
+			std::cout << *rrf << std::endl;
+			delete rrf;
+		}
 		std::cout << "---------------------------------" << std::endl;
 	}
 
 	std::cout << MAG << "\n\n\nTEST 2" << RESET << std::endl;
 	{
 		Intern	someRandomIntern;
-		AForm*	rrf;
+		AForm*	rrf = NULL;
 
 		rrf = someRandomIntern.makeForm("shrubbery request", "Dwayn");
-		std::cout << *rrf << std::endl;
-		delete rrf;
+		if (rrf)
+		{
+			std::cout << *rrf << std::endl;
+			delete rrf;
+		}
 		std::cout << "---------------------------------" << std::endl;
 	}
 	
 	std::cout << MAG << "\n\n\nTEST 3" << RESET << std::endl;
 	{
 		Intern	someRandomIntern;
-		AForm*	rrf;
+		AForm*	rrf = NULL;
 
-		rrf = someRandomIntern.makeForm("presidental request", "Damn");
-		std::cout << *rrf << std::endl;
-		delete rrf;
+		rrf = someRandomIntern.makeForm("presidential request", "Bob");
+		if (rrf)
+		{
+			std::cout << *rrf << std::endl;
+			delete rrf;
+		}
+		std::cout << "---------------------------------" << std::endl;
+	}
+	
+	std::cout << MAG << "\n\n\nTEST 4(doesn't exist)" << RESET << std::endl;
+	{
+		Intern	someRandomIntern;
+		AForm*	rrf = NULL;
+
+		rrf = someRandomIntern.makeForm("FAIL ME rEqUeSt", "Damn");
+		if (rrf)
+		{
+			std::cout << *rrf << std::endl;
+			delete rrf;
+		}
 		std::cout << "---------------------------------" << std::endl;
 	}
 	return (0);

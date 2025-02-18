@@ -52,18 +52,18 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 //https://stackoverflow.com/questions/478075/creating-files-in-c
-void	ShrubberyCreationForm::execute(Bureaucrat const & executor)
+void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
     std::string filename;
 
 	if (this->getBool() == false || executor.getGrade() > 137)
 	{
-		std::cout << RED << "Unfortunate but you didnt sign nor get enough grades" \
+		std::cout << RED << "Unfortunate ShrubberyCreationForm will not execute!!" \
 			<< RESET << std::endl;
-        return ;
+		return ;
 	};
     std::cout << MAG << "Making a shrubbery.txt file" << RESET << std::endl;
-    filename = executor.getName() + "_shrubbery.txt";
+    filename = this->getName() + "_shrubbery.txt";
 	std::ofstream outfile(filename.c_str());
     if (!outfile)
     {

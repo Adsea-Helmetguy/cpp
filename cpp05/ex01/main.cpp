@@ -28,16 +28,6 @@ int	main()
 			a1 = new Bureaucrat(40, "Billy");
 			a1->incrementGrade();
 		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "GradeTooHighException: " << a1->getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << YELLOW << "GradeTooLowException: " << a1->getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
 		catch (const std::exception & e)
 		{
 		 	std::cerr << "general issue found " << YELLOW \
@@ -49,16 +39,6 @@ int	main()
 		{
 			a2 = new Bureaucrat(1, "Keith");
 			a2->incrementGrade();
-		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "GradeTooHighException: " << a2->getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << YELLOW << "GradeTooLowException: " << a2->getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
 		}
 		catch (const std::exception & e)
 		{
@@ -72,16 +52,6 @@ int	main()
 			a3 = new Bureaucrat(99, "Jim boy");
 			a3->incrementGrade();
 		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "GradeTooHighException: " << a3->getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << YELLOW << "GradeTooLowException: " << a3->getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
 		catch (const std::exception & e)
 		{
 		 	std::cerr << "general issue found " << YELLOW \
@@ -89,33 +59,38 @@ int	main()
 		}
 //------------------------------------------------------------------
 
-		Form f2;
+		Form f2("f2");
 		try
 		{
 			a1->signForm(f2);
 		}
 		catch (const std::exception & e)
 		{
-		 	std::cerr << "Second test found: " << YELLOW
-		 	<< RED << e.what() << RESET << std::endl;
+		 	std::cerr << RED << a1->getName() << MAG << " couldn’t sign " \
+		 		<< YELLOW << f2.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
 		}
+		
 		try
 		{
 			a2->signForm(f2);
 		}
 		catch (const std::exception & e)
 		{
-		 	std::cerr << "Second test found: " << YELLOW
-		 	<< RED << e.what() << RESET << std::endl;
+		 	std::cerr << RED << a2->getName() << MAG << " couldn’t sign " \
+		 		<< YELLOW << f2.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
 		}
+		
 		try
 		{
 			a3->signForm(f2);
 		}
 		catch (const std::exception & e)
 		{
-		 	std::cerr << "Second test found: " << YELLOW
-		 	<< RED << e.what() << RESET << std::endl;
+		 	std::cerr << RED << a3->getName() << MAG << " couldn’t sign " \
+		 		<< YELLOW << f2.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
 		}
 		std::cout << YELLOW << "----------------------------" \
 			<< RESET << std::endl;
@@ -147,7 +122,7 @@ int	main()
 
 
 
-	std::cout << MAG << "2nd test commence!(failing third sign)" << RESET << std::endl;
+	std::cout << MAG << "2nd test commence!(failing second sign)" << RESET << std::endl;
 	{
 		std::cout << YELLOW << "----------------------------" \
 			<< RESET << std::endl;
@@ -159,16 +134,6 @@ int	main()
 			a1 = new Bureaucrat(40, "Billy");
 			a1->incrementGrade();
 		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "GradeTooHighException: " << a1->getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << YELLOW << "GradeTooLowException: " << a1->getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
 		catch (const std::exception & e)
 		{
 		 	std::cerr << "general issue found " << YELLOW \
@@ -178,18 +143,8 @@ int	main()
 		Bureaucrat *a2;
 		try
 		{
-			a2 = new Bureaucrat(40, "Keith");
+			a2 = new Bureaucrat(99, "Keith");
 			a2->incrementGrade();
-		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "GradeTooHighException: " << a2->getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << YELLOW << "GradeTooLowException: " << a2->getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
 		}
 		catch (const std::exception & e)
 		{
@@ -200,18 +155,8 @@ int	main()
 		Bureaucrat *a3;
 		try
 		{
-			a3 = new Bureaucrat(99, "Jim boy");
+			a3 = new Bureaucrat(40, "Jim boy");
 			a3->incrementGrade();
-		}
-		catch(Bureaucrat::GradeTooHighException &e)
-		{
-			std::cerr << YELLOW << "GradeTooHighException: " << a3->getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
-		}
-		catch(Bureaucrat::GradeTooLowException &e)
-		{
-			std::cerr << YELLOW << "GradeTooLowException: " << a3->getName() <<
-			" failed: " << RED << e.what() << RESET << std::endl;
 		}
 		catch (const std::exception & e)
 		{
@@ -227,27 +172,33 @@ int	main()
 		}
 		catch (const std::exception & e)
 		{
-		 	std::cerr << "Second test found: " << YELLOW
-		 	<< RED << e.what() << RESET << std::endl;
+		 	std::cerr << RED << a1->getName() << MAG << " couldn’t sign " \
+		 		<< YELLOW << f2.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
 		}
+		
 		try
 		{
 			a2->signForm(f2);
 		}
 		catch (const std::exception & e)
 		{
-		 	std::cerr << "Second test found: " << YELLOW
-		 	<< RED << e.what() << RESET << std::endl;
+		 	std::cerr << RED << a2->getName() << MAG << " couldn’t sign " \
+		 		<< YELLOW << f2.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
 		}
+		
 		try
 		{
 			a3->signForm(f2);
 		}
 		catch (const std::exception & e)
 		{
-		 	std::cerr << "Second test found: " << YELLOW
-		 	<< RED << e.what() << RESET << std::endl;
+		 	std::cerr << RED << a3->getName() << MAG << " couldn’t sign " \
+		 		<< YELLOW << f2.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
 		}
+		
 		std::cout << YELLOW << "----------------------------" \
 			<< RESET << std::endl;
 		std::cout << GREEN << "Destructors here." << RESET << std::endl;
@@ -300,20 +251,11 @@ int	main()
 		{
 			a1.signForm(f2);
 		}
-		catch(const Form::GradeTooHighException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const Form::GradeTooLowException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
 		catch (const std::exception & e)
 		{
-		 	std::cerr << "3rd test found: " << YELLOW
-		 	<< RED << e.what() << RESET << std::endl;
+		 	std::cerr << RED << a1.getName() << MAG << " couldn’t sign " \
+		 		<< YELLOW << f2.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
 		}
 
 		Bureaucrat a2(149, "Keith");
@@ -321,20 +263,11 @@ int	main()
 		{
 			a2.signForm(f2);
 		}
-		catch(const Form::GradeTooHighException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const Form::GradeTooLowException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
 		catch (const std::exception & e)
 		{
-		 	std::cerr << "3rd test found: " << YELLOW
-		 	<< RED << e.what() << RESET << std::endl;
+		 	std::cerr << RED << a2.getName() << MAG << " couldn’t sign " \
+		 		<< YELLOW << f2.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
 		}
 
 		Bureaucrat a3(149, "Jim boy");
@@ -342,20 +275,11 @@ int	main()
 		{
 			a3.signForm(f2);
 		}
-		catch(const Form::GradeTooHighException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
-		catch(const Form::GradeTooLowException& e)
-		{
-			std::cerr << RED << "Custom Exception obtained: " << YELLOW \
-				<< e.what() << RESET << std::endl;
-		}
 		catch (const std::exception & e)
 		{
-		 	std::cerr << "3rd test found: " << YELLOW
-		 	<< RED << e.what() << RESET << std::endl;
+		 	std::cerr << RED << a3.getName() << MAG << " couldn’t sign " \
+		 		<< YELLOW << f2.getName() << MAG << " because " \
+				<< RED << e.what() << RESET << std::endl;
 		}
 		std::cout << YELLOW << "----------------------------" \
 			<< RESET << std::endl;

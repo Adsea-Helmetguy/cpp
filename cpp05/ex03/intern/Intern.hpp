@@ -39,14 +39,10 @@ class Intern
 	
 	AForm*	Shrubbery_requested(std::string form_target);
 	AForm*	Robotomy_requested(std::string form_target);
-	AForm*	Presidental_requested(std::string form_target);
+	AForm*	Presidential_requested(std::string form_target);
 	
 	AForm* makeForm(std::string form_name, std::string form_target);
-	//they asked for returning pointer, if reference it would be:
-	//"AForm&" makeform()
 };
-//
-//std::ostream& operator<<(std::ostream& os, const AForm& form);
 #endif
 /*
 --links to learn structure of Exception classes:--

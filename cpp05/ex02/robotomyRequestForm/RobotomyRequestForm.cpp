@@ -49,7 +49,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 
 
-void	RobotomyRequestForm::execute(Bureaucrat const & executor)
+void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
     if (executor.getGrade() > 45 || this->getBool() != true)
     {
@@ -79,7 +79,7 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor)
     }
     else
     {
-        std::cout << GREEN << "Yey! You now is Robo, Race is set to \"Robot\"." \
+        std::cout << GREEN << "Yey! <" << this->getName() << "> now is Robo, Race is set to \"Robot\"." \
             << RESET << std::endl;
         race = "Robot";
     }

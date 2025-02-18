@@ -17,7 +17,7 @@
 # include <string>//std::string
 # include <exception>//std::exception, https://en.cppreference.com/w/cpp/header/exception
 
-# include "../Bureaucrat/Bureaucrat.hpp"
+# include "Bureaucrat/Bureaucrat.hpp"
 
 class Bureaucrat;
 
@@ -54,37 +54,25 @@ class AForm
 	unsigned int		getexecGrades() const;
 	//  -------------getters and setters-------------
 
+	class GradeTooHighException : public std::exception
+	{
+		public:
+			const char* what() const throw();
+	};
+	
+	class GradeTooLowException : public std::exception
+	{
+		public:
+			const char* what() const throw();
+	};
+
+//  ------------------------------------------------------------
 	//signFroms
 	void	besigned(const Bureaucrat& user);
-
-
-
-	class GradeTooHighException
-	{
-		private:
-			std::string	_msg;
-
-		public:
-			GradeTooHighException(const std::string& message);
-			virtual const char* what() const throw();
-			virtual ~GradeTooHighException() throw();
-	};
-	
-	class GradeTooLowException
-	{
-		private:
-			std::string	_msg;
-
-		public:
-			GradeTooLowException(const std::string& message);
-			virtual const char* what() const throw();
-			virtual ~GradeTooLowException() throw();
-	};
 	
 	//create a file
-	//  ----------------------------------------------
 	virtual void	execute(Bureaucrat const & executor) = 0;
-	//  ----------------------------------------------
+//  ------------------------------------------------------------
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& other);

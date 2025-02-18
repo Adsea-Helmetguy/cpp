@@ -34,9 +34,6 @@
 
 class ShrubberyCreationForm : public AForm
 {
-	//private:
-	//	std::string		_target;
-	
 	public:
 		ShrubberyCreationForm();												// default constructor
 		ShrubberyCreationForm(const std::string& name);							// default constructor with name
@@ -45,7 +42,7 @@ class ShrubberyCreationForm : public AForm
 		~ShrubberyCreationForm();												// destructor
 
 		//create a file
-		void	execute(Bureaucrat const & executor);
+		void	execute(Bureaucrat const & executor) const;
 };
 
 std::ostream& operator<<(std::ostream& os, const ShrubberyCreationForm& other);

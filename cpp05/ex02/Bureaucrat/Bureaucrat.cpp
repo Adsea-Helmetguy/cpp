@@ -200,7 +200,7 @@ void	Bureaucrat::signAForm(AForm& form_tosign)
 };
 
 //--New function from ex02--
-void	Bureaucrat::executeAForm(AForm const & form)
+void	Bureaucrat::executeForm(AForm const & form)
 {
 	//It must attempt to execute the form
 	if (this->getGrade() > form.getexecGrades())

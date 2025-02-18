@@ -10,25 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PresidentalPardonForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 //-----------------------------------------------------------------------
-PresidentalPardonForm::PresidentalPardonForm() : AForm(25, 5)
+PresidentialPardonForm::PresidentialPardonForm() : AForm(25, 5)
 {
 	
 };
 
-PresidentalPardonForm::PresidentalPardonForm(const std::string& name) : AForm(name, 25, 5)
+PresidentialPardonForm::PresidentialPardonForm(const std::string& name) : AForm(name, 25, 5)
 {
 	
 };
 
-PresidentalPardonForm::PresidentalPardonForm(const PresidentalPardonForm& copy) : AForm(copy)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& copy) : AForm(copy)
 {
 	
 };
 
-PresidentalPardonForm&	PresidentalPardonForm::operator=(const PresidentalPardonForm& form)
+PresidentialPardonForm&	PresidentialPardonForm::operator=(const PresidentialPardonForm& form)
 {
 	if (this != &form)
 	{
@@ -42,19 +42,26 @@ PresidentalPardonForm&	PresidentalPardonForm::operator=(const PresidentalPardonF
 	return (*this);
 };
 
-PresidentalPardonForm::~PresidentalPardonForm()
+PresidentialPardonForm::~PresidentialPardonForm()
 {
-	std::cout << RED << "Destructor(PresidentalPardonForm) Begins" << RESET << std::endl;
+	std::cout << RED << "Destructor(PresidentialPardonForm) Begins" << RESET << std::endl;
 };
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 
 
 
-void	PresidentalPardonForm::execute(Bureaucrat const & executor)
+void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
-	//Informs that <target> has been pardoned by Zaphod Beeblebrox
-	std::cout << YELLOW << "The target: \"" << GREEN << executor.getName() \
+	if (executor.getGrade() > 5 || this->getBool() != true)
+	{
+		std::cout << "Sad but i won't let you execute order 66 for Robotomy dumbass" \
+			<< std::endl;
+		std::cout << RED << executor.getName() << " failed to executeform: " \
+			<< this->getName() << RESET << std::endl;
+		return ;
+	}
+	std::cout << YELLOW << "The target: \"" << GREEN << this->getName() \
 		<< YELLOW << "\" has been pardoned by Zaphod Beeblebrox." \
 		<< RESET << std::endl;
 };
@@ -64,7 +71,7 @@ void	PresidentalPardonForm::execute(Bureaucrat const & executor)
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-std::ostream&	operator<<(std::ostream& os, const PresidentalPardonForm& form)
+std::ostream&	operator<<(std::ostream& os, const PresidentialPardonForm& form)
 {
     std::cout << "printing all form's information: " << std::endl;
     std::cout << "----------------------------------" << std::endl;

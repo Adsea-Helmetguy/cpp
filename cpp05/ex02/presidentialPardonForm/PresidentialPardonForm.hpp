@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRESIDENTALPARDONFORM_HPP
-#define PRESIDENTALPARDONFORM_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+#define PRESIDENTIALPARDONFORM_HPP
 
 # include <iostream>
 # include <string>//std::string
@@ -31,18 +31,18 @@ class Bureaucrat;
 //                               Contact Class                                //
 // ************************************************************************** //
 
-class PresidentalPardonForm : public AForm
+class PresidentialPardonForm : public AForm
 {
 	public:
-		PresidentalPardonForm();
-		PresidentalPardonForm(const std::string& name);
-		PresidentalPardonForm(const PresidentalPardonForm& copy);
-		PresidentalPardonForm& operator=(const PresidentalPardonForm& form);
-		~PresidentalPardonForm();
+		PresidentialPardonForm();
+		PresidentialPardonForm(const std::string& name);
+		PresidentialPardonForm(const PresidentialPardonForm& copy);
+		PresidentialPardonForm& operator=(const PresidentialPardonForm& form);
+		~PresidentialPardonForm();
 
 		//create a file
-		void	execute(Bureaucrat const & executor);
+		void	execute(Bureaucrat const & executor) const;
 };
 
-std::ostream& operator<<(std::ostream& os, const PresidentalPardonForm& other);
+std::ostream& operator<<(std::ostream& os, const PresidentialPardonForm& other);
 #endif

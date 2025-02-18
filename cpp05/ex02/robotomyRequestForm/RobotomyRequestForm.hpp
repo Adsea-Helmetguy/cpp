@@ -43,7 +43,7 @@ class RobotomyRequestForm : public AForm
 		~RobotomyRequestForm();												// destructor
 
 		//create a file
-		void	execute(Bureaucrat const & executor);
+		void	execute(Bureaucrat const & executor) const;
 };
 
 std::ostream& operator<<(std::ostream& os, const RobotomyRequestForm& other);

@@ -27,7 +27,7 @@ SRC_FILE_NAMES = main.cpp \
 			AForm_bureaucrat/AForm.cpp \
 			shrubberyCreationForm/ShrubberyCreationForm.cpp \
 			robotomyRequestForm/RobotomyRequestForm.cpp \
-			presidentalPardonForm/PresidentalPardonForm.cpp \
+			presidentialPardonForm/PresidentialPardonForm.cpp \
 			intern/Intern.cpp 
 
 

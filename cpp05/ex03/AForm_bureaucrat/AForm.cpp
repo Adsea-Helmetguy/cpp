@@ -6,7 +6,7 @@
 /*   By: mlow <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:34:28 by mlow              #+#    #+#             */
-/*   Updated: 2024/09/30 10:34:30 by mlow             ###   ########.fr       */
+/*   Updated: 2025/02/14 15:30:16 by mlow             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,35 +94,15 @@ unsigned int	AForm::getexecGrades() const
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-AForm::GradeTooHighException::GradeTooHighException(const std::string& message) : _msg(message)
-{
-};
-
-AForm::GradeTooLowException::GradeTooLowException(const std::string& message) : _msg(message)
-{
-};
-
 //what() implementation
 const char*	AForm::GradeTooHighException::what() const throw()
 {
-	return (this->_msg.c_str());
+	return ("Grade too High, FAIL.");
 };
 
 const char*	AForm::GradeTooLowException::what() const throw()
 {
-	return (this->_msg.c_str());
-};
-
-AForm::GradeTooHighException::~GradeTooHighException() throw()
-{
-	std::cout << RED << "Destructor for (" << YELLOW << "AForm::" << RESET \
-		<< RED << "GradeTooHighException)" << RESET << std::endl;
-};
-
-AForm::GradeTooLowException::~GradeTooLowException() throw()
-{
-	std::cout << RED << "Destructor for (" << YELLOW << "AForm::" << RESET \
-		<< RED << "GradeTooLowException)" << RESET << std::endl;
+	return ("Grade too low, FAIL.");
 };
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
@@ -143,10 +123,7 @@ void	AForm::besigned(const Bureaucrat& user)
 	std::cout << "User grade: " << user.getGrade() << std::endl;
 	std::cout << "RequiredGrades to sign: " << this->_requiredGrades << std::endl;
 	if (user.getGrade() > this->_requiredGrades)
-	{
-		throw GradeTooLowException("Grade too low to sign, \"FAIL\".");
-		return ;
-	}
+		throw GradeTooLowException();
 	std::cout << GREEN << "Congratz! You passed!" << RESET << std::endl;
 		this->_isTheFormSigned = true;
 };

@@ -71,7 +71,7 @@ class AForm
 	void	besigned(const Bureaucrat& user);
 	
 	//create a file
-	virtual void	execute(Bureaucrat const & executor) = 0;
+	virtual void	execute(Bureaucrat const & executor) const = 0;
 //  ------------------------------------------------------------
 };
 
