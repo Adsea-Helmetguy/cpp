@@ -25,12 +25,15 @@ int	main(int argc, char **argv)
 			//if its empty please leave it DAMN IT
 			if (!argv[1][0])
 			{
-				std::cout << RED << "String empty, trying to test me?" << RESET << std::endl;
+				std::cout << RED << "String empty, trying to test me ah?" << RESET << std::endl;
 				return (0);
 			}
 			ScalarConverter::convert(argv[1]);
 		}
 	}
+	else
+		std::cout << RED << "make sure you wrote " \
+			<< YELLOW << "./scalar \"argument\"" << RESET << std::endl;
 	return (0);
 }
 

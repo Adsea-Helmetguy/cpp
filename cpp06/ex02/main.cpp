@@ -16,16 +16,24 @@ int	main(void)
 {
     {
 	srand(time(0));
-
+	std::cout << "\n\n\n\n" << std::endl;
 	//------------------------------------
+	std::cout << MAG << "\n\n-Creating Base *ptr--" << RT << std::endl;
 	Base *ptr = generate();
-	//Base &ref = *ptr;
+	Base &ref = *ptr;
+	
+	std::cout << MAG << "\n\n-test ptr--" << RT << std::endl;
 	identify(ptr);//this should print either 'A', 'B' Or 'C'
-	identify(*ptr);//prints it's address....i think. if not use below:
-	//identify(ref);
+	
+	std::cout << MAG << "\n\n--test *ptr--" << RT << std::endl;
+	identify(*ptr);//prints the result from ["void	identify(Base& p)"]
+	
+	std::cout << MAG << "\n\n--test ref--" << RT << std::endl;
+	identify(ref);
 	//------------------------------------
 	
 	delete ptr; // Avoid memory leak
     }
+    std::cout << MAG << "\n\n\n\n" << RT << std::endl;
     return (0);
-}
+};

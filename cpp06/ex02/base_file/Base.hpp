@@ -32,10 +32,7 @@
 class Base
 {
 	public:
-		Base();					// default constructor
-		Base(const Base& copy);			// copy constructor
-		Base& operator=(const Base& copy);	// Copy assignment
-		virtual ~Base();			// destructor
+		virtual ~Base();// destructor
 };
 
 class A : public Base{};

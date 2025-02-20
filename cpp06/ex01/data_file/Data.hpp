@@ -31,6 +31,7 @@ class Data
 {
 	private:
 		std::string	_name;
+		uintptr_t	_UInt;
 
 	public:
 		Data();										// default constructor
@@ -40,6 +41,8 @@ class Data
 		~Data();									// destructor
 
 		std::string	getName() const;
+		uintptr_t	getUInt() const;
+		void		updateUInt(const uintptr_t raw);
 };
 
 std::ostream& operator<<(std::ostream& os, const Data& other);

@@ -36,13 +36,14 @@
 
 class ScalarConverter
 {
-	public:
+	private:
 		ScalarConverter();											// default constructor
 		ScalarConverter(const ScalarConverter& copy);				// copy constructor
 		ScalarConverter& operator=(const ScalarConverter& copy);	// Copy assignment
 		~ScalarConverter();											// destructor
 
-	static void	convert(const std::string& value);//static method
+	public:
+		static void	convert(const std::string& value);//static method
 };
 
 std::string	Scalar_value(const std::string& value, const size_t strlen);

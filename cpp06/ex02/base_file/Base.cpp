@@ -12,22 +12,6 @@
 
 #include "Base.hpp"
 
-Base::Base()
-{
-
-};
-
-Base::Base(const Base& copy)
-{
-	(void)copy;
-};
-
-Base& Base::operator=(const Base& copy)
-{
-	(void)copy;
-	return (*this);
-};
-
 Base::~Base()
 {
 
@@ -45,8 +29,8 @@ Base	*generate(void)
 	index = std::rand() % 3;
 	if (index == 0)
 	{
-		std::cout << "Random_letter = " << YELLOW << letters[index] \
-			<< RT << std::endl;
+		std::cout << GREEN << "Random_letter" << RT << " = " \
+			<< YELLOW << letters[index] << RT << std::endl;
 		return (new A());
 	}
 	else if (index == 1)
@@ -85,32 +69,6 @@ void	identify(Base* p)
 		std::cout << "downcast for \"C\" successful!!\n" << std::endl;
 	else
 		std::cout << "Failed to Downcast. nullptr." << std::endl;
-//
-/*
-	//-this isnt right cause it's upcast not downcast-
-	//we aren't creating a new object just pointing to Base* p;
-	//add in function: "dynamic_cast"
-	Base	*replaceA = dynamic_cast<A*>(p);
-	Base	*replaceB = dynamic_cast<B*>(p);
-	Base	*replaceC = dynamic_cast<C*>(p);
-
-	if (replaceA)
-	{
-		std::cout << "downcast for \"A\" successful!!\n" << std::endl;
-	}
-	else if (replaceB)
-	{
-		std::cout << "downcast for \"B\" successful!!\n" << std::endl;
-	}
-	else if (replaceC)
-	{
-		std::cout << "downcast for \"C\" successful!!\n" << std::endl;
-	}
-	else
-	{
-		std::cout << "Failed to Downcast." << std::endl;
-	}
-*/
 };
 
 //https://www.youtube.com/watch?v=wE4beL95pIo
@@ -127,8 +85,10 @@ void	identify(Base& p)
 	}
 	catch(std::exception& e)
 	{
-		std::cout << RED << e.what() << RT << std::endl;
+		std::cout << "Identify Exception for Base A: " \
+			<< RED << e.what() << RT << std::endl;
 	}
+
 	try
 	{
 		B &b1 = dynamic_cast<B&>(p);
@@ -137,8 +97,10 @@ void	identify(Base& p)
 	}
 	catch(std::exception& e)
 	{
-		std::cout << RED << e.what() << RT << std::endl;
+		std::cout << "Identify Exception for Base B: " \
+			<< RED << e.what() << RT << std::endl;
 	}
+
 	try
 	{
 		C &c1 = dynamic_cast<C&>(p);
@@ -147,6 +109,7 @@ void	identify(Base& p)
 	}
 	catch(std::exception& e)
 	{
-		std::cout << RED << e.what() << RT << std::endl;
+		std::cout << "Identify Exception for Base C: " \
+			<< RED << e.what() << RT << std::endl;
 	}
 };

@@ -36,6 +36,7 @@ Serializer::~Serializer()
 //https://stackoverflow.com/questions/1845482/what-is-the-uintptr-t-data-type
 uintptr_t	Serializer::serialize(Data* ptr)
 {
+	ptr->updateUInt(reinterpret_cast<uintptr_t>(ptr));
 	return (reinterpret_cast<uintptr_t>(ptr));
 };
 

@@ -120,6 +120,8 @@ void	printValue_double(double doubleValue, std::string& charImpossible, const st
 		//-----------------------------------------------------------------------
 		while (value[index_dot] != '.')
 				index_dot++;
+		if (value[index_dot + 1])
+			index_dot++;
 		std::cout << std::fixed << std::setprecision((strlen) - index_dot);
 		//-----------------------------------------------------------------------
 		//-----------------------------------------------------------------------

@@ -30,14 +30,15 @@
 
 class Serializer
 {
-	public:
+	private:
 		Serializer();										// default constructor
 		Serializer(const Serializer& copy);					// copy constructor
 		Serializer& operator=(const Serializer& copy);		// Copy assignment
 		~Serializer();										// destructor
 
-	static uintptr_t	serialize(Data* ptr);		//static method
-	static Data*		deserialize(uintptr_t raw);	//static method
+	public:
+		static uintptr_t	serialize(Data* ptr);		//static method
+		static Data*		deserialize(uintptr_t raw);	//static method
 };
 
 //std::ostream& operator<<(std::ostream& os, const Serializer& other);
