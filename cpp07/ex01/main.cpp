@@ -12,6 +12,14 @@
 
 #include "iter.hpp"
 
+static void	printInt(int &x)
+{
+	static size_t index;
+
+	std::cout << "Array[" << index++ \
+		<< "] value: " GREEN << x << RT << std::endl;
+};
+
 static void	ft_tolower(char &arr)
 {
 	arr = std::tolower(static_cast<unsigned char>(arr));
@@ -22,49 +30,75 @@ static void	ft_toupper(char &arr)
 	arr = std::toupper(static_cast<unsigned char>(arr));
 };
 
-static void	function(std::string &a)
+static void	function(std::string a)
 {
-	std::cout << "You wrote here: \"" << YELLOW << a << "\"." << RT << std::endl; 
+	std::cout << "You wrote here: \"" << YELLOW << a << RT << "\"." << std::endl;
+};
+
+//Don't put (*a), you want to pass a single char not a single pointer
+static void	function_char(const char &a)
+{
+	std::cout << "You wrote here: \"" << YELLOW << a << RT << "\"." << std::endl;
 };
 
 //::iter --means its my own version of the function--.
 int main()
 {
 	std::cout << "\n\n\n" << std::endl;
-	std::cout << MAG << "-Test 1-(big small num)" << RT << std::endl;
+	std::cout << MAG << "-Test 1-(int elements)" << RT << std::endl;
 	{
-		char	a[] = {'A', 'B', 'C'};
+		int a[] = {11, 22, 33, 44, 55};
 		size_t	arr_len = (sizeof(a) / sizeof(a[0]));
 		//sizeof(a): Gives the total byte size of the array.
 		//sizeof(a[0]): Gives the byte size of a single element in the array.
 		//by dividing them e.g: 
 		// (total byte) 9 / 3 (one element byte) == 3 (total elements)
 
-		std::cout << "Original:" <<
-		"\n\ta[0]: " << a[0] <<
-		"\n\ta[1]: " << a[1] <<
-		"\n\ta[2]: " << a[2] <<
-		"\n" << std::endl;
+		//----------------------print out array---------------------------
+		std::cout << "Original:" << std::endl;
+		for (size_t i = 0; i < arr_len; i++)
+			std::cout << "\ta[" << i << "]: " << a[i] << std::endl;
+		std::cout << "\n" << std::endl;
+		//----------------------print out array---------------------------
 
-		::iter(a, arr_len, ft_tolower);
-
-		std::cout << "Changed:" <<
-		"\n\ta[0]: " << a[0] <<
-		"\n\ta[1]: " << a[1] <<
-		"\n\ta[2]: " << a[2] <<
-		"\n" << std::endl;
-
-		::iter(a, 2, ft_toupper);
-
-		std::cout << "Changed:" <<
-		"\n\ta[0]: " << a[0] <<
-		"\n\ta[1]: " << a[1] <<
-		"\n\ta[2]: " << a[2] <<
-		"\n" << std::endl;
+		::iter(a, arr_len, printInt);
+		
 	}
 
 	std::cout << "\n\n\n" << std::endl;
-	std::cout << MAG << "-Test 2-(const char *)" << RT << std::endl;
+	std::cout << MAG << "-Test 2-(big small char)" << RT << std::endl;
+	{
+		char	a[] = {'A', 'B', 'C'};
+		size_t	arr_len = (sizeof(a) / sizeof(a[0]));
+
+		//----------------------print out array---------------------------
+		std::cout << "Original:" << std::endl;
+		for (size_t i = 0; i < arr_len; i++)
+			std::cout << "\ta[" << i << "]: " << a[i] << std::endl;
+		std::cout << "\n" << std::endl;
+		//----------------------print out array---------------------------
+
+		::iter(a, arr_len, ft_tolower);
+
+		//----------------------print out array---------------------------
+		std::cout << "Changed:" << std::endl;
+		for (size_t i = 0; i < arr_len; i++)
+			std::cout << "\ta[" << i << "]: " << a[i] << std::endl;
+		std::cout << "\n" << std::endl;
+		//----------------------print out array---------------------------
+
+		::iter(a, 2, ft_toupper);
+
+		//----------------------print out array---------------------------
+		std::cout << "Changed:" << std::endl;
+		for (size_t i = 0; i < arr_len; i++)
+			std::cout << "\ta[" << i << "]: " << a[i] << std::endl;
+		std::cout << "\n" << std::endl;
+		//----------------------print out array---------------------------
+	}
+
+	std::cout << "\n\n\n" << std::endl;
+	std::cout << MAG << "-Test 3-(std::string array pointer)" << RT << std::endl;
 	{
 		std::string	array[5];
 		size_t		arr_len = 5;
@@ -77,48 +111,33 @@ int main()
 		array[4] = "string";
 		//----------init array----------
 
-		std::cout << "Original:" <<
-		"\n\ta: " << array[0] <<
-		"\n" << std::endl;
+		//----------------------print out array---------------------------
+		std::cout << "Original:" << std::endl;
+		for (size_t i = 0; i < arr_len; i++)
+			std::cout << "\ta[" << i << "]: " << array[i] << std::endl;
+		std::cout << "\n" << std::endl;
+		//----------------------print out array---------------------------
 		
-		iter(array, arr_len, function);
-		//::iter(&a, arr_len, function);
+		::iter(array, arr_len, function);
 	}
 
-//
-/*
 	std::cout << "\n\n\n" << std::endl;
-	std::cout << MAG << "-Test 2-(int)" << RT << std::endl;
+	std::cout << MAG << "-Test 4-(const char *)" << RT << std::endl;
 	{
-		std::string	*a = "Chicken Box";
-		size_t		arr_len = a.size();
+		const char	a[] = "Chicken Box";
+		size_t		arr_len = (sizeof(a) / sizeof(a[0])) - 1;
 
-		std::cout << "Original:" <<
-		"\n\ta: " << a <<
-		"\n" << std::endl;
-		
-		iter(a, arr_len, function);
+		//----------------------print out array---------------------------
+		std::cout << "test4 const char!!!:" << std::endl;
+		for (size_t i = 0; i < arr_len; i++)
+			std::cout << "\ta[" << i << "]: " << a[i] << std::endl;
+		std::cout << "\n" << std::endl;
+		//----------------------print out array---------------------------
+
+		::iter(a, arr_len, function_char);
 	}
-*/
-};
 
-/*
-//instantiated function template
-static void	function(const char *array)
-{
-	std::cout << "You wrote here: \"" << YELLOW << "\"." << RT << std::endl; 
-};
-
-//void	iter(T *array, size_t array_length, void function(T *array))
-int	main(void)
-{
-	{
-		std::cout << "\n\n-starting test_1 for iter-" << std::endl;
-		char		array[] = {'A', 'B', 'C'};
-		size_t		array_length = array.size();
-
-		iter(array, array_length, function(array));
-	}
+	std::cout << "\n\n\n" << std::endl;
 	return (0);
 };
-*/
+

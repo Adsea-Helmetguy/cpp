@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef	WHATEVER_HPP
+#define	WHATEVER_HPP
+
 
 # include <iostream>
 # include <string>//std::string && "<class>.size() /length();""
@@ -59,53 +61,4 @@ S	max(S &a, S &b)
 	return (b);
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-//Templates must be defined in the header files
-template< typename T > // defines, T is a template
-
-//max
-const T	&max(const T &x ,const T &y) // more const, more better
-{
-	return (x >= y ? x : y);
-}
-
-template< typename U > // defines, U is a template
-
-//min
-const U	&min(const U &x ,const U &y) // more const, more better
-{
-	return (x <= y ? x : y);
-}
-
-template< typename V >
-
-//swap
-void swap(V &x, V &y)
-{
-	V temp = x;
-	x = y;
-	y = temp;
-}
-*/
+#endif
