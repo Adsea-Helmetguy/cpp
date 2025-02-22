@@ -18,8 +18,6 @@
 # include <exception>//std::exception
 # include <cstdlib>//for rand()
 
-# include "Array.tpp"
-
 # define RT	"\033[0m"
 # define RED	"\033[31m"
 # define YELLOW	"\033[33m"
@@ -51,24 +49,27 @@ template <typename T>
 class	Array
 {
 	private:
-		T	_name;
+		std::string	_name;
+		unsigned int	_size;
+		T		*_array;
 		
 	public:
-		Array() : _name("Default_name");
-		Array(unsigned int n) : _name("Default_name");
+		Array();
+		Array(unsigned int n);
 		Array(const Array &copy);
 		Array&	operator=(const Array &copy);
 		~Array();
 	
-	std::string	getName()
-	{
-		return (this->_name);
-	};
+	std::string	getName();
 	
-	void	numbers(Array max_value);
+	//void		numbers(Array<T> max_value);// takes an Array object
+	//T		getArray();
+	
+	T& operator[](unsigned int index); // Overload operator[]
 };
 
-//std::ostream& operator<<(std::ostream& os, const Array& other);
+# include "Array.tpp"
+
 #endif
 
 

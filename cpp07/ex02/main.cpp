@@ -2,7 +2,7 @@
 #include "Array.hpp"
 
 #define MAX_VAL 750
-//max_val returns right value if greater than left.
+
 int main(int, char**)
 {
 	Array<int> numbers(MAX_VAL);
@@ -15,10 +15,16 @@ int main(int, char**)
 		const int value = rand();
 		numbers[i] = value;
 		mirror[i] = value;
+		std::cout << "index = [" \
+			<< GREEN << i << RT << "]" \
+			<< "->Value of index: \"" \
+			<< numbers[i] << "\"." << std::endl;
 	}
 	delete [] mirror;
 	return 0;
 }
+
+//
 /*
 int main(int, char**)
 {
