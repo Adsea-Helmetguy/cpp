@@ -49,21 +49,21 @@ template <typename T>
 class	Array
 {
 	private:
-		std::string	_name;
+		std::string		_name;
 		unsigned int	_size;
-		T		*_array;
+		T*				_array;
 		
 	public:
 		Array();
 		Array(unsigned int n);
-		Array(const Array &copy);
+		Array(Array &copy);
 		Array&	operator=(const Array &copy);
 		~Array();
 	
-	std::string	getName();
-	
-	//void		numbers(Array<T> max_value);// takes an Array object
-	//T		getArray();
+	std::string		getName() const;
+	unsigned int	getSize() const;
+	T				getArray_value(unsigned int n) const;
+	T*				copyArray();// takes an Array object
 	
 	T& operator[](unsigned int index); // Overload operator[]
 };
