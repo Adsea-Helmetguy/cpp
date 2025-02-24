@@ -17,6 +17,7 @@
 # include <string>//std::string && "<class>.size() /length();"
 # include <exception>//std::exception
 # include <cstdlib>//for rand()
+# include <sstream>// for std::ostringstream
 
 # define RT	"\033[0m"
 # define RED	"\033[31m"
