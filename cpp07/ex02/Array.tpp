@@ -6,20 +6,20 @@ A common solution to this is to write the template declaration in a header file,
 	and include this implementation file at the end of the header.
 */
 
-//one more thing to add here, <T> beside each Array-----> Array<T>.
+//Default constructor
 template <typename T>
-Array<T>::Array() : _name("default Array-empty"), _size(1) , _array(new T[1]())
-{
-	std::cout << GREEN << "default Array-empty created" << RT << std::endl;
-};
-
-//MAX_VAL == 750
-template <typename T>
-Array<T>::Array(unsigned int n) : _name("default Array-unsigned_int"), _size(n), _array(new T[n]())
+Array<T>::Array() : _name("default Array-empty"), _size(0) , _array(new T[0]())
 {
 	//unsigned int "n" is for the array
 	//try at int main-> 
 	//	int *a = new int(); then display *a.
+	std::cout << GREEN << "default Array-empty created" << RT << std::endl;
+};
+
+//Constructor with value
+template <typename T>
+Array<T>::Array(unsigned int n) : _name("default Array-unsigned_int"), _size(n), _array(new T[n]())
+{
 	std::cout << GREEN << "default Array-unsigned_int created" << RT << std::endl;
 	for (unsigned int index = 0; index < n; index++)
 	{
@@ -36,6 +36,7 @@ Array<T>::Array(Array &copy)
 	this->_array = copy.copyArray();
 };
 
+//operator= constructor
 template <typename T>
 Array<T>&	Array<T>::operator=(const Array &copy)
 {
@@ -83,6 +84,7 @@ unsigned int	Array<T>::getSize() const
 	return (this->_size);
 };
 
+//_array[i] = value;
 template <typename T>
 T		Array<T>::getArray_value(unsigned int n) const
 {
@@ -97,26 +99,57 @@ T*		Array<T>::copyArray()
 {
 	unsigned int	n = this->getSize();
 
-	T* copy = new T[n]();
-	//creating a new this->_array.
+	T* copy = new T[n]();//creating a new this->_array.
 	for (unsigned int index = 0; index < n; index++)
 	{
 		copy[index] = static_cast<T>(this->getArray_value(index));
 	}
 	return (copy);
 };
+//--------------------Functions--------------------
 
+
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------
+//---Operators!-------------------------------------------------------
 template <typename T>
 T&	Array<T>::operator[](unsigned int index)
 {
 	if (index >= _size)
 		throw std::out_of_range("Index out of range");
-
 	return (_array[index]);
 };
-//--------------------Functions--------------------
 
 
+
+template <typename T>
+std::ostream&	operator<<(std::ostream& os, const Array<T>& form)
+{
+	std::cout << YELLOW<< "\n----------------" << "Printing Array<T> information" \
+		<< "----------------" << RT << std::endl;
+
+	std::cout << "Name: \""<< form.getName() << "\"" << std::endl;
+	std::cout << "Array_size: \""<< form.getSize() << "\"" << std::endl;
+	for (unsigned int index = 0; index < form.getSize(); index++)
+	{
+		std::cout << "Array_value[" << GREEN << index << RT \
+			<< "]: \""<< form.getArray_value(index) << "\"" << std::endl;
+	}
+	std::cout << YELLOW << "------------------------------------" \
+		"-------------------------" << RT << std::endl;
+	return (os);
+};
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 
 
 

@@ -68,6 +68,8 @@ class	Array
 	T& operator[](unsigned int index); // Overload operator[]
 };
 
+template <typename T>
+std::ostream& operator<<(std::ostream& os, const Array<T>& form);
 # include "Array.tpp"
 
 #endif
