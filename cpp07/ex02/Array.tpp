@@ -129,7 +129,13 @@ T&	Array<T>::operator[](unsigned int index)
 	return (_array[index]);
 };
 
-
+template <typename T>
+const T&	Array<T>::operator[](unsigned int index) const
+{
+	if (index >= _size)
+		throw std::out_of_range("Index out of range");
+	return (_array[index]);
+};
 
 template <typename T>
 std::ostream&	operator<<(std::ostream& os, const Array<T>& form)

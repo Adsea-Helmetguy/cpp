@@ -327,6 +327,62 @@ int main(int, char**)
 
 
 
+
+	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << GREEN \
+		<< "\n\n\n--------------------------------------\n"
+		<< "|Personal Test 5(const operator[] const(PDF last question))|\n" \
+		<< "--------------------------------------\n" \
+		<< RT << std::endl;
+	{
+		const Array<int> number(1);
+		std::cout << number[0] << std::endl;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	std::cout << GREEN << "\n\n\n---------------------------------\n" \
 		<< "|\tOfficial Test 1\t\t|\n" \
 		<< "---------------------------------\n" \

@@ -66,6 +66,7 @@ class	Array
 	T				getArray_value(unsigned int n) const;
 	T*				copyArray();// takes an Array object
 	
+	const T& operator[](unsigned int index) const;
 	T& operator[](unsigned int index); // Overload operator[]
 };
 
