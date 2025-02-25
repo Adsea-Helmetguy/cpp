@@ -16,6 +16,8 @@
 
 # include <iostream>
 # include <string>//std::string && "<class>.size() /length();""
+# include <vector>
+//# include <map>
 
 
 # define RT	"\033[0m"
@@ -27,11 +29,7 @@
 # define MAG	"\e[0;35m"
 
 template<typename T>
-void	easyfind(T &a, int b)//assume T is a container of int
-{
-	T temp = b;
-	b = a;
-	a = temp;
-};
+void	easyfind(T &a, int b);//assume T is a container of int
+# include "easyfind.tpp"
 
 #endif
