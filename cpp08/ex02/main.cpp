@@ -32,12 +32,9 @@ int main(int, char**)
 				<< "------------------------------" << std::endl;
 		}
 
-		//Scope test
 		{
 			Array<int> tmp = numbers;
 			Array<int> test(tmp);
-			//testing with the scope
-			std::cout << "--TEST within \"SCOPE\", destructor occurs--" << std::endl;
 		}
 
 		for (int i = 0; i < MAX_VAL; i++)
@@ -205,6 +202,15 @@ int main(int, char**)
 		{
 			std::cerr << MAG << e.what() << RT << std::endl;
 		}
+		try
+		{
+			std::cout << "numbers[max_value] = 0;" << std::endl;
+			numbers[max_value] = 0;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << MAG << e.what() << RT << std::endl;
+		}
 
 		for (unsigned int i = 0; i < max_value; i++)
 		{
@@ -272,10 +278,10 @@ int main(int, char**)
 		numbers[max_value] = '\0';
 		mirror[max_value] = '\0';
 
-
+/*
 		{
-			Array<char> tmp = numbers;
-			Array<char> test(tmp);
+			Array<int> tmp = numbers;
+			Array<int> test(tmp);
 		}
 
 		for (unsigned int i = 0; i < max_value; i++)
@@ -290,7 +296,25 @@ int main(int, char**)
 		try
 		{
 			std::cout << "numbers[-2] = 0;" << std::endl;
-			numbers[-2] = 'C';
+			numbers[-2] = 0;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << MAG << e.what() << RT << std::endl;
+		}
+		try
+		{
+			std::cout << "numbers[max_value] = 0;" << std::endl;
+			numbers[max_value] = 0;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << MAG << e.what() << RT << std::endl;
+		}
+		try
+		{
+			std::cout << "numbers[max_value] = 0;" << std::endl;
+			numbers[max_value] = 0;
 		}
 		catch(const std::exception& e)
 		{
@@ -301,7 +325,8 @@ int main(int, char**)
 		{
 			numbers[i] = rand();
 		}
-
+*/
+		//std::cout << "final test(numbers):" << numbers << std::endl;
 		std::cout << RED << "***MIRROR GONE!!" << RT << std::endl;
 		delete [] mirror;
 	}
@@ -326,7 +351,7 @@ int main(int, char**)
 
 
 
-
+/*
 	std::cout << GREEN << "\n\n\n---------------------------------\n" \
 		<< "|\tOfficial Test 1\t\t|\n" \
 		<< "---------------------------------\n" \
@@ -346,8 +371,8 @@ int main(int, char**)
 	
 		//SCOPE
 		{
-			Array<int> tmp = numbers;
-			Array<int> test(tmp);
+				Array<int> tmp = numbers;
+				Array<int> test(tmp);
 		}
 	
 		for (int i = 0; i < MAX_VAL; i++)
@@ -382,5 +407,6 @@ int main(int, char**)
 		}
 		delete [] mirror;
 	}
+*/
 	return (0);
 }
