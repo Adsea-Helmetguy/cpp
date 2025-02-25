@@ -5,7 +5,6 @@
 
 int main(int, char**)
 {
-/*
 	std::cout << GREEN << "\n\n\n---------------------------------\n" \
 		<< "|\tPersonal Test 1\t\t|\n" \
 		<< "---------------------------------\n" \
@@ -388,7 +387,6 @@ int main(int, char**)
 
 
 
-*/
 	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << GREEN \
 		<< "\n\n\n---------------------------------\n"
 		<< "|\tOfficial Test 1\t\t|\n" \
