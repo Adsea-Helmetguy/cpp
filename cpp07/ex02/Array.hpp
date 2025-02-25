@@ -66,8 +66,8 @@ class	Array
 	T				getArray_value(unsigned int n) const;
 	T*				copyArray();// takes an Array object
 	
-	const T& operator[](unsigned int index) const;
-	T& operator[](unsigned int index); // Overload operator[]
+	T& operator[](unsigned int index);// Overload operator[]
+	const T& operator[](unsigned int index) const;//for Const instances
 };
 
 template <typename T>

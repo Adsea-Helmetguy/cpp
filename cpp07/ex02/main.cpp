@@ -5,6 +5,7 @@
 
 int main(int, char**)
 {
+/*
 	std::cout << GREEN << "\n\n\n---------------------------------\n" \
 		<< "|\tPersonal Test 1\t\t|\n" \
 		<< "---------------------------------\n" \
@@ -329,13 +330,18 @@ int main(int, char**)
 
 
 	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << GREEN \
-		<< "\n\n\n--------------------------------------\n"
-		<< "|Personal Test 5(const operator[] const(PDF last question))|\n" \
-		<< "--------------------------------------\n" \
+		<< "\n\n\n---------------------------------------------------------------\n"
+		<< "| Personal Test 5 (const operator[] const(PDF last question)) |\n" \
+		<< "---------------------------------------------------------------\n" \
 		<< RT << std::endl;
 	{
+		std::cout << "--------Constructors Created:--------" << std::endl;
 		const Array<int> number(1);
-		std::cout << number[0] << std::endl;
+		std::cout << "------Constructors Created ends------\n\n\n" << std::endl;
+
+
+		std::cout << "Value of created Array[0]: " \
+			<< GREEN << number[0] << RT << std::endl;
 	}
 
 
@@ -382,8 +388,9 @@ int main(int, char**)
 
 
 
-
-	std::cout << GREEN << "\n\n\n---------------------------------\n" \
+*/
+	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << GREEN \
+		<< "\n\n\n---------------------------------\n"
 		<< "|\tOfficial Test 1\t\t|\n" \
 		<< "---------------------------------\n" \
 		<< RT << std::endl;

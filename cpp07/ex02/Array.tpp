@@ -6,6 +6,8 @@ A common solution to this is to write the template declaration in a header file,
 	and include this implementation file at the end of the header.
 */
 
+//-----------------------------------------------------------------------
+//--------------------Constructors--------------------
 //Default constructor
 template <typename T>
 Array<T>::Array() : _name("default Array-empty"), _size(0) , _array(new T[0]())
@@ -68,7 +70,29 @@ Array<T>::~Array()
 		this->_array = NULL;
 	}
 };
+//--------------------Constructors--------------------
+//-----------------------------------------------------------------------
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------
 //--------------------Functions--------------------
 // _name("default Array-unsigned_int")
 template <typename T>
@@ -107,6 +131,17 @@ T*		Array<T>::copyArray()
 	return (copy);
 };
 //--------------------Functions--------------------
+//-----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -129,6 +164,7 @@ T&	Array<T>::operator[](unsigned int index)
 	return (_array[index]);
 };
 
+//for last question
 template <typename T>
 const T&	Array<T>::operator[](unsigned int index) const
 {
@@ -154,7 +190,7 @@ std::ostream&	operator<<(std::ostream& os, const Array<T>& form)
 		"-------------------------" << RT << std::endl;
 	return (os);
 };
-//-----------------------------------------------------------------------
+//---Operators!-------------------------------------------------------
 //-----------------------------------------------------------------------
 
 

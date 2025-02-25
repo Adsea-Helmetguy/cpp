@@ -12,6 +12,15 @@
 
 #include "easyfind.hpp"
 
+/*
+You don’t have to handle associative containers.
+e.g:
+1) set
+2) map
+3) multiset
+4) multimap
+*/
+
 int	main(void)
 {
 	std::cout << GREEN << "easyfind start!" << RT << std::endl;
