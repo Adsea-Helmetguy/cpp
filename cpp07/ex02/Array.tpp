@@ -20,12 +20,26 @@ Array<T>::Array() : _name("default Array-empty"), _size(0) , _array(new T[0]())
 
 //Constructor with value
 template <typename T>
-Array<T>::Array(unsigned int n) : _name("default Array-unsigned_int"), _size(n), _array(new T[n]())
+Array<T>::Array(unsigned int n) : _name("default Array-unsigned_int"), _size(n), _array(NULL)
 {
-	std::cout << GREEN << "default Array-unsigned_int created" << RT << std::endl;
-	for (unsigned int index = 0; index < n; index++)
+	if (n > static_cast<unsigned int>(INT_MAX)) // Prevents excessive allocation
 	{
-		this->_array[index] = static_cast<T>(0);
+		throw std::overflow_error("Array size exceeds allowable limit.");
+	}
+
+	try
+	{
+		_array = new T[n]();  // Allocate memory safely
+		std::cout << GREEN << "default Array-unsigned_int created" << RT << std::endl;
+
+		for (unsigned int index = 0; index < n; index++)
+		{
+			this->_array[index] = static_cast<T>(0);
+		}
+	}
+	catch (const std::bad_alloc& e)
+	{
+		throw std::runtime_error("Memory allocation failed: " + std::string(e.what()));
 	}
 };
 
@@ -34,7 +48,7 @@ template <typename T>
 Array<T>::Array(Array &copy)
 {
 	this->_name = copy.getName();
-	this->_size = copy.getSize();
+	this->_size = copy.size();
 	this->_array = copy.copyArray();
 };
 
@@ -51,7 +65,7 @@ Array<T>&	Array<T>::operator=(const Array &copy)
 		}
 
 		this->_name = copy.getName();
-		this->_size = copy.getSize();
+		this->_size = copy.size();
 		this->_array = copy.copyArray();
 	}
 	return (*this);
@@ -103,7 +117,7 @@ std::string		Array<T>::getName() const
 
 // _size(n)
 template <typename T>
-unsigned int	Array<T>::getSize() const
+unsigned int	Array<T>::size() const
 {
 	return (this->_size);
 };
@@ -121,7 +135,7 @@ T		Array<T>::getArray_value(unsigned int n) const
 template <typename T>
 T*		Array<T>::copyArray()
 {
-	unsigned int	n = this->getSize();
+	unsigned int	n = this->size();
 
 	T* copy = new T[n]();//creating a new this->_array.
 	for (unsigned int index = 0; index < n; index++)
@@ -180,8 +194,8 @@ std::ostream&	operator<<(std::ostream& os, const Array<T>& form)
 		<< "----------------" << RT << std::endl;
 
 	std::cout << "Name: \""<< form.getName() << "\"" << std::endl;
-	std::cout << "Array_size: \""<< form.getSize() << "\"" << std::endl;
-	for (unsigned int index = 0; index < form.getSize(); index++)
+	std::cout << "Array_size: \""<< form.size() << "\"" << std::endl;
+	for (unsigned int index = 0; index < form.size(); index++)
 	{
 		std::cout << "Array_value[" << GREEN << index << RT \
 			<< "]: \""<< form.getArray_value(index) << "\"" << std::endl;

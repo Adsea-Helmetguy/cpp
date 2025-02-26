@@ -1,10 +1,13 @@
 #include <iostream>
 #include "Array.hpp"
 
-#define MAX_VAL 750
+#define MAX_VAL 1
 
 int main(int, char**)
 {
+
+	
+
 	std::cout << GREEN << "\n\n\n---------------------------------\n" \
 		<< "|\tPersonal Test 1\t\t|\n" \
 		<< "---------------------------------\n" \
@@ -91,24 +94,6 @@ int main(int, char**)
 		// so if your pointer got tons of array, delete with delete []
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << GREEN \
 		<< "\n\n\n--------------------------------------\n"
 		<< "|Personal Test 2(Default constructor)|\n" \
@@ -126,21 +111,6 @@ int main(int, char**)
 		delete a;	//cause you created 'new
 		delete empty;	//cause you created 'new'
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << GREEN \
@@ -218,25 +188,6 @@ int main(int, char**)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << GREEN \
 		<< "\n\n\n--------------------------------------\n"
 		<< "|Personal Test 4(With Char)|\n" \
@@ -244,7 +195,7 @@ int main(int, char**)
 		<< RT << std::endl;
 	{
 		std::cout << "--------Constructors Created:--------" << std::endl;
-		unsigned int	max_value = 750;
+		unsigned int	max_value = MAX_VAL;
 		
 		Array<char> numbers(max_value + 1);
 		char* mirror = new char[max_value + 1];
@@ -443,5 +394,10 @@ int main(int, char**)
 		}
 		delete [] mirror;
 	}
+
+	//Array<int> ys1(4294967295);
+	Array<int> ys1(1000);
+	std::cout<< "\n" << ys1.size() << std::endl;
+	
 	return (0);
 }

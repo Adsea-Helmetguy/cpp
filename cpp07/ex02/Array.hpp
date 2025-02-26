@@ -18,8 +18,9 @@
 # include <exception>//std::exception
 # include <cstdlib>//for rand()
 # include <sstream>// for std::ostringstream
+# include <limits.h>// for int max and min
 
-# define RT	"\033[0m"
+# define RT		"\033[0m"
 # define RED	"\033[31m"
 # define YELLOW	"\033[33m"
 # define BLUE	"\033[34m"
@@ -62,7 +63,7 @@ class	Array
 		~Array();
 	
 	std::string		getName() const;
-	unsigned int	getSize() const;
+	unsigned int	size() const;
 	T				getArray_value(unsigned int n) const;
 	T*				copyArray();// takes an Array object
 	

@@ -20,18 +20,18 @@ e.g:
 */
 #include "easyfind.hpp"
 
-// about iterators:
-//https://www.youtube.com/watch?v=EgVWWVZ6AEY
+// about iterators: https://www.youtube.com/watch?v=EgVWWVZ6AEY
+
 int	main(void)
 {
-	std::cout << GREEN << "easyfind start!" << RT << std::endl;
+	//For iterators
+	std::cout << GREEN << "\n\n\n\nTesting iterators!" << RT << std::endl;
 	{
 		//-----------------------------------------------------
 		std::cout << "Without iterators: " << std::endl;
 		int arr[] = {1, 2, 3, 4, 5};
 		std::vector<int> numbers(arr, arr + sizeof(arr) / sizeof(arr[0])); 
 		int	size = numbers.size();
-		//int	value = 4;
 		
 		for (int i = 0; i < size; i++)
 		{
@@ -39,6 +39,11 @@ int	main(void)
 				<< "]: \"" << numbers[i] << "\"" << std::endl;
 		}
 		//-----------------------------------------------------
+
+
+
+		std::cout << "\n\n---------------------------------\n\n" \
+			<< std::endl;
 
 
 
@@ -51,6 +56,39 @@ int	main(void)
 		}
 		//-----------------------------------------------------
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+	//TEST (1)
+	std::cout << GREEN << "\n\n\n\nTest(1) easyfind start!" << RT << std::endl;
+	{
+		//-----------------------------------------------------
+		std::cout << "Easyfind function: " << std::endl;
+		int arr[] = {1, 2, 3, 4, 5};
+		std::vector<int> numbers(arr, arr + sizeof(arr) / sizeof(arr[0])); 
+		int	valueToFind = 4;
+		try
+		{
+			std::cout << "value of easyfind is: \"" << GREEN \
+			<< easyfind(numbers, valueToFind) << RT << "\"" << std::endl;
+		}
+		catch (std::exception &e)
+		{
+			std::cout << RED << "ERROR THROWN: \"" << YELLOW \
+			<< e.what() << RED << "\"" << RT << std::endl;
+		}
+		//-----------------------------------------------------
+	}
+	std::cout << "\n\n" << std::endl;
 	return 0;
 };
 

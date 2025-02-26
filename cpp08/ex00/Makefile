@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = what
+NAME = so_ez
 
 CXX = c++
 CXXFLAGS = -g -Wall -Werror -Wextra -std=c++98
