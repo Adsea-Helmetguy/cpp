@@ -18,6 +18,8 @@
 # include <string>//std::string && "<class>.size() /length();""
 # include <vector>
 # include <exception>
+# include <list>
+# include <deque>
 
 
 # define RT	"\033[0m"
@@ -27,16 +29,6 @@
 # define CYAN	"\033[0;36m"
 # define GREEN	"\033[32m"
 # define MAG	"\e[0;35m"
-
-class NotFoundExeption : public std::exception
-{
-	public:
-		virtual const char* what() const throw()
-		{
-			return ("Number not found");
-		}
-	
-};
 
 template<typename T>
 int	easyfind(const T &a, int b);//assume T is a container of int

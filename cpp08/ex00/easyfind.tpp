@@ -6,33 +6,25 @@ template<typename T>
 int	easyfind(const T &arr, int b)//assume T is a container of int
 {
 	//loop through the container of T, find first "int b"
-	typename T::const_iterator	num2 = arr.begin();
-	int			size = arr.size();
+	typename T::const_iterator	num2;
 
-	std::cout << "With iterators: " << std::endl;
-/*
 	for (num2 = arr.begin(); num2 != arr.end(); num2++)
 	{
-		std::cout << *num2 << std::endl;
-		if (*num2 == b)
-		{
+		if (static_cast<int>(*num2) == b)
 			return (b);
-		}
 	}
-	if (*num2 == arr.end())
+	if (num2 == arr.end())
 	{
-		throw NotFoundExeption();
+		std::cerr << RT << "Unable to find the value: (" \
+			<< RED << b << RT << ")" << std::endl;
+		throw std::runtime_error("No value found in iterator");
 	}
-*/
 	return (0);
 };
 
 
-
-
-
 //links:
-//https://pages.cs.wisc.edu/~driscoll/typename.html
+//https://pages.cs.wisc.edu/~driscoll/typename.html -usage of typename beside vector-
 
 
 

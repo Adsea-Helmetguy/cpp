@@ -24,7 +24,7 @@ Array<T>::Array(unsigned int n) : _name("default Array-unsigned_int"), _size(n),
 {
 	if (n > static_cast<unsigned int>(INT_MAX)) // Prevents excessive allocation
 	{
-		throw std::overflow_error("Array size exceeds allowable limit.");
+		throw std::overflow_error("Array size exceeds INT_MAX!");
 	}
 
 	try
