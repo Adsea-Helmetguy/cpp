@@ -51,9 +51,9 @@ template <typename T>
 class	Array
 {
 	private:
-		std::string		_name;
+		std::string	_name;
 		unsigned int	_size;
-		T*				_array;
+		T*		_array;
 		
 	public:
 		Array();
@@ -62,10 +62,10 @@ class	Array
 		Array&	operator=(const Array &copy);
 		~Array();
 	
-	std::string		getName() const;
+	std::string	getName() const;
 	unsigned int	size() const;
-	T				getArray_value(unsigned int n) const;
-	T*				copyArray();// takes an Array object
+	T		getArray_value(unsigned int n) const;
+	T*		copyArray();// takes an Array object
 	
 	T& operator[](unsigned int index);// Overload operator[]
 	const T& operator[](unsigned int index) const;//for Const instances
