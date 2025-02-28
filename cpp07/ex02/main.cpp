@@ -257,28 +257,6 @@ int main(int, char**)
 		delete [] mirror;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << GREEN \
 		<< "\n\n\n---------------------------------------------------------------\n"
 		<< "| Personal Test 5 (const operator[] const(PDF last question)) |\n" \
@@ -295,47 +273,16 @@ int main(int, char**)
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << GREEN \
+		<< "\n\n\n---------------------------------------------------------------\n"
+		<< "| Personal Test 6 (overload INT_MAX AND INT_MIN for array)) |\n" \
+		<< "---------------------------------------------------------------\n" \
+		<< RT << std::endl;
+	{
+		//Array<int> ys1(4294967295);
+		const Array<int> ys1(4294967295);
+		std::cout<< "\n" << ys1.size() << std::endl;
+	}
 
 
 	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << GREEN \
@@ -393,17 +340,6 @@ int main(int, char**)
 			numbers[i] = rand();
 		}
 		delete [] mirror;
-	}
-
-	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << GREEN \
-		<< "\n\n\n---------------------------------------------------------------\n"
-		<< "| Personal Test 6 (overload INT_MAX AND INT_MIN for array)) |\n" \
-		<< "---------------------------------------------------------------\n" \
-		<< RT << std::endl;
-	{
-		//Array<int> ys1(4294967295);
-		Array<int> ys1(4294967295);
-		std::cout<< "\n" << ys1.size() << std::endl;
 	}
 
 	std::cout << "\n" << std::endl;

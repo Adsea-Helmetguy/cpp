@@ -23,6 +23,7 @@ INC_DIR = ./
 # ************************************************************************** */
 #List of SOURCE(SRC) files
 SRC_FILE_NAMES = main.cpp \
+			Span.cpp
 
 
 

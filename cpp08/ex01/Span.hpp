@@ -18,22 +18,45 @@
 # include <exception>
 # include <limits.h>
 
+# define RT	"\033[0m"
+# define RED	"\033[31m"
+# define YELLOW	"\033[33m"
+# define BLUE	"\033[34m"
+# define CYAN	"\033[0;36m"
+# define GREEN	"\033[32m"
+# define MAG	"\e[0;35m"
+
 class	Span
 {
 	private:
-		unsigned int*	_N;
+		unsigned int	N;//Should it be const, but if it does, i can't copy right?
+		std::string	_name;
+		unsigned int	_arraySize;
+		unsigned int	*_arrayNum;
 
 	public:
-		Span();
+		Span(unsigned int value);//starts with maximum capacity it can store(N).
 		Span(const Span& copy);
 		Span&	operator=(const Span& copy);
 		~Span();
 	
-	//member functions
-	int	addNumber();
-	int	shortestSpan();
-	int	longestSpan();
+	//----------------------member functions----------------------
+	int	addNumber(int value);//increment(++), throw exception if arraysize == N
+	int	shortestSpan();//if only one or nil, throw exception
+	int	longestSpan();//if only one or nil, throw exception
+
+	//add-on:
+	//Implement a member function to add many numbers to your Span in one call.
+	int	add_numSpan();//to add a sequence of elements to container, std::vector/list?
+	
+	//Personal Functions:
+	unsigned int	getN() const;
+	std::string	getName() const;
+	unsigned int	getArray_size() const;
+	unsigned int	getArray_num(unsigned int array) const;
+	unsigned int*	getArray() const;
+	//----------------------member functions----------------------
 };
 
-//std::ostream& operator<<(std::ostream& os, const Array<T>& form);
+//std::ostream& operator<<(std::ostream& os, const Span& SS);
 #endif
