@@ -17,6 +17,8 @@
 # include <string>
 # include <exception>
 # include <limits.h>
+# include <vector>
+
 
 # define RT	"\033[0m"
 # define RED	"\033[31m"
@@ -42,6 +44,7 @@ class	Span
 	
 	//----------------------member functions----------------------
 	int	addNumber(int value);//increment(++), throw exception if arraysize == N
+	void	addNumberGroup(const std::vector<int> &numbers);
 	int	shortestSpan();//if only one or nil, throw exception
 	int	longestSpan();//if only one or nil, throw exception
 

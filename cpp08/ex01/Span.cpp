@@ -15,9 +15,11 @@
 //fill your Span using a range of iterators.
 Span::Span(unsigned int	value) : N(value), _name("default N"), _arraySize(0), _arrayNum(NULL)
 {
+
 	if (N > static_cast<unsigned int>(INT_MAX))// Prevents excessive allocation
 	{
-		std::cerr << "Your unsigned int value is beyond INT_MAX" << std::endl;
+		std::cerr << RED << "unsigned int value beyond INT_MAX, " \
+			<< "_arrayNum == NULL" << RT << std::endl;
 		return ;
 	}
 
@@ -60,8 +62,8 @@ Span::~Span()
 {
 	if (this->_arrayNum)
 		delete[] (this->_arrayNum);//Don't forget, delete array need '[]'
-	std::cout << RED << "Function[" << YELLOW << this->_name \
-		<< RED << "] is deleted." << RT << std::endl;
+	std::cout << "Function[" << YELLOW << this->_name \
+		<< RT << "] is deleted." << RT << std::endl;
 };
 
 //----------------------member functions----------------------
@@ -80,14 +82,55 @@ int	Span::addNumber(int value)
 	return(0);
 };
 
+//Range of Iterators C++98
+void	Span::addNumberGroup(const std::vector<int> &numbers)
+{
+	std::vector<int>::const_iterator	start;
+
+	for (start = numbers.begin(); start != numbers.end(); start++)
+	{
+		addNumber(*start); // Assuming addNumber() is already implemented
+	}
+}
+
+//shortest_Span
 int	Span::shortestSpan()
 {
-	return(0);
+	if (N <= 1)
+		throw std::runtime_error("No numbers or only 1 stored, no Span found.");
+
+	unsigned int	difference = 0;
+	unsigned int	shortest_span = static_cast<unsigned int>(INT_MAX);
+
+	for (unsigned int array = 1; array < N; array++)
+	{
+		difference = this->_arrayNum[array - 1] - this->_arrayNum[array];
+		if (difference < 0)
+				difference *= -1;
+		if (shortest_span > difference)
+			shortest_span = difference;
+	}
+	return(shortest_span);
 };
 
+//longest_Span
 int	Span::longestSpan()
 {
-	return(0);
+	if (N <= 1)
+		throw std::runtime_error("No numbers or only 1 stored, no Span found.");
+
+	int	difference = 0;
+	int	longest_span = 0;
+
+	for (unsigned int array = 1; array < N; array++)
+	{
+		difference = this->_arrayNum[array - 1] - this->_arrayNum[array];
+		if (difference < 0)
+				difference *= -1;
+		if (longest_span < difference)
+			longest_span = difference;
+	}
+	return(longest_span);
 };
 
 int	Span::add_numSpan()
