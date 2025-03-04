@@ -116,7 +116,7 @@ int	main(void)
 		Span sp = Span(10);
 		try
 		{
-			int arr[] = {2, 10, 3, 11, 9, 1, 17, 20, 25, 30};
+			int arr[] = {2, -10, 3, -11, 9, 1, 17, 20, 25, 30};
 			std::vector<int> numbers(arr, arr + sizeof(arr) / sizeof(arr[0]));
 
 			sp.addNumberGroup(numbers);
@@ -124,7 +124,7 @@ int	main(void)
 			std::cout << "Longest_span: " << sp.longestSpan() << std::endl;
 			std::cout << "\nNOTE! THE CORRECT ANSWER SHOULD BE:" << std::endl;
 			std::cout << "Shortest_span: " << 1 << std::endl;
-			std::cout << "Longest_span: " << 29 << std::endl;
+			std::cout << "Longest_span: " << 41 << std::endl;
 		}
 		catch (std::exception &e)
 		{
@@ -133,6 +133,7 @@ int	main(void)
 		std::cout << YELLOW << "\nDestructors here:" << RT << std::endl;
 	}
 	std::cout << "-------------------------" << std::endl;
+
 	std::cout << "\n\n" << std::endl;
 	return (0);
 };

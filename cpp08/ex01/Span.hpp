@@ -18,6 +18,7 @@
 # include <exception>
 # include <limits.h>
 # include <vector>
+# include <algorithm>
 
 
 # define RT	"\033[0m"
@@ -31,10 +32,10 @@
 class	Span
 {
 	private:
-		unsigned int	N;//Should it be const, but if it does, i can't copy right?
-		std::string	_name;
-		unsigned int	_arraySize;
-		unsigned int	*_arrayNum;
+		unsigned int		N;//Should it be const, but if it does, i can't copy right?
+		std::string		_name;
+		unsigned int		_arraySize;
+		std::vector<int>	_arrayNum;
 
 	public:
 		Span(unsigned int value);//starts with maximum capacity it can store(N).
@@ -53,11 +54,11 @@ class	Span
 	int	add_numSpan();//to add a sequence of elements to container, std::vector/list?
 	
 	//Personal Functions:
-	unsigned int	getN() const;
-	std::string	getName() const;
-	unsigned int	getArray_size() const;
-	unsigned int	getArray_num(unsigned int array) const;
-	unsigned int*	getArray() const;
+	unsigned int		getN() const;
+	std::string		getName() const;
+	unsigned int		getArray_size() const;
+	int			getArray_num(unsigned int array) const;
+	std::vector<int>	getArray() const;
 	//----------------------member functions----------------------
 };
 
