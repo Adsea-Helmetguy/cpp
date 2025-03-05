@@ -32,7 +32,7 @@
 class	Span
 {
 	private:
-		unsigned int		N;//Should it be const, but if it does, i can't copy right?
+		unsigned int		N;
 		std::string		_name;
 		unsigned int		_arraySize;
 		std::vector<int>	_arrayNum;
@@ -45,7 +45,7 @@ class	Span
 	
 	//----------------------member functions----------------------
 	int	addNumber(int value);//increment(++), throw exception if arraysize == N
-	void	addNumberGroup(const std::vector<int> &numbers);
+	void	addNumberGroup(const std::vector<int> &numbers);//one shot a group at once
 	int	shortestSpan();//if only one or nil, throw exception
 	int	longestSpan();//if only one or nil, throw exception
 
@@ -57,10 +57,11 @@ class	Span
 	unsigned int		getN() const;
 	std::string		getName() const;
 	unsigned int		getArray_size() const;
-	int			getArray_num(unsigned int array) const;
-	std::vector<int>	getArray() const;
+	std::vector<int>	copyArray() const;
+	void			getArray_values() const;
+	void			clearArray_values();
 	//----------------------member functions----------------------
 };
 
-//std::ostream& operator<<(std::ostream& os, const Span& SS);
+std::ostream& operator<<(std::ostream& os, const Span& sp);
 #endif

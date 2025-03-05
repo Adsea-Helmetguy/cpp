@@ -16,11 +16,11 @@
 Span::Span(unsigned int	value) : N(value), _name("default N"), _arraySize(0), _arrayNum(0)
 {
 
-	if (N > static_cast<unsigned int>(INT_MAX) || N < 0)// Prevents excessive allocation
+	if (N > static_cast<unsigned int>(INT_MAX))// Prevents excessive allocation
 	{
-		std::cerr << RED << "unsigned int value beyond INT_MAX or less than 0, " \
-			<< "_arrayNum == NULL" << RT << std::endl;
-		return ;
+		std::cerr << YELLOW << "unsigned int value beyond INT_MAX " \
+			<< "auto changed N == (INT_MAX)2147483647" << RT << std::endl;
+		N = 2147483647;
 	}
 
 	_arrayNum.reserve(N);
@@ -31,7 +31,8 @@ Span::Span(const Span& copy)
 {
 	this->N = copy.getN();
 	this->_name = copy.getName();
-	//this->_arrayNum = copy.getArray();
+	this->_arraySize = copy.getArray_size();
+	this->_arrayNum = copy.copyArray();
 };
 
 Span&	Span::operator=(const Span& copy)
@@ -41,7 +42,8 @@ Span&	Span::operator=(const Span& copy)
 		//std::vector handles memory management
 		this->N = copy.getN();
 		this->_name = copy.getName();
-		//this->_arrayNum = copy.getArray();
+		this->_arraySize = copy.getArray_size();
+		this->_arrayNum = copy.copyArray();
 	}
 	return (*this);
 };
@@ -85,9 +87,19 @@ int	Span::shortestSpan()
 	if (N <= 1)
 		throw std::runtime_error("No numbers or only 1 stored, no Span found.");
 
+	unsigned int	shortest_span = static_cast<unsigned int>(INT_MAX);
+	int		difference = 0;
+
 	std::sort(_arrayNum.begin(), _arrayNum.end());
-	//return(shortest_span);
-	return (0);
+	for (unsigned int index = 1; index < this->_arraySize; index++)
+	{
+		difference = _arrayNum[index - 1] - _arrayNum[index];
+		if (difference < 0)
+			difference *= -1;
+		if (static_cast<unsigned int>(difference) < shortest_span)
+			shortest_span = static_cast<unsigned int>(difference);
+	}
+	return (shortest_span);
 };
 
 //longest_Span
@@ -96,21 +108,11 @@ int	Span::longestSpan()
 	if (N <= 1)
 		throw std::runtime_error("No numbers or only 1 stored, no Span found.");
 
-	int	longest_span = 0;
+	unsigned int	longest_span = 0;
 
 	std::sort(_arrayNum.begin(), _arrayNum.end());
-	
-	std::vector<int>::const_iterator	start;
-	
-	for (start = _arrayNum.begin(); start != _arrayNum.end(); start++)
-	{
-		std::cout << YELLOW << "Value of _arrayNum: " << *start << RT << std::endl;
-	}
-	//check the syntax since end is the null pointers
-	longest_span = ((*_arrayNum.begin()) - (*_arrayNum.end() - 1)) * -1;
-	
-	
-	return(longest_span);
+	longest_span = static_cast<unsigned int>((_arrayNum[0] - _arrayNum[this->_arraySize - 1]) * -1);
+	return (static_cast<int>(longest_span));
 };
 
 int	Span::add_numSpan()
@@ -133,18 +135,42 @@ unsigned int	Span::getArray_size() const
 	return (this->_arraySize);
 };
 
-int	Span::getArray_num(unsigned int array) const
+std::vector<int>	Span::copyArray() const
 {
-	return (this->_arrayNum[array]);
+	return (this->_arrayNum);
 };
 
-//std::vector<int>	Span::getArray() const
-//{
-//	return (this->_arrayNum);
-//};
+void	Span::getArray_values() const
+{
+	std::vector<int>::const_iterator	start;
+	unsigned int	array = 0;
+
+	std::cout << "_arrayNum values: " << std::endl;
+	for (start = _arrayNum.begin(); start != _arrayNum.end(); start++)
+	{
+		std::cout << "Value of Array[" << YELLOW << array++ << RT << \
+			"]: " << GREEN << *start << RT << std::endl;
+	}
+};
+
+void	Span::clearArray_values()
+{
+	this->_arrayNum.clear();
+	this->_arraySize = 0;
+};
 //----------------------member functions----------------------
 
 
-//std::ostream& operator<<(std::ostream& os, const const Span& SS)
-//{
-//};
+std::ostream& operator<<(std::ostream& os, const Span& sp)
+{
+	std::cout << "\n*********************************\n" \
+		<< "Printing span's information |\n" \
+		<< "*****************************" << std::endl;
+
+	std::cout << "Name: \"" << sp.getName() << "\"" << std::endl;
+	std::cout << "N's Max size: \"" << sp.getN() << "\"" << std::endl;
+	std::cout << "sp's current used size: \"" << sp.getArray_size() << "\"" << std::endl;
+	sp.getArray_values();
+	std::cout << "\n*********************************" << std::endl;
+	return (os);
+};
