@@ -10,7 +10,7 @@ A common solution to this is to write the template declaration in a header file,
 //--------------------Constructors--------------------
 //Default constructor
 template <typename T>
-Array<T>::Array() : _name("default Array-empty"), _size(0) , _array(new T[0]())
+Array<T>::Array() : _name("default Array-empty"), _size(0), _array(new T[0]())
 {
 	//unsigned int "n" is for the array
 	//try at int main-> 

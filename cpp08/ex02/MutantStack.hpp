@@ -15,7 +15,8 @@
 
 # include <iostream>
 # include <string>
-
+# include <stack>
+# include <list>
 
 # define RT	"\033[0m"
 # define RED	"\033[31m"
@@ -27,7 +28,24 @@
 
 
 template <typename T>
+class	MutantStack : public std::stack<T>//std::stack needs a "type" parameter"<T>"
+{
+	public:
+		MutantStack();
+		MutantStack(const MutantStack& copy);
+		MutantStack&	operator=(const MutantStack& copy);
+		~MutantStack();
 
+	//---Personal Functions---
+	//void		getstack_values() const;
+	//std::list<int>	copystack() const;
+	
+};
 
+template <typename T>
+std::ostream&	operator<<(std::ostream& os, const MutantStack<T>& stack);
+
+#include "MutantStack.tpp"
 
 #endif
+

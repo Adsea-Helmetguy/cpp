@@ -159,9 +159,7 @@ void	Span::clearArray_values()
 	this->_arraySize = 0;
 };
 //----------------------member functions----------------------
-
-
-std::ostream& operator<<(std::ostream& os, const Span& sp)
+std::ostream&	operator<<(std::ostream& os, const Span& sp)
 {
 	std::cout << "\n*********************************\n" \
 		<< "Printing span's information |\n" \
