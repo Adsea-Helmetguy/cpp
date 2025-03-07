@@ -1,17 +1,15 @@
 #include "MutantStack.hpp"
 
 template <typename T>
-MutantStack<T>::MutantStack() : std::stack<T>
+MutantStack<T>::MutantStack() : std::stack<T>()
 {
-	std::cout << GREEN << "Constructor \"" << RT << this->_name << \
-		GREEN << "\" created!" << RT << std::endl;
+	std::cout << GREEN << "Constructor created!" << RT << std::endl;
 };
 
 template <typename T>
-MutantStack<T>::MutantStack(const MutantStack<T>& copy) : std::stack<T>
+MutantStack<T>::MutantStack(const MutantStack<T>& copy) : std::stack<T>()
 {
 	(*this) = copy;
-	this->_name = copy.getName();
 };
 
 template <typename T>
@@ -20,31 +18,56 @@ MutantStack<T>&	MutantStack<T>::operator=(const MutantStack& copy)
 	if (this != &copy)
 	{
 		std::stack<T>::operator=(copy);
-		this->_name = copy.getName();
 	}
 	return (*this);
 };
-
 template <typename T>
 MutantStack<T>::~MutantStack()
 {
 	std::cout << RED << "Destructor called for: " \
-		<< RT << "[" << YELLOW << this->_name \
+		<< RT << "[" << YELLOW << "This constructor" \
 		<< RT << "]" << RT << std::endl;
 };
 
 
+//--------------Creating my own iterators--------------
+//typename MutantStack<t>:: cause it's outside the class here
+template <typename T>
+typename MutantStack<T>::iterator		MutantStack<T>::begin()
+{
+	//👉 std::stack<T> has a protected member variable called c.
+	//👉 c stores the actual elements inside the stack.
+	//👉 c is of type std::deque<T> by default,
+	//		it could be std::vector<T> or std::list<T>.
+	return (this->c.begin());
+};
 
+template <typename T>
+typename MutantStack<T>::iterator		MutantStack<T>::end()
+{
+	return (this->c.end());
+};
 
+template <typename T>
+typename MutantStack<T>::const_iterator	MutantStack<T>::begin() const
+{
+	return (this->c.begin());
+};
+
+template <typename T>
+typename MutantStack<T>::const_iterator	MutantStack<T>::end() const
+{
+	return (this->c.end());
+};
+//-----------------------------------------------------
 
 
 //--------------------------------------------------------------
 //-----------------------member functions-----------------------
-/*
 template <typename T>
 void	MutantStack<T>::getstack_values() const
 {
-	std::list<int>::const_iterator	start;
+	std::deque<int>::const_iterator	start;
 	unsigned int	array = 0;
 
 	std::cout << "_stackValue values: " << std::endl;
@@ -53,14 +76,8 @@ void	MutantStack<T>::getstack_values() const
 		std::cout << "Value of Array[" << YELLOW << array++ << RT << \
 			"]: " << GREEN << *start << RT << std::endl;
 	}
+	std::cout << "Address: (" << MAG << this << RT << ")" << std::endl;
 };
-
-template <typename T>
-std::list<int>	MutantStack<T>::copystack() const
-{
-	return (this->_stackValue);
-};
-*/
 //-----------------------member functions-----------------------
 //--------------------------------------------------------------
 
@@ -74,9 +91,8 @@ std::ostream&	operator<<(std::ostream& os, const MutantStack<T>& stack)
 	std::cout << "\n*********************************\n" \
 		<< "Printing stack's information |\n" \
 		<< "******************************" << std::endl;
-
-	std::cout << "Name: \"" << stack.getName() << "\"" << std::endl;
-	//stack.getstack_values();
+	(void)stack;
+	stack.getstack_values();
 	std::cout << "\n*********************************" << std::endl;
 	return (os);
 };
@@ -86,4 +102,9 @@ std::ostream&	operator<<(std::ostream& os, const MutantStack<T>& stack)
 //links:
 /*
 https://en.cppreference.com/w/cpp/container/stack/stack --constructor of std::stack--
+
+https://stackoverflow.com/questions/3582608/how-to-correctly-implement-custom-iterators-and-const-iterators
+https://stackoverflow.com/questions/73440733/how-can-i-implement-my-own-stack-iterator-in-c
+--creating a iterator in replacement for std::stack--
+
 */

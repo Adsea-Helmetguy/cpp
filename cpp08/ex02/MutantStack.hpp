@@ -16,7 +16,7 @@
 # include <iostream>
 # include <string>
 # include <stack>
-# include <list>
+# include <deque>
 
 # define RT	"\033[0m"
 # define RED	"\033[31m"
@@ -36,8 +36,17 @@ class	MutantStack : public std::stack<T>//std::stack needs a "type" parameter"<T
 		MutantStack&	operator=(const MutantStack& copy);
 		~MutantStack();
 
+	//--------------Creating my own iterators--------------
+	typedef typename std::deque<T>::iterator iterator;
+	typedef typename std::deque<T>::const_iterator const_iterator;
+
+	iterator begin();
+	iterator end();
+	const_iterator begin() const;
+	const_iterator end() const;
+
 	//---Personal Functions---
-	//void		getstack_values() const;
+	void		getstack_values() const;
 	//std::list<int>	copystack() const;
 	
 };
