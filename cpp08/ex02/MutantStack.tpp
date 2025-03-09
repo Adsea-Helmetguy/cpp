@@ -84,7 +84,7 @@ void	MutantStack<T>::getstack_values() const
 
 
 //-----------------------------------------------------------------------
-//---Operators!-------------------------------------------------------
+//---Outside!-------------------------------------------------------
 template <typename T>
 std::ostream&	operator<<(std::ostream& os, const MutantStack<T>& stack)
 {
@@ -96,7 +96,26 @@ std::ostream&	operator<<(std::ostream& os, const MutantStack<T>& stack)
 	std::cout << "\n*********************************" << std::endl;
 	return (os);
 };
-//---Operators!-------------------------------------------------------
+
+template <typename T>
+int		easyfind(const T &arr, int ValueToFind)
+{
+	//loop through the container of T, find first "int b"
+	typename T::const_iterator	found;
+		
+	found = std::find(arr.begin(), arr.end(), ValueToFind);
+	if (found == arr.end())
+	{
+		std::cerr << RT << "Unable to find the value: (" \
+			<< RED << ValueToFind << RT << ")" << std::endl;
+		throw std::runtime_error("No value found in iterator");
+	}
+	std::cout << "INDEX[" << GREEN \
+		<< std::distance(arr.begin(), found) << RT << "]" \
+		<< " = " << std::flush;
+	return (*found);
+};
+//---Outside!-------------------------------------------------------
 //-----------------------------------------------------------------------
 
 //links:

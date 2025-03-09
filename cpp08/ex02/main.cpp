@@ -138,6 +138,38 @@ int	main(void)
 			<< RT << mstack2 << std::endl;
 		std::cout << RED << "****Destructor Called here:****" << RT << std::endl;
 	}
-	std::cout << "\n\n" << std::endl;
+
+
+	std::cout << MAG << "\n\n\n" \
+		<< "---Personal Test (4)[const?]---" \
+		<< RT << std::endl;
+	{
+		std::cout << "----Constructor----" << std::endl;
+		const MutantStack<int>	mstack;
+		std::cout << "----Constructor----\n" << std::endl;
+	}
+
+
+	std::cout << MAG << "\n\n\n" \
+	<< "---Personal Test (5)[Recreated official test]---" \
+	<< RT << std::endl;
+	{
+		std::cout << "----Constructor----" << std::endl;
+		MutantStack<int>	mstack;
+		std::cout << "----Constructor----\n" << std::endl;
+
+		mstack.push(5);
+		mstack.push(17);
+		mstack.push(3);
+		mstack.push(5);
+		mstack.push(737);
+		mstack.push(10);//mstack = [5, 17, 3, 5, 737, 10]
+
+		int	ValueToFind = 737;
+
+		std::cout << "finding value: " << YELLOW<< ValueToFind << RT << std::endl;
+		std::cout << easyfind(mstack, ValueToFind) << std::endl;
+		std::cout << "\n\n" << std::endl;
+	}
 	return (0);
 };

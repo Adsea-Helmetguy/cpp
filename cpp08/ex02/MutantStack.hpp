@@ -17,6 +17,7 @@
 # include <string>
 # include <stack>
 # include <deque>
+# include <algorithm>
 
 # define RT	"\033[0m"
 # define RED	"\033[31m"
@@ -46,7 +47,7 @@ class	MutantStack : public std::stack<T>//std::stack needs a "type" parameter"<T
 	const_iterator end() const;
 
 	//---Personal Functions---
-	void		getstack_values() const;
+	void	getstack_values() const;
 	//std::list<int>	copystack() const;
 	
 };
@@ -54,7 +55,10 @@ class	MutantStack : public std::stack<T>//std::stack needs a "type" parameter"<T
 template <typename T>
 std::ostream&	operator<<(std::ostream& os, const MutantStack<T>& stack);
 
+//from ex00
+template <typename T>
+int		easyfind(const T &a, int ValueToFind);
+
 #include "MutantStack.tpp"
 
 #endif
-

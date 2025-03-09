@@ -21,7 +21,7 @@
 # include <algorithm>
 
 
-# define RT	"\033[0m"
+# define RT		"\033[0m"
 # define RED	"\033[31m"
 # define YELLOW	"\033[33m"
 # define BLUE	"\033[34m"
@@ -33,7 +33,7 @@ class	Span
 {
 	private:
 		unsigned int		N;
-		std::string		_name;
+		std::string			_name;
 		unsigned int		_arraySize;
 		std::vector<int>	_arrayNum;
 
@@ -44,22 +44,22 @@ class	Span
 		~Span();
 	
 	//----------------------member functions----------------------
-	int	addNumber(int value);//increment(++), throw exception if arraysize == N
+	int		addNumber(int value);//increment(++), throw exception if arraysize == N
 	void	addNumberGroup(const std::vector<int> &numbers);//one shot a group at once
-	int	shortestSpan();//if only one or nil, throw exception
-	int	longestSpan();//if only one or nil, throw exception
+	int		shortestSpan();//if only one or nil, throw exception
+	int		longestSpan();//if only one or nil, throw exception
 
 	//add-on:
 	//Implement a member function to add many numbers to your Span in one call.
-	int	add_numSpan();//to add a sequence of elements to container, std::vector/list?
+	int		add_numSpan();//to add a sequence of elements to container, std::vector/list?
 	
 	//Personal Functions:
 	unsigned int		getN() const;
-	std::string		getName() const;
+	std::string			getName() const;
 	unsigned int		getArray_size() const;
 	std::vector<int>	copyArray() const;
-	void			getArray_values() const;
-	void			clearArray_values();
+	void				getArray_values() const;
+	void				clearArray_values();
 	//----------------------member functions----------------------
 };
 

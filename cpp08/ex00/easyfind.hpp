@@ -20,6 +20,7 @@
 # include <exception>
 # include <list>
 # include <deque>
+# include <algorithm>
 
 
 # define RT	"\033[0m"
@@ -31,7 +32,15 @@
 # define MAG	"\e[0;35m"
 
 template<typename T>
-int	easyfind(const T &a, int b);//assume T is a container of int
+int	noteasyfind(const T &arr, int b);//assume T is a container of int
+
+//Version 1
+template<typename T>
+int	easyfind(const T &arr, int ValueToFind);//assume T is a container of int
+
+//version 2
+template <typename T>
+typename T::const_iterator it_easyfind(const T &arr, int ValueToFind);
 
 # include "easyfind.tpp"
 

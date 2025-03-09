@@ -13,18 +13,56 @@
 #include "Span.hpp"
 
 //fill your Span using a range of iterators.
+/*
+--use this for testing purposes(INT_MAX)--
 Span::Span(unsigned int	value) : N(value), _name("default N"), _arraySize(0), _arrayNum(0)
 {
-
+	//How do one handle the Bad alloc for UINT_MAX?
 	if (N > static_cast<unsigned int>(INT_MAX))// Prevents excessive allocation
 	{
+		N = static_cast<unsigned int>(INT_MAX);
 		std::cerr << YELLOW << "unsigned int value beyond INT_MAX " \
-			<< "auto changed N == (INT_MAX)2147483647" << RT << std::endl;
-		N = 2147483647;
+			<< "auto changed N == (UINT_MAX)" << \
+			N << RT << std::endl;
 	}
 
 	_arrayNum.reserve(N);
 	std::cout << GREEN << "N's _arrayNum.reserve(s) created" << RT << std::endl;
+};
+
+//ask this to earth:
+Yes, the question specifies that N is an unsigned int, meaning it can technically go up to UINT_MAX (4,294,967,295). However, the key detail here is that while N is an unsigned int, the actual storage capacity of std::vector<int> is still limited by practical memory constraints.
+
+Why Using UINT_MAX is Problematic?
+std::vector<int> still stores int values, which are signed (typically 4 bytes each).
+
+std::vector<int> storing UINT_MAX elements would require about 16 GB of RAM, which is unrealistic for most systems.
+Most systems cannot allocate memory beyond INT_MAX elements due to memory limitations.
+
+The maximum possible elements a std::vector<int> can hold is often limited to INT_MAX (2,147,483,647).
+*/
+Span::Span(unsigned int	value) : N(value), _name("default N"), _arraySize(0), _arrayNum(0)
+{
+	if (N > UINT_MAX)
+	{
+		N = UINT_MAX;
+		std::cerr << YELLOW << "unsigned int value beyond UINT_MAX " \
+			<< "auto changed N == (UINT_MAX)" << \
+			N << RT << std::endl;
+	}
+
+	try
+	{
+		_arrayNum.reserve(N);
+		std::cout << GREEN << "Memory reserved for [" << YELLOW << N \
+			<< GREEN << "] elements." << RT << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << "Value you tried to alloc: " << RED << N << RT << std::endl;
+		std::cerr << "unsigned int value beyond INT_MAX!!" << std::endl;
+		throw;
+	}
 };
 
 Span::Span(const Span& copy)
