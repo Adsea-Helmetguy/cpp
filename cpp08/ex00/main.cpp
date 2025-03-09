@@ -46,11 +46,15 @@ int	main(void)
 				<< "]: \"" << numbers[i] << "\"" << std::endl;
 		}
 
-		std::cout << "With iterators: " << std::endl;
+		std::cout << "\n" << std::endl;
+		std::cout << YELLOW << "With iterators: " << RT << std::endl;
 		std::vector<int>::iterator	num2;
+		unsigned int	i = 0;
+
 		for (num2 = numbers.begin(); num2 != numbers.end(); num2++)
 		{
-			std::cout << *num2 << std::endl;
+			std::cout << "This is number[" << GREEN << i << RT \
+				<< "]: \"" << *num2 << "\"" << std::endl;
 		}
 		std::cout << "---------------------------------" << std::endl;
 	}
