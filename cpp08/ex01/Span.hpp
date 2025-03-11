@@ -17,6 +17,7 @@
 # include <string>
 # include <exception>
 # include <limits.h>
+# include <limits>
 # include <vector>
 # include <algorithm>
 

@@ -14,23 +14,20 @@
 
 //fill your Span using a range of iterators.
 /*
---use this for testing purposes(INT_MAX)--
-Span::Span(unsigned int	value) : N(value), _name("default N"), _arraySize(0), _arrayNum(0)
+Notes to yourself(is it possible to handle system to check available memory before preserving?:
+-------------------------------------------------------------------------
+#include <sys/sysinfo.h>  // Only for Linux, comment out for Windows
+
+bool hasEnoughMemory(size_t bytesNeeded)
 {
-	//How do one handle the Bad alloc for UINT_MAX?
-	if (N > static_cast<unsigned int>(INT_MAX))// Prevents excessive allocation
-	{
-		N = static_cast<unsigned int>(INT_MAX);
-		std::cerr << YELLOW << "unsigned int value beyond INT_MAX " \
-			<< "auto changed N == (UINT_MAX)" << \
-			N << RT << std::endl;
-	}
+    struct sysinfo memInfo;
+    sysinfo(&memInfo);
+    size_t freeMem = memInfo.freeram + memInfo.freeswap; // Available RAM + swap
+    return bytesNeeded < freeMem;
+}
+-------------------------------------------------------------------------
 
-	_arrayNum.reserve(N);
-	std::cout << GREEN << "N's _arrayNum.reserve(s) created" << RT << std::endl;
-};
-
-//ask this to earth:
+//ask this for peers:
 Yes, the question specifies that N is an unsigned int, meaning it can technically go up to UINT_MAX (4,294,967,295). However, the key detail here is that while N is an unsigned int, the actual storage capacity of std::vector<int> is still limited by practical memory constraints.
 
 Why Using UINT_MAX is Problematic?
@@ -41,6 +38,52 @@ Most systems cannot allocate memory beyond INT_MAX elements due to memory limita
 
 The maximum possible elements a std::vector<int> can hold is often limited to INT_MAX (2,147,483,647).
 */
+//
+//
+//--use this for testing purposes(INT_MAX)--
+/*
+Span::Span(unsigned int	value) : N(value), _name("default N"), _arraySize(0), _arrayNum(0)
+{
+	unsigned int safe_limit = std::min(N, static_cast<unsigned int>(INT_MAX));
+	if (N > safe_limit)// Prevents excessive allocation
+	{
+		//unsigned int safe_limit = std::min(N, static_cast<unsigned int>(INT_MAX));
+		std::cerr << YELLOW << "unsigned int value beyond INT_MAX " \
+			<< "auto changed N == (UINT_MAX)" << \
+			safe_limit << RT << std::endl;
+		try
+		{
+			this->_arrayNum.reserve(safe_limit);
+			std::cout << GREEN << "Memory reserved for [" << YELLOW << safe_limit \
+				<< GREEN << "] elements." << RT << std::endl;
+		}
+		catch (std::exception &e)
+		{
+			std::cerr << "Value you tried to alloc: " << RED << safe_limit \
+			<< RT << std::endl;
+			std::cerr << "unsigned int value still got issues" << std::endl;
+			throw;
+		}
+	}
+	else
+	{
+		try
+		{
+			this->_arrayNum.reserve(N);
+			std::cout << GREEN << "Memory reserved for [" << YELLOW << N \
+				<< GREEN << "] elements." << RT << std::endl;
+		}
+		catch (std::exception &e)
+		{
+			std::cerr << "Value you tried to alloc: " << RED << N << RT << std::endl;
+			std::cerr << "unsigned int value beyond INT_MAX!!" << std::endl;
+			throw;
+		}
+	}
+	std::cout << GREEN << "N's _arrayNum.reserve(s) created" << RT << std::endl;
+};
+*/
+
 Span::Span(unsigned int	value) : N(value), _name("default N"), _arraySize(0), _arrayNum(0)
 {
 	if (N > UINT_MAX)
@@ -53,7 +96,7 @@ Span::Span(unsigned int	value) : N(value), _name("default N"), _arraySize(0), _a
 
 	try
 	{
-		_arrayNum.reserve(N);
+		this->_arrayNum.reserve(N);
 		std::cout << GREEN << "Memory reserved for [" << YELLOW << N \
 			<< GREEN << "] elements." << RT << std::endl;
 	}

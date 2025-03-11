@@ -151,7 +151,7 @@ int	main(void)
 
 
 	std::cout << MAG << "\n\n\n" \
-	<< "---Personal Test (5)[Recreated official test]---" \
+	<< "---Personal Test (5)[Using EasyFind to find]---" \
 	<< RT << std::endl;
 	{
 		std::cout << "----Constructor----" << std::endl;
@@ -169,7 +169,9 @@ int	main(void)
 
 		std::cout << "finding value: " << YELLOW<< ValueToFind << RT << std::endl;
 		std::cout << easyfind(mstack, ValueToFind) << std::endl;
-		std::cout << "\n\n" << std::endl;
+		std::cout << std::endl;
+		std::cout << RED << "****Destructor Called here:****" << RT << std::endl;
 	}
+	std::cout << "\n\n" << std::endl;
 	return (0);
 };
