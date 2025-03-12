@@ -25,7 +25,7 @@ while (stream >> str) {
 void	parse_csvfile(std::ifstream *inFile, std::ofstream *outFile)
 {
 	//std::string	line;
-	std::string	date;
+	std::string date;
 	std::string	value;
 
 	(void)outFile;
@@ -33,22 +33,12 @@ void	parse_csvfile(std::ifstream *inFile, std::ofstream *outFile)
 	//while (std::getline((*inFile), line))
 	while (std::getline(*inFile, date, '|'))
 	{
-		std::cout << " Date: " << GREEN << date << RT << std::endl;
+		//str.erase(remove_if(str.begin(), str.end(), isspace), str.end());
+		std::cout << " Date Obtained: " << GREEN << date << RT << std::endl;
 		if (std::getline(*inFile, value))
 		{
-			//std::cout << date << " " << value << std::endl; // Write without '|'
-			std::cout << "   Value: " << GREEN << value << RT << std::endl;
+			std::cout << "  Value Obtained: " << GREEN << value << RT << std::endl;
 		}
-		//2)Split each line into date and exchange rate.
-		//size_t	pipe_index = line.find('|');//if none found, std::string::npos is returned
-		//if (pipe_index != std::string::npos)
-		//{
-		//	line.erase(pipe_index, 1);
-		//}
-		//std::cout << "   After-> " << YELLOW << line << RT << std::endl;
-		std::cout << std::endl;
-		//std::getline((*inFile), (*outFile), '|');
-		
 	}
 	//3)Store them in the std::map.
 };

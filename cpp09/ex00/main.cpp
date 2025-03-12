@@ -93,7 +93,7 @@ int	main(int argc, char **argv)
 
 	std::cout << MAG << "\n\n---------------" << RT << std::endl;
 	{
-		std::cout << GREEN << "Test (1)!" << RT << std::endl;
+		std::cout << GREEN << "Test (1)!\n" << RT << std::endl;
 
 		//clear && make && clear && ./btc data.csv test1
 		if (argc != 2)
