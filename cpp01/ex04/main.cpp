@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 /*
+# include <fstream>// for ofstream/ifstream/fstream
 Use std::ifstream to open and read files.
 Use std::ofstream to open and write or append to files.
 

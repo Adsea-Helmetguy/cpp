@@ -10,4 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef	BITCOINEXCHANGE_HPP
+#define	BITCOINEXCHANGE_HPP
 
+# include <iostream>// std::cout/std::endl
+# include <string>// std::string, std::getline
+# include <fstream>// ofstream/ifstream/fstream
+
+# define RT	"\033[0m"
+# define RED	"\033[31m"
+# define YELLOW	"\033[33m"
+# define BLUE	"\033[34m"
+# define CYAN	"\033[0;36m"
+# define GREEN	"\033[32m"
+# define MAG	"\e[0;35m"
+
+
+int	checking_infile(char **argv);
+void	parse_csvfile(std::ifstream *inFile, std::ofstream *outFile);
+//void	parse_infile(char **argv, std::ifstream *inFile, std::ofstream *outFile)
+
+
+#endif

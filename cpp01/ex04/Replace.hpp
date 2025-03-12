@@ -15,7 +15,7 @@
 
 # include <iostream>
 # include <string>//std::string
-# include <fstream>
+# include <fstream>// for ofstream/ifstream/fstream
 
 # define RESET		"\033[0m"
 # define RED		"\033[31m"//Red
