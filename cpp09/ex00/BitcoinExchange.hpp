@@ -16,6 +16,8 @@
 # include <iostream>// std::cout/std::endl
 # include <string>// std::string, std::getline
 # include <fstream>// ofstream/ifstream/fstream
+# include <algorithm>// begin(), end()
+# include <sstream>// std::stringstream
 
 # define RT	"\033[0m"
 # define RED	"\033[31m"
@@ -27,7 +29,8 @@
 
 
 int	checking_infile(char **argv);
-void	parse_csvfile(std::ifstream *inFile, std::ofstream *outFile);
+void	parse_inFile(std::ifstream *inFile, std::ofstream *outFile);
+std::map<std::string, float>	parse_csvfile(std::ifstream *csvFile);
 //void	parse_infile(char **argv, std::ifstream *inFile, std::ofstream *outFile)
 
 
