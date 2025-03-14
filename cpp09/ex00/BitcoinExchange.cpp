@@ -52,7 +52,9 @@ while (stream >> str) {
 		std::cout << "----------------\n" << std::endl;
 	}
 */
-void	parse_inFile(std::ifstream *inFile, std::ofstream *outFile)
+//
+//make sure that data.csv cannot be higher than current date and lesser than earilest date in .csv
+void	parse_inFile(std::ifstream *inFile, std::ofstream *outFile, std::map<int, float> *datacsv_file)
 {
 	std::string	line;
 	size_t		pipe_index;
@@ -83,14 +85,30 @@ void	parse_inFile(std::ifstream *inFile, std::ofstream *outFile)
 			<< RT << "]\n" << std::endl;
 		
 		//2) Now extract date and value
-		std::string	date = line.substr(0, pipe_index);
-		std::string	value = line.substr(pipe_index + 1, std::string::npos);
+		std::string	datestr = line.substr(0, pipe_index);
+		std::string	valuestr = line.substr(pipe_index + 1, std::string::npos);
+
+		//Remove '-' char string by converting it to isspace
+		std::replace(datestr.begin(), datestr.end(), '-', ' ');
 		
-		date.erase(remove_if(date.begin(), date.end(), isspace), date.end());
-		value.erase(remove_if(value.begin(), value.end(), isspace), value.end());
+		datestr.erase(remove_if(datestr.begin(), datestr.end(), isspace), datestr.end());
+		valuestr.erase(remove_if(valuestr.begin(), valuestr.end(), isspace), valuestr.end());
+
+		//3) Convert value to int/float
+		std::cout << YELLOW << "--Converting Values to float--" << RT << std::endl;
+		char	*endptr_value;//stores address of first non-coverted char
+		float	value = std::strtof(valuestr.c_str(), &endptr_value);
+
+		std::cout << YELLOW << "--Converting Date to Int--" << RT << std::endl;
+		char	*endptr_date;//stores address of first non-coverted char
+		int	date = std::strtol(datestr.c_str(), &endptr_date, 10);
 		std::cout << YELLOW << " Date: " << RT << date << std::endl;
 		std::cout << YELLOW << "Value: " << RT << value << std::endl;
-		
+
+		//compare input date and value with std::map's value
+		//https://stackoverflow.com/questions/46285345/c-how-to-find-the-key-of-a-map-that-has-the-closest-value-of-a-given-value
+		//if (date < )
+		(void)datacsv_file;
 		std::cout << "----------------\n" << std::endl;
 	}
 	(void)outFile;
@@ -99,7 +117,7 @@ void	parse_inFile(std::ifstream *inFile, std::ofstream *outFile)
 //https://www.youtube.com/watch?v=S2pvOeWyqBc --how to parse csvFile--
 //https://stackoverflow.com/questions/1120140/how-can-i-read-and-parse-csv-files-in-c
 //create a class to store the value of std::map
-std::map<std::string, float>	parse_csvfile(std::ifstream *csvFile)//Store them in the std::map.
+std::map<int, float>	parse_csvfile(std::ifstream *csvFile)//Store them in the std::map.
 {
 	std::string	line;
 	size_t		pipe_index;
@@ -114,10 +132,11 @@ std::map<std::string, float>	parse_csvfile(std::ifstream *csvFile)//Store them i
 		csvFile->seekg(0);// this can be used to seek start of file.
 	}
 
+	std::map<int, float>	datacsv_file;
 	while (std::getline(*csvFile, line))
 	{
 		//str.erase(remove_if(str.begin(), str.end(), isspace), str.end());
-		std::cout << "----------------" << std::endl;
+		//std::cout << "----------------" << std::endl;
 		pipe_index = line.find(',');
 		if (pipe_index == std::string::npos)  // No '|' found in line
 		{
@@ -125,26 +144,38 @@ std::map<std::string, float>	parse_csvfile(std::ifstream *csvFile)//Store them i
 				<< RT << "\n----------------\n" << std::endl;
 			continue;
 		}
-		std::cout << "COMMA FOUND->[" << GREEN << pipe_index \
-			<< RT << "]\n" << std::endl;
+		//std::cout << "COMMA FOUND->[" << GREEN << pipe_index
+		//	<< RT << "]\n" << std::endl;
 		
 		//2) Now extract date and value
-		std::string	date = line.substr(0, pipe_index);
-		std::string	value = line.substr(pipe_index + 1, std::string::npos);
-		
-		date.erase(remove_if(date.begin(), date.end(), isspace), date.end());
-		value.erase(remove_if(value.begin(), value.end(), isspace), value.end());
-		std::cout << YELLOW << " Date: " << RT << date << std::endl;
-		std::cout << YELLOW << "Value: " << RT << value << std::endl;
+		std::string	datestr = line.substr(0, pipe_index);
+		std::string	valuestr = line.substr(pipe_index + 1, std::string::npos);
 
-		// Convert value to float
+		//Remove '-' char string by converting it to isspace
+		std::replace(datestr.begin(), datestr.end(), '-', ' ');
+
+		//remove spaces
+		datestr.erase(remove_if(datestr.begin(), datestr.end(), isspace), datestr.end());
+		valuestr.erase(remove_if(valuestr.begin(), valuestr.end(), isspace), valuestr.end());
+		//std::cout << YELLOW << " Date: " << RT << datestr << std::endl;
+		//std::cout << YELLOW << "Value: " << RT << valuestr << std::endl;
+
+		//3) Convert value to int/float and store in std::map
+		//std::cout << YELLOW << "--Converting Values to float--" << RT << std::endl;
+		char	*endptr_value;//stores address of first non-coverted char
+		float	value = std::strtof(valuestr.c_str(), &endptr_value);
+
+		//std::cout << YELLOW << "--Converting Date to Int--" << RT << std::endl;
+		char	*endptr_date;//stores address of first non-coverted char
+		int		date = std::strtol(datestr.c_str(), &endptr_date, 10);
+		datacsv_file[date] = value;
+		//std::cout << "datacsv[" << date << "]: " << datacsv_file[date] << std::endl;
+
 		
-		//now throw them inside std::map
-		std::map<std::string, float> datacsv_file
-		//std::map done
-		std::cout << "----------------\n" << std::endl;
+		//std::cout << "----------------\n" << std::endl;
 	}
 	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << std::endl;
+	return (datacsv_file);
 };
 
 int	checking_infile(char **argv)
@@ -152,7 +183,7 @@ int	checking_infile(char **argv)
 	std::ifstream	inFile;
 	std::ifstream	csvFile;
 	std::ofstream	outFile;
-	std::string	name_outputFile = "output.txt";
+	std::string		name_outputFile = "output.txt";
 
 	//open in read mode.
 	inFile.open(argv[1], std::ios::in);
@@ -184,8 +215,8 @@ int	checking_infile(char **argv)
 			csvFile.close();
 		return (1);
 	}
-	std::map<std::string, float> datacsv_file = parse_csvfile(&csvFile);
-	parse_inFile(&inFile, &outFile);
+	std::map<int, float> datacsv_file = parse_csvfile(&csvFile);
+	parse_inFile(&inFile, &outFile, &datacsv_file);
 	if (inFile.is_open())
 		inFile.close();
 	if (csvFile.is_open())
@@ -207,4 +238,10 @@ https://stackoverflow.com/questions/5343173/returning-to-beginning-of-file-after
 
 --Removing isspace in std::string--
 https://stackoverflow.com/questions/83439/remove-spaces-from-stdstring-in-c
+
+--std::strtof--
+https://cplusplus.com/reference/cstdlib/strtof/
+
+--Why create a *endptr for std::strol and std::strtof--
+https://stackoverflow.com/questions/18970237/c-using-strtol-endptr-is-never-null-cannot-check-if-value-is-integer-only
 */

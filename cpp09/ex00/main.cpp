@@ -87,6 +87,18 @@ int	main(int argc, char **argv)
 
 #include "BitcoinExchange.hpp"
 
+static void	check_current_date()
+{
+	time_t timestamp;
+	struct tm* datetime;
+
+	time(&timestamp);// Applying time()
+	datetime = localtime(&timestamp);// Using localtime()
+
+
+	std::cout << "Current Day, Date and Time is = " << asctime(datetime) << std::endl;
+};
+
 int	main(int argc, char **argv)
 {
 	int	return_value = 0;
@@ -104,7 +116,7 @@ int	main(int argc, char **argv)
 				<< RT << std::endl;
 			return (1);
 		}
-
+		check_current_date();
 		return_value = checking_infile(argv);
 	}
 	std::cout << MAG << "\n---------------" << RT << std::endl;

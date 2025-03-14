@@ -14,10 +14,14 @@
 #define	BITCOINEXCHANGE_HPP
 
 # include <iostream>// std::cout/std::endl
-# include <string>// std::string, std::getline
+# include <string>// std::string, std::getline, std::stoi
 # include <fstream>// ofstream/ifstream/fstream
 # include <algorithm>// begin(), end()
 # include <sstream>// std::stringstream
+# include <map>//std::map
+# include <cstdlib>
+# include <ctime> //ctime
+# include <iostream>
 
 # define RT	"\033[0m"
 # define RED	"\033[31m"
@@ -29,8 +33,8 @@
 
 
 int	checking_infile(char **argv);
-void	parse_inFile(std::ifstream *inFile, std::ofstream *outFile);
-std::map<std::string, float>	parse_csvfile(std::ifstream *csvFile);
+void	parse_inFile(std::ifstream *inFile, std::ofstream *outFile, std::map<int, float> datacsv_file);
+std::map<int, float>	parse_csvfile(std::ifstream *csvFile);
 //void	parse_infile(char **argv, std::ifstream *inFile, std::ofstream *outFile)
 
 
