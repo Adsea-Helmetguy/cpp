@@ -33,7 +33,7 @@
 
 
 int	checking_infile(char **argv);
-void	parse_inFile(std::ifstream *inFile, std::ofstream *outFile, float value, std::map<int, float> datacsv_file);
+int	parse_inFile(std::ifstream *inFile, std::ofstream *outFile, float value, std::map<int, float> datacsv_file);
 std::map<std::string, float>	parse_csvfile(std::ifstream *csvFile);
 //void	parse_infile(char **argv, std::ifstream *inFile, std::ofstream *outFile)
 
