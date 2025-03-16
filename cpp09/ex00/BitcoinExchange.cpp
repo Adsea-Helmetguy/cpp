@@ -12,63 +12,86 @@
 
 #include "BitcoinExchange.hpp"
 
-/*
-stringstream stream("asdsdgdgdfg gsdgdsg dghgh gh");
-string str;
-vector strings;
-while (stream >> str) {
-	strings.push_back(str);
+static void	check_current_date(unsigned int *year, \
+	unsigned int *month, unsigned int *day)
+{
+	time_t timestamp;
+	struct tm* datetime;
+
+	time(&timestamp);// Applying time()
+	datetime = localtime(&timestamp);// Using localtime()
+	*year = static_cast<unsigned int>(datetime->tm_year + 1900);
+	*month = static_cast<unsigned int>(datetime->tm_mon + 1);
+	*day = static_cast<unsigned int>(datetime->tm_mday);
+	std::cout << "Current Date -> Year: " << *year << ", Month: " \
+		<< *month << ", Day: " << *day << std::endl;
+};
+
+//while it's not a '-' or '\0', copy and then convert to int
+static unsigned int	string_converterDate(std::string str, float value, \
+	std::map<std::string, float> *datacsv_file)
+{
+	//Check if it's a date first.
+	if (str.size() != 10 || str[4] != '-' || str[7] != '-')
+    {
+        std::cout << RED << "Invalid date format! Expected YYYY-MM-DD" << RT << std::endl;
+        return (1);
+    }
+
+	//extract the date:
+	unsigned int year, month, day;
+	char dash1, dash2;
+	std::stringstream ss(str);
+	ss >> year >> dash1 >> month >> dash2 >> day;//skips non-number
+
+	if (ss.fail() || dash1 != '-' || dash2 != '-')
+    {
+        std::cout << "Invalid date format! Expected YYYY-MM-DD" << std::endl;
+        return (1);
+    }
+	std::cout << "Extracted Date -> Year: " << year << ", Month: " \
+		<< month << ", Day: " << day << std::endl;
+
+
+	unsigned int	current_year = 0;
+	unsigned int	current_month = 0;
+	unsigned int	current_day = 0;
+
+	check_current_date(&current_year, &current_month, &current_day);
+	// Check if the date is within valid range
+	//edit the year 1900 into the std::map recent year
+	//std::cout << "Earliest allowed date: " << earliest_year << "-"
+	//	<< earliest_month << "-" << earliest_day << std::endl;
+    if (year < 1900 || year > current_year ||
+		(year == current_year && month > current_month) ||
+		(year == current_year && month == current_month && day > current_day))
+	{
+		std::cout << RED << "Invalid date: Date is out of range!" << RT << std::endl;
+		return (1);
+	}
+	(void)value;//work on currency exchange
+	(void)datacsv_file;
+	return (0);
 }
-*/
-//
-/*
---edit this to work for your parse_inFile--
-	std::string	line;
 
-	std::cout << YELLOW << "PARSING the data.csv file..." << RT << std::endl;
-	std::getline(*csvFile, line, ',');
-	if (line == "date")
-		std::getline((*csvFile), line);
-	else
-	{
-		csvFile->clear();//clears the EOF state of the file so that
-		csvFile->seekg(0);// this can be used to seek start of file.
-	}
-
-	std::string	date;
-	char		separator;
-	float		value;
-	while (std::getline(*csvFile, line))
-	{
-		std::stringstream	lineStream(line);
-
-		
-		//str.erase(remove_if(str.begin(), str.end(), isspace), str.end());
-		std::cout << "----------------" << std::endl;
-		lineStream >> date >> separator >> value;
-		std::cout << "     Date: " << date << std::endl;
-		std::cout << "Separator: " << separator << std::endl;
-		std::cout << "    Value: " << value << std::endl;
-		std::cout << "----------------\n" << std::endl;
-	}
-*/
-//
 //make sure that data.csv cannot be higher than current date and lesser than earilest date in .csv
-void	parse_inFile(std::ifstream *inFile, std::ofstream *outFile, std::map<int, float> *datacsv_file)
+void	parse_inFile(std::ifstream *inFile, std::ofstream *outFile, std::map<std::string, float> *datacsv_file)
 {
 	std::string	line;
 	size_t		pipe_index;
 
 	//	Skips the first line "date | value", else restart.
 	std::getline(*inFile, line, '|');
-	if (line == "date ")
+	line.erase(remove_if(line.begin(), line.end(), isspace), line.end());
+	std::cout << "value of line[" << line << "]" << std::endl;
+	if (line == "date")
 		std::getline((*inFile), line);
 	else
 	{
 		inFile->clear();//clears the EOF state of the file so that
 		inFile->seekg(0);// this can be used to seek start of file.
 	}
-	
+
 	//1)read the file line by line
 	while (std::getline(*inFile, line))
 	{
@@ -87,9 +110,6 @@ void	parse_inFile(std::ifstream *inFile, std::ofstream *outFile, std::map<int, f
 		//2) Now extract date and value
 		std::string	datestr = line.substr(0, pipe_index);
 		std::string	valuestr = line.substr(pipe_index + 1, std::string::npos);
-
-		//Remove '-' char string by converting it to isspace
-		std::replace(datestr.begin(), datestr.end(), '-', ' ');
 		
 		datestr.erase(remove_if(datestr.begin(), datestr.end(), isspace), datestr.end());
 		valuestr.erase(remove_if(valuestr.begin(), valuestr.end(), isspace), valuestr.end());
@@ -99,16 +119,13 @@ void	parse_inFile(std::ifstream *inFile, std::ofstream *outFile, std::map<int, f
 		char	*endptr_value;//stores address of first non-coverted char
 		float	value = std::strtof(valuestr.c_str(), &endptr_value);
 
-		std::cout << YELLOW << "--Converting Date to Int--" << RT << std::endl;
-		char	*endptr_date;//stores address of first non-coverted char
-		int	date = std::strtol(datestr.c_str(), &endptr_date, 10);
-		std::cout << YELLOW << " Date: " << RT << date << std::endl;
+		std::cout << YELLOW << " Date: " << RT << datestr << std::endl;
 		std::cout << YELLOW << "Value: " << RT << value << std::endl;
 
 		//compare input date and value with std::map's value
 		//https://stackoverflow.com/questions/46285345/c-how-to-find-the-key-of-a-map-that-has-the-closest-value-of-a-given-value
-		//if (date < )
-		(void)datacsv_file;
+		//if string_converter is == 1, fail it or something
+		string_converterDate(datestr, value, datacsv_file);
 		std::cout << "----------------\n" << std::endl;
 	}
 	(void)outFile;
@@ -117,13 +134,15 @@ void	parse_inFile(std::ifstream *inFile, std::ofstream *outFile, std::map<int, f
 //https://www.youtube.com/watch?v=S2pvOeWyqBc --how to parse csvFile--
 //https://stackoverflow.com/questions/1120140/how-can-i-read-and-parse-csv-files-in-c
 //create a class to store the value of std::map
-std::map<int, float>	parse_csvfile(std::ifstream *csvFile)//Store them in the std::map.
+std::map<std::string, float>	parse_csvfile(std::ifstream *csvFile)//Store them in the std::map.
 {
 	std::string	line;
 	size_t		pipe_index;
 
 	std::cout << YELLOW << "PARSING the data.csv file..." << RT << std::endl;
 	std::getline(*csvFile, line, ',');
+	line.erase(remove_if(line.begin(), line.end(), isspace), line.end());
+	std::cout << "value of line[" << line << "]" << std::endl;
 	if (line == "date")
 		std::getline((*csvFile), line);
 	else
@@ -132,7 +151,7 @@ std::map<int, float>	parse_csvfile(std::ifstream *csvFile)//Store them in the st
 		csvFile->seekg(0);// this can be used to seek start of file.
 	}
 
-	std::map<int, float>	datacsv_file;
+	std::map<std::string, float>	datacsv_file;
 	while (std::getline(*csvFile, line))
 	{
 		//str.erase(remove_if(str.begin(), str.end(), isspace), str.end());
@@ -152,7 +171,7 @@ std::map<int, float>	parse_csvfile(std::ifstream *csvFile)//Store them in the st
 		std::string	valuestr = line.substr(pipe_index + 1, std::string::npos);
 
 		//Remove '-' char string by converting it to isspace
-		std::replace(datestr.begin(), datestr.end(), '-', ' ');
+		//std::replace(datestr.begin(), datestr.end(), '-', ' ');
 
 		//remove spaces
 		datestr.erase(remove_if(datestr.begin(), datestr.end(), isspace), datestr.end());
@@ -165,11 +184,8 @@ std::map<int, float>	parse_csvfile(std::ifstream *csvFile)//Store them in the st
 		char	*endptr_value;//stores address of first non-coverted char
 		float	value = std::strtof(valuestr.c_str(), &endptr_value);
 
-		//std::cout << YELLOW << "--Converting Date to Int--" << RT << std::endl;
-		char	*endptr_date;//stores address of first non-coverted char
-		int		date = std::strtol(datestr.c_str(), &endptr_date, 10);
-		datacsv_file[date] = value;
-		//std::cout << "datacsv[" << date << "]: " << datacsv_file[date] << std::endl;
+		datacsv_file[datestr] = value;
+		//std::cout << "datacsv[" << datestr << "]: " << datacsv_file[datestr] << std::endl;
 
 		
 		//std::cout << "----------------\n" << std::endl;
@@ -215,7 +231,7 @@ int	checking_infile(char **argv)
 			csvFile.close();
 		return (1);
 	}
-	std::map<int, float> datacsv_file = parse_csvfile(&csvFile);
+	std::map<std::string, float> datacsv_file = parse_csvfile(&csvFile);
 	parse_inFile(&inFile, &outFile, &datacsv_file);
 	if (inFile.is_open())
 		inFile.close();

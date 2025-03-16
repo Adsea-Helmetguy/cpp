@@ -10,94 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-# include <fstream>// for ofstream/ifstream/fstream
-Use std::ifstream to open and read files.
-Use std::ofstream to open and write or append to files.
-
-Always check if the file is successfully opened 
-	using .is_open() before attempting to read or write.
-*/
-//
-/*
---reference--
-static void	read_and_replace(char **argv,
-	std::ifstream *inFile, std::ofstream *outFile)
-{
-	std::string	line;
-	std::string s1(argv[2]);
-	std::string s2(argv[3]);
-	size_t		pos;
-
-	while (getline((*inFile), line))
-	{
-		pos = 0;
-		while ((pos = line.find(s1, pos)) != std::string::npos)
-		{
-			line.replace(pos, s1.length(), s2);
-			pos += s2.length();
-		}
-		(*outFile) << line << std::endl;
-	}
-}
-
-int	main(int argc, char **argv)
-{
-	std::ifstream	inFile;
-	std::ofstream	outFile;
-	std::string		name_inputFile;
-	std::string		name_outputFile;	
-
-	if (argc != 4)
-	{
-		std::cout << RED << "\tNeeds three Parameters" << RESET << std::endl;
-		return (1);
-	}
-	//we usually don't include std::ios::in cause ifstream is always
-	//open in read mode.
-	inFile.open(argv[1]);
-	name_inputFile = argv[1];
-	name_outputFile = name_inputFile + ".replace";
-	if (!inFile.is_open())
-	{
-		std::cerr << RED << "Unable to open file OR no such file!" \
-		<< RESET << std::endl;
-		return (1);
-	}
-	//https://cplusplus.com/reference/fstream/ofstream/open/
-	//note that std::ios::out isn't really needed as it defaults to that mode
-	// its just for reading clarity so better add anyways.
-	outFile.open(name_outputFile.c_str(), std::ios::out | std::ios::trunc);
-	if (!outFile.is_open())
-	{
-		std::cerr << RED << "Can't do outfile for some reason!!!" \
-		<< RESET << std::endl;
-		if (inFile.is_open())
-			inFile.close();
-		return (1);
-	}
-	read_and_replace(argv, &inFile, &outFile);//replaces the words here
-	if (inFile.is_open())
-		inFile.close();
-	if (outFile.is_open())
-		outFile.close();
-	return (0);
-}
-*/
-
 #include "BitcoinExchange.hpp"
-
-static void	check_current_date()
-{
-	time_t timestamp;
-	struct tm* datetime;
-
-	time(&timestamp);// Applying time()
-	datetime = localtime(&timestamp);// Using localtime()
-
-
-	std::cout << "Current Day, Date and Time is = " << asctime(datetime) << std::endl;
-};
 
 int	main(int argc, char **argv)
 {
@@ -116,7 +29,6 @@ int	main(int argc, char **argv)
 				<< RT << std::endl;
 			return (1);
 		}
-		check_current_date();
 		return_value = checking_infile(argv);
 	}
 	std::cout << MAG << "\n---------------" << RT << std::endl;
