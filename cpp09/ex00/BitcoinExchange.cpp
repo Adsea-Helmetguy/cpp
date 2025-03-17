@@ -12,31 +12,95 @@
 
 #include "BitcoinExchange.hpp"
 
-static void	check_current_date(unsigned int *year, \
-	unsigned int *month, unsigned int *day)
+static int	calender_dates(unsigned int *month, unsigned int *current_day)
+{
+	unsigned int	total_days = 0;
+
+	if (*month == 1 || *month == 3 || *month == 5 || *month == 7 \
+		|| *month == 8 || *month == 10 || *month == 12)
+	{
+		total_days = 31;
+	}
+	else if (*month == 4 || *month == 6 || *month == 9 || *month == 11)
+	{
+		total_days = 30;
+	}
+	else if (*month == 2)
+	{
+		total_days = 28;
+	}
+	else
+		return (1);
+	
+	if (*current_day < 1 || *current_day > total_days)
+	{
+		std::cerr << RED << "HEY YOUR DATE MAKE NO SENSE! CHECK CALENDER!!" \
+			<< RT << std::endl;
+		return (1);
+	}
+	return (0);
+};
+
+static int	check_current_date(unsigned int *year, unsigned int *month, \
+	unsigned int *day, std::map<std::string, float> *datacsv_file)
 {
 	time_t timestamp;
 	struct tm* datetime;
+	unsigned int	earliest_year = 0, earliest_month = 0, earliest_day = 0;
+
+	if (!(datacsv_file->empty()))
+	{
+		//first means the left side of <std::string, float>.
+		std::string	earliest_date = datacsv_file->begin()->first;
+		char	dash11, dash22;
+		std::stringstream ss2(earliest_date);
+		//std::cout << "What is in ss2?: " << ss2.str() << std::endl;
+		ss2 >> earliest_year >> dash11 >> earliest_month >> dash22 >> earliest_day;
+		if (ss2.fail() || dash11 != '-' || dash22 != '-')
+		{
+			std::cout << "Invalid date format! Expected YYYY-MM-DD" << std::endl;
+			return (1);
+		}
+		std::cout << "Earliest EXTRACTED Date -> " << GREEN << "Earliest_year: " << earliest_year \
+			<< ", Earliest_month: " << earliest_month << ", Earliest_day: " \
+			<< earliest_day << RT << std::endl;
+	}
 
 	time(&timestamp);// Applying time()
 	datetime = localtime(&timestamp);// Using localtime()
-	*year = static_cast<unsigned int>(datetime->tm_year + 1900);
-	*month = static_cast<unsigned int>(datetime->tm_mon + 1);
-	*day = static_cast<unsigned int>(datetime->tm_mday);
-	std::cout << "Current Date -> Year: " << *year << ", Month: " \
-		<< *month << ", Day: " << *day << std::endl;
+	unsigned int	current_year = static_cast<unsigned int>(datetime->tm_year + 1900);//years since 1900
+	unsigned int	current_month = static_cast<unsigned int>(datetime->tm_mon + 1);//was (0-11) now its (1-12)
+	unsigned int	current_day = static_cast<unsigned int>(datetime->tm_mday);
+
+	//checking if date is valid
+	if (*year < earliest_year || *year > current_year ||
+		(*year == current_year && *month > current_month) ||
+		(*year == earliest_year && *month < earliest_month) ||
+		(*year == earliest_year && *month > 12) ||
+		(*year == current_year && *month == current_month && *day > current_day) ||
+		(*year == earliest_year && *month == earliest_month && *day < earliest_day) ||
+		(calender_dates(month, day) == 1))
+	{
+		std::cout << "Current Date -> " << RED << "Invalid date: "\
+			<< "Date is out of range! RETURN (1)!" << RT << std::endl;
+		return (1);
+	}
+	std::cout << "Current Date -> " << GREEN << "Year: " << current_year \
+		<< ", Month: " << current_month << ", Day: " << current_day << RT << std::endl;
+	return (0);
 };
 
 //while it's not a '-' or '\0', copy and then convert to int
-static unsigned int	string_converterDate(std::string str, float value, \
+static void	string_converterDate(std::string str, float value, \
 	std::map<std::string, float> *datacsv_file)
 {
+
 	//Check if it's a date first.
 	if (str.size() != 10 || str[4] != '-' || str[7] != '-')
-    {
-        std::cout << RED << "Invalid date format! Expected YYYY-MM-DD" << RT << std::endl;
-        return (1);
-    }
+	{
+		std::cout << RED << "Invalid date format! Expected YYYY-MM-DD" << RT << std::endl;
+		return ;
+	}
 
 	//extract the date:
 	unsigned int year = 0, month = 0, day = 0;
@@ -44,46 +108,35 @@ static unsigned int	string_converterDate(std::string str, float value, \
 	std::stringstream ss(str);
 	ss >> year >> dash1 >> month >> dash2 >> day;//skips non-number
 	if (ss.fail() || dash1 != '-' || dash2 != '-')
-    {
-        std::cout << "Invalid date format! Expected YYYY-MM-DD" << std::endl;
-        return (1);
-    }
-	std::cout << "Extracted Date -> Year: " << year << ", Month: " \
-		<< month << ", Day: " << day << std::endl;
-
-
-	unsigned int	earliest_year = 0, earliest_month = 0, earliest_day = 0;
-	if (!(datacsv_file->empty()))
 	{
-		//first means the left side of <std::string, float>.
-		std::string	earliest_date = datacsv_file->begin()->first;
-		char	dash11, dash22;
-		std::stringstream ss2(earliest_date);
-		std::cout << "What is in ss2?: " << ss2.str() << std::endl;
-		ss2 >> earliest_year >> dash11 >> earliest_month >> dash22 >> earliest_day;
-		if (ss2.fail() || dash11 != '-' || dash22 != '-')
-		{
-			std::cout << "Invalid date format! Expected YYYY-MM-DD" << std::endl;
-			return (1);
-		}
-		std::cout << "Extracted Date -> Earliest_year: " << earliest_year \
-			<< ", Earliest_month: " << earliest_month << ", Earliest_day: " \
-			<< earliest_day << std::endl;
+		std::cout << "Invalid date format! Expected YYYY-MM-DD" << std::endl;
+		return ;
 	}
+	std::cout << "Extracted Date -> " << GREEN << "Year: " << year \
+		<< ", Month: " << month << ", Day: " << day << RT << std::endl;
 
-	unsigned int	current_year = 0, current_month = 0, current_day = 0;
-	check_current_date(&current_year, &current_month, &current_day);
-    if (year < earliest_year || year > current_year ||
-		(year == current_year && month > current_month) ||
-		(year == earliest_year && month < earliest_month) ||
-		(year == current_year && month == current_month && day > current_day) ||
-		(year == earliest_year && month == earliest_month && day < earliest_day))
+	if (check_current_date(&year, &month, &day, datacsv_file) == 1)
+		return ;
+	if (value < 0 || value > 1000)
 	{
-		std::cout << RED << "Invalid date: Date is out of range!" << RT << std::endl;
-		return (1);
+		std::cerr << RED << "Error, not between 0-1000." << RT << std::endl;
+		return ;
 	}
-	(void)value;//work on currency exchange
-	return (0);
+	
+	//compare dates year-month-day vs std::map<std::string's> yyyy-mm-dd
+	std::map<std::string, float>::iterator	lowest_value = datacsv_file->lower_bound(str);
+	
+	if (lowest_value == datacsv_file->end())
+	{
+		std::cout << "print nothing found lol: " << CYAN << str << RT << std::endl;
+		return ;
+	}
+	if (lowest_value != datacsv_file->begin())
+	{
+		std::cout << "Closets value that match Extracted Date: " << GREEN << (--lowest_value)->first
+			<< " | Value: " << (--lowest_value)->second << RT << std::endl;
+	}
+	//work on currency exchange
 }
 
 //make sure that data.csv cannot be higher than current date and lesser than earilest date in .csv
@@ -91,7 +144,7 @@ int	parse_inFile(std::ifstream *inFile, std::ofstream *outFile, std::map<std::st
 {
 	std::string	line;
 	size_t		pipe_index;
-	int			return_value = 0;
+	int		return_value = 0;
 
 	//	Skips the first line "date | value", else restart.
 	std::getline(*inFile, line, '|');
@@ -126,6 +179,11 @@ int	parse_inFile(std::ifstream *inFile, std::ofstream *outFile, std::map<std::st
 		
 		datestr.erase(remove_if(datestr.begin(), datestr.end(), isspace), datestr.end());
 		valuestr.erase(remove_if(valuestr.begin(), valuestr.end(), isspace), valuestr.end());
+		if (*valuestr.begin() < 48 || *valuestr.begin() > 57)
+		{
+			std::cerr << RED << "This is not a number! NEXT!" << RT << std::endl;
+			continue ;
+		}
 
 		//3) Convert value to int/float
 		std::cout << YELLOW << "--Converting Values to float--" << RT << std::endl;
@@ -135,10 +193,8 @@ int	parse_inFile(std::ifstream *inFile, std::ofstream *outFile, std::map<std::st
 		std::cout << YELLOW << " Date: " << RT << datestr << std::endl;
 		std::cout << YELLOW << "Value: " << RT << value << std::endl;
 
-		//compare input date and value with std::map's value
-		//https://stackoverflow.com/questions/46285345/c-how-to-find-the-key-of-a-map-that-has-the-closest-value-of-a-given-value
 		//if string_converter is == 1, fail it or something
-		return_value = string_converterDate(datestr, value, datacsv_file);
+		string_converterDate(datestr, value, datacsv_file);
 		std::cout << "----------------\n" << std::endl;
 	}
 	(void)outFile;
@@ -190,8 +246,13 @@ std::map<std::string, float>	parse_csvfile(std::ifstream *csvFile)//Store them i
 		//remove spaces
 		datestr.erase(remove_if(datestr.begin(), datestr.end(), isspace), datestr.end());
 		valuestr.erase(remove_if(valuestr.begin(), valuestr.end(), isspace), valuestr.end());
-		//std::cout << YELLOW << " Date: " << RT << datestr << std::endl;
-		//std::cout << YELLOW << "Value: " << RT << valuestr << std::endl;
+		if (*valuestr.begin() < 48 || *valuestr.begin() > 57)
+		{
+			std::cerr << RED << "This is not a number! NEXT!" << RT << std::endl;
+			continue ;
+		}
+		std::cout << YELLOW << " Date: " << RT << datestr << std::endl;
+		std::cout << YELLOW << "Value: " << RT << valuestr << std::endl;
 
 		//3) Convert value to int/float and store in std::map
 		//std::cout << YELLOW << "--Converting Values to float--" << RT << std::endl;
@@ -276,4 +337,7 @@ https://cplusplus.com/reference/cstdlib/strtof/
 
 --Why create a *endptr for std::strol and std::strtof--
 https://stackoverflow.com/questions/18970237/c-using-strtol-endptr-is-never-null-cannot-check-if-value-is-integer-only
+
+--here explains where the first and second from--(note, look at operator[] to see specifics)
+https://en.cppreference.com/w/cpp/container/map/operator_at
 */
