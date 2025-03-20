@@ -22,7 +22,7 @@ INC_DIR = .
 #       SOURCE (#List of SOURCE(SRC) files)                                  */
 # ************************************************************************** */
 SRC_FILE_NAMES = main.cpp \
-			BitcoinExchange.cpp
+			RPN.cpp
 
 
 

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
+/*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlow <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,13 +15,6 @@
 
 # include <iostream>// std::cout/std::endl
 # include <string>// std::string, std::getline, std::stoi
-# include <fstream>// ofstream/ifstream/fstream
-# include <algorithm>// begin(), end()
-# include <sstream>// std::stringstream
-# include <map>//std::map
-# include <cstdlib>
-# include <ctime> //ctime
-# include <iostream>
 
 # define RT	"\033[0m"
 # define RED	"\033[31m"
@@ -32,10 +25,6 @@
 # define MAG	"\e[0;35m"
 
 
-int	checking_infile(char **argv);
-int	parse_inFile(std::ifstream *inFile, std::ofstream *outFile, float value, std::map<int, float> datacsv_file);
-std::map<std::string, float>	parse_csvfile(std::ifstream *csvFile);
-//void	parse_infile(char **argv, std::ifstream *inFile, std::ofstream *outFile)
 
 
 #endif
