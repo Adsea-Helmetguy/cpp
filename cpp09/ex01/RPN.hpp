@@ -15,6 +15,8 @@
 
 # include <iostream>// std::cout/std::endl
 # include <string>// std::string, std::getline, std::stoi
+# include <sstream>// std::stringstream
+# include <stack>//std::map
 
 # define RT	"\033[0m"
 # define RED	"\033[31m"
@@ -25,6 +27,7 @@
 # define MAG	"\e[0;35m"
 
 
+void	RPN_code(int argc, char **argv);
 
 
 #endif

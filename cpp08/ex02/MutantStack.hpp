@@ -48,7 +48,6 @@ class	MutantStack : public std::stack<T>//std::stack needs a "type" parameter"<T
 
 	//---Personal Functions---
 	void	getstack_values() const;
-	//std::list<int>	copystack() const;
 	
 };
 
