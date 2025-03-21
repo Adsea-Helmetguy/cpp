@@ -64,14 +64,23 @@ static bool	array_size(int argc, char **argv)
 	return (true);
 };
 
-
-//3 − 4 + 5
-//3 4 − 5 +
+//   1)
+//	3 − 4 + 5
+//	3 4 − 5 +
+//   2)
+//	((15 ÷ (7 − (1 + 1))) × 3) − (2 + (1 + 1))
+//	15 7 1 1 + − ÷ 3 × 2 1 1 + + −
+//
+// try)
+//	./RPN 3 5 + 7 2 - "*"
+//answer: 40
+//p.s, don't write raw *, it will call bash to do weird things
 int	main(int argc, char **argv)
 {
 	//check if the values are numbers or Multiplication Table(+ - / *)
 	std::cout << "\n\n" << std::endl;
-	std::cout << "---------------------------------------------" << std::endl;
+	std::cout << "--------argc = " << argc << \
+		"------------------------------" << std::endl;
 
 	//check if the values are numbers or Multiplication Table(+ - / *)
 	if (argc > 1 && argc < 10)

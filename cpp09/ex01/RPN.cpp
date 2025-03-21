@@ -19,22 +19,51 @@
 2) place the values on the stack one by one std::stack
 */
 
-static int	convert_token(const char *string)
+static float	convert_token(const char *string)
 {
 	std::stringstream ss(string);
-	int	i;
+	float	f;
 
-	ss >> i;
-	std::cout << "INT IS: \"" << GREEN << i << RT << "\"" << std::endl;
-	return (i);
+	ss >> f;
+	std::cout << "INT IS: \"" << GREEN << f << RT << "\"" << std::endl;
+	return (f);
 };
 
-static std::stack<int>	int_converter(int argc, char **argv)
+static std::stack<float>	int_converter(int argc, char **argv)
 {
-	std::stack<int> int_array;
+	std::stack<float> int_array;
+	float	new_value = 0;
 
 	for (int a = 1; a < argc; a++)
 	{
+		if (int_array.size() == 2)
+		{
+			if (argv[a][0] == '+' || argv[a][0] == '-' 
+				|| argv[a][0] == '/' || argv[a][0] == '*')
+			{
+				new_value = int_array.top();
+				int_array.pop();
+				if (argv[a][0] == '+')
+				{
+					new_value += int_array.top();
+				}
+				if (argv[a][0] == '-')
+				{
+					new_value -= int_array.top();
+				}
+				if (argv[a][0] == '/')
+				{
+					new_value /= int_array.top();
+				}
+				if (argv[a][0] == '*')
+				{
+					new_value *= int_array.top();
+				}
+				int_array.pop();
+				std::cout << "Size after pop now: " \
+					<< int_array.size() << std::endl;
+			}
+		}
 		int_array.push(convert_token(argv[a]));
 	}
 	//std::cout << GREEN << "Converted: \"" << YELLOW << int_array 
@@ -45,6 +74,6 @@ static std::stack<int>	int_converter(int argc, char **argv)
 void	RPN_code(int argc, char **argv)
 {
 	//convert argv into int
-	std::stack<int> int_array = int_converter(argc, argv);
+	std::stack<float> int_array = int_converter(argc, argv);
 };
 
