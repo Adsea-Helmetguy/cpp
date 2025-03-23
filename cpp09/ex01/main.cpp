@@ -44,15 +44,39 @@ static int	sizeof_array(char *argv)
 	return (size);
 };
 
+/*
+static void	remove_isspace(int argc, char ***argv)
+{
+	int	index = 0;
+
+	for (int a = 1; a < argc; a++)
+	{
+		index = 0;
+		for (int b = 0; (*argv)[a][b] != '\0'; b++)
+		{
+			if ((*argv)[a][b] != ' ')
+			{
+				(*argv)[a][index++] = (*argv)[a][b];
+				std::cout << "Value index[" << index - 1 << "] here: " \
+					<< (*argv)[a][index - 1] << std::endl;
+			}
+		}
+		(*argv)[a][index] = '\0';
+	}
+	
+};
+*/
+
 static bool	array_size(int argc, char **argv)
 {
 	int	size = 0;
-
+	
+	//remove_isspace(argc, &argv);
 	std::cout << GREEN << "Starting argv checks!" << RT << std::endl;
 	for (int a = 1; a < argc; a++)
 	{
 		size = sizeof_array(argv[a]);
-		std::cout << "Array[" << a << "] = " << argv[a] << std::endl;
+		std::cout << "Array[" << a << "] = " << "\"" << argv[a] << "\"" << std::endl;
 		if (size != 1 || !(numtoken_checker(argc, argv[a])))
 		{
 			std::cout << RED << "\n\nOnly " << YELLOW << "SINGLE " \
@@ -64,40 +88,38 @@ static bool	array_size(int argc, char **argv)
 	return (true);
 };
 
-//   1)
-//	3 − 4 + 5
-//	3 4 − 5 +
-//   2)
-//	((15 ÷ (7 − (1 + 1))) × 3) − (2 + (1 + 1))
-//	15 7 1 1 + − ÷ 3 × 2 1 1 + + −
-//
 // try)
 //	./RPN 3 5 + 7 2 - "*"
+//	./RPN 3 5 + 7 2 - "*" 6 +
+//	./RPN 3 5 + 7 2 - "*" 6 + 6
 //answer: 40
 //p.s, don't write raw *, it will call bash to do weird things
 int	main(int argc, char **argv)
 {
-	//check if the values are numbers or Multiplication Table(+ - / *)
 	std::cout << "\n\n" << std::endl;
 	std::cout << "--------argc = " << argc << \
 		"------------------------------" << std::endl;
 
-	//check if the values are numbers or Multiplication Table(+ - / *)
-	if (argc > 1 && argc < 10)
+/*
+	if (argc == 2)
+	{
+		//handle isspace ltr
+		return (0);
+	}
+*/
+	if (argc > 1)
 	{
 		if (!(array_size(argc, argv)))
 			return (1);
 
-		std::cout << GREEN << "\tStarting RPN_CODE now." << RT << std::endl;
-		RPN_code(argc, argv);
-	}
-	else if (argc == 0)
-	{
-		std::cerr << YELLOW << "Where your argument!?" << RT << std::endl;
+		std::cout << GREEN << "\n\t========================" << std::endl;
+		std::cout << "\t|Starting RPN_CODE now.|" << std::endl;
+		std::cout << "\t========================" << RT << std::endl;
+		RPN_code(argc, argv);//handle isspace ltr
 	}
 	else
 	{
-		std::cerr << YELLOW << "Less than 10 arguments needed!" \
+		std::cerr << YELLOW << "Arguments needed!" \
 			<< RT << std::endl;
 	}
 	std::cout << "---------------------------------------------" << std::endl;

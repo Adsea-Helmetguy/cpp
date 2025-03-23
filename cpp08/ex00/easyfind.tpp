@@ -59,7 +59,7 @@ typename T::const_iterator it_easyfind(const T &arr, int ValueToFind)
 		<< std::distance(arr.begin(), found) << RT << "]" \
 		<< " = " << std::flush;
 	return (found);
-}
+};
 
 //links:
 //https://pages.cs.wisc.edu/~driscoll/typename.html -usage of typename beside vector-
