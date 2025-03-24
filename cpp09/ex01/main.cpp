@@ -33,7 +33,7 @@ static	bool	numtoken_checker(int argc, char *argv)
 	return (true);
 };
 
-static int	sizeof_array(char *argv)
+int	sizeof_array(char *argv)
 {
 	int	size = 0;
 
@@ -43,29 +43,6 @@ static int	sizeof_array(char *argv)
 	}
 	return (size);
 };
-
-/*
-static void	remove_isspace(int argc, char ***argv)
-{
-	int	index = 0;
-
-	for (int a = 1; a < argc; a++)
-	{
-		index = 0;
-		for (int b = 0; (*argv)[a][b] != '\0'; b++)
-		{
-			if ((*argv)[a][b] != ' ')
-			{
-				(*argv)[a][index++] = (*argv)[a][b];
-				std::cout << "Value index[" << index - 1 << "] here: " \
-					<< (*argv)[a][index - 1] << std::endl;
-			}
-		}
-		(*argv)[a][index] = '\0';
-	}
-	
-};
-*/
 
 static bool	array_size(int argc, char **argv)
 {
@@ -88,44 +65,44 @@ static bool	array_size(int argc, char **argv)
 	return (true);
 };
 
-// try)
-//	./RPN 3 5 + 7 2 - "*"
-//	./RPN 3 5 + 7 2 - "*" 6 +
-//	./RPN 3 5 + 7 2 - "*" 6 + 6
-//answer: 40
-//p.s, don't write raw *, it will call bash to do weird things
 int	main(int argc, char **argv)
 {
 	std::cout << "\n\n" << std::endl;
 	std::cout << "--------argc = " << argc << \
 		"------------------------------" << std::endl;
 
-/*
+	//single argument but a string of char
 	if (argc == 2)
 	{
-		//handle isspace ltr
+		std::string input(argv[1]);
+		RPN_argv2code(input);
 		return (0);
 	}
-*/
-	if (argc > 1)
+	else if (argc > 1)
 	{
 		if (!(array_size(argc, argv)))
 			return (1);
-
-		std::cout << GREEN << "\n\t========================" << std::endl;
-		std::cout << "\t|Starting RPN_CODE now.|" << std::endl;
-		std::cout << "\t========================" << RT << std::endl;
-		RPN_code(argc, argv);//handle isspace ltr
+		RPN_code(argc, argv);//if got isspace, fail cause argument
 	}
 	else
 	{
 		std::cerr << YELLOW << "Arguments needed!" \
 			<< RT << std::endl;
 	}
+
 	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << "\n\n\n" << std::endl;
 	return (0);
 };
+
+/*
+// try)
+//	./RPN 3 5 + 7 2 - "*"
+//	./RPN 3 5 + 7 2 - "*" 6 +
+//	./RPN 3 5 + 7 2 - "*" 6 + 6
+//answer: 40
+//p.s, don't write raw *, it will call bash to do weird things
+*/
 
 //Links:
 /*

@@ -12,13 +12,6 @@
 
 #include "RPN.hpp"
 
-//objective
-/*
-1) convert argv into int, check it 0-9.
-
-2) place the values on the stack one by one std::stack
-*/
-
 static float	convert_token(const char *string)
 {
 	std::stringstream ss(string);
@@ -28,7 +21,7 @@ static float	convert_token(const char *string)
 	return (f);
 };
 
-static bool	fundamental_operations(char character)
+bool	fundamental_operations(char character)
 {
 	if (character == '+' || character == '-' 
 		|| character == '/' || character == '*')
@@ -75,16 +68,9 @@ static void	after_comparing(std::stack<float> *int_array, char character, int *o
 		<< *operation_counter << RT << std::endl;
 };
 
-/*
-else
-{
-	std::cerr << "operation_counter == " << operation_counter << std::endl;
-	std::cerr << RED << "THIS IS WRONG! FAIL!" << RT << std::endl;
-}
-*/
 static bool	int_converter(int argc, char **argv)
 {
-	std::stack<float> int_array;
+	std::stack<float>	int_array;
 	int	operation_counter = 0;
 
 	for (int a = 1; a < argc; a++)
@@ -111,7 +97,8 @@ static bool	int_converter(int argc, char **argv)
 			if (int_array.size() > 1)
 			{
 				operation_counter++;
-				std::cout << "Operation++, counter = " << operation_counter << std::endl;
+				std::cout << "Operation++, counter = " \
+					<< operation_counter << std::endl;
 			}
 		}
 	}
@@ -125,8 +112,11 @@ static bool	int_converter(int argc, char **argv)
 
 void	RPN_code(int argc, char **argv)
 {
-	//convert argv into int
-	//if (argc > 1)
+	std::cout << GREEN << "\n" <<\
+		"\t========================\n" << \
+		"\t|Starting RPN_CODE now.|\n" << \
+		"\t========================" << RT << std::endl;
+
 	if (!(int_converter(argc, argv)))
 	{
 		std::cerr << RED << "ERROR! ARGUMENTS not correct!" << RT << std::endl;

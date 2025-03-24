@@ -22,7 +22,8 @@ INC_DIR = .
 #       SOURCE (#List of SOURCE(SRC) files)                                  */
 # ************************************************************************** */
 SRC_FILE_NAMES = main.cpp \
-			RPN.cpp
+			RPN.cpp \
+			RPN_argv2.cpp
 
 
 

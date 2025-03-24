@@ -17,6 +17,7 @@
 # include <string>// std::string, std::getline, std::stoi
 # include <sstream>// std::stringstream
 # include <stack>//std::map
+# include <cstring>  // strtok()
 
 # define RT	"\033[0m"
 # define RED	"\033[31m"
@@ -28,6 +29,8 @@
 
 
 void	RPN_code(int argc, char **argv);
-
+void	RPN_argv2code(char *string);
+int	sizeof_array(char *argv);
+bool	fundamental_operations(char character);
 
 #endif
