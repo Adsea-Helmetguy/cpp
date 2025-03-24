@@ -12,7 +12,8 @@
 
 #include "RPN.hpp"
 
-static float	convert_token(const char *string)
+
+static float	convert_token(std::string string)
 {
 	std::stringstream ss(string);
 	float	f;
@@ -25,29 +26,33 @@ static float	convert_token(const char *string)
 static bool	converting_value(std::string str)
 {
 	std::stack<float>	int_array;
-	int	operation_counter = 0;
+	//int			operation_counter = 0;
+	std::string	split_value;
+	int			start = 0;
 
-	for (int a = 0; a < str.size(); a++)
+	for (size_t a = 0; a < str.size(); a++)
 	{
-		std::cout << GREEN << "Array is: " << RT << array << std::endl;
-		if (sizeof_array(array) > 1)
-			return (false);
-		if (array[0] >= 48 && array[0] <= 57)
+		if (str[a] != ' ' && str[a] != '\t')
 		{
-			int_array.push(convert_token(array));
-			if (int_array.size() > 1)
+			if (a == (str.size() - 1) || str[a] == ' ' || str[a] == '\t')
 			{
-				operation_counter++;
-				std::cout << "Operation++, counter = " \
-					<< operation_counter << std::endl;
-				
+				split_value = str.substr(start, (a - start));
+				int_array.push(convert_token(split_value));
+				std::cout << "int_array top value: " << CYAN \
+					<< int_array.top() << RT << std::endl;
+				start = a;
+			}
+			else if (str[a] < '0' || str[a] > '9')
+			{
+				std::cerr << RED << "Invalid element found" << RT << std::endl;
+				return (false);
 			}
 		}
 	}
 	return (true);
 };
 
-void	RPN_argv2code(char *string)
+void	RPN_argv2code(std::string string)
 {
 	std::cout << CYAN << "\n" <<\
 		"\t=============================\n" << \
@@ -56,7 +61,7 @@ void	RPN_argv2code(char *string)
 
 	if (!(converting_value(string)))
 	{
-		std::cerr << RED << "ERROR! ARGC == 2, " << \
+		std::cerr << RED << "ERROR! " << \
 			"ARGUMENTS not correct!" << RT << std::endl;
 	}
 };
