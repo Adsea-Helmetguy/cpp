@@ -38,9 +38,7 @@ int	sizeof_array(char *argv)
 	int	size = 0;
 
 	while (argv[size])
-	{
 		size++;
-	}
 	return (size);
 };
 
@@ -72,6 +70,7 @@ int	main(int argc, char **argv)
 		"------------------------------" << std::endl;
 
 	//single argument but a string of char
+	//https://cplusplus.com/reference/string/string/string/#google_vignette
 	if (argc == 2)
 	{
 		std::string	input(argv[1]);
