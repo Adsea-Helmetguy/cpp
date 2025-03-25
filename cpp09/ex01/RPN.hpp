@@ -17,7 +17,7 @@
 # include <string>// std::string, std::getline, std::stoi
 # include <sstream>// std::stringstream
 # include <stack>//std::map
-# include <cstring>  // strtok()
+# include <cctype>//std::isspace
 
 # define RT	"\033[0m"
 # define RED	"\033[31m"
@@ -27,10 +27,14 @@
 # define GREEN	"\033[32m"
 # define MAG	"\e[0;35m"
 
-
+//methods to solve
 void	RPN_code(int argc, char **argv);
 void	RPN_argv2code(std::string string);
+
+//workings
 int     sizeof_array(char *argv);
 bool	fundamental_operations(char character);
+float	compare_two_values(float v1, float v2, char character);
+void	after_comparing(std::stack<float> *int_array, char character, int *operation_counter);
 
 #endif

@@ -29,7 +29,7 @@ bool	fundamental_operations(char character)
 	return (false);
 };
 
-static float	compare_two_values(float v1, float v2, char character)
+float	compare_two_values(float v1, float v2, char character)
 {
 	float	working = 0;
 
@@ -44,7 +44,7 @@ static float	compare_two_values(float v1, float v2, char character)
 	return (working);
 };
 
-static void	after_comparing(std::stack<float> *int_array, char character, int *operation_counter)
+void	after_comparing(std::stack<float> *int_array, char character, int *operation_counter)
 {
 	float	top_value = 0;
 	float	top_value2 = 0;
@@ -102,11 +102,11 @@ static bool	int_converter(int argc, char **argv)
 			}
 		}
 	}
-	std::cout << "\nFINAL Value of top: " << GREEN << int_array.top() << RT << std::endl;
 	std::cout << "FINAL Push counter == [" << GREEN \
 		<< operation_counter << RT << "]" << RT << std::endl;
 	if (operation_counter != 0)
 		return (false);
+	std::cout << "\nFINAL Value of top: " << GREEN << int_array.top() << RT << std::endl;
 	return (true);
 };
 
