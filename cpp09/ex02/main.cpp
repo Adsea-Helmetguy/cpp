@@ -39,13 +39,28 @@ static bool	int_checker(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
+	std::cout << "\n\n" << std::endl;
 	std::cout << "-------------------------" << std::endl;
 	std::cout << "starting project for ex02" << std::endl;
 	std::cout << "-------------------------" << std::endl;
 
 	//check it is all positive int
-	if (!int_checker(argc, argv))
+	//if (!(int_checker(argc, argv)))
+	//	return (1);
+	//correct arguments && check it is all positive int
+
+	if (argc < 2 || !(int_checker(argc, argv)))
+	{
+		std::cout << RED << "Invalid!! Check arguments pls!" << RT << std::endl;
 		return (1);
+	}
+
 	//begin project
+	if (!(start_PmergeMe(argc, argv)))
+	{
+		std::cout << RED << "something is wrong!! FALSE!" << RT << std::endl;
+		return (1);
+	}
+	std::cout << "\n\n\n" << std::endl;
 	return (0);
 };

@@ -13,8 +13,11 @@
 #ifndef	PMERGEME_HPP
 #define PMERGEME_HPP
 
-#include <string>//std::string
-#include <iostream>//std::cout/endl;
+# include <string>//std::string
+# include <iostream>//std::cout/endl;
+# include <sstream>// std::stringstream
+# include <vector>
+# include <deque>
 
 # define RT	"\033[0m"
 # define RED	"\033[31m"
@@ -25,6 +28,8 @@
 # define MAG	"\e[0;35m"
 
 
+//PmergeMe.cpp
+bool	start_PmergeMe(int argc, char **argv);
 
 
 #endif

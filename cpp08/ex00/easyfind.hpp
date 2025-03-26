@@ -16,10 +16,10 @@
 
 # include <iostream>
 # include <string>//std::string && "<class>.size() /length();""
-# include <vector>
 # include <exception>
-# include <list>
+# include <vector>
 # include <deque>
+# include <list>
 # include <algorithm>
 
 
