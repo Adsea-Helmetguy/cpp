@@ -22,7 +22,8 @@ INC_DIR = .
 #       SOURCE (#List of SOURCE(SRC) files)                                  */
 # ************************************************************************** */
 SRC_FILE_NAMES = main.cpp \
-			PmergeMe.cpp 
+			PmergeMe.cpp \
+			sorting.cpp 
 			
 
 

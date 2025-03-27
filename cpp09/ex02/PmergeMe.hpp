@@ -16,6 +16,7 @@
 # include <string>//std::string
 # include <iostream>//std::cout/endl;
 # include <sstream>// std::stringstream
+# include <algorithm>//std::swap()
 # include <vector>
 # include <deque>
 
@@ -30,6 +31,7 @@
 
 //PmergeMe.cpp
 bool	start_PmergeMe(int argc, char **argv);
+void	sorting_level2(std::vector<int> *sorter, int *pair_counter);
 
 
 #endif
