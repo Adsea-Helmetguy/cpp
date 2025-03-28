@@ -34,6 +34,7 @@ static void	power_sorting(std::vector<int> *sorter, int *pair_counter, int power
 	{
 		std::cout << "Range: " << power * i << std::endl;
 		//sort in terms of power
+		if ((*pair_counter) % 2 == 0)
 		std::cout << "Before swap: " << (*sorter)[((power * i) - (power / 2)) - 1] \
 				<< ", " << (*sorter)[(power * i) - 1] << std::endl;
 	}
