@@ -17,6 +17,7 @@
 # include <iostream>//std::cout/endl;
 # include <sstream>// std::stringstream
 # include <algorithm>//std::swap()
+# include <cmath> //for pow() usage
 # include <vector>
 # include <deque>
 

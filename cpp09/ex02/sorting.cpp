@@ -19,6 +19,7 @@ static int	total_levels(const int pair_counter)
 
 	while (levels_left % 2 == 0 && (levels_left /= 2))
 		total_level++;
+	//handle odd number
 	std::cout << "\nTotal levels = " << total_level << std::endl;
 	return (total_level);
 };
@@ -32,11 +33,11 @@ static void	power_sorting(std::vector<int> *sorter, int *pair_counter, int power
 	std::cout << "Current power: " << power << std::endl;
 	for (int i = 1; i < (*pair_counter); i++)
 	{
-		std::cout << "Range: " << power * i << std::endl;
+		std::cout << "Range: " << (power * i) - 2 << " && " << (power * i) << std::endl;
 		//sort in terms of power
-		if ((*pair_counter) % 2 == 0)
+		//if ((*pair_counter) % 2 == 0)
 		std::cout << "Before swap: " << (*sorter)[((power * i) - (power / 2)) - 1] \
-				<< ", " << (*sorter)[(power * i) - 1] << std::endl;
+			<< ", " << (*sorter)[(power * i) - 1] << std::endl;
 	}
 	(*pair_counter) /= 2;
 };
