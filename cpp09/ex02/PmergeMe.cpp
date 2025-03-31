@@ -12,7 +12,7 @@
 
 #include "PmergeMe.hpp"
 
-static int	convert_token(std::string string)
+int	convert_token(std::string string)
 {
 	std::stringstream ss(string);
 	int	f;
@@ -36,80 +36,83 @@ int	counting_total_pair(std::vector<int> &sorter, std::vector<int> &leftover, in
 			leftover.push_back(sorter[i]);
 		//checking the values of leftover
 		for (size_t i = 0; i < leftover.size(); i++)
-			std::cout << "Value of leftover[" << CYAN << i << RT \
-				<< "] = " << leftover[i] << std::endl;
+			std::cout << YELLOW << "Value of leftover[" << CYAN << i \
+				<< YELLOW << "] = "<< RT << leftover[i] << std::endl;
 	}
 	return (pair_counter);
 };
 
-static void	pushing_number(std::vector<int> &sorter, int argc, char **argv)
+void	pushing_sort(std::vector<int> &sorter, int argc, char **argv)
 {
 	std::cout << "\n" << std::endl;
 	for (int a = 1; a < argc; a++)
 	{
 		sorter.push_back(convert_token(argv[a]));
 		std::cout << GREEN << "Value of sorter" << RT << "[" << CYAN \
-			<< a << RT << "]: " << sorter[a - 1] << RT << std::endl;
+			<< (a - 1) << RT << "]: " << sorter[a - 1] << RT << std::endl;
 	}
 };
 
-void	sortinside_pairs()
+//sort the pairs from left small to right big
+void	sortinside_pairs(std::vector<int> &sorter, int power, int pair_counter)
 {
+	int	startpoint = power - 1;
 
+	for (size_t i = pair_counter; i > 0; i--)
+	{
+		//sorting two values if right is not bigger than left
+		std::cout << "Comparing std::vector between [" << (startpoint - (power / 2)) \
+			<< "] vs [" << startpoint << "]" << std::endl;
+		std::cout << YELLOW << "    BEFORE:  " << RT << sorter[(startpoint - (power / 2))] \
+			<< " VS " << sorter[(startpoint)] << std::endl;
+		if (sorter[(startpoint)] < sorter[startpoint - (power / 2)])
+			std::swap(sorter[(startpoint - (power / 2))], sorter[(startpoint)]);
+		std::cout << GREEN << "    AFTER:  " << RT << sorter[(startpoint - (power / 2))] \
+			<< " VS " << sorter[(startpoint)] << std::endl;
+		startpoint += power;
+	}
 };
 
 void	start_recursive_sort(std::vector<int> &sorter, int level)
 {
-	int	pair_counter = 0;
 	std::vector<int>	leftover;
+	int	pair_counter = 0;
+	int	power = static_cast<int>(pow(2, level));
 
-	int	power = pow(2, level);
+	std::cout << "\n-------------------------->>>>>>" << std::endl;
 	std::cout << "Power is : \"" << power << "\"" << std::endl;
 	pair_counter = counting_total_pair(sorter, leftover, power);
 	std::cout << "Total_pairs for level[" << CYAN << level << RT \
-		<< "] = " << pair_counter << std::endl; 
+		<< "] = " << pair_counter << "\n" << std::endl; 
 	if (pair_counter == 0)
 	{
 		std::cout << GREEN << "\n\nONLY 1 number! THE END!~" << RT << std::endl;
 		return ;
 	}
-	//got pairs to sort
-	//sortinside_pairs(sorter, power, pair_counter);
+	sortinside_pairs(sorter, power, pair_counter);
+	start_recursive_sort(sorter, (level + 1));
 }
 
 bool	start_PmergeMe(int argc, char **argv)
 {
 	std::vector<int>	sorter;
-	int					level = 1;
-	// int			pair_counter = 0;
-	// bool			leftover = false;
+	int			level = 1;
 
-	//print out before`
+	//print out before
 	std::cout << "Before: " << GREEN << argv[1] << RT << std::flush;
 	for (int i = 2; i < argc; i++)
 		std::cout << " " << GREEN << argv[i] << RT << std::flush;
 
 	// insert numbers from argv into the std::vector
-	pushing_number(sorter, argc, argv);
-
-	// check total number of elements
+	pushing_sort(sorter, argc, argv);
 	if (sorter.size() <= 1)
 		return (true);
 
+	//recursive sorting till all pairs are sorted
 	start_recursive_sort(sorter, level);
+	std::cout << "-----------------------------------------------------\n" << std::endl;
 
-	// pair_counter = counting_total_pair(&sorter, argc, argv, &leftover);
-	// if (pair_counter == 0)
-	// {
-	// 	std::cout << GREEN << "\n\nONLY 1 number! THE END!~" << RT << std::endl;
-	// 	return (true);
-	// }
-
-	//Get the pairs!
-	// sorting_pairs(&sorter, &pair_counter);
-	// sorting_level2(&sorter, &pair_counter);//second level onwards sort;
-
-	//if (pair_counter != 0)//ensure no pairs are left!
+	//if (pair_counter != 0)
 	//	return (false);
 	return (true);
 };
