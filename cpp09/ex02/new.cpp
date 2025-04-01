@@ -27,6 +27,5 @@ RECURSIVE SORT FUNCTION
     - insert according to jacobsthal sequence
         - insert B3 into main chain: { B1, A1, A2, A3 }
         - insert B2 into main chain: { ... A2 }
-
- */
+*/
 

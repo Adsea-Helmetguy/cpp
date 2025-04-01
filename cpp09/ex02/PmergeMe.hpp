@@ -30,11 +30,12 @@
 # define MAG	"\e[0;35m"
 
 
-//PmergeMe.cpp
+//PmergeMe main folder
 bool	start_PmergeMe(int argc, char **argv);
-void	sorting_level2(std::vector<int> *sorter, int *pair_counter);
 
-//sorting file
-
+//step4_splitpairs
+void	sorting_mainpend_chain(std::vector<int> &sorter, std::vector<int> &leftover);
+void	print_mainchain(std::vector<int> &sorter);
+void	print_pendchain(std::vector<int> &leftover);
 
 #endif

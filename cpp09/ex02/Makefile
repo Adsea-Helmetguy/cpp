@@ -23,7 +23,7 @@ INC_DIR = .
 # ************************************************************************** */
 SRC_FILE_NAMES = main.cpp \
 			PmergeMe.cpp \
-			sorting.cpp 
+			step4_splitpairs/split_pairs.cpp \
 			
 
 

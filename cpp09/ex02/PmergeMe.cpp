@@ -21,23 +21,35 @@ int	convert_token(std::string string)
 	return (f);
 };
 
-int	counting_total_pair(std::vector<int> &sorter, std::vector<int> &leftover, int power)
+//level is used here to check what is going on!
+int	counting_total_pair(std::vector<int> &sorter, std::vector<int> &leftover, int power, int level)
 {
-	int	pair_counter = sorter.size();
-	int	current_leftovers = 0;
-	int	indexof_leftover = 0;
+	int	pair_counter = static_cast<int>(sorter.size());
+	size_t	current_leftovers = 0;
+	size_t	indexof_leftover = 0;
+	size_t	total_sorter_remover = 0;
 
 	pair_counter /= power;
 	current_leftovers = sorter.size() % power;
 	indexof_leftover = sorter.size() - current_leftovers;
-	if (current_leftovers > 0)
+	//if (level != 0)
+	//	index_tostop_leftover = static_cast<int>(pow(2, level - 1));
+	if (current_leftovers > 0 && (current_leftovers != sorter.size()))
 	{
+		total_sorter_remover = 0;
 		for (size_t i = indexof_leftover; i < sorter.size(); i++)
+		{
 			leftover.push_back(sorter[i]);
-		//checking the values of leftover
+			total_sorter_remover++;
+		}
+		for (size_t i = 0; i < total_sorter_remover; i++)
+			sorter.pop_back();
 		for (size_t i = 0; i < leftover.size(); i++)
+		{
 			std::cout << YELLOW << "Value of leftover[" << CYAN << i \
-				<< YELLOW << "] = "<< RT << leftover[i] << std::endl;
+				<< YELLOW << "] = " << RT << leftover[i] << \
+				" | Inside level[" << level << "]" << std::endl;
+		}
 	}
 	return (pair_counter);
 };
@@ -73,29 +85,27 @@ void	sortinside_pairs(std::vector<int> &sorter, int power, int pair_counter)
 	}
 };
 
-void	start_recursive_sort(std::vector<int> &sorter, int level)
+void	start_recursive_sort(std::vector<int> &sorter, int level, std::vector<int> &leftover)
 {
-	std::vector<int>	leftover;
+	//std::vector<int>	leftover;
 	int	pair_counter = 0;
 	int	power = static_cast<int>(pow(2, level));
 
 	std::cout << "\n-------------------------->>>>>>" << std::endl;
 	std::cout << "Power is : \"" << power << "\"" << std::endl;
-	pair_counter = counting_total_pair(sorter, leftover, power);
+	pair_counter = counting_total_pair(sorter, leftover, power, level);
 	std::cout << "Total_pairs for level[" << CYAN << level << RT \
 		<< "] = " << pair_counter << "\n" << std::endl; 
 	if (pair_counter == 0)
-	{
-		std::cout << GREEN << "\n\nONLY 1 number! THE END!~" << RT << std::endl;
 		return ;
-	}
 	sortinside_pairs(sorter, power, pair_counter);
-	start_recursive_sort(sorter, (level + 1));
+	start_recursive_sort(sorter, (level + 1), leftover);
 }
 
 bool	start_PmergeMe(int argc, char **argv)
 {
 	std::vector<int>	sorter;
+	std::vector<int>	leftover;
 	int			level = 1;
 
 	//print out before
@@ -109,7 +119,8 @@ bool	start_PmergeMe(int argc, char **argv)
 		return (true);
 
 	//recursive sorting till all pairs are sorted
-	start_recursive_sort(sorter, level);
+	start_recursive_sort(sorter, level, leftover);
+	sorting_mainpend_chain(sorter, leftover);
 	std::cout << "-----------------------------------------------------\n" << std::endl;
 
 	//if (pair_counter != 0)
