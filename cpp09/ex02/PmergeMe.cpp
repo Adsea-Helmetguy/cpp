@@ -32,8 +32,6 @@ int	counting_total_pair(std::vector<int> &sorter, std::vector<int> &leftover, in
 	pair_counter /= power;
 	current_leftovers = sorter.size() % power;
 	indexof_leftover = sorter.size() - current_leftovers;
-	//if (level != 0)
-	//	index_tostop_leftover = static_cast<int>(pow(2, level - 1));
 	if (current_leftovers > 0 && (current_leftovers != sorter.size()))
 	{
 		total_sorter_remover = 0;
@@ -66,22 +64,30 @@ void	pushing_sort(std::vector<int> &sorter, int argc, char **argv)
 };
 
 //sort the pairs from left small to right big
-void	sortinside_pairs(std::vector<int> &sorter, int power, int pair_counter)
+void	sortinside_pairs(std::vector<int> &sorter, int power, int pair_counter, int level)
 {
-	int	startpoint = power - 1;
+	int	sp = power - 1;//sp means startpoint
 
 	for (size_t i = pair_counter; i > 0; i--)
 	{
 		//sorting two values if right is not bigger than left
-		std::cout << "Comparing std::vector between [" << (startpoint - (power / 2)) \
-			<< "] vs [" << startpoint << "]" << std::endl;
-		std::cout << YELLOW << "    BEFORE:  " << RT << sorter[(startpoint - (power / 2))] \
-			<< " VS " << sorter[(startpoint)] << std::endl;
-		if (sorter[(startpoint)] < sorter[startpoint - (power / 2)])
-			std::swap(sorter[(startpoint - (power / 2))], sorter[(startpoint)]);
-		std::cout << GREEN << "    AFTER:  " << RT << sorter[(startpoint - (power / 2))] \
-			<< " VS " << sorter[(startpoint)] << std::endl;
-		startpoint += power;
+		std::cout << "Comparing std::vector between [" << (sp - (power / 2)) \
+			<< "] vs [" << sp << "]" << std::endl;
+		std::cout << YELLOW << "    BEFORE:  " << RT << sorter[(sp - (power / 2))] \
+			<< " VS " << sorter[(sp)] << std::endl;
+
+		//===working===
+		if (sorter[(sp)] < sorter[sp - (power / 2)])
+		{
+			std::swap(sorter[(sp - (power / 2))], sorter[(sp)]);
+			for (int order = level - 1; order != 0; order--)
+				std::swap(sorter[(sp - (power / 2)) - order], sorter[(sp - order)]);
+		}
+		//===working===
+
+		std::cout << GREEN << "    AFTER:  " << RT << sorter[(sp - (power / 2))] \
+			<< " VS " << sorter[(sp)] << std::endl;
+		sp += power;
 	}
 };
 
@@ -98,7 +104,7 @@ void	start_recursive_sort(std::vector<int> &sorter, int level, std::vector<int> 
 		<< "] = " << pair_counter << "\n" << std::endl; 
 	if (pair_counter == 0)
 		return ;
-	sortinside_pairs(sorter, power, pair_counter);
+	sortinside_pairs(sorter, power, pair_counter, level);
 	start_recursive_sort(sorter, (level + 1), leftover);
 }
 
@@ -120,7 +126,9 @@ bool	start_PmergeMe(int argc, char **argv)
 
 	//recursive sorting till all pairs are sorted
 	start_recursive_sort(sorter, level, leftover);
+	print_mainchain(sorter);
 	sorting_mainpend_chain(sorter, leftover);
+	final_sort(sorter, leftover);
 	std::cout << "-----------------------------------------------------\n" << std::endl;
 
 	//if (pair_counter != 0)
