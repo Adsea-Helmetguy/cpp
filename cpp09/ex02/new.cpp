@@ -28,4 +28,6 @@ RECURSIVE SORT FUNCTION
         - insert B3 into main chain: { B1, A1, A2, A3 }
         - insert B2 into main chain: { ... A2 }
 */
+//jacobsthal:
+//https://en.wikipedia.org/wiki/Jacobsthal_number
 

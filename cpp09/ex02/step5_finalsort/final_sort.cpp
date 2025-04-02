@@ -14,6 +14,12 @@
 
 void	final_sort(std::vector<int> &sorter, std::vector<int> &leftover)
 {
-	(void)sorter;
-	(void)leftover;
+	int	compare = 0;//use this to increast the sorter.begin()!
+
+	//add the b1 before the a1
+	std::cout << GREEN << "\n\n\n\nFINAL PUSH!!!!" << RT << std::endl;
+	if (!leftover.empty())
+		sorter.insert(sorter.begin(), leftover.front());
+	print_mainchain(sorter);
+	print_pendchain(leftover);
 };
