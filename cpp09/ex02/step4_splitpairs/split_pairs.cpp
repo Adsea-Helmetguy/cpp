@@ -15,6 +15,8 @@
 void	print_mainchain(std::vector<int> &sorter)
 {
 	std::cout << "Inside the sorter, Main Chain->" << std::endl;
+	if (sorter.empty())
+		return ;
 	for (size_t i = 0; i < sorter.size(); i++)
 	{
 		std::cout << "Main chain[" << CYAN << i << RT << "] = " \
@@ -25,6 +27,8 @@ void	print_mainchain(std::vector<int> &sorter)
 void	print_pendchain(std::vector<int> &leftover)
 {
 	std::cout << "\nInside the leftover, Pend Chain->" << std::endl;
+	if (leftover.empty())
+		return ;
 	for (size_t i = 0; i < leftover.size(); i++)
 	{
 		std::cout << "Pend chain[" << CYAN << i << RT << "] = " \
