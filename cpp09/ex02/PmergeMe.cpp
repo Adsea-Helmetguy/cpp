@@ -80,20 +80,22 @@ void	sortinside_pairs(std::vector<int> &sorter, int power, int pair_counter, int
 		if (sorter[(sp)] < sorter[sp - (power / 2)])
 		{
 			std::swap(sorter[(sp - (power / 2))], sorter[(sp)]);
-			for (int order = level - 1; order != 0; order--)
+			for (int order = ((power / 2) - 1); order != 0; order--)
 				std::swap(sorter[(sp - (power / 2)) - order], sorter[(sp - order)]);
 		}
 		//===working===
-
+		(void)level;
 		std::cout << GREEN << "    AFTER:  " << RT << sorter[(sp - (power / 2))] \
 			<< " VS " << sorter[(sp)] << std::endl;
 		sp += power;
 	}
+	print_mainchain(sorter);
 };
 
-void	start_recursive_sort(std::vector<int> &sorter, int level, std::vector<int> &leftover)
+void	start_recursive_sort(std::vector<int> &sorter, int level)
 {
-	//std::vector<int>	leftover;
+	std::vector<int>	leftover;
+	std::vector<int>	pend;
 	int	pair_counter = 0;
 	int	power = static_cast<int>(pow(2, level));
 
@@ -105,13 +107,21 @@ void	start_recursive_sort(std::vector<int> &sorter, int level, std::vector<int> 
 	if (pair_counter == 0)
 		return ;
 	sortinside_pairs(sorter, power, pair_counter, level);
-	start_recursive_sort(sorter, (level + 1), leftover);
+	start_recursive_sort(sorter, (level + 1));
+	//std::cout << YELLOW << "\n====----Printing values[" << "]----====" << RT << std::endl;
+	//print_mainchain(sorter);
+	//print_pendchain(pend);
+	//std::cout << YELLOW << "====-----------------------====\n\n\n\n" << RT << std::endl;
+
+
+	//time to rewind backwards the level--
+	sorting_mainpend_chain(sorter, leftover, pend, power);
+	//print_pendchain(pend);
 }
 
 bool	start_PmergeMe(int argc, char **argv)
 {
 	std::vector<int>	sorter;
-	std::vector<int>	leftover;
 	int			level = 1;
 
 	//print out before
@@ -125,10 +135,9 @@ bool	start_PmergeMe(int argc, char **argv)
 		return (true);
 
 	//recursive sorting till all pairs are sorted
-	start_recursive_sort(sorter, level, leftover);
-	print_mainchain(sorter);
-	sorting_mainpend_chain(sorter, leftover);
-	final_sort(sorter, leftover);
+	start_recursive_sort(sorter, level);
+	//print_mainchain(sorter);
+	//sorting_mainpend_chain(sorter, leftover);
 	std::cout << "-----------------------------------------------------\n" << std::endl;
 
 	//if (pair_counter != 0)
