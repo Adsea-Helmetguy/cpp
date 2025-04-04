@@ -47,6 +47,8 @@ static void	sorting_pend(std::vector<int> &sorter, std::vector<int> &pend, int s
 	//level 3 atm power should be 8
 	//this power tells me the size of the pair
 	//size of this pair == 8. What to do now?
+	std::cout << GREEN << "sorter[(power / 2) - 1]: " << RT << sorter[(power / 2) - 1] \
+		<< GREEN << " |vs| sorter[power - 1]: " << RT << sorter[power - 1] << std::endl;
 	if (sorter[(power / 2) - 1] >  sorter[power - 1])
 	{
 		for (size_t i = (power / 2); i < power; i++)//first pair
