@@ -36,7 +36,7 @@ bool	start_PmergeMe(int argc, char **argv);
 
 //step4_splitpairs
 void	sorting_mainpend_chain(std::vector<int> sorter, 
-                std::vector<int> &leftover, std::vector<int> &pend, int power);
+                std::vector<int> &leftover, std::vector<int> &pend, size_t power);
 void	print_mainchain(std::vector<int> &sorter);
 void	print_pendchain(std::vector<int> &leftover);
 

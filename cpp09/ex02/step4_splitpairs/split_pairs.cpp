@@ -36,38 +36,76 @@ void	print_pendchain(std::vector<int> &leftover)
 	}
 };
 
-//use the power instead of checking every 2 int
-static void	sorting_pend(std::vector<int> &sorter, std::vector<int> &pend, int start)
+static void	adding_mainpend(std::vector<int> &sorter, std::vector<int> &main, 
+			std::vector<int> &pend, size_t power)
 {
-	//create starting points, then swap with another based on small big
-	size_t	power = start;
-	size_t	index = 0;
-	std::vector<int>	main;
+	size_t	size_loop = 0;
 
-	//level 3 atm power should be 8
-	//this power tells me the size of the pair
-	//size of this pair == 8. What to do now?
 	std::cout << GREEN << "sorter[(power / 2) - 1]: " << RT << sorter[(power / 2) - 1] \
 		<< GREEN << " |vs| sorter[power - 1]: " << RT << sorter[power - 1] << std::endl;
-	if (sorter[(power / 2) - 1] >  sorter[power - 1])
+	while (size_loop < sorter.size())
 	{
-		for (size_t i = (power / 2); i < power; i++)//first pair
-		{
-			main.push_back(sorter[i]);
-			std::cout << YELLOW << "Pushing sorter[" << i << "] = " << sorter[i] \
-				<< " | Now in main: " << main[index++] << RT << std::endl;
-		}
-		index = 0;
-		for (int i = 0; i < static_cast<int>(power / 2); i++)//second pair
+		//pend
+		for (size_t i = (size_loop); i < (size_loop + (power / 2)); i++)//second pair
 		{
 			pend.push_back(sorter[i]);
-			std::cout << CYAN << "Pushing sorter[" << i << "] = " << sorter[i] \
-				<< " | Now in pend: " << pend[index++]  << RT << std::endl;
+		}
+		//main
+		for (size_t i = (size_loop) + (power / 2); i < (size_loop + power); i++)//first pair
+		{
+			main.push_back(sorter[i]);
+		}
+		size_loop += (power);
+	}
+};
+
+static void	main_pend_sort(std::vector<int> &main, std::vector<int> &pend, size_t power)
+{
+	std::vector<int>	main2;
+	std::vector<int>	pend2;
+	size_t	size_loop = 0;
+
+	if (power > 2)
+	{
+		std::cout << GREEN << "Comparing which is main inside pend--->\n" << \
+			"pend[" << (power / 2) - 1 << "]: (" << pend[(power / 2) - 1] \
+			<< ")\n--vs--\npend[" << power - 1 << "]: (" \
+			<< pend[power - 1] << ")" << std::endl;
+		std::cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=" << std::endl;
+		std::cout << GREEN << "Comparing which is main inside main's--->\n" << \
+			"main[" << (power / 2) - 1 << "]: (" << main[(power / 2) - 1] \
+			<< ")\n--vs--\nmain[" << power - 1 << "]: (" \
+			<< main[power - 1] << ")" << std::endl;
+	}
+	while (size_loop < power)
+	{
+		//pend
+		for (size_t i = (size_loop); i < (size_loop + (power / 2)); i++)//second pair
+		{
+			pend2.push_back(main[i]);
 		}
 	}
+	(void)main;
+	(void)pend;
+};
+
+//use the power instead of checking every 2 int
+static void	sorting_working(std::vector<int> &sorter, size_t power)
+{
+	static std::vector<int>	main;
+	static std::vector<int>	pend;
+	static	int once = 0;
+
+	std::cout << "\n>>>---------------------------->>>\n" << std::flush;
+	std::cout << GREEN << "STARTING WITH POWER OF \"" << YELLOW << power \
+		<< GREEN << "\"" << RT << std::endl;
+	if (main.empty() && pend.empty() && once++ == 0)
+		adding_mainpend(sorter, main, pend, power);
+	else
+		main_pend_sort(main, pend, power);
 	std::cout << YELLOW << "\n====-----Printing values-----====" << RT << std::endl;
-	print_mainchain(main);
 	print_pendchain(pend);
+	print_mainchain(main);
 	std::cout << YELLOW << "====-------------------------====\n" << RT << std::endl;
 };
 
@@ -75,12 +113,12 @@ static void	sorting_pend(std::vector<int> &sorter, std::vector<int> &pend, int s
 //chain1(main) vs chain2(pending chain)<- most likely the leftovers
 //for (int i = static_cast<int>(sorter.size() - 1); (i > -1); i--)
 void	sorting_mainpend_chain(std::vector<int> sorter, 
-				std::vector<int> &leftover, std::vector<int> &pend, int power)
+		std::vector<int> &leftover, std::vector<int> &pend, size_t power)
 {
 //	static int	main_sort = 0;
-
+	(void)pend;
 	//if (main_sort++ == 0)
-	sorting_pend(sorter, pend, power);
+	sorting_working(sorter, power);
 	for (size_t i = 0; i < leftover.size(); i++)
 		pend.push_back(leftover[i]);
 

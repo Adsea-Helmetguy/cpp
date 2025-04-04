@@ -64,9 +64,9 @@ void	pushing_sort(std::vector<int> &sorter, int argc, char **argv)
 };
 
 //sort the pairs from left small to right big
-void	sortinside_pairs(std::vector<int> &sorter, int power, int pair_counter, int level)
+void	sortinside_pairs(std::vector<int> &sorter, size_t power, int pair_counter, int level)
 {
-	int	sp = power - 1;//sp means startpoint
+	size_t	sp = power - 1;//sp means startpoint
 
 	for (size_t i = pair_counter; i > 0; i--)
 	{
@@ -97,7 +97,7 @@ void	start_recursive_sort(std::vector<int> &sorter, int level)
 	std::vector<int>	leftover;
 	std::vector<int>	pend;
 	int	pair_counter = 0;
-	int	power = static_cast<int>(pow(2, level));
+	size_t	power = static_cast<size_t>(pow(2, level));
 
 	std::cout << "\n-------------------------->>>>>>" << std::endl;
 	std::cout << "Power is : \"" << power << "\"" << std::endl;
@@ -116,7 +116,8 @@ void	start_recursive_sort(std::vector<int> &sorter, int level)
 
 	//time to rewind backwards the level--
 	sorting_mainpend_chain(sorter, leftover, pend, power);
-	//print_pendchain(pend);
+	std::cout << "OUTSIDE: " << RED << RT << std::flush;
+	print_pendchain(pend);
 }
 
 bool	start_PmergeMe(int argc, char **argv)
