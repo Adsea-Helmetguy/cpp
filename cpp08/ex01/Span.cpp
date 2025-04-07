@@ -154,13 +154,11 @@ int	Span::addNumber(int value)
 //Range of Iterators C++98
 void	Span::addNumberGroup(const std::vector<int> &numbers)
 {
-	std::vector<int>::const_iterator	start;
-
-	for (start = numbers.begin(); start != numbers.end(); start++)
-	{
-		addNumber(*start); // Assuming addNumber() is already implemented
-	}
-}
+	if (this->_arrayNum.size() + numbers.size() >= static_cast<size_t>(N))
+		throw std::runtime_error("Array_Size is at Max capacity");
+	this->_arraySize += static_cast<unsigned int>(numbers.size());
+	this->_arrayNum.insert(this->_arrayNum.end(), numbers.begin(), numbers.end());
+};
 
 //shortest_Span
 int	Span::shortestSpan()
