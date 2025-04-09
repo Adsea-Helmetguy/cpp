@@ -67,31 +67,54 @@ size_t	binary_search_ft(std::vector<int>& main, size_t start, size_t end, int in
 	return (binary_location);
 };
 
+size_t	jacob_number(size_t	n)
+{
+	if (n == 0)
+		return (0);
+	if (n == 1)
+		return (1);
+	return (jacob_number(n - 1) + 2 * jacob_number(n - 2));
+};
+
 int main(void)
 {
 	std::vector<int> main = { 1, 3, 5, 7, 9, 11, 55, 100 };
 	std::vector<int> pend = { 0, 2, 4, 6, 8, 10, 29, 42 };
+
+	size_t	pairs = 2;
+	size_t	old_jacob = 1;
+	size_t	jacob = 3;
+	size_t	num_of_pairs_inserted = 1;
+	size_t	end_point = ((jacob + num_of_pairs_inserted) * pairs) - 1;
 	size_t	binary_location = 0;
-	size_t	pairs = 4;
 
-	std::cout << "\n\nBEFORE" << std::endl;
-	std::cout << GREEN << "MAIN" << RT << std::endl;
-	print_vector(main);
 
+	binary_location = (binary_search_ft(main, 0, end_point, pend[(pairs - 1)], pairs));
+	main.insert(main.begin() + binary_location, \
+		(pend.begin() + ((pairs - 1) - (pairs - 1))), pend.begin() + (pairs - 1) + 1);
 	for (size_t i = (pairs - 1); i < pend.size(); i += pairs)
 	{
-		std::cout << YELLOW << "\nstarting at pend[" << RT << i << \
-			YELLOW << "] = " << RT << pend[i] << std::endl;
-		binary_location = (binary_search_ft(main, 0, (main.size() - 1), pend[i], pairs));
-		if (i != 0)
+		std::cout << RED << "Jacob's value: " << jacob << RT << std::endl;
+		for (size_t j = jacob; (j > old_jacob) && j < pend.size(); j--)
 		{
+			std::cout << YELLOW << "\nstarting at pend[" << RT << i << \
+				YELLOW << "] = " << RT << pend[j] << std::endl;
+			end_point = ((j + num_of_pairs_inserted) * pairs) - 1;
+			binary_location = (binary_search_ft(main, 0, end_point, pend[j], pairs));
 			main.insert(main.begin() + binary_location, \
-				(pend.begin() + (i - (pairs - 1))), pend.begin() + i + 1);
-		}
-		for (size_t loop = 0; loop < pairs; loop++)
-			pend[i - loop] = -1;
-		std::cout << RED << "MAIN" << RT << std::endl;
+				(pend.begin() + (j - (pairs - 1))), pend.begin() + j + 1);
+			num_of_pairs_inserted++;
+			std::cout << RED << "MAIN" << RT << std::endl;
 			print_vector_pairs(main, pairs);
+			for (size_t loop = 0; loop < pairs; loop++)
+				pend[j - loop] = -1;
+			std::cout << "-------------------------------------------\n" << std::endl;
+		}
+		if (num_of_pairs_inserted > jacob)
+		{
+			old_jacob = jacob;
+			jacob = jacob_number(num_of_pairs_inserted);
+		}
 	}
 	std::cout << "\n\nAFTER" << std::endl;
 	std::cout << RED << "MAIN" << RT << std::endl;
@@ -99,4 +122,6 @@ int main(void)
 	std::cout << RED << "\nPend" << RT << std::endl;
 	print_vector_pairs(pend, pairs);
 	return (0);
-};
+}
+
+
