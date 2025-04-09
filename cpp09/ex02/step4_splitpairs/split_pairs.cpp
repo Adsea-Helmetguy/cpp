@@ -41,8 +41,7 @@ static void	adding_mainpend(std::vector<int> &sorter, std::vector<int> &main,
 {
 	size_t	size_loop = 0;
 
-	std::cout << GREEN << "sorter[(power / 2) - 1]: " << RT << sorter[(power / 2) - 1] \
-		<< GREEN << " |vs| sorter[power - 1]: " << RT << sorter[power - 1] << std::endl;
+	std::cout << GREEN << "power: " << power << RT << std::endl;
 	while (size_loop < sorter.size())
 	{
 		for (size_t i = (size_loop); i < (size_loop + (power / 2)); i++)//second pair
@@ -64,20 +63,25 @@ static void	add_leftovers(std::vector<int> &pend,
 	}
 };
 
-static void	binary_search_ft(std::vector &main, 
-					std::vector &pend, size_t power)
+void	binary_search_ft(std::vector<int> &main, 
+						size_t start, size_t end, int insert_element)
 {
-	size_t	jacob = 3;
+	size_t	midpoint = ((start + end) / 2);
 
-	//first set b1 can be thrown into a1
-	if (!pend.empty())
+	std::cout << RED << "VALUE OF insert_element: \"" << GREEN \
+	<< insert_element << RED << "\"" << RT << std::endl;
+	if (insert_element < main[midpoint])
 	{
-		//use power here! to push first pair into main
+		for (size_t loop = midpoint; loop > start; loop--)
+		{
+			if (insert_element > main[loop])
+				main.insert(main.begin() + loop, insert_element);
+		}
 	}
-	for (size_t i = 0; i < pend.size(); i++)
-	{
-		
-	}
+	(void)main;
+	(void)start;
+	(void)end;
+	(void)insert_element;
 };
 
 void	sorting_mainpend_chain(std::vector<int> sorter, 
@@ -85,10 +89,32 @@ void	sorting_mainpend_chain(std::vector<int> sorter,
 {
 	std::vector<int>	main;
 	std::vector<int>	pend;
+	size_t	p_by2	= (power / 2);
+	//size_t	jacob = 3;
 
 	adding_mainpend(sorter, main, pend, power);
-	binary_search_ft(main, pend, power);
-	//add_leftovers(pend, leftover);
+	
+	//first set b1 can be thrown into a1
+	if (!pend.empty())
+	{
+		main.insert(main.begin(), pend.begin(), pend.begin() + p_by2);
+		for (size_t i = 0; i < p_by2; i++)
+			pend[i] = -1;
+	}
+	for (size_t i = p_by2 - 1; i < pend.size(); i += p_by2)
+	{
+		std::cout << "value of i: " << i << std::endl;
+		for (size_t p = 0; p < pend.size(); p++)
+		{
+			if (pend[p] != -1)
+			{
+				binary_search_ft(main, i, (i + p_by2 - 1), pend[i + p_by2 - 1]);
+				p = 0;
+			}
+		}
+	}
+	std::cout << RED << "ADDING LEFTOVERS" << RT << std::endl;
+	add_leftovers(pend, leftover);
 	//leftover_binary_search_ft2() --for leftovers specially--
 
 	std::cout << YELLOW << "\n====-----Printing values-----====" << RT << std::endl;

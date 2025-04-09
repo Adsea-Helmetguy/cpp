@@ -41,6 +41,7 @@ void	print_mainchain(std::vector<int> &sorter);
 void	print_pendchain(std::vector<int> &leftover);
 
 //step5_finalsort
+size_t	jacob_number(size_t	n);
 void	final_sort(std::vector<int> &sorter, std::vector<int> &pend);
 
 #endif
