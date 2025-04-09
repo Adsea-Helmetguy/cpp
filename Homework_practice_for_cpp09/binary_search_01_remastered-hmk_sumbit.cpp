@@ -39,7 +39,10 @@ void	print_vector_pairs(std::vector<int>& vector, size_t pairs)
 /* return the position of where to insert the insert_element */
 size_t	binary_search_ft(std::vector<int>& main, size_t start, size_t end, int insert_element, size_t pairs)
 {
-	if (start >= end)
+	std::cout << GREEN << "\nStart: " << RT << start << std::endl;
+	std::cout << GREEN << "end: " << RT << end << std::endl;
+	std::cout << GREEN << "insert ele: " << RT << insert_element << std::endl;
+	if (start >= end || (start + (pairs - 1) >= end))
 		return (start);
 
 	std::cout << YELLOW << "  Comparing (start[" << RT << start << YELLOW << "] = " \
@@ -47,17 +50,17 @@ size_t	binary_search_ft(std::vector<int>& main, size_t start, size_t end, int in
 		<< YELLOW << "] = " << RT << main[end] << YELLOW << ")" << RT << std::endl;
 
 	size_t	binary_location = 0;	
-	size_t	total_pairs_inrange = ((end - start) / pairs) + 1;
-	size_t	midpoint = (((start + end) / 2) / pairs) * pairs;
+	size_t	total_pairs_inrange = ((end - start + 1) / pairs);
+	size_t	midpoint = start + ((total_pairs_inrange / 2) * pairs) - 1;
 
 //How many pairs in range?
-	std::cout << CYAN << "Pairs value: " << RT << pairs << std::endl;
+	// std::cout << CYAN << "Pairs value: " << RT << pairs << std::endl;
 	std::cout << CYAN << "Total pairs in this range: " << RT << total_pairs_inrange << std::endl;
 
 //calucating the midpoint values
 	std::cout << YELLOW << "midpoint[" << midpoint << "] = " << RT << main[midpoint] << std::endl;
 
-	if (insert_element < main[midpoint + (pairs - 1)])
+	if (insert_element < main[midpoint])
 		return binary_search_ft(main, start, midpoint, insert_element, pairs);
 	else
 		return binary_search_ft(main, midpoint + 1, end, insert_element, pairs);
@@ -66,10 +69,10 @@ size_t	binary_search_ft(std::vector<int>& main, size_t start, size_t end, int in
 
 int main(void)
 {
-	std::vector<int> main = { 1, 3, 5, 7, 9, 11, 55, 10 };
+	std::vector<int> main = { 1, 3, 5, 7, 9, 11, 55, 100 };
 	std::vector<int> pend = { 0, 2, 4, 6, 8, 10, 29, 42 };
 	size_t	binary_location = 0;
-	size_t	pairs = 2;
+	size_t	pairs = 4;
 
 	std::cout << "\n\nBEFORE" << std::endl;
 	std::cout << GREEN << "MAIN" << RT << std::endl;
@@ -87,6 +90,8 @@ int main(void)
 		}
 		for (size_t loop = 0; loop < pairs; loop++)
 			pend[i - loop] = -1;
+		std::cout << RED << "MAIN" << RT << std::endl;
+			print_vector_pairs(main, pairs);
 	}
 	std::cout << "\n\nAFTER" << std::endl;
 	std::cout << RED << "MAIN" << RT << std::endl;
