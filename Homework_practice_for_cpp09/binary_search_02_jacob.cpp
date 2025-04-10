@@ -96,58 +96,76 @@ void	convert_pend_to_negative(std::vector<int> &pend, size_t jacob, size_t old_j
 	}
 }
 
+void	print_mainpend(std::vector<int> &main, std::vector<int> &pend, size_t pairs)
+{
+	std::cout << RED << "MAIN" << RT << std::endl;
+	print_vector_pairs(main, pairs);
+	std::cout << RED << "\nPend" << RT << std::endl;
+	print_vector_pairs(pend, pairs);
+};
+
 int main(void)
 {
+// ---------------------------elements--------------------------------------
 	std::vector<int> main = { 1, 3, 5, 7, 9, 11, 55, 100 };
 	std::vector<int> pend = { 0, 2, 4, 6, 8, 10, 29, 42 };
-
 
 	size_t	pairs = 2;
 	size_t	binary_location = 0;
 
 	size_t	old_jacob = 1;
 	size_t	old_jacobsthal = 1;
-	size_t	jacob = 3;
-	size_t	jacobsthal = jacob_number(jacob);
+	size_t	n = 3;
+	size_t	jacobsthal = jacob_number(n);
 
 	//inserted first pair and check if (pend.size() > jacob = 3)
 	size_t	num_of_pairs_inserted = 1;
 	size_t	endpoint = ((3 + num_of_pairs_inserted) * pairs) - 1;
-	size_t	startpoint = (pairs * 2) - 1;
+	size_t	startpoint = (pairs * 2) - 1;\
+	size_t	counter = 1;
+// ---------------------------elements--------------------------------------
+
 	if (startpoint < (pend.size() - 1) && ((pairs * 3) - 1) < pend.size() - 1)
 		startpoint = (pairs * 3) - 1;
-
-
-
-
 
 	binary_location = (binary_search_ft(main, 0, endpoint, pend[(pairs - 1)], pairs));
 	main.insert(main.begin() + binary_location, \
 		(pend.begin() + ((pairs - 1) - (pairs - 1))), pend.begin() + (pairs - 1) + 1);
 	convert_pend_to_negative(pend, 1, 0, pairs);
-	//while (!pend_checkall_negative(pend))
-	//{
+	print_mainpend(main, pend, pairs);
+	while (!pend_checkall_negative(pend))
+	{
 		for (size_t j = (jacobsthal * pairs) - 1; 
-			((j > (old_jacobsthal * pairs) - 1) && j < pend.size()); j -= pairs)
+			((j > (old_jacobsthal * pairs) - 1)); j -= pairs)
 		{
+			std::cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>------" << std::endl;
 			std::cout << YELLOW << "\nstarting at pend[" << RT << j << \
 				YELLOW << "] = " << RT << pend[j] << std::endl;
-			while (j > (pend.size() - 1))
+			while (j > (pend.size() - 1))//optimise this in one line-yx-
 				j--;
-			endpoint = ((j + num_of_pairs_inserted) * pairs) - 1;
+			std::cout << RED << "-------------------------------------------" << std::endl;
+			std::cout << RED << "J = " << RT << j << std::endl;
+			std::cout << RED <<  "-------------------------------------------" << RT << std::endl;
+			endpoint = ((n + num_of_pairs_inserted) * pairs) - 1;
 			binary_location = (binary_search_ft(main, 0, endpoint, pend[j], pairs));
 			main.insert(main.begin() + binary_location, \
-				(pend.begin() + ((pairs - 1) - (pairs - 1))), pend.begin() + (pairs - 1) + 1);
-			num_of_pairs_inserted++;
+				(pend.begin() + j - (pairs - 1)), pend.begin() + j + 1);//+1 cause end iterator
+			//main.insert(main.begin() + binary_location, \
+			//	(pend.begin() + ((pairs - 1) - (pairs - 1))), pend.begin() + (pairs - 1) + 1);
+			counter++;
+			print_mainpend(main, pend, pairs);
 		}
-		convert_pend_to_negative(pend, jacob, old_jacob, pairs);
-		old_jacob = jacob;
+		num_of_pairs_inserted += counter;
+		counter = 0;
+		convert_pend_to_negative(pend, n, old_jacob, pairs);
+		old_jacob = n;
 		old_jacobsthal = jacobsthal;
-		jacobsthal = jacob_number(++jacob);
-		std::cout << "-------------------------------------------" << std::endl;
-		std::cout << YELLOW << "Jacob = " << jacob << " | Jacobsthal = " << RT << jacobsthal << std::endl;
-		std::cout << "-------------------------------------------\n" << std::endl;
-	//}
+		jacobsthal = jacob_number(++n);
+		std::cout << YELLOW << "-------------------------------------------" << std::endl;
+		std::cout << "n = " << n << " | Jacobsthal = " << RT << jacobsthal << std::endl;
+		std::cout << YELLOW <<  "-------------------------------------------" << RT << std::endl;
+		std::cout << "------<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n" << std::endl;
+	}
 
 
 
@@ -221,11 +239,7 @@ int main(void)
 		}
 	}
 */
-	std::cout << "\n\nAFTER" << std::endl;
-	std::cout << RED << "MAIN" << RT << std::endl;
-	print_vector_pairs(main, pairs);
-	std::cout << RED << "\nPend" << RT << std::endl;
-	print_vector_pairs(pend, pairs);
+	print_mainpend(main, pend, pairs);
 	return (0);
 }
 

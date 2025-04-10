@@ -55,8 +55,8 @@ static bool	array_size(int argc, char **argv)
 		if (size != 1 || !(numtoken_checker(argc, argv[a])))
 		{
 			std::cout << RED << "\n\nOnly " << YELLOW << "SINGLE " \
-			<< "\"NUMBER\" " << RED << "and " << YELLOW << "\"+ - / *\" " \
-			<< RED << "are allowed!!" << RT << std::endl;
+				<< "\"NUMBER\" " << RED << "and " << YELLOW << "\"+ - / *\" " \
+				<< RED << "are allowed!!" << RT << std::endl;
 			return (false);
 		}
 	}
