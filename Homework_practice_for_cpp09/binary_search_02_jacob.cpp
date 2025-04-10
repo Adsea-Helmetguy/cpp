@@ -54,7 +54,6 @@ size_t	binary_search_ft(std::vector<int>& main, size_t start, size_t end, int in
 	size_t	midpoint = start + ((total_pairs_inrange / 2) * pairs) - 1;
 
 //How many pairs in range?
-	// std::cout << CYAN << "Pairs value: " << RT << pairs << std::endl;
 	std::cout << CYAN << "Total pairs in this range: " << RT << total_pairs_inrange << std::endl;
 
 //calucating the midpoint values
@@ -67,7 +66,7 @@ size_t	binary_search_ft(std::vector<int>& main, size_t start, size_t end, int in
 	return (binary_location);
 };
 
-size_t	jacob_number(size_t	n)
+size_t	jacob_number(size_t n)
 {
 	if (n == 0)
 		return (0);
@@ -76,8 +75,113 @@ size_t	jacob_number(size_t	n)
 	return (jacob_number(n - 1) + 2 * jacob_number(n - 2));
 };
 
+int	pend_checkall_negative(std::vector<int> pend)
+{
+	for (size_t i = 0; i < pend.size(); i++)
+	{
+		if (pend[i] != -1)
+			return (0);//false
+	}
+	return (1);//true
+};
+
+void	convert_pend_to_negative(std::vector<int> &pend, size_t jacob, size_t old_jacob, size_t pairs)
+{
+	for (int loop = jacob; loop > old_jacob; loop--)
+	{
+		for (int pair = 0; pair < pairs; pair++)
+		{
+			pend[(loop * pairs) - 1 - pair] = -1;
+		}
+	}
+}
+
 int main(void)
 {
+	std::vector<int> main = { 1, 3, 5, 7, 9, 11, 55, 100 };
+	std::vector<int> pend = { 0, 2, 4, 6, 8, 10, 29, 42 };
+
+
+	size_t	pairs = 2;
+	size_t	binary_location = 0;
+
+	size_t	old_jacob = 1;
+	size_t	old_jacobsthal = 1;
+	size_t	jacob = 3;
+	size_t	jacobsthal = jacob_number(jacob);
+
+	//inserted first pair and check if (pend.size() > jacob = 3)
+	size_t	num_of_pairs_inserted = 1;
+	size_t	endpoint = ((3 + num_of_pairs_inserted) * pairs) - 1;
+	size_t	startpoint = (pairs * 2) - 1;
+	if (startpoint < (pend.size() - 1) && ((pairs * 3) - 1) < pend.size() - 1)
+		startpoint = (pairs * 3) - 1;
+
+
+
+
+
+	binary_location = (binary_search_ft(main, 0, endpoint, pend[(pairs - 1)], pairs));
+	main.insert(main.begin() + binary_location, \
+		(pend.begin() + ((pairs - 1) - (pairs - 1))), pend.begin() + (pairs - 1) + 1);
+	convert_pend_to_negative(pend, 1, 0, pairs);
+	//while (!pend_checkall_negative(pend))
+	//{
+		for (size_t j = (jacobsthal * pairs) - 1; 
+			((j > (old_jacobsthal * pairs) - 1) && j < pend.size()); j -= pairs)
+		{
+			std::cout << YELLOW << "\nstarting at pend[" << RT << j << \
+				YELLOW << "] = " << RT << pend[j] << std::endl;
+			while (j > (pend.size() - 1))
+				j--;
+			endpoint = ((j + num_of_pairs_inserted) * pairs) - 1;
+			binary_location = (binary_search_ft(main, 0, endpoint, pend[j], pairs));
+			main.insert(main.begin() + binary_location, \
+				(pend.begin() + ((pairs - 1) - (pairs - 1))), pend.begin() + (pairs - 1) + 1);
+			num_of_pairs_inserted++;
+		}
+		convert_pend_to_negative(pend, jacob, old_jacob, pairs);
+		old_jacob = jacob;
+		old_jacobsthal = jacobsthal;
+		jacobsthal = jacob_number(++jacob);
+		std::cout << "-------------------------------------------" << std::endl;
+		std::cout << YELLOW << "Jacob = " << jacob << " | Jacobsthal = " << RT << jacobsthal << std::endl;
+		std::cout << "-------------------------------------------\n" << std::endl;
+	//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 	std::vector<int> main = { 1, 3, 5, 7, 9, 11, 55, 100 };
 	std::vector<int> pend = { 0, 2, 4, 6, 8, 10, 29, 42 };
 
@@ -116,6 +220,7 @@ int main(void)
 			jacob = jacob_number(num_of_pairs_inserted);
 		}
 	}
+*/
 	std::cout << "\n\nAFTER" << std::endl;
 	std::cout << RED << "MAIN" << RT << std::endl;
 	print_vector_pairs(main, pairs);
