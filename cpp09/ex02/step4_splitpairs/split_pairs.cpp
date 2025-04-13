@@ -12,30 +12,6 @@
 
 #include "PmergeMe.hpp"
 
-void	print_mainchain(std::vector<int> &sorter)
-{
-	std::cout << "Inside the Main Chain->" << std::endl;
-	if (sorter.empty())
-		return ;
-	for (size_t i = 0; i < sorter.size(); i++)
-	{
-		std::cout << "Main chain[" << CYAN << i << RT << "] = " \
-			<< GREEN << sorter[i] << RT << std::endl;
-	}
-};
-
-void	print_pendchain(std::vector<int> &leftover)
-{
-	std::cout << "\nInside the Pend Chain->" << std::endl;
-	if (leftover.empty())
-		return ;
-	for (size_t i = 0; i < leftover.size(); i++)
-	{
-		std::cout << "Pend chain[" << CYAN << i << RT << "] = " \
-			<< GREEN << leftover[i] << RT << std::endl;
-	}
-};
-
 static void	adding_mainpend(std::vector<int> &sorter, std::vector<int> &main, 
 			std::vector<int> &pend, size_t power)
 {
@@ -87,14 +63,27 @@ void	binary_search_ft(std::vector<int> &main,
 void	sorting_mainpend_chain(std::vector<int> sorter, 
 		std::vector<int> &leftover, size_t power)
 {
+	size_t	p_by2	= (power / 2);
+
+// ---------------------------elements--------------------------------------
 	std::vector<int>	main;
 	std::vector<int>	pend;
-	size_t	p_by2	= (power / 2);
-	//size_t	jacob = 3;
 
+	size_t	pair_size = 2;
+	size_t	binary_location = 0;
+
+	size_t	old_jacob = 1;
+	size_t	old_jacobsthal = 1;
+	size_t	n = 3;
+	size_t	jacobsthal = jacob_number(n);
+
+	//inserted first pair and check if (pend.size() > jacob = 3)
+	size_t	num_of_pairs_inserted = 1;
+	size_t	endpoint = ((3 + num_of_pairs_inserted) * pair_size) - 1;
+	size_t	counter = 0;
+// ---------------------------elements--------------------------------------
 	adding_mainpend(sorter, main, pend, power);
 	
-	//first set b1 can be thrown into a1
 	if (!pend.empty())
 	{
 		main.insert(main.begin(), pend.begin(), pend.begin() + p_by2);
@@ -113,13 +102,13 @@ void	sorting_mainpend_chain(std::vector<int> sorter,
 			}
 		}
 	}
-	std::cout << RED << "ADDING LEFTOVERS" << RT << std::endl;
-	add_leftovers(pend, leftover);
+	//std::cout << RED << "ADDING LEFTOVERS" << RT << std::endl;
+	//add_leftovers(pend, leftover);
 	//leftover_binary_search_ft2() --for leftovers specially--
 
 	std::cout << YELLOW << "\n====-----Printing values-----====" << RT << std::endl;
-	print_pendchain(pend);
-	print_mainchain(main);
+	print_vector_pairs(main, power, 0);
+	print_vector_pairs(pend, power, 1);
 	std::cout << YELLOW << "====-------------------------====\n" << RT << std::endl;
 };
 
@@ -133,7 +122,12 @@ void	sorting_mainpend_chain(std::vector<int> sorter,
 
 
 
+/*
+std::vector<int> main = { 1, 3, 5, 7, 9, 11, 55, 100 };
+	std::vector<int> pend = { 0, 2, 4, 6, 8, 10, 29, 42 };
 
+0 1 2 3 4 5 6 7 8 9 10 11 29 42 100
+*/
 
 
 

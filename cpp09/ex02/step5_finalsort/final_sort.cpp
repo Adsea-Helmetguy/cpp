@@ -12,15 +12,6 @@
 
 #include "PmergeMe.hpp"
 
-size_t	jacob_number(size_t	n)
-{
-	if (n == 0)
-		return (0);
-	if (n == 1)
-		return (1);
-	return (jacob_number(n - 1) + 2 * jacob_number(n - 2));
-};
-
 static size_t	highest_jacob_ft(std::vector<int> &pend)
 {
 	size_t	highest_jacob = 0;

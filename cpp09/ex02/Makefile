@@ -24,7 +24,8 @@ INC_DIR = .
 SRC_FILE_NAMES = main.cpp \
 			PmergeMe.cpp \
 			step4_splitpairs/split_pairs.cpp \
-			step5_finalsort/final_sort.cpp
+			step5_finalsort/final_sort.cpp \
+			print_values/print_mainpend.cpp
 			
 
 

@@ -106,8 +106,10 @@ void	start_recursive_sort(std::vector<int> &sorter, int level)
 	if (pair_counter == 0)
 		return ;
 	sortinside_pairs(sorter, power, pair_counter, level);
-	start_recursive_sort(sorter, (level + 1));
+	print_vector_pairs(sorter, power, 0);
+	print_vector_pairs(leftover, power, 1);
 
+	start_recursive_sort(sorter, (level + 1));
 	//time to rewind backwards the level--
 	sorting_mainpend_chain(sorter, leftover, power);
 }
