@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_mainpend.cpp                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlow <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/14 16:45:55 by mlow              #+#    #+#             */
+/*   Updated: 2025/04/14 16:46:00 by mlow             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
@@ -9,6 +20,8 @@ void	print_vector_pairs(std::vector<int>& vector, size_t pair_size, int mp)
 		std::cout << RED << "MAIN" << RT << std::endl;
 	else if (mp == 1)
 		std::cout << RED << "Leftovers" << RT << std::endl;
+	else if (mp == 2)
+		std::cout << RED << "PEND" << RT << std::endl;
 
 	std::cout << YELLOW << "(" << RT << std::flush;
 	for (std::vector<int>::iterator it = vector.begin(); it != vector.end(); it++)
@@ -115,24 +128,30 @@ void	print_mainpend(std::vector<int> &main, \
 {
 	if (before_after == 0)
 	{
-		std::cout << "\n------<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" \
+		std::cout << "------<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" \
 			<< std::endl;
-		std::cout << GREEN << "---->BEFORE: " << std::endl;
+		std::cout << GREEN << "---->BEFORE: " << RT << std::endl;
 	}
 	else if (before_after == 1)
 	{
-		std::cout << GREEN << "\n---->AFTER: " << std::endl;
+		std::cout << GREEN << "\n---->AFTER: " << RT << std::endl;
 	}
-	print_vector_pairs(main, pair_size, 0);
-	print_vector_pairs(pend, pair_size, 1);
+	print_vector_pairs(main, pair_size * 2, 0);
+	print_vector_pairs(pend, pair_size * 2, 2);
 };
-
 
 void	insert_firstpair(std::vector<int> &main, std::vector<int> &pend, size_t &pair_size)
 {
-	print_mainpend(main, pend, pair_size, 0);
-	main.insert(main.begin(), (pend.begin()), pend.begin() + pair_size);
-	convert_pend_to_negative(pend, 0, 1, pair_size);
+	if (!pend.empty())
+	{
+		if (!main.empty() && !pend.empty())
+			print_mainpend(main, pend, pair_size, 0);
+		main.insert(main.begin(), pend.begin(), pend.begin() + pair_size);
+		convert_pend_to_negative(pend, 0, 1, pair_size);
+	}
+	std::cout << GREEN << "Inserting first pairs into main!" << RT << std::endl;
+	print_vector_pairs(main, pair_size, 0);
+	print_vector_pairs(pend, pair_size, 2);
 };
 
 void	update_new_jacob(std::vector<int> &main, std::vector<int> &pend, \

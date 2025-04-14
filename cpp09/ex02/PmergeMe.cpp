@@ -71,10 +71,10 @@ void	sortinside_pairs(std::vector<int> &sorter, size_t power, int pair_counter, 
 	for (size_t i = pair_counter; i > 0; i--)
 	{
 		//sorting two values if right is not bigger than left
-		std::cout << "Comparing std::vector between [" << (sp - (power / 2)) \
-			<< "] vs [" << sp << "]" << std::endl;
-		std::cout << YELLOW << "    BEFORE:  " << RT << sorter[(sp - (power / 2))] \
-			<< " VS " << sorter[(sp)] << std::endl;
+		//std::cout << "Comparing std::vector between [" << (sp - (power / 2)) 
+		//	<< "] vs [" << sp << "]" << std::endl;
+		//std::cout << YELLOW << "    BEFORE:  " << RT << sorter[(sp - (power / 2))] 
+		//	<< " VS " << sorter[(sp)] << std::endl;
 
 		//===working===
 		if (sorter[(sp)] < sorter[sp - (power / 2)])
@@ -85,11 +85,11 @@ void	sortinside_pairs(std::vector<int> &sorter, size_t power, int pair_counter, 
 		}
 		//===working===
 		(void)level;
-		std::cout << GREEN << "    AFTER:  " << RT << sorter[(sp - (power / 2))] \
-			<< " VS " << sorter[(sp)] << std::endl;
+		//std::cout << GREEN << "    AFTER:  " << RT << sorter[(sp - (power / 2))] 
+		//	<< " VS " << sorter[(sp)] << std::endl;
 		sp += power;
 	}
-	print_mainchain(sorter);
+	print_vector_pairs(sorter, power, 0);
 };
 
 void	start_recursive_sort(std::vector<int> &sorter, int level)
@@ -106,11 +106,10 @@ void	start_recursive_sort(std::vector<int> &sorter, int level)
 	if (pair_counter == 0)
 		return ;
 	sortinside_pairs(sorter, power, pair_counter, level);
-	print_vector_pairs(sorter, power, 0);
-	print_vector_pairs(leftover, power, 1);
 
 	start_recursive_sort(sorter, (level + 1));
 	//time to rewind backwards the level--
+	std::cout << "\n\n\n\n\n\n\n\n" << std::endl;
 	sorting_mainpend_chain(sorter, leftover, power);
 }
 
@@ -131,8 +130,6 @@ bool	start_PmergeMe(int argc, char **argv)
 
 	//recursive sorting till all pairs are sorted
 	start_recursive_sort(sorter, level);
-	//print_mainchain(sorter);
-	//sorting_mainpend_chain(sorter, leftover);
 	std::cout << "-----------------------------------------------------\n" << std::endl;
 
 	//if (pair_counter != 0)
