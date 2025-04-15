@@ -56,14 +56,14 @@ void	comparing_startVend(std::vector<int>& main, size_t start, size_t end, size_
 	std::cout << YELLOW << ")" << RT << std::flush;
 
 	std::cout << YELLOW << " || " << "end[" << RT << std::flush;
-	for (size_t i = end - 1; i < end + 1; i++)
+	for (size_t i = end - (pair_size - 1); i < end + 1; i++)
 	{
 		std::cout << i << std::flush;
 		if ((i + 1) != end + 1)
 			std::cout << ", " << std::flush;
 	}
 	std::cout << YELLOW << "] = (" << RT << std::flush;
-	for (size_t i = end - 1; i < end + 1; i++)
+	for (size_t i = end - (pair_size - 1); i < end + 1; i++)
 	{
 		std::cout << main[i] << std::flush;
 		if ((i + 1) != end + 1)
@@ -86,6 +86,8 @@ size_t	binary_search_ft(std::vector<int>& main, size_t start, size_t end, int in
 
 	std::cout << CYAN << "    Total pair_size in this range: " << RT << total_pairs_inrange << std::endl;
 	std::cout << YELLOW << "    midpoint[" << midpoint << "] = " << RT << main[midpoint] << std::endl;
+	std::cout << YELLOW << "   Insert_element(" << insert_element \
+		<< ") vs main[midpoint](" << main[midpoint] << ")." << RT << std::endl;
 	if (insert_element < main[midpoint])
 		return binary_search_ft(main, start, midpoint, insert_element, pair_size);
 	else

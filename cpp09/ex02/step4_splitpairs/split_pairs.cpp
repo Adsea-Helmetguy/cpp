@@ -28,77 +28,7 @@ static void	adding_mainpend(std::vector<int> &sorter, std::vector<int> &main,
 	}
 };
 
-//use the power instead of checking every 2 int
-void	add_leftovers(std::vector<int> &main, std::vector<int> &pend, 
-				std::vector<int> &leftover, size_t power)
-{
-	size_t	pair_size = power / 2;
-	if (!leftover.empty())
-	{
-		for (size_t i = 0; i < leftover.size(); i++)
-			pend.push_back(leftover[i]);
-	}
-	std::cout << GREEN << "Checking leftovers added?->: " << RT << std::endl;
-	print_vector_pairs(main, power, 0);
-	print_vector_pairs(pend, power, 2);
-
-	std::cout << GREEN << "--Adding leftovers back to main!--" << RT << std::endl;
-	binaryinsert_leftover(main, pend, pair_size);
-};
-
-void	binary_search_ft(std::vector<int> &main,
-			size_t start, size_t end, int insert_element)
-{
-	size_t	midpoint = ((start + end) / 2);
-
-	std::cout << RED << "VALUE OF insert_element: \"" << GREEN \
-	<< insert_element << RED << "\"" << RT << std::endl;
-	if (insert_element < main[midpoint])
-	{
-		for (size_t loop = midpoint; loop > start; loop--)
-		{
-			if (insert_element > main[loop])
-				main.insert(main.begin() + loop, insert_element);
-		}
-	}
-};
-
-void	binaryinsert_leftover(std::vector<int> &main, std::vector<int> &pend, size_t pair_size)
-{
-// ---------------------------elements--------------------------------------
-	//size_t	binary_location = 0;
-
-	size_t	old_jacob = 1;
-	size_t	n = 3;
-	size_t	jacobsthal = jacob_number(n);
-
-	//size_t	endpoint = main.size() - 1;
-	//size_t	counter = 0;
-// ---------------------------elements--------------------------------------
-
-	//first order of business, update jacobsthal to the highest available value to compare
-	while (jacobsthal < (pend.size() - 1))
-		leftover_jacob(old_jacob, n, jacobsthal);
-	std::cout << GREEN << "n = " << n << " | Jacobsthal = " << jacobsthal << RT << std::endl;
-	//begin compare with end based on pairs
-
-/*
-	for (size_t size = (pend.size() - 1); size != 0 && pend[size] != -1; size--)
-	{
-		//first order of business, update jacobsthal to the highest available value to compare
-		leftover_jacob(main, pend, old_jacob, old_jacobsthal, n, jacobsthal, pair_size);
-
-		//main.insert(main.begin() + loop, insert_element);
-	}
-*/
-	//convert_pend_to_negative(pend, old_jacob, n, pair_size);
-	(void)main;
-	(void)pend;
-	(void)pair_size;
-};
-
-void	binaryinsert_mainpend(std::vector<int> &main, std::vector<int> &pend, \
-					size_t pair_size)
+void	binaryinsert_mainpend(std::vector<int> &main, std::vector<int> &pend, size_t pair_size)
 {
 // ---------------------------elements--------------------------------------
 	size_t	binary_location = 0;
@@ -114,17 +44,17 @@ void	binaryinsert_mainpend(std::vector<int> &main, std::vector<int> &pend, \
 	size_t	counter = 0;
 // ---------------------------elements--------------------------------------
 
-	if (!main.empty())
+	if (!main.empty() && !pend.empty())
 	{
 		while (num_of_pairs_inserted < (pend.size() / pair_size))//create a while loop to --
 		{
 			for (size_t j = (jacobsthal * pair_size) - 1;
-				((j > (old_jacobsthal * pair_size) - 1)); j -= pair_size)
+				j > (old_jacobsthal * pair_size) - 1; j -= pair_size)
 			{
-				std::cout << YELLOW << "\nstarting at pend[" << RT << j << \
-					YELLOW << "] = " << RT << pend[j] << std::endl;
 				if (j > (pend.size() - 1))
 					j = (pend.size() - 1);
+				std::cout << YELLOW << "\nstarting at pend[" << RT << j << \
+					YELLOW << "] = " << RT << pend[j] << std::endl;
 				endpoint = ((n + num_of_pairs_inserted) * pair_size) - 1;
 				binary_location = (binary_search_ft(main, 0, endpoint, pend[j], pair_size));
 				main.insert(main.begin() + binary_location, \
@@ -139,9 +69,8 @@ void	binaryinsert_mainpend(std::vector<int> &main, std::vector<int> &pend, \
 	}
 };
 
-
 void	sorting_mainpend_chain(std::vector<int> sorter, 
-		std::vector<int> &leftover, size_t power)
+				std::vector<int> &leftover, size_t power)
 {
 // ---------------------------elements--------------------------------------
 	std::vector<int>	main;
@@ -153,10 +82,11 @@ void	sorting_mainpend_chain(std::vector<int> sorter,
 	adding_mainpend(sorter, main, pend, power);
 	insert_firstpair(main, pend, pair_size);
 	binaryinsert_mainpend(main, pend, pair_size);
-	add_leftovers(main, pend, leftover, power);
+	add_leftover(main, leftover, pair_size);
 	std::cout << YELLOW << "\n====-----Printing values-----====" << RT << std::endl;
 	print_vector_pairs(main, power, 0);
-	print_vector_pairs(pend, power, 1);
+	print_vector_pairs(pend, power, 2);
+	print_vector_pairs(leftover, power, 1);
 	std::cout << YELLOW << "====-------------------------====\n" << RT << std::endl;
 
 	//-not updated code, leftover still not staying:

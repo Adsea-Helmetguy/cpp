@@ -49,13 +49,10 @@ void	update_new_jacob(std::vector<int> &main, std::vector<int> &pend, \
 
 
 //step4_splitpairs
-void	binaryinsert_leftover(std::vector<int> &main, std::vector<int> &pend, size_t pair_size);
 void	binary_search_ft(std::vector<int> &main, \
 			size_t start, size_t end, int insert_element);
-void	binaryinsert_mainpend(std::vector<int> &main, std::vector<int> &pend, size_t pair_size);
 void	sorting_mainpend_chain(std::vector<int> sorter, \
 			std::vector<int> &leftover, size_t power);
-
 
 //step5_finalsort
 size_t	jacob_number(size_t	n);
@@ -63,7 +60,12 @@ void	final_sort(std::vector<int> &sorter, std::vector<int> &pend);
 
 //++print_values folder++
 	//	binary_leftover.cpp
-void	leftover_jacob(size_t &old_jacob, size_t &n, size_t &jacobsthal);
+void	add_leftover(std::vector<int> &main, std::vector<int> &leftover, size_t &pair_size);
+void	leftover_jacob(size_t &old_jacob, size_t &old_jacobsthal, \
+					size_t &n, size_t &jacobsthal);
+void	binaryinsert_leftover(std::vector<int> &main, std::vector<int> &leftover, size_t pair_size);
+size_t	binary_search_leftover(std::vector<int>& main, \
+					size_t start, size_t end, int insert_element, size_t pair_size);
 	//	print_mainpend.cpp
 void	print_vector_pairs(std::vector<int>& vector, size_t pair_size, int mp);
 
