@@ -51,8 +51,10 @@ void	update_new_jacob(std::vector<int> &main, std::vector<int> &pend, \
 //step4_splitpairs
 void	binary_search_ft(std::vector<int> &main, \
 			size_t start, size_t end, int insert_element);
-void	sorting_mainpend_chain(std::vector<int> sorter, \
-			std::vector<int> &leftover, size_t power);
+void	adding_mainpend(std::vector<int> &sorter, std::vector<int> &main, 
+				std::vector<int> &pend, size_t power);
+std::vector<int>	sorting_mainpend_chain(std::vector<int> &sorter, std::vector<int> &leftover, \
+									size_t power);
 
 //step5_finalsort
 size_t	jacob_number(size_t	n);

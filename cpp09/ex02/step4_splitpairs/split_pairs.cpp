@@ -12,7 +12,7 @@
 
 #include "PmergeMe.hpp"
 
-static void	adding_mainpend(std::vector<int> &sorter, std::vector<int> &main, 
+void	adding_mainpend(std::vector<int> &sorter, std::vector<int> &main, 
 			std::vector<int> &pend, size_t power)
 {
 	size_t	size_loop = 0;
@@ -55,7 +55,7 @@ void	binaryinsert_mainpend(std::vector<int> &main, std::vector<int> &pend, size_
 					j = (pend.size() - 1);
 				std::cout << YELLOW << "\nstarting at pend[" << RT << j << \
 					YELLOW << "] = " << RT << pend[j] << std::endl;
-				endpoint = ((n + num_of_pairs_inserted) * pair_size) - 1;
+				endpoint = ((jacobsthal + num_of_pairs_inserted) * pair_size) - 1;
 				binary_location = (binary_search_ft(main, 0, endpoint, pend[j], pair_size));
 				main.insert(main.begin() + binary_location, \
 					(pend.begin() + j - (pair_size - 1)), pend.begin() + j + 1);//+1 cause end iterator
@@ -69,29 +69,30 @@ void	binaryinsert_mainpend(std::vector<int> &main, std::vector<int> &pend, size_
 	}
 };
 
-void	sorting_mainpend_chain(std::vector<int> sorter, 
-				std::vector<int> &leftover, size_t power)
+std::vector<int>	sorting_mainpend_chain(std::vector<int> &sorter, std::vector<int> &leftover, \
+							size_t power)
 {
 // ---------------------------elements--------------------------------------
 	std::vector<int>	main;
 	std::vector<int>	pend;
-
 	size_t	pair_size = power / 2;
 // ---------------------------elements--------------------------------------
 
+	print_vector_pairs(sorter, pair_size, 0);
 	adding_mainpend(sorter, main, pend, power);
 	insert_firstpair(main, pend, pair_size);
 	binaryinsert_mainpend(main, pend, pair_size);
 	add_leftover(main, leftover, pair_size);
 	std::cout << YELLOW << "\n====-----Printing values-----====" << RT << std::endl;
-	print_vector_pairs(main, power, 0);
-	print_vector_pairs(pend, power, 2);
-	print_vector_pairs(leftover, power, 1);
+	print_vector_pairs(main, pair_size, 0);
+	print_vector_pairs(pend, pair_size, 2);
+	print_vector_pairs(leftover, pair_size, 1);
 	std::cout << YELLOW << "====-------------------------====\n" << RT << std::endl;
 
 	//-not updated code, leftover still not staying:
 	//   sorting_mainpend_chain call it again?
 	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << std::endl;
+	return (main);
 };
 
 /*
@@ -100,7 +101,3 @@ std::vector<int> pend = { 0, 2, 4, 6, 8, 10, 29, 42 };
 
 0 1 2 3 4 5 6 7 8 9 10 11 29 42 100
 */
-
-
-
-

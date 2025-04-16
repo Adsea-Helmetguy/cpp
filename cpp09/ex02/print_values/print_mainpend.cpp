@@ -75,7 +75,8 @@ void	comparing_startVend(std::vector<int>& main, size_t start, size_t end, size_
 /* return the position of where to insert the insert_element */
 size_t	binary_search_ft(std::vector<int>& main, size_t start, size_t end, int insert_element, size_t pair_size)
 {
-	if (start >= end || (start + (pair_size - 1) >= end))
+	std::cout << CYAN << "Startpt = " << start << " vs endpoint = " << end << " | pair_size = " << pair_size << RT << std::endl;
+	if (start + (pair_size - 1) >= end)
 		return (start);
 
 	size_t	binary_location = 0;	
@@ -84,9 +85,9 @@ size_t	binary_search_ft(std::vector<int>& main, size_t start, size_t end, int in
 
 	comparing_startVend(main, start, end, pair_size);
 
-	std::cout << CYAN << "    Total pair_size in this range: " << RT << total_pairs_inrange << std::endl;
-	std::cout << YELLOW << "    midpoint[" << midpoint << "] = " << RT << main[midpoint] << std::endl;
-	std::cout << YELLOW << "   Insert_element(" << insert_element \
+	std::cout << YELLOW << "    Total pair_size in this range: " << total_pairs_inrange << RT << std::endl;
+	std::cout << YELLOW << "    midpoint[" << midpoint << "] = " << main[midpoint] << RT << std::endl;
+	std::cout << YELLOW << "    Insert_element(" << insert_element \
 		<< ") vs main[midpoint](" << main[midpoint] << ")." << RT << std::endl;
 	if (insert_element < main[midpoint])
 		return binary_search_ft(main, start, midpoint, insert_element, pair_size);
