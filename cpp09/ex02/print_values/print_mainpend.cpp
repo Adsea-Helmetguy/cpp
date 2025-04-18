@@ -12,6 +12,27 @@
 
 #include "PmergeMe.hpp"
 
+void	print_AFTER(std::vector<int> &vector)
+{
+	std::cout << "After: " << std::flush;
+	for (std::deque<int>::iterator it = vector.begin(); it != vector.end(); it++)
+	{
+		std::cout << " " << GREEN << *it << RT<< std::flush;
+	}
+	std::cout << std::endl;
+};
+
+void	print_deque_AFTER(std::deque<int> &deque)
+{
+	std::cout << "After: " << std::flush;
+	for (std::deque<int>::iterator it = deque.begin(); it != deque.end(); it++)
+	{
+		std::cout << " " << GREEN << *it << RT<< std::flush;
+	}
+	std::cout << std::endl;
+};
+
+
 void	print_vector_pairs(std::vector<int>& vector, size_t pair_size, int mp)
 {
 	size_t	loop = 0;
@@ -75,7 +96,6 @@ void	comparing_startVend(std::vector<int>& main, size_t start, size_t end, size_
 /* return the position of where to insert the insert_element */
 size_t	binary_search_ft(std::vector<int>& main, size_t start, size_t end, int insert_element, size_t pair_size)
 {
-	std::cout << CYAN << "Startpt = " << start << " vs endpoint = " << end << " | pair_size = " << pair_size << RT << std::endl;
 	if (start + (pair_size - 1) >= end)
 		return (start);
 
@@ -83,12 +103,7 @@ size_t	binary_search_ft(std::vector<int>& main, size_t start, size_t end, int in
 	size_t	total_pairs_inrange = ((end - start + 1) / pair_size);
 	size_t	midpoint = start + ((total_pairs_inrange / 2) * pair_size) - 1;
 
-	comparing_startVend(main, start, end, pair_size);
-
-	std::cout << YELLOW << "    Total pair_size in this range: " << total_pairs_inrange << RT << std::endl;
-	std::cout << YELLOW << "    midpoint[" << midpoint << "] = " << main[midpoint] << RT << std::endl;
-	std::cout << YELLOW << "    Insert_element(" << insert_element \
-		<< ") vs main[midpoint](" << main[midpoint] << ")." << RT << std::endl;
+	//comparing_startVend(main, start, end, pair_size);
 	if (insert_element < main[midpoint])
 		return binary_search_ft(main, start, midpoint, insert_element, pair_size);
 	else
@@ -103,16 +118,6 @@ size_t	jacob_number(size_t n)
 	if (n == 1)
 		return (1);
 	return (jacob_number(n - 1) + 2 * jacob_number(n - 2));
-};
-
-int	pend_checkall_negative(std::vector<int> pend)
-{
-	for (size_t i = 0; i < pend.size(); i++)
-	{
-		if (pend[i] != -1)
-			return (0);//false
-	}
-	return (1);//true
 };
 
 void	convert_pend_to_negative(std::vector<int> &pend, size_t old_jacob, size_t n, size_t pair_size)
@@ -147,24 +152,21 @@ void	insert_firstpair(std::vector<int> &main, std::vector<int> &pend, size_t &pa
 {
 	if (!pend.empty())
 	{
-		if (!main.empty() && !pend.empty())
-			print_mainpend(main, pend, pair_size, 0);
 		main.insert(main.begin(), pend.begin(), pend.begin() + pair_size);
 		convert_pend_to_negative(pend, 0, 1, pair_size);
 	}
-	std::cout << GREEN << "Inserting first pairs into main!" << RT << std::endl;
-	print_vector_pairs(main, pair_size, 0);
-	print_vector_pairs(pend, pair_size, 2);
+	//std::cout << GREEN << "Inserting first pairs into main!" << RT << std::endl;
+	//print_vector_pairs(main, pair_size, 0);
+	//print_vector_pairs(pend, pair_size, 2);
 };
 
-void	update_new_jacob(std::vector<int> &main, std::vector<int> &pend, \
-		size_t &old_jacob, size_t &old_jacobsthal, size_t &n, size_t &jacobsthal, size_t &pair_size)
+void	update_new_jacob(size_t &old_jacob, size_t &old_jacobsthal, size_t &n, size_t &jacobsthal)
 {
 	old_jacob = n;
 	old_jacobsthal = jacobsthal;
 	jacobsthal = jacob_number(++n);
-	print_mainpend(main, pend, pair_size, 1);
-	std::cout << YELLOW << "-------------------------------------------" << std::endl;
-	std::cout << "n = " << n << " | Jacobsthal = " << RT << jacobsthal << std::endl;
-	std::cout << YELLOW <<  "-------------------------------------------" << RT << std::endl;
+	//print_mainpend(main, pend, pair_size, 1);
+	//std::cout << YELLOW << "-------------------------------------------" << std::endl;
+	//std::cout << "n = " << n << " | Jacobsthal = " << RT << jacobsthal << std::endl;
+	//std::cout << YELLOW <<  "-------------------------------------------" << RT << std::endl;
 };

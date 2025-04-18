@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PmergeMe.cpp                                       :+:      :+:    :+:   */
+/*   final_sort.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlow <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 15:13:15 by mlow              #+#    #+#             */
-/*   Updated: 2025/03/25 15:13:29 by mlow             ###   ########.fr       */
+/*   Created: 2025/04/02 12:33:29 by mlow              #+#    #+#             */
+/*   Updated: 2025/04/02 12:38:22 by mlow             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-int	convert_token(std::string string)
-{
-	std::stringstream ss(string);
-	int	f;
-
-	ss >> f;
-	return (f);
-};
-
-void	pushing_sort(std::vector<int> &sorter, int argc, char **argv)
+void	pushing_sort(std::deque<int> &sorter, int argc, char **argv)
 {
 	for (int a = 1; a < argc; a++)
 		sorter.push_back(convert_token(argv[a]));
 };
 
-void	sortinside_pairs(std::vector<int> &sorter, size_t power, int pair_counter, int level)
+void	sortinside_pairs(std::deque<int> &sorter, size_t power, int pair_counter, int level)
 {
 	size_t	sp = power - 1;//sp means startpoint
 
@@ -44,7 +35,7 @@ void	sortinside_pairs(std::vector<int> &sorter, size_t power, int pair_counter, 
 	}
 };
 
-int	counting_total_pair(std::vector<int> &sorter, std::vector<int> &leftover, int power)
+int	counting_total_pair_deque(std::deque<int> &sorter, std::deque<int> &leftover, int power)
 {
 	int	pair_counter = static_cast<int>(sorter.size());
 	size_t	current_leftovers = 0;
@@ -68,19 +59,18 @@ int	counting_total_pair(std::vector<int> &sorter, std::vector<int> &leftover, in
 	return (pair_counter);
 };
 
-
-void	start_recursive_sort(std::vector<int> &sorter, int level)
+void	deque_recursive(std::deque<int> &sorter, int level)
 {
-	std::vector<int>	leftover;
+	std::deque<int>	leftover;
 	size_t	power = static_cast<size_t>(pow(2, level));
 
 	int	pair_counter = 0;
-	pair_counter = counting_total_pair(sorter, leftover, power);
+	pair_counter = counting_total_pair_deque(sorter, leftover, power);
 	if (pair_counter == 0)
 		return ;
 	sortinside_pairs(sorter, power, pair_counter, level);
-	start_recursive_sort(sorter, (level + 1));
-	sorter = sorting_mainpend_chain(sorter, leftover, power);
+	deque_recursive(sorter, (level + 1));
+	sorter = deque_mainpend_chain(sorter, leftover, power);
 }
 
 double	timer_in_ms(clock_t &time)
@@ -90,9 +80,9 @@ double	timer_in_ms(clock_t &time)
 	return (ms);
 };
 
-bool	PmergeMe_vector(int argc, char **argv)
+bool	PmergeMe_deque(int argc, char **argv)
 {
-	std::vector<int>	sorter;
+	std::deque<int>	sorter;
 	int			level = 1;
 	double		timer_start = 0;
 	double		timer_end = 0;
@@ -108,11 +98,11 @@ bool	PmergeMe_vector(int argc, char **argv)
 	//timer start
 	clock_t		time = clock();
 	timer_start = timer_in_ms(time);
-	start_recursive_sort(sorter, level);
+	deque_recursive(sorter, level);
 	timer_end = timer_in_ms(time);
 	timer_end -= timer_start;
 	//timer end
-	print_AFTER(sorter);
+	print_deque_AFTER(sorter);
 	std::cout << YELLOW << "Time to process a range of   " << RT << (argc - 1) \
 		<< YELLOW << " elements with std::vector : " << RT << timer_end << "ms" << std::endl;
 	return (true);
