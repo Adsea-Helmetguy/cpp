@@ -33,8 +33,12 @@ void	RPN_argv2code(std::string string);
 
 //workings
 int     sizeof_array(char *argv);
-bool	fundamental_operations(char character);
-float	compare_two_values(float v1, float v2, char character);
-void	after_comparing(std::stack<float> *int_array, char character, int *operation_counter);
 
+//Helper_function.cpp
+float	compare_two_values(float v1, float v2, char character);
+float	convert_token(const char *string);
+float	convert_token_argv2(std::string string);
+bool	fundamental_operations(char character);
+bool	fundamental_operations_argv2(char character);
+void	after_comparing(std::stack<float> *int_array, char character, int *operation_counter);
 #endif

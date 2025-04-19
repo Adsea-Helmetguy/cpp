@@ -33,6 +33,7 @@
 # define microseconds 1000
 # define us 1000000
 
+extern int	num_comparison;
 
 //PmergeMe main folder
 bool	PmergeMe_vector(int argc, char **argv);
@@ -75,6 +76,7 @@ void	print_vector_pairs(std::vector<int>& vector, size_t pair_size, int mp);
 
 
 //deque_version
+bool	PmergeMe_deque_alt(int argc, char **argv);
 void	deque_recursive(std::deque<int> &sorter, int level);
 void	pushing_sort(std::deque<int> &sorter, int argc, char **argv);
 int		counting_total_pair_deque(std::deque<int> &sorter, std::deque<int> &leftover, int power);
@@ -96,4 +98,5 @@ void	insertdeque_firstpair(std::deque<int> &main, std::deque<int> &pend, size_t 
 
 //helper
 int	convert_token(std::string string);
+double	timer_in_ms(clock_t &time);
 #endif

@@ -23,7 +23,8 @@ INC_DIR = .
 # ************************************************************************** */
 SRC_FILE_NAMES = main.cpp \
 			RPN.cpp \
-			RPN_argv2.cpp
+			RPN_argv2.cpp \
+			helper.cpp
 
 
 

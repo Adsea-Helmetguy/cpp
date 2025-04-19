@@ -15,7 +15,7 @@
 void	print_AFTER(std::vector<int> &vector)
 {
 	std::cout << "After: " << std::flush;
-	for (std::deque<int>::iterator it = vector.begin(); it != vector.end(); it++)
+	for (std::vector<int>::iterator it = vector.begin(); it != vector.end(); it++)
 	{
 		std::cout << " " << GREEN << *it << RT<< std::flush;
 	}
@@ -103,7 +103,7 @@ size_t	binary_search_ft(std::vector<int>& main, size_t start, size_t end, int in
 	size_t	total_pairs_inrange = ((end - start + 1) / pair_size);
 	size_t	midpoint = start + ((total_pairs_inrange / 2) * pair_size) - 1;
 
-	//comparing_startVend(main, start, end, pair_size);
+	num_comparison++;
 	if (insert_element < main[midpoint])
 		return binary_search_ft(main, start, midpoint, insert_element, pair_size);
 	else
@@ -152,12 +152,15 @@ void	insert_firstpair(std::vector<int> &main, std::vector<int> &pend, size_t &pa
 {
 	if (!pend.empty())
 	{
-		main.insert(main.begin(), pend.begin(), pend.begin() + pair_size);
-		convert_pend_to_negative(pend, 0, 1, pair_size);
+		if (pair_size >= pend.size())
+			main.insert(main.begin(), pend.begin(), pend.end());
+		else
+			main.insert(main.begin(), pend.begin(), pend.begin() + pair_size);
+		//convert_pend_to_negative(pend, 0, 1, pair_size);
+		std::cout << RED << " -- INSERT FIRST PAIR -- " << std::endl;
+		print_vector_pairs(main, pair_size * 2, 0);
+		print_vector_pairs(pend, pair_size * 2, 1);
 	}
-	//std::cout << GREEN << "Inserting first pairs into main!" << RT << std::endl;
-	//print_vector_pairs(main, pair_size, 0);
-	//print_vector_pairs(pend, pair_size, 2);
 };
 
 void	update_new_jacob(size_t &old_jacob, size_t &old_jacobsthal, size_t &n, size_t &jacobsthal)
@@ -165,7 +168,6 @@ void	update_new_jacob(size_t &old_jacob, size_t &old_jacobsthal, size_t &n, size
 	old_jacob = n;
 	old_jacobsthal = jacobsthal;
 	jacobsthal = jacob_number(++n);
-	//print_mainpend(main, pend, pair_size, 1);
 	//std::cout << YELLOW << "-------------------------------------------" << std::endl;
 	//std::cout << "n = " << n << " | Jacobsthal = " << RT << jacobsthal << std::endl;
 	//std::cout << YELLOW <<  "-------------------------------------------" << RT << std::endl;

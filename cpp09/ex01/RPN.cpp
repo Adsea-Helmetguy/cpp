@@ -12,62 +12,6 @@
 
 #include "RPN.hpp"
 
-static float	convert_token(const char *string)
-{
-	std::stringstream ss(string);
-	float	f;
-
-	ss >> f;
-	return (f);
-};
-
-bool	fundamental_operations(char character)
-{
-	if (character == '+' || character == '-' 
-		|| character == '/' || character == '*')
-		return (true);
-	return (false);
-};
-
-float	compare_two_values(float v1, float v2, char character)
-{
-	float	working = 0;
-
-	if (character == '+')
-		working = v1 + v2;
-	else if (character == '-')
-		working = v1 - v2;
-	else if (character == '/')
-		working = v1 / v2;
-	else if (character == '*')
-		working = v1 * v2;
-	return (working);
-};
-
-void	after_comparing(std::stack<float> *int_array, char character, int *operation_counter)
-{
-	float	top_value = 0;
-	float	top_value2 = 0;
-	float	push_topValue = 0;
-
-	top_value = (*int_array).top();
-	(*int_array).pop();
-	top_value2 = (*int_array).top();
-	(*int_array).pop();
-
-	std::cout << YELLOW << "\t------------\n\tOperator \"" << CYAN \
-		<< character << YELLOW << "\"\n\t------------" \
-		<< RT << std::endl;
-
-	push_topValue = compare_two_values(top_value2, top_value, character);
-	(*int_array).push(push_topValue);
-	(*operation_counter)--;
-	std::cout << "Working[" << YELLOW << top_value2 << " " \
-		<< character << " " << top_value << RT << "] = " \
-		<< YELLOW << (*int_array).top() << " | operation_counter = " \
-		<< *operation_counter << RT << std::endl;
-};
-
 static bool	int_converter(int argc, char **argv)
 {
 	std::stack<float>	int_array;
@@ -79,11 +23,9 @@ static bool	int_converter(int argc, char **argv)
 		{
 			while ((a < argc) && fundamental_operations(argv[a][0]) && operation_counter)
 			{
-				//Comparing top two stack values
 				after_comparing(&int_array, argv[a][0], &operation_counter);
 				a++;
 			}
-			//std::cout << "Operation counter = " << operation_counter << std::endl;
 			std::cout << YELLOW << "Current size: " << CYAN << int_array.size() << RT \
 				<< YELLOW << " | character: " << CYAN << int_array.top() << \
 				YELLOW << " | " << GREEN << "operation counter == [" << CYAN \

@@ -10,8 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+std::vector<int> main = { 1, 3, 5, 7, 9, 11, 55, 100 };
+std::vector<int> pend = { 0, 2, 4, 6, 8, 10, 29, 42 };
+
+need to pass:
+test1)
+0 14 1 9 3 11 12 8 6 16 5 15 17 13 19 10 18 2 20 4 7
+*/
+
 //https://www.linkedin.com/pulse/recursion-how-does-work-santiago-borgia/
 #include "PmergeMe.hpp"
+
+int	num_comparison = 0;
 
 static int	sizeof_index(char *argv)
 {
@@ -40,30 +51,29 @@ static bool	int_checker(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	std::cout << "\n\n" << std::endl;
-	std::cout << "-------------------------" << std::endl;
-	std::cout << "starting project for ex02" << std::endl;
-	std::cout << "-------------------------" << std::endl;
+//	std::cout << "\n\n" << std::endl;
+//	std::cout << "-------------------------" << std::endl;
+//	std::cout << "starting project for ex02" << std::endl;
+//	std::cout << "-------------------------" << std::endl;
 
+	num_comparison = 0;
 	if (argc < 2 || !(int_checker(argc, argv)))
 	{
 		std::cout << RED << "Invalid!! Check arguments pls!" << RT << std::endl;
 		return (1);
 	}
 
-	//begin project
 	if (!(PmergeMe_vector(argc, argv)))
 	{
 		std::cout << RED << "something is wrong!! FALSE!" << RT << std::endl;
 		return (1);
 	}
-/*
-	if (!(PmergeMe_deque(argc, argv)))
+	/*if (!(PmergeMe_deque_alt(argc, argv)))
 	{
 		std::cout << RED << "something is wrong!! FALSE!" << RT << std::endl;
 		return (1);
-	}
-*/
+	}*/
+	std::cout << "Number of comparisons: " << num_comparison << std::endl;
 	std::cout << "\n\n\n" << std::endl;
 	return (0);
 };

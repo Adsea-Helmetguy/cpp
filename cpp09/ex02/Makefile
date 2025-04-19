@@ -24,7 +24,6 @@ INC_DIR = .
 SRC_FILE_NAMES = main.cpp \
 			PmergeMe.cpp \
 			step42_splitpairs/split_pairs.cpp \
-			deque_version/alt.cpp \
 			print_values/print_mainpend.cpp \
 			print_values/binary_leftover.cpp \
 			deque_version/alt_binary.cpp \

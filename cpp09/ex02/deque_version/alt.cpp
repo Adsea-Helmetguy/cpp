@@ -73,14 +73,7 @@ void	deque_recursive(std::deque<int> &sorter, int level)
 	sorter = deque_mainpend_chain(sorter, leftover, power);
 }
 
-double	timer_in_ms(clock_t &time)
-{
-	time = clock() - time;
-	double ms = double(time) / CLOCKS_PER_SEC;//* microseconds;
-	return (ms);
-};
-
-bool	PmergeMe_deque(int argc, char **argv)
+bool	PmergeMe_deque_alt(int argc, char **argv)
 {
 	std::deque<int>	sorter;
 	int			level = 1;
