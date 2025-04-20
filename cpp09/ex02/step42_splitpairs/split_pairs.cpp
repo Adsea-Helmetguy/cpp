@@ -54,8 +54,7 @@ void	binaryinsert_mainpend(std::vector<int> &main, std::vector<int> &pend, size_
 				if (j > (pend.size() - 1))
 					j = (pend.size() - 1);
 				//
-				std::cout << YELLOW << "\nstarting at pend[" << RT << j << \
-				YELLOW << "] = " << RT << pend[j] << std::endl;
+				//std::cout << YELLOW << "\nstarting at pend[" << RT << j << YELLOW << "] = " << RT << pend[j] << std::endl;
 				//
 				endpoint = ((jacobsthal + num_of_pairs_inserted) * pair_size) - 1;
 				binary_location = (binary_search_ft(main, 0, endpoint, pend[j], pair_size));
@@ -84,11 +83,11 @@ std::vector<int>	sorting_mainpend_chain(std::vector<int> &sorter, std::vector<in
 	insert_firstpair(main, pend, pair_size);
 	binaryinsert_mainpend(main, pend, pair_size);
 	add_leftover(main, leftover, pair_size);
-	std::cout << YELLOW << "\n====-----Printing values-----====" << RT << std::endl;
-	print_vector_pairs(main, power, 0);
-	print_vector_pairs(pend, power, 2);
-	print_vector_pairs(leftover, power, 1);
-	std::cout << YELLOW << "====-------------------------====\n" << RT << std::endl;
+	//std::cout << YELLOW << "\n====-----Printing values-----====" << RT << std::endl;
+	print_vector_pairs(main, pair_size, 0);
+	print_vector_pairs(pend, pair_size, 2);
+	print_vector_pairs(leftover, pair_size, 1);
+	//std::cout << YELLOW << "====-------------------------====\n" << RT << std::endl;
 	return (main);
 };
 

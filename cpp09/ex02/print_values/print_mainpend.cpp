@@ -35,6 +35,7 @@ void	print_deque_AFTER(std::deque<int> &deque)
 
 void	print_vector_pairs(std::vector<int>& vector, size_t pair_size, int mp)
 {
+/*
 	size_t	loop = 0;
 
 	if (mp == 0)
@@ -55,10 +56,15 @@ void	print_vector_pairs(std::vector<int>& vector, size_t pair_size, int mp)
 		loop++;
 	}
 	std::cout << YELLOW << ")" << RT << std::endl;
+*/
+	(void)vector;
+	(void)pair_size;
+	(void)mp;
 }
 
 void	comparing_startVend(std::vector<int>& main, size_t start, size_t end, size_t pair_size)
 {
+/*
 	std::cout << YELLOW << "  Comparing (start[" << RT << std::flush;
 	
 	for (size_t i = 0; i != (start + pair_size); i++)
@@ -91,6 +97,11 @@ void	comparing_startVend(std::vector<int>& main, size_t start, size_t end, size_
 			std::cout << ", " << std::flush;
 	}
 	std::cout << YELLOW << ")" << RT << std::endl;
+*/
+	(void)main;
+	(void)start;
+	(void)end;
+	(void)pair_size;
 };
 
 /* return the position of where to insert the insert_element */
@@ -104,6 +115,10 @@ size_t	binary_search_ft(std::vector<int>& main, size_t start, size_t end, int in
 	size_t	midpoint = start + ((total_pairs_inrange / 2) * pair_size) - 1;
 
 	num_comparison++;
+
+//	std::cout << YELLOW << "    Total pair_size in this range: " << total_pairs_inrange << RT << std::endl;
+//	std::cout << YELLOW << "    midpoint[" << midpoint << "] = " << main[midpoint] << RT << std::endl;
+//	std::cout << YELLOW << "    Insert_element(" << RT << insert_element << YELLOW << ") vs main[midpoint](" << GREEN << main[midpoint] << YELLOW << ")." << RT << std::endl;
 	if (insert_element < main[midpoint])
 		return binary_search_ft(main, start, midpoint, insert_element, pair_size);
 	else
@@ -120,20 +135,10 @@ size_t	jacob_number(size_t n)
 	return (jacob_number(n - 1) + 2 * jacob_number(n - 2));
 };
 
-void	convert_pend_to_negative(std::vector<int> &pend, size_t old_jacob, size_t n, size_t pair_size)
-{
-	for (size_t loop = n; loop > old_jacob; loop--)
-	{
-		for (size_t pair = 0; pair < pair_size; pair++)
-		{
-			pend[(loop * pair_size) - 1 - pair] = -1;
-		}
-	}
-}
-
 void	print_mainpend(std::vector<int> &main, \
 		std::vector<int> &pend, size_t pair_size, size_t before_after)
 {
+/*
 	if (before_after == 0)
 	{
 		std::cout << "------<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" \
@@ -144,8 +149,10 @@ void	print_mainpend(std::vector<int> &main, \
 	{
 		std::cout << GREEN << "\n---->AFTER: " << RT << std::endl;
 	}
-	print_vector_pairs(main, pair_size * 2, 0);
-	print_vector_pairs(pend, pair_size * 2, 2);
+*/
+	print_vector_pairs(main, pair_size, 0);
+	print_vector_pairs(pend, pair_size, 2);
+	(void)before_after;
 };
 
 void	insert_firstpair(std::vector<int> &main, std::vector<int> &pend, size_t &pair_size)
@@ -157,7 +164,7 @@ void	insert_firstpair(std::vector<int> &main, std::vector<int> &pend, size_t &pa
 		else
 			main.insert(main.begin(), pend.begin(), pend.begin() + pair_size);
 		//convert_pend_to_negative(pend, 0, 1, pair_size);
-		std::cout << RED << " -- INSERT FIRST PAIR -- " << std::endl;
+		//std::cout << RED << " -- INSERT FIRST PAIR -- " << std::endl;
 		print_vector_pairs(main, pair_size * 2, 0);
 		print_vector_pairs(pend, pair_size * 2, 1);
 	}

@@ -24,19 +24,20 @@ size_t	binary_search_leftover(std::vector<int>& main, size_t start, size_t end, 
 {
 	size_t	binary_location = 0;	
 	size_t	total_pairs_inrange = ((end - start + 1) / pair_size);
-
-	if (start + (pair_size - 1) >= end)
-			return (start);
-
 	size_t	midpoint = start + ((total_pairs_inrange / 2) * pair_size) - 1;
+
+	//std::cout << CYAN << "Mid" << RED << "point" << YELLOW << " = " << midpoint << RT << std::endl;
 
 	//std::cout << RED << "Start = " << start << " | end = " << end << std::endl;
 	//std::cout << "Midpoint = " << midpoint << std::endl;
 	//std::cout << "VALUE OF main[" << midpoint << "] = " << main[midpoint] << RT << std::endl;
-	if (total_pairs_inrange == 1 && midpoint < main.size() && (insert_element > main[midpoint]))
-		return (start + pair_size);
-	//if (start + (pair_size - 1) >= end)
-	//		return (start);
+	if (total_pairs_inrange == 1 && midpoint < main.size())
+	{
+		if (insert_element > main[midpoint])
+			return (start + pair_size);
+	}
+	if (start + (pair_size - 1) >= end)
+		return (start);
 	num_comparison++;
 	if (insert_element < main[midpoint])
 		return binary_search_leftover(main, start, midpoint, insert_element, pair_size);

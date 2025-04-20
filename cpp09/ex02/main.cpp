@@ -62,7 +62,6 @@ int	main(int argc, char **argv)
 		std::cout << RED << "Invalid!! Check arguments pls!" << RT << std::endl;
 		return (1);
 	}
-
 	if (!(PmergeMe_vector(argc, argv)))
 	{
 		std::cout << RED << "something is wrong!! FALSE!" << RT << std::endl;

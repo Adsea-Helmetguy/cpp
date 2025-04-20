@@ -76,6 +76,7 @@ void	start_recursive_sort(std::vector<int> &sorter, int level)
 
 	int	pair_counter = 0;
 	pair_counter = counting_total_pair(sorter, leftover, power);
+	//std::cout << CYAN << "LEVEL = " << level << RT << std::endl;
 	if (pair_counter == 0)
 		return ;
 	sortinside_pairs(sorter, power, pair_counter, level);
@@ -86,7 +87,7 @@ void	start_recursive_sort(std::vector<int> &sorter, int level)
 double	timer_in_ms(clock_t &time)
 {
 	time = clock() - time;
-	double ms = double(time) / CLOCKS_PER_SEC;//* microseconds;
+	double ms = double(time) / CLOCKS_PER_SEC;
 	return (ms);
 };
 
