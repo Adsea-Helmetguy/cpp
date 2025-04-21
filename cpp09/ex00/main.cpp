@@ -16,11 +16,10 @@ int	main(int argc, char **argv)
 {
 	int	return_value = 0;
 
-	std::cout << MAG << "\n\n---------------" << RT << std::endl;
+	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << std::endl;
 	{
-		std::cout << GREEN << "Test (1)!\n" << RT << std::endl;
-
-		//clear && make && clear && ./btc data.csv test1
+		std::cout << MAG << "=============================" \
+			"==============================================="<< RT << std::endl;
 		if (argc != 2)
 		{
 			std::cerr << RED << "\tNeeds \"argc = 2\", write like this: " \
@@ -30,8 +29,9 @@ int	main(int argc, char **argv)
 			return (1);
 		}
 		return_value = checking_infile(argv);
+		std::cout << MAG << "=============================" \
+			"==============================================="<< RT << std::endl;
 	}
-	std::cout << MAG << "\n---------------" << RT << std::endl;
-	std::cout << "\n\n" << std::endl;
+	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << std::endl;
 	return (return_value);
 };

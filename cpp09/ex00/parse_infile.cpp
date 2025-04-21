@@ -57,8 +57,8 @@ bool	convertFloat(const std::string& valuestr)
 	float	f;
 
 	ss >> f;
-	std::cout << "STRING: \"" << GREEN << ss.str() << RT << "\"" \
-		<< " | FLOAT IS: \"" << GREEN << f << RT << "\"" << std::endl;
+	//std::cout << "STRING: \"" << GREEN << ss.str() << RT << "\"" 
+	//	<< " | FLOAT IS: \"" << GREEN << f << RT << "\"" << std::endl;
 	if (!(ss.eof()))
 	{
 	 	std::cerr << RED << "THERE ARE LEFTOVERS!!!" << RT << std::endl;
@@ -71,7 +71,7 @@ bool	convertFloat(const std::string& valuestr)
 int	parse_inFile(std::ifstream *inFile, std::map<std::string, float> *datacsv_file)
 {
 	size_t		pipe_index = 0;
-	int		return_value = 0;
+	int			return_value = 0;
 	std::string	line = remove_first_line(inFile, '|');
 
 	while (std::getline(*inFile, line))
@@ -92,13 +92,11 @@ int	parse_inFile(std::ifstream *inFile, std::map<std::string, float> *datacsv_fi
 			continue ;
 		}
 
-		//float	value = convertFloat(valuestr);
-		std::cout << YELLOW << "--Converting Values to float--" << RT << std::endl;
 		char	*endptr_value;//stores address of first non-coverted char
 		float	value = std::strtof(valuestr.c_str(), &endptr_value);
 
-		std::cout << YELLOW << " Date: " << RT << datestr << std::endl;
-		std::cout << YELLOW << "Value: " << RT << value << std::endl;
+		std::cout << GREEN << "   Date: " << datestr << std::flush;
+		std::cout << GREEN << " | Value: " << value << std::endl;
 
 		//if string_converter is == 1, fail it or something
 		string_converterDate(datestr, value, datacsv_file);

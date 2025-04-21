@@ -80,9 +80,9 @@ int	check_current_date(unsigned int *year, unsigned int *month, \
 			std::cout << YELLOW << "Invalid date format! Expected YYYY-MM-DD" << RT << std::endl;
 			return (1);
 		}
-		std::cout << "Earliest EXTRACTED Date -> " << GREEN << "Earliest_year: " << earliest_year \
-			<< ", Earliest_month: " << earliest_month << ", Earliest_day: " \
-			<< earliest_day << RT << std::endl;
+		//std::cout << "Earliest EXTRACTED Date -> " << GREEN << "Earliest_year: " << earliest_year 
+		//	<< ", Earliest_month: " << earliest_month << ", Earliest_day: " 
+		//	<< earliest_day << RT << std::endl;
 	}
 
 	time(&timestamp);// Applying time()
@@ -104,8 +104,8 @@ int	check_current_date(unsigned int *year, unsigned int *month, \
 			<< "Date is out of range! RETURN (1)!" << RT << std::endl;
 		return (1);
 	}
-	std::cout << "Current Date -> " << GREEN << "Year: " << current_year \
-		<< ", Month: " << current_month << ", Day: " << current_day << RT << std::endl;
+	//std::cout << "Current Date -> " << GREEN << "Year: " << current_year 
+	//	<< ", Month: " << current_month << ", Day: " << current_day << RT << std::endl;
 	return (0);
 };
 

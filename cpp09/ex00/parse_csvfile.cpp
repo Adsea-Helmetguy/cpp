@@ -42,7 +42,6 @@ std::map<std::string, float>	parse_csvfile(std::ifstream *csvFile)//Store them i
 
 		datacsv_file[datestr] = value;
 	}
-	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << std::endl;
 	return (datacsv_file);
 };
 
