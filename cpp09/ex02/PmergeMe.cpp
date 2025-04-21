@@ -33,6 +33,7 @@ void	sortinside_pairs(std::vector<int> &sorter, size_t power, int pair_counter, 
 
 	for (size_t i = pair_counter; i > 0; i--)
 	{
+		num_comparison++;
 		if (sorter[(sp)] < sorter[sp - (power / 2)])
 		{
 			std::swap(sorter[(sp - (power / 2))], sorter[(sp)]);

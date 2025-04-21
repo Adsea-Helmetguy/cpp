@@ -35,7 +35,7 @@ void	print_deque_AFTER(std::deque<int> &deque)
 
 void	print_vector_pairs(std::vector<int>& vector, size_t pair_size, int mp)
 {
-/*
+
 	size_t	loop = 0;
 
 	if (mp == 0)
@@ -56,7 +56,7 @@ void	print_vector_pairs(std::vector<int>& vector, size_t pair_size, int mp)
 		loop++;
 	}
 	std::cout << YELLOW << ")" << RT << std::endl;
-*/
+
 	(void)vector;
 	(void)pair_size;
 	(void)mp;
@@ -115,10 +115,6 @@ size_t	binary_search_ft(std::vector<int>& main, size_t start, size_t end, int in
 	size_t	midpoint = start + ((total_pairs_inrange / 2) * pair_size) - 1;
 
 	num_comparison++;
-
-//	std::cout << YELLOW << "    Total pair_size in this range: " << total_pairs_inrange << RT << std::endl;
-//	std::cout << YELLOW << "    midpoint[" << midpoint << "] = " << main[midpoint] << RT << std::endl;
-//	std::cout << YELLOW << "    Insert_element(" << RT << insert_element << YELLOW << ") vs main[midpoint](" << GREEN << main[midpoint] << YELLOW << ")." << RT << std::endl;
 	if (insert_element < main[midpoint])
 		return binary_search_ft(main, start, midpoint, insert_element, pair_size);
 	else

@@ -17,6 +17,9 @@ test1)
 
 2)
 7 12 18 10 8 16 13 14 11 5 9 4 20 2 1 19 17 3 6 15 0
+
+3)
+20 19 6 5 13 3 12 1 15 14 16 4 2 7 11 10 17 9 0 18 8
 */
 
 //https://www.linkedin.com/pulse/recursion-how-does-work-santiago-borgia/
