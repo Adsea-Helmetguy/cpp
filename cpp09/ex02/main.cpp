@@ -11,12 +11,12 @@
 /* ************************************************************************** */
 
 /*
-std::vector<int> main = { 1, 3, 5, 7, 9, 11, 55, 100 };
-std::vector<int> pend = { 0, 2, 4, 6, 8, 10, 29, 42 };
-
 need to pass:
 test1)
 0 14 1 9 3 11 12 8 6 16 5 15 17 13 19 10 18 2 20 4 7
+
+2)
+7 12 18 10 8 16 13 14 11 5 9 4 20 2 1 19 17 3 6 15 0
 */
 
 //https://www.linkedin.com/pulse/recursion-how-does-work-santiago-borgia/

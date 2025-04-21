@@ -162,7 +162,7 @@ def run_test(executable_path: pathlib.Path, test_input: list[str], output_check:
         expected.sort()
         split_output_int = [int(n) for n in split_output]
         if split_output_int != expected:
-            return ErrorCode.OUTPUT_NUMBERS_NOT_SORTED, " ".join(split_output), " ".join([str(n) for n in expected])
+            return ErrorCode.OUTPUT_NUMBERS_NOT_SORTED, " ".join(split_output), " ".join([str(n) for n in expected]), test_input
 
     return number_of_comparisons, inputs
 
@@ -314,11 +314,12 @@ if __name__ == "__main__":
                         exit(1)
 
                     case ErrorCode.OUTPUT_NUMBERS_NOT_SORTED:
-                        failed_output, expected_output = result[1], result[2]
+                        failed_output, expected_output, original_input = result[1], result[2], result[3]
                         print(
-                            "Your output is not sorted! Your program failed to sort the input. "
+                            "Your output is not sorted! Your program failed to sort the input.\n"
+                            f"Original input:\n{C.WARNING}{' '.join(original_input)}{C.ENDC}\n"
                             f"Your output:\n{C.FAIL}{failed_output}{C.ENDC}\n"
-                            f"Expected output:\n{C.WARNING}{expected_output}{C.ENDC}",
+                            f"Expected output:\n{C.OKGREEN}{expected_output}{C.ENDC}",
                             file=sys.stderr,
                         )
                         exit(1)
