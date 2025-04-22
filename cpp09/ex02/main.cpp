@@ -65,16 +65,9 @@ int	main(int argc, char **argv)
 		std::cout << RED << "Invalid!! Check arguments pls!" << RT << std::endl;
 		return (1);
 	}
-	if (!(PmergeMe_vector(argc, argv)))
-	{
-		std::cout << RED << "something is wrong!! FALSE!" << RT << std::endl;
-		return (1);
-	}
-	/*if (!(PmergeMe_deque_alt(argc, argv)))
-	{
-		std::cout << RED << "something is wrong!! FALSE!" << RT << std::endl;
-		return (1);
-	}*/
+	PmergeMe_vector(argc, argv);
+	PmergeMe_deque(argc, argv);
+
 	std::cout << "Number of comparisons: " << num_comparison << std::endl;
 	std::cout << "\n\n\n" << std::endl;
 	return (0);

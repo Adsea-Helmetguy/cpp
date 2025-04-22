@@ -89,14 +89,15 @@ int	parse_inFile(std::ifstream *inFile, std::map<std::string, float> *datacsv_fi
 		{
 			std::cerr << YELLOW << "(" << valuestr << ")" << RED \
 				<< " is not a number! NEXT!" << RT << std::endl;
+			std::cout << "----------------\n" << std::endl;
 			continue ;
 		}
 
 		char	*endptr_value;//stores address of first non-coverted char
 		float	value = std::strtof(valuestr.c_str(), &endptr_value);
 
-		std::cout << GREEN << "   Date: " << datestr << std::flush;
-		std::cout << GREEN << " | Value: " << value << std::endl;
+		std::cout << GREEN << "             Date: " << datestr << std::flush;
+		std::cout << " | Value: " << value << RT << std::endl;
 
 		//if string_converter is == 1, fail it or something
 		string_converterDate(datestr, value, datacsv_file);

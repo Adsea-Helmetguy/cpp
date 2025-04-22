@@ -22,13 +22,14 @@ INC_DIR = .
 #       SOURCE (#List of SOURCE(SRC) files)                                  */
 # ************************************************************************** */
 SRC_FILE_NAMES = main.cpp \
-			PmergeMe.cpp \
-			step42_splitpairs/split_pairs.cpp \
+			mainpend_vector/PmergeMe.cpp \
+			mainpend_vector/split_pairs.cpp \
+			mainpend_vector/binary_leftover.cpp \
 			print_values/print_mainpend.cpp \
-			print_values/binary_leftover.cpp \
-			deque_version/alt_binary.cpp \
-			deque_version/alt_mainpend.cpp \
-			deque_version/alt.cpp
+			helper/helper_general.cpp \
+			helper/helper_vector.cpp \
+			helper/helper_deque.cpp \
+			mainpend_deque/alt.cpp
 			
 
 

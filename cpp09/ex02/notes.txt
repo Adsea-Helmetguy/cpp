@@ -1,7 +1,0 @@
-look at std::vector && std::deque
-
-next objective:
-1) Do with std::deque
-2) Get the timer working but where
---- start before "start_recursive_sort(sorter, level);" and end after it!
-3) 

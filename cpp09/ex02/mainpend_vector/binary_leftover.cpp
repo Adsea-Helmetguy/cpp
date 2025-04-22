@@ -16,10 +16,11 @@ size_t	binary_search_leftover_vector(std::vector<int>& main, size_t start, size_
 {
 	size_t	binary_location = 0;	
 	size_t	total_pairs_inrange = ((end - start + 1) / pair_size);
-	size_t	midpoint = start + ((total_pairs_inrange / 2) * pair_size) - 1;
 
 	if (total_pairs_inrange == 1)
 		total_pairs_inrange = 2;
+	
+	size_t	midpoint = start + ((total_pairs_inrange / 2) * pair_size) - 1;
 	if (total_pairs_inrange == 1 && midpoint < main.size())
 	{
 		if (insert_element > main[midpoint])

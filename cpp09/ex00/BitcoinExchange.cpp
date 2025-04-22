@@ -37,7 +37,6 @@ static bool	year_month_day_getter(std::string str, float value, \
 	}
 	//std::cout << "Extracted Date -> " << CYAN << "Year: " << year 
 	//	<< ", Month: " << month << ", Day: " << day << RT << std::endl;
-
 	if (check_current_date(&year, &month, &day, datacsv_file) == 1)
 		return (false);
 	if (value < 0 || value > 1000)
@@ -63,7 +62,8 @@ void	string_converterDate(std::string str, float value, \
 	//Finally, Final part:
 	//compare dates year-month-day vs std::map's yyyy-mm-dd
 	std::map<std::string, float>::iterator	lowest_value = datacsv_file->lower_bound(str);
-	
+
+	//std::cout << "what is str? = " << str << " | lowest_value = " << lowest_value->first << std::endl;
 	if (lowest_value == datacsv_file->end())
 	{
 		lowest_value--;
@@ -73,16 +73,17 @@ void	string_converterDate(std::string str, float value, \
 	}
 	else if (lowest_value != datacsv_file->begin())
 	{
-		lowest_value--;
-		std::cout << YELLOW << "Closets value that match Extracted Date: " << CYAN << lowest_value->first
-			<< YELLOW << " | Value: " << CYAN << lowest_value->second << RT << std::endl;
+			//std::cout << CYAN << " --BEFORE Lowest date = " << lowest_value->first << std::endl;
+			//std::cout << CYAN << "datacsv_file->begin date = " << datacsv_file->begin()->first << std::endl;
+			if (lowest_value->first != str)
+				lowest_value--;
+			std::cout << YELLOW << " -->Extracted Date: " << CYAN << lowest_value->first
+				<< YELLOW << " | Value: " << CYAN << lowest_value->second << RT << std::endl;
 	}
-
 	//work on currency exchange
-	//std::cout << GREEN << "\nTime to exchange the values with datacsv!" << RT << std::endl;
-	//std::cout << YELLOW << "Year[" << RT << str << YELLOW << CYAN << "(" << value << " * " 
-	//	<< lowest_value->second << ")" << YELLOW << "] => " << RT << value << YELLOW 
-	//	<< " = " << RT << (value * lowest_value->second) << std::endl;
+	std::cout << GREEN << "  ANSWER---> [" << RT << str << CYAN << "(" << value 
+		<< " * " << lowest_value->second << ")" << YELLOW << "] => " << RT << value 
+		<< YELLOW << " = " << RT << (value * lowest_value->second) << std::endl;
 }
 
 int	checking_infile(char **argv)
