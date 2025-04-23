@@ -12,7 +12,7 @@
 
 #include "PmergeMe.hpp"
 
-void	insert_firstpair_deque(std::deque<int> &main, std::deque<int> &pend, size_t &pair_size)
+void	insert_firstpair_deque(std::deque<long long> &main, std::deque<long long> &pend, size_t &pair_size)
 {
 	if (!pend.empty())
 	{
@@ -23,7 +23,7 @@ void	insert_firstpair_deque(std::deque<int> &main, std::deque<int> &pend, size_t
 	}
 };
 
-void	timer_for_recursion_deque(std::deque<int> &sorter, int argc)
+void	timer_for_recursion_deque(std::deque<long long> &sorter, int argc)
 {
 	double		timer_start = 0;
 	double		timer_end = 0;
@@ -37,16 +37,16 @@ void	timer_for_recursion_deque(std::deque<int> &sorter, int argc)
 	print_deque_AFTER(sorter, timer_end, argc);
 };
 
-void	pushing_sort_deque(std::deque<int> &sorter, int argc, char **argv)
+void	pushing_sort_deque(std::deque<long long> &sorter, int argc, char **argv)
 {
 	for (int a = 1; a < argc; a++)
 		sorter.push_back(convert_token(argv[a]));
 };
 
-void	print_deque_AFTER(std::deque<int> &deque, double timer_end, int argc)
+void	print_deque_AFTER(std::deque<long long> &deque, double timer_end, int argc)
 {
 	std::cout << "After: " << std::flush;
-	for (std::deque<int>::iterator it = deque.begin(); it != deque.end(); it++)
+	for (std::deque<long long>::iterator it = deque.begin(); it != deque.end(); it++)
 	{
 		std::cout << " " << CYAN << *it << RT<< std::flush;
 	}
@@ -55,7 +55,7 @@ void	print_deque_AFTER(std::deque<int> &deque, double timer_end, int argc)
 		<< YELLOW << " elements with std::deque : " << RT << timer_end << "ms" << std::endl;
 };
 
-void	sortinside_pairs_deque(std::deque<int> &sorter, size_t power, int pair_counter)
+void	sortinside_pairs_deque(std::deque<long long> &sorter, size_t power, int pair_counter)
 {
 	size_t	sp = power - 1;//sp means startpoint
 

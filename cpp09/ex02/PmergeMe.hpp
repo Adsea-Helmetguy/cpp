@@ -42,7 +42,7 @@ void	comparing_startVend(std::vector<int>& main, size_t start, size_t end, size_
 void	print_mainpend(std::vector<int> &main, std::vector<int> &pend, size_t pair_size, size_t before_after);
 
 //--general
-int		convert_token(std::string string);
+long long   convert_token(std::string string);
 double	timer_in_ms(clock_t &time);
 size_t	jacob_number(size_t n);
 void	update_new_jacob(size_t &old_jacob, size_t &old_jacobsthal, size_t &n, size_t &jacobsthal);
@@ -61,18 +61,18 @@ void	add_leftover_vector(std::vector<int> &main, std::vector<int> &leftover, siz
 
 //--deque
 void	PmergeMe_deque(int argc, char **argv);
-void	timer_for_recursion_deque(std::deque<int> &sorter, int argc);
-void	start_recursive_sort_deque(std::deque<int> &sorter, int level);
-void	pushing_sort_deque(std::deque<int> &sorter, int argc, char **argv);
-void	print_deque_AFTER(std::deque<int> &deque, double timer_end, int argc);
-int		counting_total_pair_deque(std::deque<int> &sorter, std::deque<int> &leftover, int power);
-void	add_leftover_deque(std::deque<int> &main, std::deque<int> &leftover, size_t &pair_size);
-void	insert_firstpair_deque(std::deque<int> &main, std::deque<int> &pend, size_t &pair_size);
-void	sortinside_pairs_deque(std::deque<int> &sorter, size_t power, int pair_counter);
-void	binaryinsert_mainpend_deque(std::deque<int> &main, std::deque<int> &pend, size_t pair_size);
-std::deque<int>	sorting_mainpend_chain_deque(std::deque<int> &sorter, std::deque<int> &leftover, size_t power);
-void	adding_mainpend_deque(std::deque<int> &sorter, std::deque<int> &main, std::deque<int> &pend, size_t power);
-size_t	binary_search_ft_deque(std::deque<int>& main, size_t start, size_t end, int insert_element, size_t pair_size);
-size_t	binary_search_leftover_deque(std::deque<int>& main, size_t start, size_t end, int insert_element, size_t pair_size);
+void	timer_for_recursion_deque(std::deque<long long> &sorter, int argc);
+void	start_recursive_sort_deque(std::deque<long long> &sorter, int level);
+void	pushing_sort_deque(std::deque<long long> &sorter, int argc, char **argv);
+void	print_deque_AFTER(std::deque<long long> &deque, double timer_end, int argc);
+int		counting_total_pair_deque(std::deque<long long> &sorter, std::deque<long long> &leftover, int power);
+void	add_leftover_deque(std::deque<long long> &main, std::deque<long long> &leftover, size_t &pair_size);
+void	insert_firstpair_deque(std::deque<long long> &main, std::deque<long long> &pend, size_t &pair_size);
+void	sortinside_pairs_deque(std::deque<long long> &sorter, size_t power, int pair_counter);
+void	binaryinsert_mainpend_deque(std::deque<long long> &main, std::deque<long long> &pend, size_t pair_size);
+std::deque<long long>	sorting_mainpend_chain_deque(std::deque<long long> &sorter, std::deque<long long> &leftover, size_t power);
+void	adding_mainpend_deque(std::deque<long long> &sorter, std::deque<long long> &main, std::deque<long long> &pend, size_t power);
+size_t	binary_search_ft_deque(std::deque<long long>& main, size_t start, size_t end, int insert_element, size_t pair_size);
+size_t	binary_search_leftover_deque(std::deque<long long>& main, size_t start, size_t end, int insert_element, size_t pair_size);
 
 #endif

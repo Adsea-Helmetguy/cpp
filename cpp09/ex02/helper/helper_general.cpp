@@ -21,10 +21,10 @@ size_t	jacob_number(size_t n)
 	return (jacob_number(n - 1) + 2 * jacob_number(n - 2));
 };
 
-int	convert_token(std::string string)
+long long	convert_token(std::string string)
 {
 	std::stringstream ss(string);
-	int	f;
+	long long	f;
 
 	ss >> f;
 	return (f);

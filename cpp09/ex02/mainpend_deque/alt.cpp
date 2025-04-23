@@ -12,7 +12,7 @@
 
 #include "PmergeMe.hpp"
 
-size_t	binary_search_leftover_deque(std::deque<int>& main, size_t start, size_t end, int insert_element, size_t pair_size)
+size_t	binary_search_leftover_deque(std::deque<long long>& main, size_t start, size_t end, int insert_element, size_t pair_size)
 {
 	size_t	binary_location = 0;	
 	size_t	total_pairs_inrange = ((end - start + 1) / pair_size);
@@ -36,7 +36,7 @@ size_t	binary_search_leftover_deque(std::deque<int>& main, size_t start, size_t 
 	return (binary_location);
 };
 
-void	add_leftover_deque(std::deque<int> &main, std::deque<int> &leftover, size_t &pair_size)
+void	add_leftover_deque(std::deque<long long> &main, std::deque<long long> &leftover, size_t &pair_size)
 {
 	size_t	binary_location = 0;
 	size_t	endpoint = (main.size());
@@ -50,7 +50,7 @@ void	add_leftover_deque(std::deque<int> &main, std::deque<int> &leftover, size_t
 
 
 /* return the position of where to insert the insert_element */
-size_t	binary_search_ft_deque(std::deque<int>& main, size_t start, size_t end, int insert_element, size_t pair_size)
+size_t	binary_search_ft_deque(std::deque<long long>& main, size_t start, size_t end, int insert_element, size_t pair_size)
 {
 	if (start + (pair_size - 1) >= end)
 		return (start);
@@ -67,7 +67,7 @@ size_t	binary_search_ft_deque(std::deque<int>& main, size_t start, size_t end, i
 	return (binary_location);
 };
 
-void	binaryinsert_mainpend_deque(std::deque<int> &main, std::deque<int> &pend, size_t pair_size)
+void	binaryinsert_mainpend_deque(std::deque<long long> &main, std::deque<long long> &pend, size_t pair_size)
 {
 	size_t	binary_location = 0;
 	size_t	old_jacob = 1;
@@ -108,8 +108,8 @@ void	binaryinsert_mainpend_deque(std::deque<int> &main, std::deque<int> &pend, s
 	}
 };
 
-void	adding_mainpend_deque(std::deque<int> &sorter, std::deque<int> &main, 
-	std::deque<int> &pend, size_t power)
+void	adding_mainpend_deque(std::deque<long long> &sorter, std::deque<long long> &main, 
+	std::deque<long long> &pend, size_t power)
 {
 	size_t	size_loop = 0;
 
@@ -124,11 +124,11 @@ void	adding_mainpend_deque(std::deque<int> &sorter, std::deque<int> &main,
 	}
 };
 
-std::deque<int>	sorting_mainpend_chain_deque(std::deque<int> &sorter, std::deque<int> &leftover, \
+std::deque<long long>	sorting_mainpend_chain_deque(std::deque<long long> &sorter, std::deque<long long> &leftover, \
 							size_t power)
 {
-	std::deque<int>	main;
-	std::deque<int>	pend;
+	std::deque<long long>	main;
+	std::deque<long long>	pend;
 	size_t	pair_size = power / 2;
 
 	adding_mainpend_deque(sorter, main, pend, power);
@@ -138,7 +138,7 @@ std::deque<int>	sorting_mainpend_chain_deque(std::deque<int> &sorter, std::deque
 	return (main);
 };
 
-int	counting_total_pair_deque(std::deque<int> &sorter, std::deque<int> &leftover, int power)
+int	counting_total_pair_deque(std::deque<long long> &sorter, std::deque<long long> &leftover, int power)
 {
 	int	pair_counter = static_cast<int>(sorter.size());
 	size_t	current_leftovers = 0;
@@ -162,9 +162,9 @@ int	counting_total_pair_deque(std::deque<int> &sorter, std::deque<int> &leftover
 	return (pair_counter);
 };
 
-void	start_recursive_sort_deque(std::deque<int> &sorter, int level)
+void	start_recursive_sort_deque(std::deque<long long> &sorter, int level)
 {
-	std::deque<int>	leftover;
+	std::deque<long long>	leftover;
 	size_t	power = static_cast<size_t>(pow(2, level));
 
 	int	pair_counter = 0;
@@ -178,7 +178,7 @@ void	start_recursive_sort_deque(std::deque<int> &sorter, int level)
 
 void	PmergeMe_deque(int argc, char **argv)
 {
-	std::deque<int>	sorter;
+	std::deque<long long>	sorter;
 
 	std::cout << "Before: " << CYAN << argv[1] << RT << std::flush;
 	for (int i = 2; i < argc; i++)
