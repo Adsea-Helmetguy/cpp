@@ -13,7 +13,7 @@
 #include "PmergeMe.hpp"
 
 /* return the position of where to insert the insert_element */
-size_t	binary_search_ft_vector(std::vector<int>& main, size_t start, size_t end, int insert_element, size_t pair_size)
+size_t	binary_search_ft_vector(std::vector<long long>& main, size_t start, size_t end, int insert_element, size_t pair_size)
 {
 	if (start + (pair_size - 1) >= end)
 		return (start);
@@ -30,7 +30,7 @@ size_t	binary_search_ft_vector(std::vector<int>& main, size_t start, size_t end,
 	return (binary_location);
 };
 
-void	binaryinsert_mainpend_vector(std::vector<int> &main, std::vector<int> &pend, size_t pair_size)
+void	binaryinsert_mainpend_vector(std::vector<long long> &main, std::vector<long long> &pend, size_t pair_size)
 {
 	size_t	binary_location = 0;
 	size_t	old_jacob = 1;
@@ -72,8 +72,8 @@ void	binaryinsert_mainpend_vector(std::vector<int> &main, std::vector<int> &pend
 	}
 };
 
-void	adding_mainpend_vector(std::vector<int> &sorter, std::vector<int> &main, 
-	std::vector<int> &pend, size_t power)
+void	adding_mainpend_vector(std::vector<long long> &sorter, std::vector<long long> &main, 
+	std::vector<long long> &pend, size_t power)
 {
 	size_t	size_loop = 0;
 
@@ -88,11 +88,11 @@ void	adding_mainpend_vector(std::vector<int> &sorter, std::vector<int> &main,
 	}
 };
 
-std::vector<int>	sorting_mainpend_chain_vector(std::vector<int> &sorter, std::vector<int> &leftover, \
+std::vector<long long>	sorting_mainpend_chain_vector(std::vector<long long> &sorter, std::vector<long long> &leftover, \
 							size_t power)
 {
-	std::vector<int>	main;
-	std::vector<int>	pend;
+	std::vector<long long>	main;
+	std::vector<long long>	pend;
 	size_t	pair_size = power / 2;
 
 	adding_mainpend_vector(sorter, main, pend, power);

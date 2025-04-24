@@ -12,7 +12,7 @@
 
 #include "PmergeMe.hpp"
 
-void	print_vector_pairs(std::vector<int>& vector, size_t pair_size, int mp)
+void	print_vector_pairs(std::vector<long long>& vector, size_t pair_size, int mp)
 {
 /*
 	size_t	loop = 0;
@@ -25,7 +25,7 @@ void	print_vector_pairs(std::vector<int>& vector, size_t pair_size, int mp)
 		std::cout << RED << "PEND" << RT << std::endl;
 
 	std::cout << YELLOW << "(" << RT << std::flush;
-	for (std::vector<int>::iterator it = vector.begin(); it != vector.end(); it++)
+	for (std::vector<long long>::iterator it = vector.begin(); it != vector.end(); it++)
 	{
 		if (loop != 0 && loop % pair_size == 0)
 			std::cout << YELLOW << ") (" << RT << std::flush;
@@ -41,7 +41,7 @@ void	print_vector_pairs(std::vector<int>& vector, size_t pair_size, int mp)
 	(void)mp;
 }
 
-void	comparing_startVend(std::vector<int>& main, size_t start, size_t end, size_t pair_size)
+void	comparing_startVend(std::vector<long long>& main, size_t start, size_t end, size_t pair_size)
 {
 /*
 	std::cout << YELLOW << "  Comparing (start[" << RT << std::flush;
@@ -83,8 +83,8 @@ void	comparing_startVend(std::vector<int>& main, size_t start, size_t end, size_
 	(void)pair_size;
 };
 
-void	print_mainpend(std::vector<int> &main, \
-		std::vector<int> &pend, size_t pair_size, size_t before_after)
+void	print_mainpend(std::vector<long long> &main, \
+		std::vector<long long> &pend, size_t pair_size, size_t before_after)
 {
 /*
 	if (before_after == 0)

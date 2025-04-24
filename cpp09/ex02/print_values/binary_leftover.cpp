@@ -12,7 +12,7 @@
 
 #include "PmergeMe.hpp"
 
-size_t	binary_search_leftover_vector(std::vector<int>& main, size_t start, size_t end, int insert_element, size_t pair_size)
+size_t	binary_search_leftover_vector(std::vector<long long>& main, size_t start, size_t end, int insert_element, size_t pair_size)
 {
 	size_t	binary_location = 0;	
 	size_t	total_pairs_inrange = ((end - start + 1) / pair_size);
@@ -35,7 +35,7 @@ size_t	binary_search_leftover_vector(std::vector<int>& main, size_t start, size_
 	return (binary_location);
 };
 
-void	add_leftover_vector(std::vector<int> &main, std::vector<int> &leftover, size_t &pair_size)
+void	add_leftover_vector(std::vector<long long> &main, std::vector<long long> &leftover, size_t &pair_size)
 {
 	size_t	binary_location = 0;
 	size_t	endpoint = (main.size());

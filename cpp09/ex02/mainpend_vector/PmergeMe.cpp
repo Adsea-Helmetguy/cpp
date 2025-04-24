@@ -12,7 +12,7 @@
 
 #include "PmergeMe.hpp"
 
-int	counting_total_pair_vector(std::vector<int> &sorter, std::vector<int> &leftover, int power)
+int	counting_total_pair_vector(std::vector<long long> &sorter, std::vector<long long> &leftover, int power)
 {
 	int	pair_counter = static_cast<int>(sorter.size());
 	size_t	current_leftovers = 0;
@@ -36,9 +36,9 @@ int	counting_total_pair_vector(std::vector<int> &sorter, std::vector<int> &lefto
 	return (pair_counter);
 };
 
-void	start_recursive_sort_vector(std::vector<int> &sorter, int level)
+void	start_recursive_sort_vector(std::vector<long long> &sorter, int level)
 {
-	std::vector<int>	leftover;
+	std::vector<long long>	leftover;
 	size_t	power = static_cast<size_t>(pow(2, level));
 
 	int	pair_counter = 0;
@@ -53,7 +53,7 @@ void	start_recursive_sort_vector(std::vector<int> &sorter, int level)
 
 void	PmergeMe_vector(int argc, char **argv)
 {
-	std::vector<int>	sorter;
+	std::vector<long long>	sorter;
 
 	std::cout << "Before: " << GREEN << argv[1] << RT << std::flush;
 	for (int i = 2; i < argc; i++)

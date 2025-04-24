@@ -12,7 +12,7 @@
 
 #include "PmergeMe.hpp"
 
-void	insert_firstpair_vector(std::vector<int> &main, std::vector<int> &pend, size_t &pair_size)
+void	insert_firstpair_vector(std::vector<long long> &main, std::vector<long long> &pend, size_t &pair_size)
 {
 	if (!pend.empty())
 	{
@@ -25,7 +25,7 @@ void	insert_firstpair_vector(std::vector<int> &main, std::vector<int> &pend, siz
 	}
 };
 
-void	timer_for_recursion_vector(std::vector<int> &sorter, int argc)
+void	timer_for_recursion_vector(std::vector<long long> &sorter, int argc)
 {
 	double		timer_start = 0;
 	double		timer_end = 0;
@@ -39,16 +39,16 @@ void	timer_for_recursion_vector(std::vector<int> &sorter, int argc)
 	print_vector_AFTER(sorter, timer_end, argc);
 };
 
-void	pushing_sort_vector(std::vector<int> &sorter, int argc, char **argv)
+void	pushing_sort_vector(std::vector<long long> &sorter, int argc, char **argv)
 {
 	for (int a = 1; a < argc; a++)
 		sorter.push_back(convert_token(argv[a]));
 };
 
-void	print_vector_AFTER(std::vector<int> &vector, double timer_end, int argc)
+void	print_vector_AFTER(std::vector<long long> &vector, double timer_end, int argc)
 {
 	std::cout << "After: " << std::flush;
-	for (std::vector<int>::iterator it = vector.begin(); it != vector.end(); it++)
+	for (std::vector<long long>::iterator it = vector.begin(); it != vector.end(); it++)
 	{
 		std::cout << " " << GREEN << *it << RT<< std::flush;
 	}
@@ -57,7 +57,7 @@ void	print_vector_AFTER(std::vector<int> &vector, double timer_end, int argc)
 		<< YELLOW << " elements with std::vector : " << RT << timer_end << "ms" << std::endl;
 };
 
-void	sortinside_pairs_vector(std::vector<int> &sorter, size_t power, int pair_counter)
+void	sortinside_pairs_vector(std::vector<long long> &sorter, size_t power, int pair_counter)
 {
 	size_t	sp = power - 1;//sp means startpoint
 
